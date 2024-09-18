@@ -24,7 +24,7 @@ import utils.Validation;
  *
  * @author HP
  */
-public class TaiKhoanController extends InterfaceController<TaiKhoan, String> {
+public class TaiKhoanController extends InterfaceConTroller<TaiKhoan, String> {
 
     public TaiKhoanDAO TK_DAO = new TaiKhoanDAO();
     public TaiKhoanPage TK_GUI;

@@ -24,7 +24,7 @@ import static utils.Validation.isPhoneNumber;
  *
  * @author HP
  */
-public class NhanVienController extends InterfaceController<NhanVien, String> {
+public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
 
     public NhanVienDAO NV_DAO = new NhanVienDAO();
     public NhanVienPage NV_GUI;

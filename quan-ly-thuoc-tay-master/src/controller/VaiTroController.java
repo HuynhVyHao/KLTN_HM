@@ -22,7 +22,7 @@ import utils.Validation;
  *
  * @author HP
  */
-public class VaiTroController extends InterfaceController<VaiTro, String> {
+public class VaiTroController extends InterfaceConTroller<VaiTro, String> {
 
     VaiTroDAO VT_DAO = new VaiTroDAO();
     VaiTroPage VT_GUI;

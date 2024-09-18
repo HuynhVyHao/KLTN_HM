@@ -28,7 +28,7 @@ import utils.Validation;
  *
  * @author HP
  */
-public class ThuocController extends InterfaceController<Thuoc, String> {
+public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 
     public ThuocDAO THUOC_DAO = new ThuocDAO();
     public ThuocPage THUOC_GUI;

@@ -2,7 +2,7 @@ package controller;
 
 import java.util.List;
 
-public abstract class InterfaceController<Entity, Key> {
+public abstract class InterfaceConTroller<Entity, Key> {
 
     abstract public void create(Entity e);
 

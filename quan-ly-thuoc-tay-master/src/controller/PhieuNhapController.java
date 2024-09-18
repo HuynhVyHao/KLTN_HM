@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author HP
  */
-public class PhieuNhapController extends InterfaceController<PhieuNhap, String> {
+public class PhieuNhapController extends InterfaceConTroller<PhieuNhap, String> {
 
     public PhieuNhapDAO PN_DAO = new PhieuNhapDAO();
 

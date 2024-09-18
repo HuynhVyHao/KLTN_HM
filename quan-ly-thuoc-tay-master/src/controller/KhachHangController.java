@@ -24,7 +24,7 @@ import static utils.Validation.isPhoneNumber;
  *
  * @author HP
  */
-public class KhachHangController extends InterfaceController<KhachHang, String> {
+public class KhachHangController extends InterfaceConTroller<KhachHang, String> {
 
     public KhachHangDAO KH_DAO = new KhachHangDAO();
     public KhachHangPage KH_GUI;

@@ -23,7 +23,7 @@ import utils.Validation;
  *
  * @author HP
  */
-public class DanhMucController extends InterfaceController<DanhMuc, String> {
+public class DanhMucController extends InterfaceConTroller<DanhMuc, String> {
 
     DanhMucDAO DM_DAO = new DanhMucDAO();
     ThuocTinhDanhMucDialog DM_GUI;

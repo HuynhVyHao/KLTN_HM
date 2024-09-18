@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import utils.MessageDialog;
@@ -149,9 +150,16 @@ public class MainLayout extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        // Initialize components
         leftContent = new javax.swing.JPanel();
-        sidebarPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        infoPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        btnInfo = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        txtFullName = new javax.swing.JLabel();
+        txtRole = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
+        topMenuPanel = new javax.swing.JPanel();
         itemPanel = new javax.swing.JPanel();
         thongKeItem = new javax.swing.JButton();
         hoaDonItem = new javax.swing.JButton();
@@ -164,228 +172,19 @@ public class MainLayout extends javax.swing.JFrame {
         nhanVienItem = new javax.swing.JButton();
         taiKhoanItem = new javax.swing.JButton();
         vaiTroItem = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        btnLogout = new javax.swing.JButton();
-        infoPanel = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        btnInfo = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        txtFullName = new javax.swing.JLabel();
-        txtRole = new javax.swing.JLabel();
         mainContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Hệ thống quản lý hiệu thuốc tây");
+     
 
         leftContent.setBackground(new java.awt.Color(230, 245, 245));
         leftContent.setPreferredSize(new java.awt.Dimension(250, 800));
-
-        sidebarPanel.setBackground(new java.awt.Color(255, 255, 255));
-        sidebarPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 242, 242), 2, true));
-        sidebarPanel.setPreferredSize(new java.awt.Dimension(200, 800));
-        sidebarPanel.setLayout(new java.awt.BorderLayout());
-
-        jScrollPane1.setBorder(null);
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(220, 550));
-
-        itemPanel.setBackground(new java.awt.Color(255, 255, 255));
-        itemPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true));
-        itemPanel.setPreferredSize(new java.awt.Dimension(250, 550));
-
-        thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        thongKeItem.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
-        thongKeItem.setText("Biểu đồ");
-        thongKeItem.setBorderPainted(false);
-        thongKeItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        thongKeItem.setFocusPainted(false);
-        thongKeItem.setFocusable(false);
-        thongKeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        thongKeItem.setIconTextGap(16);
-        thongKeItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        thongKeItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                thongKeItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(thongKeItem);
-
-        hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
-        hoaDonItem.setText("Hóa đơn");
-        hoaDonItem.setBorderPainted(false);
-        hoaDonItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        hoaDonItem.setFocusPainted(false);
-        hoaDonItem.setFocusable(false);
-        hoaDonItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        hoaDonItem.setIconTextGap(16);
-        hoaDonItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        hoaDonItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hoaDonItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(hoaDonItem);
-
-        khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        khachHangItem.setIcon(new FlatSVGIcon("./icon/customer.svg"));
-        khachHangItem.setText("Khách hàng");
-        khachHangItem.setBorderPainted(false);
-        khachHangItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        khachHangItem.setFocusPainted(false);
-        khachHangItem.setFocusable(false);
-        khachHangItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        khachHangItem.setIconTextGap(16);
-        khachHangItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        khachHangItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                khachHangItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(khachHangItem);
-
-        jSeparator2.setPreferredSize(new java.awt.Dimension(230, 2));
-        itemPanel.add(jSeparator2);
-
-        thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        thuocItem.setIcon(new FlatSVGIcon("./icon/medicine.svg"));
-        thuocItem.setText("Thuốc");
-        thuocItem.setBorderPainted(false);
-        thuocItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        thuocItem.setFocusPainted(false);
-        thuocItem.setFocusable(false);
-        thuocItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        thuocItem.setIconTextGap(16);
-        thuocItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        thuocItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                thuocItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(thuocItem);
-
-        phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        phieuNhapItem.setIcon(new FlatSVGIcon("./icon/bill-import.svg"));
-        phieuNhapItem.setText("Phiếu nhập");
-        phieuNhapItem.setBorderPainted(false);
-        phieuNhapItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        phieuNhapItem.setFocusPainted(false);
-        phieuNhapItem.setFocusable(false);
-        phieuNhapItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        phieuNhapItem.setIconTextGap(16);
-        phieuNhapItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        phieuNhapItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phieuNhapItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(phieuNhapItem);
-
-        nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        nhaCungCapItem.setIcon(new FlatSVGIcon("./icon/trucks.svg"));
-        nhaCungCapItem.setText("Nhà cung cấp");
-        nhaCungCapItem.setBorderPainted(false);
-        nhaCungCapItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nhaCungCapItem.setFocusPainted(false);
-        nhaCungCapItem.setFocusable(false);
-        nhaCungCapItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        nhaCungCapItem.setIconTextGap(16);
-        nhaCungCapItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        nhaCungCapItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nhaCungCapItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(nhaCungCapItem);
-
-        jSeparator3.setPreferredSize(new java.awt.Dimension(230, 2));
-        itemPanel.add(jSeparator3);
-
-        nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        nhanVienItem.setIcon(new FlatSVGIcon("./icon/employee.svg"));
-        nhanVienItem.setText("Nhân viên");
-        nhanVienItem.setBorderPainted(false);
-        nhanVienItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        nhanVienItem.setFocusPainted(false);
-        nhanVienItem.setFocusable(false);
-        nhanVienItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        nhanVienItem.setIconTextGap(16);
-        nhanVienItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        nhanVienItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nhanVienItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(nhanVienItem);
-
-        taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        taiKhoanItem.setIcon(new FlatSVGIcon("./icon/account.svg"));
-        taiKhoanItem.setText("Tài khoản");
-        taiKhoanItem.setBorderPainted(false);
-        taiKhoanItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        taiKhoanItem.setFocusPainted(false);
-        taiKhoanItem.setFocusable(false);
-        taiKhoanItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        taiKhoanItem.setIconTextGap(16);
-        taiKhoanItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        taiKhoanItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taiKhoanItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(taiKhoanItem);
-
-        vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        vaiTroItem.setIcon(new FlatSVGIcon("./icon/security.svg"));
-        vaiTroItem.setText("Phân quyền");
-        vaiTroItem.setBorderPainted(false);
-        vaiTroItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        vaiTroItem.setFocusPainted(false);
-        vaiTroItem.setFocusable(false);
-        vaiTroItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        vaiTroItem.setIconTextGap(16);
-        vaiTroItem.setPreferredSize(new java.awt.Dimension(226, 46));
-        vaiTroItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vaiTroItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(vaiTroItem);
-
-        jScrollPane1.setViewportView(itemPanel);
-
-        sidebarPanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 10, true));
-        jPanel5.setPreferredSize(new java.awt.Dimension(246, 80));
-        jPanel5.setLayout(new java.awt.BorderLayout(0, 10));
-        jPanel5.add(jSeparator1, java.awt.BorderLayout.PAGE_START);
-
-        btnLogout.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        btnLogout.setIcon(new FlatSVGIcon("./icon/logout.svg"));
-        btnLogout.setText("Đăng Xuất");
-        btnLogout.setBorderPainted(false);
-        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnLogout.setFocusPainted(false);
-        btnLogout.setFocusable(false);
-        btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        btnLogout.setIconTextGap(16);
-        btnLogout.setPreferredSize(new java.awt.Dimension(226, 46));
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-        jPanel5.add(btnLogout, java.awt.BorderLayout.CENTER);
-
-        sidebarPanel.add(jPanel5, java.awt.BorderLayout.SOUTH);
+        leftContent.setLayout(new java.awt.BorderLayout());
 
         infoPanel.setBackground(new java.awt.Color(255, 255, 255));
         infoPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 242, 242), 2, true));
-        infoPanel.setForeground(new java.awt.Color(243, 243, 243));
-        infoPanel.setPreferredSize(new java.awt.Dimension(200, 80));
+        infoPanel.setPreferredSize(new java.awt.Dimension(250, 80));
         infoPanel.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -440,34 +239,208 @@ public class MainLayout extends javax.swing.JFrame {
 
         infoPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        javax.swing.GroupLayout leftContentLayout = new javax.swing.GroupLayout(leftContent);
-        leftContent.setLayout(leftContentLayout);
-        leftContentLayout.setHorizontalGroup(
-            leftContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftContentLayout.createSequentialGroup()
-                .addGroup(leftContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sidebarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        leftContentLayout.setVerticalGroup(
-            leftContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(leftContentLayout.createSequentialGroup()
-                .addComponent(infoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(sidebarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
-        );
+        btnLogout.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        btnLogout.setIcon(new FlatSVGIcon("./icon/logout.svg"));
+        btnLogout.setText("Đăng Xuất");
+        btnLogout.setBorderPainted(false);
+        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogout.setFocusPainted(false);
+        btnLogout.setFocusable(false);
+        btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        btnLogout.setIconTextGap(16);
+        btnLogout.setPreferredSize(new java.awt.Dimension(226, 46));
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
-        getContentPane().add(leftContent, java.awt.BorderLayout.WEST);
+        leftContent.add(infoPanel, java.awt.BorderLayout.NORTH);
+        leftContent.add(btnLogout, java.awt.BorderLayout.SOUTH);
 
-        mainContent.setBackground(new java.awt.Color(243, 255, 255));
-        mainContent.setPreferredSize(new java.awt.Dimension(1130, 800));
+        topMenuPanel.setBackground(new java.awt.Color(255, 255, 255));
+        topMenuPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 242, 242), 2, true));
+        topMenuPanel.setPreferredSize(new java.awt.Dimension(1130, 80));
+        topMenuPanel.setLayout(new java.awt.BorderLayout());
+
+        itemPanel.setBackground(new java.awt.Color(255, 255, 255));
+        itemPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true));
+        itemPanel.setPreferredSize(new java.awt.Dimension(1130, 80));
+        itemPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
+
+        thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        thongKeItem.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
+        thongKeItem.setText("Biểu đồ");
+        thongKeItem.setBorderPainted(false);
+        thongKeItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        thongKeItem.setFocusPainted(false);
+        thongKeItem.setFocusable(false);
+        thongKeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        thongKeItem.setIconTextGap(16);
+        thongKeItem.setPreferredSize(new java.awt.Dimension(140, 60));
+        thongKeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thongKeItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(thongKeItem);
+
+        hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
+        hoaDonItem.setText("Hóa đơn");
+        hoaDonItem.setBorderPainted(false);
+        hoaDonItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hoaDonItem.setFocusPainted(false);
+        hoaDonItem.setFocusable(false);
+        hoaDonItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        hoaDonItem.setIconTextGap(16);
+        hoaDonItem.setPreferredSize(new java.awt.Dimension(140, 60));
+        hoaDonItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hoaDonItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(hoaDonItem);
+
+        khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        khachHangItem.setIcon(new FlatSVGIcon("./icon/customer.svg"));
+        khachHangItem.setText("Khách hàng");
+        khachHangItem.setBorderPainted(false);
+        khachHangItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        khachHangItem.setFocusPainted(false);
+        khachHangItem.setFocusable(false);
+        khachHangItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        khachHangItem.setIconTextGap(16);
+        khachHangItem.setPreferredSize(new java.awt.Dimension(170, 60));
+        khachHangItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                khachHangItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(khachHangItem);
+
+        itemPanel.add(jSeparator2);
+
+        thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        thuocItem.setIcon(new FlatSVGIcon("./icon/medicine.svg"));
+        thuocItem.setText("Thuốc");
+        thuocItem.setBorderPainted(false);
+        thuocItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        thuocItem.setFocusPainted(false);
+        thuocItem.setFocusable(false);
+        thuocItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        thuocItem.setIconTextGap(16);
+        thuocItem.setPreferredSize(new java.awt.Dimension(140, 60));
+        thuocItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thuocItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(thuocItem);
+
+        phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        phieuNhapItem.setIcon(new FlatSVGIcon("./icon/bill-import.svg"));
+        phieuNhapItem.setText("Phiếu nhập");
+        phieuNhapItem.setBorderPainted(false);
+        phieuNhapItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        phieuNhapItem.setFocusPainted(false);
+        phieuNhapItem.setFocusable(false);
+        phieuNhapItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        phieuNhapItem.setIconTextGap(16);
+        phieuNhapItem.setPreferredSize(new java.awt.Dimension(170, 60));
+        phieuNhapItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phieuNhapItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(phieuNhapItem);
+
+        nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        nhaCungCapItem.setIcon(new FlatSVGIcon("./icon/trucks.svg"));
+        nhaCungCapItem.setText("Nhà cung cấp");
+        nhaCungCapItem.setBorderPainted(false);
+        nhaCungCapItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nhaCungCapItem.setFocusPainted(false);
+        nhaCungCapItem.setFocusable(false);
+        nhaCungCapItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        nhaCungCapItem.setIconTextGap(16);
+        nhaCungCapItem.setPreferredSize(new java.awt.Dimension(170, 60));
+        nhaCungCapItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nhaCungCapItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(nhaCungCapItem);
+
+        itemPanel.add(jSeparator3);
+
+        nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        nhanVienItem.setIcon(new FlatSVGIcon("./icon/employee.svg"));
+        nhanVienItem.setText("Nhân viên");
+        nhanVienItem.setBorderPainted(false);
+        nhanVienItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nhanVienItem.setFocusPainted(false);
+        nhanVienItem.setFocusable(false);
+        nhanVienItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        nhanVienItem.setIconTextGap(16);
+        nhanVienItem.setPreferredSize(new java.awt.Dimension(170, 60));
+        nhanVienItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nhanVienItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(nhanVienItem);
+
+        taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        taiKhoanItem.setIcon(new FlatSVGIcon("./icon/account.svg"));
+        taiKhoanItem.setText("Tài khoản");
+        taiKhoanItem.setBorderPainted(false);
+        taiKhoanItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        taiKhoanItem.setFocusPainted(false);
+        taiKhoanItem.setFocusable(false);
+        taiKhoanItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        taiKhoanItem.setIconTextGap(16);
+        taiKhoanItem.setPreferredSize(new java.awt.Dimension(160, 60));
+        taiKhoanItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taiKhoanItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(taiKhoanItem);
+
+        vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        vaiTroItem.setIcon(new FlatSVGIcon("./icon/security.svg"));
+        vaiTroItem.setText("Vai trò");
+        vaiTroItem.setBorderPainted(false);
+        vaiTroItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        vaiTroItem.setFocusPainted(false);
+        vaiTroItem.setFocusable(false);
+        vaiTroItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        vaiTroItem.setIconTextGap(16);
+        vaiTroItem.setPreferredSize(new java.awt.Dimension(140, 60));
+        vaiTroItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vaiTroItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(vaiTroItem);
+
+        topMenuPanel.add(itemPanel, java.awt.BorderLayout.CENTER);
+
+        mainContent.setBackground(new java.awt.Color(255, 255, 255));
+        mainContent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mainContent.setPreferredSize(new java.awt.Dimension(1130, 620));
         mainContent.setLayout(new java.awt.BorderLayout());
+
+        // Add components to main frame
+        getContentPane().add(leftContent, java.awt.BorderLayout.WEST);
+        getContentPane().add(topMenuPanel, java.awt.BorderLayout.NORTH);
         getContentPane().add(mainContent, java.awt.BorderLayout.CENTER);
 
         pack();
+  
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         if (MessageDialog.confirm(this, "Bạn có chắc chắn muốn đăng xuất không?", "Đăng xuẩt")) {
@@ -560,6 +533,7 @@ public class MainLayout extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton khachHangItem;
     private javax.swing.JPanel leftContent;
+    private javax.swing.JPanel topMenuPanel;
     private javax.swing.JPanel mainContent;
     private javax.swing.JButton nhaCungCapItem;
     private javax.swing.JButton nhanVienItem;

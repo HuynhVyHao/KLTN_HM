@@ -23,7 +23,7 @@ import static utils.Validation.isPhoneNumber;
  *
  * @author HP
  */
-public class NhaCungCapController extends InterfaceController<NhaCungCap, String> {
+public class NhaCungCapController extends InterfaceConTroller<NhaCungCap, String> {
 
     public NhaCungCapDAO NCC_DAO = new NhaCungCapDAO();
     public NhaCungCapPage NCC_GUI;

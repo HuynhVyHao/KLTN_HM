@@ -22,7 +22,7 @@ import utils.Validation;
  *
  * @author HP
  */
-public class DonViTinhController extends InterfaceController<DonViTinh, String> {
+public class DonViTinhController extends InterfaceConTroller<DonViTinh, String> {
 
     DonViTinhDAO DVT_DAO = new DonViTinhDAO();
     ThuocTinhDonViTinhDialog DVT_GUI;

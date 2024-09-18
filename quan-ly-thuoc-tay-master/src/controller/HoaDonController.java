@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author HP
  */
-public class HoaDonController extends InterfaceController<HoaDon, String> {
+public class HoaDonController extends InterfaceConTroller<HoaDon, String> {
 
     public HoaDonDAO HD_DAO = new HoaDonDAO();
 

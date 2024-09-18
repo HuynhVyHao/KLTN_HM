@@ -22,7 +22,7 @@ import utils.Validation;
  *
  * @author HP
  */
-public class XuatXuController extends InterfaceController<XuatXu, String> {
+public class XuatXuController extends InterfaceConTroller<XuatXu, String> {
 
     XuatXuDAO XX_DAO = new XuatXuDAO();
     ThuocTinhXuatXuDialog XX_GUI;
