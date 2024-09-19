@@ -108,7 +108,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new FlatSVGIcon("./img/login.svg"));
+        jLabel1.setIcon(new FlatSVGIcon("./img/loginn.svg"));
         jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
@@ -120,20 +120,13 @@ public class Login extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(360, 600));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 16));
 
-        logo.setFont(new java.awt.Font("Segoe Print", 1, 32)); // NOI18N
-        logo.setForeground(new java.awt.Color(0, 183, 183));
+        logo.setFont(new java.awt.Font("Roboto", 1, 38)); 
+        logo.setForeground(new java.awt.Color (61, 245, 116));
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo-64.png"))); // NOI18N
-        logo.setText("PharmaStore");
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
+        logo.setText("Nhà Thuốc H&M");
         logo.setPreferredSize(new java.awt.Dimension(360, 120));
         jPanel4.add(logo);
-
-        lblLogin.setFont(new java.awt.Font("Roboto Mono SemiBold", 0, 24)); // NOI18N
-        lblLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogin.setText("ĐĂNG NHẬP");
-        lblLogin.setToolTipText("");
-        lblLogin.setPreferredSize(new java.awt.Dimension(360, 60));
-        jPanel4.add(lblLogin);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setPreferredSize(new java.awt.Dimension(360, 80));
@@ -178,13 +171,13 @@ public class Login extends javax.swing.JFrame {
 
         jPanel4.add(jPanel3);
 
-        btnLogin.setBackground(new java.awt.Color(0, 204, 204));
+        btnLogin.setBackground(new java.awt.Color(0,205,102));
         btnLogin.setFont(new java.awt.Font("Roboto Mono", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Đăng nhập");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.setFocusable(false);
-        btnLogin.setPreferredSize(new java.awt.Dimension(360, 40));
+        btnLogin.setPreferredSize(new java.awt.Dimension(220, 40));
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
