@@ -3,7 +3,7 @@ package gui.page;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.KhachHangController;
-import entities.KhachHang;
+import entity.KhachHang;
 import gui.dialog.CreateKhachHangDialog;
 import gui.dialog.UpdateKhachHangDialog;
 import java.util.ArrayList;
@@ -18,10 +18,7 @@ import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
+
 public class KhachHangPage extends javax.swing.JPanel {
 
     private KhachHangController KH_CON = new KhachHangController(this);

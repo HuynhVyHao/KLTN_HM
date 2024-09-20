@@ -1,7 +1,8 @@
 package controller;
 
 import dao.ChiTietPhieuDatHangDAO;
-import entities.ChiTietPhieuDatHang;
+import entity.ChiTietPhieuDatHang;
+
 import java.util.List;
 
 /**

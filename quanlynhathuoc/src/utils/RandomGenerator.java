@@ -2,10 +2,7 @@ package utils;
 
 import java.util.Random;
 
-/**
- *
- * @author atuandev
- */
+
 public class RandomGenerator {
     public static String getRandomId() {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

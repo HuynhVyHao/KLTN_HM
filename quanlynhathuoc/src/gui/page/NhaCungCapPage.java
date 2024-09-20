@@ -3,7 +3,7 @@ package gui.page;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.NhaCungCapController;
-import entities.NhaCungCap;
+import entity.NhaCungCap;
 import gui.dialog.CreateNhaCungCapDialog;
 import gui.dialog.UpdateNhaCungCapDialog;
 import java.util.ArrayList;
@@ -19,10 +19,7 @@ import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
+
 public class NhaCungCapPage extends javax.swing.JPanel {
 
     private NhaCungCapController NCC_CON = new NhaCungCapController(this);

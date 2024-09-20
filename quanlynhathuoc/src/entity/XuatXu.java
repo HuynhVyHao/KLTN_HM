@@ -2,24 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entities;
+package entity;
 
 /**
  *
  * @author HP
  */
-public class DonViTinh {
+public class XuatXu {
     private String id;
     private String ten;
 
-    public DonViTinh() {
+    public XuatXu() {
     }
 
-    public DonViTinh(String id) {
+    public XuatXu(String id) {
         this.id = id;
     }
 
-    public DonViTinh(String id, String ten) {
+    public XuatXu(String id, String ten) {
         this.id = id;
         this.ten = ten;
     }

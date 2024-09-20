@@ -1,16 +1,13 @@
 package gui.dialog;
 
 import controller.KhachHangController;
-import entities.KhachHang;
+import entity.KhachHang;
 import gui.page.KhachHangPage;
 import java.util.Date;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class UpdateKhachHangDialog extends javax.swing.JDialog {
 
     private KhachHangController KH_CON = new KhachHangController();

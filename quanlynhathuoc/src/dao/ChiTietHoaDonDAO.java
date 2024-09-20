@@ -3,9 +3,10 @@ package dao;
 import connectDB.JDBCConnection;
 import controller.HoaDonController;
 import controller.ThuocController;
-import entities.ChiTietHoaDon;
-import entities.HoaDon;
-import entities.Thuoc;
+import entity.ChiTietHoaDon;
+import entity.HoaDon;
+import entity.Thuoc;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

@@ -3,7 +3,8 @@ package gui.dialog;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.DanhMucController;
-import entities.DanhMuc;
+import entity.DanhMuc;
+
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
@@ -13,10 +14,7 @@ import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
+
 public class ThuocTinhDanhMucDialog extends javax.swing.JDialog {
 
     private DanhMucController DM_CON = new DanhMucController(this);

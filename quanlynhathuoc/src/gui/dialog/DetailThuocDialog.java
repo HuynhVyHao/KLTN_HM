@@ -4,19 +4,16 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.DanhMucController;
 import controller.DonViTinhController;
 import controller.XuatXuController;
-import entities.DanhMuc;
-import entities.DonViTinh;
-import entities.Thuoc;
-import entities.XuatXu;
+import entity.DanhMuc;
+import entity.DonViTinh;
+import entity.Thuoc;
+import entity.XuatXu;
 import gui.page.ThuocPage;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author atuandev
- */
+
 public class DetailThuocDialog extends javax.swing.JDialog {
 
     private byte[] thuocImage;

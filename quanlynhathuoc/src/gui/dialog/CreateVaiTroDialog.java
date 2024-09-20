@@ -1,15 +1,12 @@
 package gui.dialog;
 
 import controller.VaiTroController;
-import entities.VaiTro;
+import entity.VaiTro;
 import gui.page.VaiTroPage;
 import java.util.List;
 import utils.MessageDialog;
 
-/**
- *
- * @author atuandev
- */
+
 public class CreateVaiTroDialog extends javax.swing.JDialog {
 
     private VaiTroController VT_CON = new VaiTroController();

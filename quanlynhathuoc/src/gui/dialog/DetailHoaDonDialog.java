@@ -2,8 +2,9 @@ package gui.dialog;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ChiTietHoaDonController;
-import entities.ChiTietHoaDon;
-import entities.HoaDon;
+import entity.ChiTietHoaDon;
+import entity.HoaDon;
+
 import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -13,10 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
 import utils.WritePDF;
 
-/**
- *
- * @author atuandev
- */
+
 public class DetailHoaDonDialog extends javax.swing.JDialog {
 
     private final ChiTietHoaDonController CTHD_CON = new ChiTietHoaDonController();

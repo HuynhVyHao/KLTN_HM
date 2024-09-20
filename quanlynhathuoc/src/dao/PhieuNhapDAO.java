@@ -2,8 +2,9 @@ package dao;
 
 import connectDB.JDBCConnection;
 import controller.NhaCungCapController;
-import entities.PhieuNhap;
-import entities.NhanVien;
+import entity.NhanVien;
+import entity.PhieuNhap;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

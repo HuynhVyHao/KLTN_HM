@@ -1,7 +1,7 @@
 package controller;
 
 import dao.KhachHangDAO;
-import entities.KhachHang;
+import entity.KhachHang;
 import gui.page.KhachHangPage;
 import java.io.BufferedInputStream;
 import java.io.File;

@@ -3,7 +3,7 @@ package gui.page;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.VaiTroController;
-import entities.VaiTro;
+import entity.VaiTro;
 import gui.dialog.CreateVaiTroDialog;
 import gui.dialog.UpdateVaiTroDialog;
 import java.util.ArrayList;
@@ -18,10 +18,7 @@ import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
+
 public class VaiTroPage extends javax.swing.JPanel {
 
     private VaiTroController VT_CON = new VaiTroController(this);

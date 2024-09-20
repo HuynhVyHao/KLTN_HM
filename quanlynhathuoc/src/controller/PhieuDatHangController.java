@@ -1,7 +1,8 @@
 package controller;
 
 import dao.PhieuDatHangDAO;
-import entities.PhieuDatHang;
+import entity.PhieuDatHang;
+
 import java.util.ArrayList;
 import java.util.List;
 

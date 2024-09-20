@@ -11,10 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
 
-/**
- *
- * @author atuandev
- */
+
 public class ThuocTinhPage extends javax.swing.JPanel {
     
     List<JButton> listItem;

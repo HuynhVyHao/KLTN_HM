@@ -1,7 +1,8 @@
 package dao;
 
 import connectDB.JDBCConnection;
-import entities.KhachHang;
+import entity.KhachHang;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

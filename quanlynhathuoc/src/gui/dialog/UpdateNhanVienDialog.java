@@ -1,7 +1,7 @@
 package gui.dialog;
 
 import controller.NhanVienController;
-import entities.NhanVien;
+import entity.NhanVien;
 import gui.page.NhanVienPage;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,10 +9,7 @@ import java.util.List;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class UpdateNhanVienDialog extends javax.swing.JDialog {
 
     private NhanVienController NV_CON = new NhanVienController();

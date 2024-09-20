@@ -1,7 +1,7 @@
 package gui.page.thongke;
 
 import controller.ThongKeController;
-import entities.ThongKeTheoNam;
+import entity.ThongKeTheoNam;
 import gui.barchart.ModelChart;
 import java.awt.Color;
 import java.time.LocalDate;
@@ -15,10 +15,7 @@ import utils.MessageDialog;
 import utils.TableSorter;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class ThongKeDoanhThuTheoNamPage extends javax.swing.JPanel {
 
     private final int currentYear = LocalDate.now().getYear();

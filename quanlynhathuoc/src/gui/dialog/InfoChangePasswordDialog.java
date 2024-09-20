@@ -3,17 +3,14 @@ package gui.dialog;
 import controller.NhanVienController;
 import controller.TaiKhoanController;
 import controller.VaiTroController;
-import entities.NhanVien;
-import entities.TaiKhoan;
-import entities.VaiTro;
+import entity.NhanVien;
+import entity.TaiKhoan;
+import entity.VaiTro;
 import gui.MainLayout;
 import utils.BCrypt;
 import utils.MessageDialog;
 
-/**
- *
- * @author atuandev
- */
+
 public class InfoChangePasswordDialog extends javax.swing.JDialog {
 
     private final TaiKhoanController TK_CON = new TaiKhoanController();

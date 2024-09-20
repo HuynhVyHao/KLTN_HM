@@ -3,7 +3,8 @@ package gui.dialog;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.XuatXuController;
-import entities.XuatXu;
+import entity.XuatXu;
+
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
@@ -13,10 +14,6 @@ import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
 public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
 
     private XuatXuController XX_CON = new XuatXuController(this);

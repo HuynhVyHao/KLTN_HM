@@ -4,8 +4,8 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.TaiKhoanController;
 import controller.VaiTroController;
-import entities.TaiKhoan;
-import entities.VaiTro;
+import entity.TaiKhoan;
+import entity.VaiTro;
 import gui.dialog.CreateTaiKhoanDialog;
 import gui.dialog.UpdateTaiKhoanDialog;
 import java.util.ArrayList;
@@ -19,10 +19,6 @@ import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
 public class TaiKhoanPage extends javax.swing.JPanel {
 
     private final TaiKhoanController TK_CON = new TaiKhoanController(this);

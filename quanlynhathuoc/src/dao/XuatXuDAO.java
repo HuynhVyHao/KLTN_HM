@@ -1,7 +1,8 @@
 package dao;
 
 import connectDB.JDBCConnection;
-import entities.XuatXu;
+import entity.XuatXu;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

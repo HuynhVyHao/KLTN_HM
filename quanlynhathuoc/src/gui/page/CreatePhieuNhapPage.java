@@ -6,12 +6,12 @@ import controller.ChiTietPhieuNhapController;
 import controller.NhaCungCapController;
 import controller.PhieuNhapController;
 import controller.ThuocController;
-import entities.ChiTietPhieuNhap;
-import entities.NhaCungCap;
-import entities.NhanVien;
-import entities.PhieuNhap;
-import entities.TaiKhoan;
-import entities.Thuoc;
+import entity.ChiTietPhieuNhap;
+import entity.NhaCungCap;
+import entity.NhanVien;
+import entity.PhieuNhap;
+import entity.TaiKhoan;
+import entity.Thuoc;
 import gui.MainLayout;
 import gui.dialog.CreateNhaCungCapDialog;
 import java.awt.Image;
@@ -30,10 +30,7 @@ import utils.TableSorter;
 import utils.Validation;
 import utils.WritePDF;
 
-/**
- *
- * @author HP
- */
+
 public class CreatePhieuNhapPage extends javax.swing.JPanel {
 
     private final ThuocController THUOC_CON = new ThuocController();

@@ -5,10 +5,10 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ChiTietHoaDonController;
 import controller.HoaDonController;
 import controller.NhanVienController;
-import entities.ChiTietHoaDon;
-import entities.HoaDon;
-import entities.NhanVien;
-import entities.TaiKhoan;
+import entity.ChiTietHoaDon;
+import entity.HoaDon;
+import entity.NhanVien;
+import entity.TaiKhoan;
 import gui.MainLayout;
 import gui.dialog.DetailHoaDonDialog;
 import java.util.ArrayList;
@@ -24,10 +24,7 @@ import utils.MessageDialog;
 import utils.TableSorter;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class HoaDonPage extends javax.swing.JPanel {
 
     private final HoaDonController HD_CON = new HoaDonController();

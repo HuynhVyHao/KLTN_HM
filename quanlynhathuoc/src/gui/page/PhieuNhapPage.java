@@ -5,10 +5,10 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.ChiTietPhieuNhapController;
 import controller.NhanVienController;
 import controller.PhieuNhapController;
-import entities.ChiTietPhieuNhap;
-import entities.NhanVien;
-import entities.PhieuNhap;
-import entities.TaiKhoan;
+import entity.ChiTietPhieuNhap;
+import entity.NhanVien;
+import entity.PhieuNhap;
+import entity.TaiKhoan;
 import gui.MainLayout;
 import gui.dialog.DetailPhieuNhapDialog;
 import java.util.ArrayList;
@@ -24,10 +24,7 @@ import utils.MessageDialog;
 import utils.TableSorter;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class PhieuNhapPage extends javax.swing.JPanel {
 
     private final PhieuNhapController PN_CON = new PhieuNhapController();

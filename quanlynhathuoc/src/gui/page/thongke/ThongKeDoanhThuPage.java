@@ -1,9 +1,6 @@
 package gui.page.thongke;
 
-/**
- *
- * @author atuandev
- */
+
 public class ThongKeDoanhThuPage extends javax.swing.JPanel {
 
     public ThongKeDoanhThuPage() {

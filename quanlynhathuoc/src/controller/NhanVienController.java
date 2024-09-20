@@ -1,7 +1,7 @@
 package controller;
 
 import dao.NhanVienDAO;
-import entities.NhanVien;
+import entity.NhanVien;
 import gui.page.NhanVienPage;
 import java.io.BufferedInputStream;
 import java.io.File;

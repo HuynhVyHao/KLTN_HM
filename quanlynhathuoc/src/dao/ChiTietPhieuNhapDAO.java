@@ -3,7 +3,8 @@ package dao;
 import connectDB.JDBCConnection;
 import controller.PhieuNhapController;
 import controller.ThuocController;
-import entities.ChiTietPhieuNhap;
+import entity.ChiTietPhieuNhap;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

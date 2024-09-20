@@ -1,8 +1,10 @@
 package gui.dialog;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import entities.ChiTietPhieuNhap;
-import entities.PhieuNhap;
+
+import entity.ChiTietPhieuNhap;
+import entity.PhieuNhap;
+
 import java.awt.Image;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -12,10 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
 import utils.WritePDF;
 
-/**
- *
- * @author atuandev
- */
+
 public class DetailPhieuNhapDialog extends javax.swing.JDialog {
 
     private List<ChiTietPhieuNhap> listCTPN;

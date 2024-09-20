@@ -3,7 +3,7 @@ package gui.page;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.NhanVienController;
-import entities.NhanVien;
+import entity.NhanVien;
 import gui.dialog.CreateNhanVienDialog;
 import gui.dialog.UpdateNhanVienDialog;
 import java.util.ArrayList;
@@ -18,10 +18,7 @@ import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
+
 public class NhanVienPage extends javax.swing.JPanel {
 
     private NhanVienController NV_CON = new NhanVienController(this);

@@ -1,7 +1,8 @@
 package controller;
 
 import dao.HoaDonDAO;
-import entities.HoaDon;
+import entity.HoaDon;
+
 import java.util.ArrayList;
 import java.util.List;
 

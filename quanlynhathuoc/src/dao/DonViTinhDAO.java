@@ -1,7 +1,8 @@
 package dao;
 
 import connectDB.JDBCConnection;
-import entities.DonViTinh;
+import entity.DonViTinh;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;

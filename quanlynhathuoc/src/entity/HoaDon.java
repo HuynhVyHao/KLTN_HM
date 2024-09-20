@@ -1,28 +1,32 @@
-package entities;
+package entity;
 
-import java.util.Objects;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 /**
  *
  * @author atuandev
  */
-public class PhieuNhap {
+public class HoaDon {
 
     private String id;
     private Timestamp thoiGian;
     private NhanVien nhanVien;
-    private NhaCungCap ncc;
+    private KhachHang khachHang;
     private double tongTien;
 
-    public PhieuNhap() {
+    public HoaDon() {
     }
 
-    public PhieuNhap(String id, Timestamp thoiGian, NhanVien nhanVien, NhaCungCap ncc, double tongTien) {
+    public HoaDon(String id) {
+        this.id = id;
+    }
+
+    public HoaDon(String id, Timestamp thoiGian, NhanVien nhanVien, KhachHang khachHang, double tongTien) {
         this.id = id;
         this.thoiGian = thoiGian;
         this.nhanVien = nhanVien;
-        this.ncc = ncc;
+        this.khachHang = khachHang;
         this.tongTien = tongTien;
     }
 
@@ -50,12 +54,12 @@ public class PhieuNhap {
         this.nhanVien = nhanVien;
     }
 
-    public NhaCungCap getNcc() {
-        return ncc;
+    public KhachHang getKhachHang() {
+        return khachHang;
     }
 
-    public void setNcc(NhaCungCap ncc) {
-        this.ncc = ncc;
+    public void setKhachHang(KhachHang khachHang) {
+        this.khachHang = khachHang;
     }
 
     public double getTongTien() {
@@ -68,8 +72,8 @@ public class PhieuNhap {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 3;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -84,13 +88,13 @@ public class PhieuNhap {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final PhieuNhap other = (PhieuNhap) obj;
+        final HoaDon other = (HoaDon) obj;
         return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        return "PhieuNhap{" + "id=" + id + ", thoiGian=" + thoiGian + ", nhanVien=" + nhanVien + ", ncc=" + ncc + ", tongTien=" + tongTien + '}';
+        return "HoaDon{" + "id=" + id + ", thoiGian=" + thoiGian + ", nhanVien=" + nhanVien + ", khachHang=" + khachHang + '}';
     }
 
 }

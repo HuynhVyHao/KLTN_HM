@@ -6,12 +6,12 @@ import controller.ChiTietHoaDonController;
 import controller.HoaDonController;
 import controller.KhachHangController;
 import controller.ThuocController;
-import entities.ChiTietHoaDon;
-import entities.HoaDon;
-import entities.KhachHang;
-import entities.NhanVien;
-import entities.TaiKhoan;
-import entities.Thuoc;
+import entity.ChiTietHoaDon;
+import entity.HoaDon;
+import entity.KhachHang;
+import entity.NhanVien;
+import entity.TaiKhoan;
+import entity.Thuoc;
 import gui.MainLayout;
 import gui.dialog.CreateKhachHangDialog;
 import java.awt.Image;
@@ -30,10 +30,6 @@ import utils.TableSorter;
 import utils.Validation;
 import utils.WritePDF;
 
-/**
- *
- * @author HP
- */
 public class CreateHoaDonPage extends javax.swing.JPanel {
 
     private final ThuocController THUOC_CON = new ThuocController();

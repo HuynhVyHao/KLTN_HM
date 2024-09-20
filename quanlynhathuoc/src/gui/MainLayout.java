@@ -2,7 +2,7 @@ package gui;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.TaiKhoanController;
-import entities.TaiKhoan;
+import entity.TaiKhoan;
 import gui.dialog.InfoDialog;
 import gui.page.HoaDonPage;
 import gui.page.KhachHangPage;

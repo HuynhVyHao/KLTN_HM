@@ -1,10 +1,11 @@
 package dao;
 
 import connectDB.JDBCConnection;
+import entity.ThongKe;
+import entity.ThongKeTheoNam;
+import entity.ThongKeTheoThang;
+
 import java.sql.ResultSet;
-import entities.ThongKe;
-import entities.ThongKeTheoNam;
-import entities.ThongKeTheoThang;
 import java.util.ArrayList;
 import java.util.List;
 

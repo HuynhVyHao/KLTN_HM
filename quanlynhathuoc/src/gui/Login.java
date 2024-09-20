@@ -6,16 +6,14 @@ import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import controller.TaiKhoanController;
-import entities.TaiKhoan;
+import entity.TaiKhoan;
+
 import java.awt.event.KeyEvent;
 import utils.BCrypt;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {

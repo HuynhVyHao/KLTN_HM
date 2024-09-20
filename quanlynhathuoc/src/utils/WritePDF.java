@@ -26,10 +26,12 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import entities.ChiTietHoaDon;
-import entities.ChiTietPhieuNhap;
-import entities.HoaDon;
-import entities.PhieuNhap;
+
+import entity.ChiTietHoaDon;
+import entity.ChiTietPhieuNhap;
+import entity.HoaDon;
+import entity.PhieuNhap;
+
 import java.util.Date;
 import java.util.List;
 

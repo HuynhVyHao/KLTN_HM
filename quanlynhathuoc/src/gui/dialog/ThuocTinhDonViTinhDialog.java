@@ -3,7 +3,8 @@ package gui.dialog;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.DonViTinhController;
-import entities.DonViTinh;
+import entity.DonViTinh;
+
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
@@ -13,10 +14,6 @@ import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
 public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
 
     private DonViTinhController DVT_CON = new DonViTinhController(this);

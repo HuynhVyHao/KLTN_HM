@@ -1,7 +1,7 @@
 package gui.page.thongke;
 
 import controller.ThongKeController;
-import entities.ThongKe;
+import entity.ThongKe;
 import gui.barchart.ModelChart;
 import java.awt.Color;
 import java.time.LocalDate;
@@ -13,10 +13,6 @@ import utils.Formatter;
 import utils.JTableExporter;
 import utils.TableSorter;
 
-/**
- *
- * @author atuandev
- */
 public class ThongKeDoanhThuTungNgayTrongThangPage extends javax.swing.JPanel {
 
     private final int currentMonth = LocalDate.now().getMonthValue();

@@ -1,7 +1,8 @@
 package controller;
 
 import dao.PhieuNhapDAO;
-import entities.PhieuNhap;
+import entity.PhieuNhap;
+
 import java.util.ArrayList;
 import java.util.List;
 

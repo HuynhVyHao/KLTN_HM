@@ -1,11 +1,8 @@
 package gui.page.thongke;
 
-import entities.TaiKhoan;
+import entity.TaiKhoan;
 
-/**
- *
- * @author atuandev
- */
+
 public class ThongKePage extends javax.swing.JPanel {
 
     private TaiKhoan tk;

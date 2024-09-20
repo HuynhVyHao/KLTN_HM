@@ -1,7 +1,7 @@
 package controller;
 
 import dao.DanhMucDAO;
-import entities.DanhMuc;
+import entity.DanhMuc;
 import gui.dialog.ThuocTinhDanhMucDialog;
 import gui.dialog.ThuocTinhDonViTinhDialog;
 import java.io.BufferedInputStream;

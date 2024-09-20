@@ -5,7 +5,7 @@ import controller.KhachHangController;
 import controller.NhanVienController;
 import controller.ThongKeController;
 import controller.ThuocController;
-import entities.ThongKe;
+import entity.ThongKe;
 import gui.curvechart.ModelChart2;
 import java.awt.Color;
 import java.util.List;

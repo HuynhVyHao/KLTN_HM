@@ -5,10 +5,10 @@ import controller.DanhMucController;
 import controller.DonViTinhController;
 import controller.ThuocController;
 import controller.XuatXuController;
-import entities.DanhMuc;
-import entities.DonViTinh;
-import entities.Thuoc;
-import entities.XuatXu;
+import entity.DanhMuc;
+import entity.DonViTinh;
+import entity.Thuoc;
+import entity.XuatXu;
 import gui.page.ThuocPage;
 import java.awt.Image;
 import java.io.ByteArrayOutputStream;
@@ -24,10 +24,6 @@ import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
 public class CreateThuocDialog extends javax.swing.JDialog {
 
     private final ThuocController THUOC_CON = new ThuocController();

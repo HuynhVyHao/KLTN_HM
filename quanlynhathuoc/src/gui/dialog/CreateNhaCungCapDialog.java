@@ -1,16 +1,13 @@
 package gui.dialog;
 
 import controller.NhaCungCapController;
-import entities.NhaCungCap;
+import entity.NhaCungCap;
 import gui.page.NhaCungCapPage;
 import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class CreateNhaCungCapDialog extends javax.swing.JDialog {
 
     private NhaCungCapController NCC_CON = new NhaCungCapController();

@@ -2,24 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entities;
+package entity;
 
 /**
  *
  * @author HP
  */
-public class XuatXu {
+public class DanhMuc {
+
     private String id;
     private String ten;
 
-    public XuatXu() {
+    public DanhMuc() {
     }
 
-    public XuatXu(String id) {
+    public DanhMuc(String id) {
         this.id = id;
     }
 
-    public XuatXu(String id, String ten) {
+    public DanhMuc(String id, String ten) {
         this.id = id;
         this.ten = ten;
     }
@@ -44,6 +45,5 @@ public class XuatXu {
     public String toString() {
         return ten;
     }
-    
-    
+
 }

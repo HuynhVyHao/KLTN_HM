@@ -2,12 +2,7 @@ package dao;
 
 import java.util.List;
 
-/**
- *
- * @author Atuandev
- * @param <E>
- * @param <Key>
- */
+
 public interface ChiTietInterfaceDAO<E, Key> {
 
     public void create(List<E> e);

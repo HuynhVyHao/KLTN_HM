@@ -1,7 +1,7 @@
 package controller;
 
 import dao.VaiTroDAO;
-import entities.VaiTro;
+import entity.VaiTro;
 import gui.page.VaiTroPage;
 import java.io.BufferedInputStream;
 import java.io.File;

@@ -1,9 +1,10 @@
 package controller;
 
 import dao.ThongKeDAO;
-import entities.ThongKe;
-import entities.ThongKeTheoNam;
-import entities.ThongKeTheoThang;
+import entity.ThongKe;
+import entity.ThongKeTheoNam;
+import entity.ThongKeTheoThang;
+
 import java.util.List;
 
 /**
