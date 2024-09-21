@@ -75,7 +75,6 @@ public class Login extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -121,7 +120,7 @@ public class Login extends javax.swing.JFrame {
         logo.setFont(new java.awt.Font("Roboto", 1, 38)); 
         logo.setForeground(new java.awt.Color (61, 245, 116));
         logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png")));
         logo.setText("Nhà Thuốc H&M");
         logo.setPreferredSize(new java.awt.Dimension(360, 120));
         jPanel4.add(logo);
@@ -130,11 +129,9 @@ public class Login extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(360, 80));
         jPanel6.setLayout(new java.awt.GridLayout(2, 0));
 
-        lblUsername.setFont(new java.awt.Font("Roboto Mono", 0, 16)); // NOI18N
-        lblUsername.setText("Tài khoản");
         jPanel6.add(lblUsername);
 
-        txtUsername.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Roboto Mono", 0, 14)); 
         txtUsername.setForeground(new java.awt.Color(0, 0, 0));
         txtUsername.setText("admin");
         txtUsername.setPreferredSize(new java.awt.Dimension(350, 27));
@@ -153,11 +150,9 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setPreferredSize(new java.awt.Dimension(360, 80));
         jPanel3.setLayout(new java.awt.GridLayout(2, 0));
 
-        lblPassword.setFont(new java.awt.Font("Roboto Mono", 0, 16)); // NOI18N
-        lblPassword.setText("Mật khẩu");
         jPanel3.add(lblPassword);
 
-        txtPassword.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Roboto Mono", 0, 14)); 
         txtPassword.setText("123123");
         txtPassword.setPreferredSize(new java.awt.Dimension(90, 40));
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -170,7 +165,7 @@ public class Login extends javax.swing.JFrame {
         jPanel4.add(jPanel3);
 
         btnLogin.setBackground(new java.awt.Color(0,205,102));
-        btnLogin.setFont(new java.awt.Font("Roboto Mono", 1, 18)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Roboto Mono", 1, 18)); 
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Đăng nhập");
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -216,23 +211,22 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
         authentication();
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }
 
-    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyPressed
+    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             authentication();
         }
-    }//GEN-LAST:event_txtUsernameKeyPressed
+    }
 
-    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             authentication();
         }
-    }//GEN-LAST:event_txtPasswordKeyPressed
+    }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -247,6 +241,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel logo;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
-    // End of variables declaration//GEN-END:variables
 
 }

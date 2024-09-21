@@ -27,10 +27,7 @@ import utils.MessageDialog;
 import utils.TableSorter;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
+
 public class ThuocPage extends javax.swing.JPanel {
 
     private final ThuocController THUOC_CON = new ThuocController(this);
@@ -71,18 +68,11 @@ public class ThuocPage extends javax.swing.JPanel {
         listButton.add(btnThuocTinh);
         listButton.add(btnSubmitHSD);
 
-        // Border radius
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
 
-        txtHSD.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Nhập số ngày...");
-        txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tìm kiếm...");
-        txtSearch.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/search.svg"));
-
-        String[] searchType = {"Tất cả", "Mã", "Tên"};
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(searchType);
-        cboxSearch.setModel(model);
+     
     }
 
     private void tableLayout() {
@@ -144,7 +134,6 @@ public class ThuocPage extends javax.swing.JPanel {
         String tenXX = "";
         long hanSuDung = 0;
 
-        // Check if selected item is not null before converting to string
         if (cboxDanhMuc.getSelectedItem() != null) {
             tenDM = cboxDanhMuc.getSelectedItem().toString();
         }
@@ -163,7 +152,6 @@ public class ThuocPage extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
@@ -201,8 +189,8 @@ public class ThuocPage extends javax.swing.JPanel {
         txtHSD = new javax.swing.JTextField();
         btnSubmitHSD = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(230, 245, 245));
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 245, 245), 6, true));
+        setBackground(new java.awt.Color(227, 242, 223));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(227, 242, 223), 6, true));
         setMinimumSize(new java.awt.Dimension(1130, 800));
         setPreferredSize(new java.awt.Dimension(1130, 800));
         setLayout(new java.awt.BorderLayout(0, 10));
@@ -214,42 +202,6 @@ public class ThuocPage extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 16, 24));
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(370, 50));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
-
-        cboxSearch.setToolTipText("");
-        cboxSearch.setPreferredSize(new java.awt.Dimension(100, 40));
-        jPanel3.add(cboxSearch);
-
-        txtSearch.setToolTipText("Tìm kiếm");
-        txtSearch.setPreferredSize(new java.awt.Dimension(200, 40));
-        txtSearch.setSelectionColor(new java.awt.Color(230, 245, 245));
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-        jPanel3.add(txtSearch);
-
-        btnReload.setIcon(new FlatSVGIcon("./icon/reload.svg"));
-        btnReload.setToolTipText("Làm mới");
-        btnReload.setBorder(null);
-        btnReload.setBorderPainted(false);
-        btnReload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReload.setFocusPainted(false);
-        btnReload.setFocusable(false);
-        btnReload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReload.setPreferredSize(new java.awt.Dimension(40, 40));
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnReload);
-
-        jPanel1.add(jPanel3);
 
         headerPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -325,57 +277,6 @@ public class ThuocPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnInfo);
 
-        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
-        btnImport.setText("IMPORT");
-        btnImport.setBorder(null);
-        btnImport.setBorderPainted(false);
-        btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImport.setFocusPainted(false);
-        btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnImport);
-
-        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
-        btnExport.setText("EXPORT");
-        btnExport.setBorder(null);
-        btnExport.setBorderPainted(false);
-        btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExport.setFocusPainted(false);
-        btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnExport);
-
-        btnThuocTinh.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        btnThuocTinh.setIcon(new FlatSVGIcon("./icon/menu.svg"));
-        btnThuocTinh.setText("THUỘC TÍNH");
-        btnThuocTinh.setBorder(null);
-        btnThuocTinh.setBorderPainted(false);
-        btnThuocTinh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThuocTinh.setFocusPainted(false);
-        btnThuocTinh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnThuocTinh.setPreferredSize(new java.awt.Dimension(100, 90));
-        btnThuocTinh.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnThuocTinh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThuocTinhActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnThuocTinh);
-
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
         add(headerPanel, java.awt.BorderLayout.PAGE_START);
@@ -438,100 +339,7 @@ public class ThuocPage extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(200, 100));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 8));
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setPreferredSize(new java.awt.Dimension(200, 80));
-        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
-
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel3.setText("Danh mục thuốc");
-        jLabel3.setPreferredSize(new java.awt.Dimension(140, 20));
-        jPanel8.add(jLabel3);
-
-        cboxDanhMuc.setToolTipText("");
-        cboxDanhMuc.setPreferredSize(new java.awt.Dimension(170, 40));
-        cboxDanhMuc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxDanhMucActionPerformed(evt);
-            }
-        });
-        jPanel8.add(cboxDanhMuc);
-
-        jPanel4.add(jPanel8);
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setPreferredSize(new java.awt.Dimension(200, 80));
-        jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
-
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel1.setText("Xuất xứ");
-        jLabel1.setPreferredSize(new java.awt.Dimension(140, 20));
-        jPanel6.add(jLabel1);
-
-        cboxXuatXu.setToolTipText("");
-        cboxXuatXu.setPreferredSize(new java.awt.Dimension(170, 40));
-        cboxXuatXu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxXuatXuActionPerformed(evt);
-            }
-        });
-        jPanel6.add(cboxXuatXu);
-
-        jPanel4.add(jPanel6);
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setPreferredSize(new java.awt.Dimension(200, 80));
-        jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
-
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel2.setText("Đơn vị tính");
-        jLabel2.setPreferredSize(new java.awt.Dimension(140, 20));
-        jPanel7.add(jLabel2);
-
-        cboxDonViTinh.setToolTipText("");
-        cboxDonViTinh.setPreferredSize(new java.awt.Dimension(170, 40));
-        cboxDonViTinh.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxDonViTinhActionPerformed(evt);
-            }
-        });
-        jPanel7.add(cboxDonViTinh);
-
-        jPanel4.add(jPanel7);
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setPreferredSize(new java.awt.Dimension(200, 80));
-        jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
-
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel4.setText("Hạn sử dụng còn");
-        jLabel4.setPreferredSize(new java.awt.Dimension(140, 20));
-        jPanel9.add(jLabel4);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setMinimumSize(new java.awt.Dimension(170, 40));
-        jPanel2.setPreferredSize(new java.awt.Dimension(170, 40));
-        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
-
-        txtHSD.setPreferredSize(new java.awt.Dimension(120, 40));
-        jPanel2.add(txtHSD);
-
-        btnSubmitHSD.setIcon(new FlatSVGIcon("./icon/submit.svg"));
-        btnSubmitHSD.setBorder(null);
-        btnSubmitHSD.setBorderPainted(false);
-        btnSubmitHSD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSubmitHSD.setFocusPainted(false);
-        btnSubmitHSD.setOpaque(false);
-        btnSubmitHSD.setPreferredSize(new java.awt.Dimension(40, 40));
-        btnSubmitHSD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSubmitHSDActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnSubmitHSD);
-
-        jPanel9.add(jPanel2);
-
-        jPanel4.add(jPanel9);
+        
 
         tablePanel.add(jPanel4, java.awt.BorderLayout.LINE_START);
 

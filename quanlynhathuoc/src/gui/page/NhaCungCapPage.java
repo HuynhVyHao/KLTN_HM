@@ -38,18 +38,10 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         listButton.add(btnImport);
         listButton.add(btnExport);
 
-        // Border radius
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
-        btnReload.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
-        
-        txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tìm kiếm...");
-        txtSearch.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/search.svg"));
-
-        String[] searchType = {"Tất cả", "Mã", "Tên", "Số điện thoại"};
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(searchType);
-        cboxSearch.setModel(model);
+       
     }
 
     private void tableLayout() {
@@ -88,7 +80,6 @@ public class NhaCungCapPage extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
@@ -110,8 +101,8 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         lblTable = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(230, 245, 245));
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 245, 245), 6, true));
+        setBackground(new java.awt.Color(227, 242, 223));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(227, 242, 223), 6, true));
         setMinimumSize(new java.awt.Dimension(1130, 800));
         setPreferredSize(new java.awt.Dimension(1130, 800));
         setLayout(new java.awt.BorderLayout(0, 10));
@@ -124,49 +115,13 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 16, 24));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(584, 50));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
-
-        cboxSearch.setToolTipText("");
-        cboxSearch.setPreferredSize(new java.awt.Dimension(100, 40));
-        jPanel3.add(cboxSearch);
-
-        txtSearch.setToolTipText("Tìm kiếm");
-        txtSearch.setPreferredSize(new java.awt.Dimension(200, 40));
-        txtSearch.setSelectionColor(new java.awt.Color(230, 245, 245));
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-        jPanel3.add(txtSearch);
-
-        btnReload.setIcon(new FlatSVGIcon("./icon/reload.svg"));
-        btnReload.setToolTipText("Làm mới");
-        btnReload.setBorder(null);
-        btnReload.setBorderPainted(false);
-        btnReload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReload.setFocusPainted(false);
-        btnReload.setFocusable(false);
-        btnReload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReload.setPreferredSize(new java.awt.Dimension(40, 40));
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnReload);
-
-        jPanel1.add(jPanel3);
-
         headerPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         actionPanel.setBackground(new java.awt.Color(255, 255, 255));
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
         btnAdd.setText("THÊM");
         btnAdd.setBorder(null);
@@ -183,7 +138,7 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnAdd);
 
-        btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnUpdate.setIcon(new FlatSVGIcon("./icon/update.svg"));
         btnUpdate.setText("SỬA");
         btnUpdate.setBorder(null);
@@ -200,7 +155,7 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnUpdate);
 
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
         btnDelete.setText("XÓA");
         btnDelete.setBorder(null);
@@ -217,51 +172,7 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnDelete);
 
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
-        btnInfo.setText("INFO");
-        btnInfo.setBorder(null);
-        btnInfo.setBorderPainted(false);
-        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInfo.setFocusPainted(false);
-        btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInfo.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        actionPanel.add(btnInfo);
-
-        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
-        btnImport.setText("IMPORT");
-        btnImport.setBorder(null);
-        btnImport.setBorderPainted(false);
-        btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImport.setFocusPainted(false);
-        btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnImport);
-
-        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
-        btnExport.setText("EXPORT");
-        btnExport.setBorder(null);
-        btnExport.setBorderPainted(false);
-        btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExport.setFocusPainted(false);
-        btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnExport);
+       
 
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
@@ -312,7 +223,7 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -323,12 +234,12 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         add(tablePanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         CreateNhaCungCapDialog dialog = new CreateNhaCungCapDialog(null, true, this);
         dialog.setVisible(true);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             String id = table.getValueAt(row, 1).toString();
@@ -339,7 +250,7 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
@@ -354,39 +265,10 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
-        NCC_CON.importExcel();
-    }//GEN-LAST:event_btnImportActionPerformed
+    
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        JTableExporter.exportJTableToExcel(table);
-    }//GEN-LAST:event_btnExportActionPerformed
-
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
-        DefaultTableModel modal = (DefaultTableModel) table.getModel();
-        modal.setRowCount(0);
-
-        String search = txtSearch.getText().toLowerCase().trim();
-        String searchType = cboxSearch.getSelectedItem().toString();
-        List<NhaCungCap> listsearch = NCC_CON.getSearchTable(search, searchType);
-
-        int stt = 1;
-        for (NhaCungCap e : listsearch) {
-            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getTen(), e.getSdt(), e.getDiaChi()});
-            stt++;
-        }
-    }//GEN-LAST:event_txtSearchKeyReleased
-
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
-        txtSearch.setText("");
-        cboxSearch.setSelectedIndex(0);
-        loadTable();
-    }//GEN-LAST:event_btnReloadActionPerformed
-
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -405,5 +287,4 @@ public class NhaCungCapPage extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTextField txtSearch;
-    // End of variables declaration//GEN-END:variables
 }

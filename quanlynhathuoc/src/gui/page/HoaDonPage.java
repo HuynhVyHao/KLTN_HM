@@ -56,17 +56,12 @@ public class HoaDonPage extends javax.swing.JPanel {
         listButton.add(btnExport);
         listButton.add(btnReload);
 
-        // Border radius
+     
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
 
-        txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tìm kiếm...");
-        txtSearch.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/search.svg"));
-
-        String[] searchType = {"Tất cả", "Mã", "Tên khách hàng"};
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(searchType);
-        cboxSearch.setModel(model);
+       
     }
 
     private void tableLayout() {
@@ -157,7 +152,7 @@ public class HoaDonPage extends javax.swing.JPanel {
     private List<HoaDon> getListFilter() {
         String tenNV = "";
 
-        // Check if selected item is not null before converting to string
+       
         if (cboxNhanVien.getSelectedItem() != null) {
             tenNV = cboxNhanVien.getSelectedItem().toString();
         }
@@ -169,7 +164,6 @@ public class HoaDonPage extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
@@ -199,9 +193,9 @@ public class HoaDonPage extends javax.swing.JPanel {
         jPanel10 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtToPrice = new javax.swing.JTextField();
-
-        setBackground(new java.awt.Color(230, 245, 245));
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 245, 245), 6, true));
+        
+        setBackground(new java.awt.Color(227, 242, 223));
+        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(227, 242, 223), 6, true));
         setMinimumSize(new java.awt.Dimension(1130, 800));
         setPreferredSize(new java.awt.Dimension(1130, 800));
         setLayout(new java.awt.BorderLayout(0, 10));
@@ -214,41 +208,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 16, 24));
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(370, 50));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
-
-        cboxSearch.setToolTipText("");
-        cboxSearch.setPreferredSize(new java.awt.Dimension(100, 40));
-        jPanel3.add(cboxSearch);
-
-        txtSearch.setToolTipText("Tìm kiếm");
-        txtSearch.setPreferredSize(new java.awt.Dimension(200, 40));
-        txtSearch.setSelectionColor(new java.awt.Color(230, 245, 245));
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-        jPanel3.add(txtSearch);
-
-        btnReload.setIcon(new FlatSVGIcon("./icon/reload.svg"));
-        btnReload.setToolTipText("Làm mới");
-        btnReload.setBorder(null);
-        btnReload.setBorderPainted(false);
-        btnReload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReload.setFocusPainted(false);
-        btnReload.setFocusable(false);
-        btnReload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReload.setPreferredSize(new java.awt.Dimension(40, 40));
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnReload);
-
-        jPanel1.add(jPanel3);
+       
 
         headerPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -256,7 +216,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
         btnAdd.setText("THÊM");
         btnAdd.setBorder(null);
@@ -273,7 +233,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnAdd);
 
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
         btnDelete.setText("XÓA");
         btnDelete.setBorder(null);
@@ -290,7 +250,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnDelete);
 
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14));
         btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
         btnInfo.setText("INFO");
         btnInfo.setBorder(null);
@@ -307,22 +267,6 @@ public class HoaDonPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnInfo);
 
-        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
-        btnExport.setText("EXPORT");
-        btnExport.setBorder(null);
-        btnExport.setBorderPainted(false);
-        btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnExport.setFocusPainted(false);
-        btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnExport);
 
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
@@ -374,7 +318,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -386,79 +330,17 @@ public class HoaDonPage extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(200, 100));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 8));
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setPreferredSize(new java.awt.Dimension(200, 80));
-        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
-
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel3.setText("Tên nhân viên");
-        jLabel3.setPreferredSize(new java.awt.Dimension(140, 20));
-        jPanel8.add(jLabel3);
-
-        cboxNhanVien.setToolTipText("");
-        cboxNhanVien.setPreferredSize(new java.awt.Dimension(170, 40));
-        cboxNhanVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboxNhanVienActionPerformed(evt);
-            }
-        });
-        jPanel8.add(cboxNhanVien);
-
-        jPanel4.add(jPanel8);
-
-        jSeparator1.setPreferredSize(new java.awt.Dimension(140, 3));
-        jPanel4.add(jSeparator1);
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setPreferredSize(new java.awt.Dimension(200, 80));
-        jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
-
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel4.setText("Từ số tiền");
-        jLabel4.setPreferredSize(new java.awt.Dimension(140, 20));
-        jPanel9.add(jLabel4);
-
-        txtFromPrice.setPreferredSize(new java.awt.Dimension(170, 40));
-        txtFromPrice.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtFromPriceKeyReleased(evt);
-            }
-        });
-        jPanel9.add(txtFromPrice);
-
-        jPanel4.add(jPanel9);
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setPreferredSize(new java.awt.Dimension(200, 80));
-        jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
-
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel5.setText("Đến số tiền:");
-        jLabel5.setPreferredSize(new java.awt.Dimension(140, 20));
-        jPanel10.add(jLabel5);
-
-        txtToPrice.setPreferredSize(new java.awt.Dimension(170, 40));
-        txtToPrice.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtToPriceKeyReleased(evt);
-            }
-        });
-        jPanel10.add(txtToPrice);
-
-        jPanel4.add(jPanel10);
-
         tablePanel.add(jPanel4, java.awt.BorderLayout.LINE_START);
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    }
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         TaiKhoan tk = main.tk;
         CreateHoaDonPage page = new CreateHoaDonPage(main, tk);
         main.setPanel(page);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             String id = table.getValueAt(row, 1).toString();
@@ -473,13 +355,13 @@ public class HoaDonPage extends javax.swing.JPanel {
             e.printStackTrace();
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
-    }//GEN-LAST:event_btnExportActionPerformed
+    }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
 
         String search = txtSearch.getText().toLowerCase().trim();
@@ -487,31 +369,38 @@ public class HoaDonPage extends javax.swing.JPanel {
         List<HoaDon> listsearch = HD_CON.getSearchTable(search, searchType);
 
         loadTable(listsearch);
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtSearch.setText("");
         txtFromPrice.setText("");
         txtToPrice.setText("");
         cboxSearch.setSelectedIndex(0);
         cboxNhanVien.setSelectedIndex(0);
         loadTable(listHD);
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
-    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
+    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
+            System.out.println("Selected row: " + row); 
+            if (row == -1) {
+                throw new Exception("No row selected");
+            }
+
             HoaDon hoaDon = listHD.get(row);
             List<ChiTietHoaDon> listCTHD = new ChiTietHoaDonController().selectAllById(hoaDon.getId());
+            System.out.println("Size of listCTHD: " + listCTHD.size());
+
 
             DetailHoaDonDialog dialog = new DetailHoaDonDialog(null, true, listCTHD);
             dialog.setVisible(true);
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnInfoActionPerformed
+    }
 
-    private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxNhanVienActionPerformed
+    private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {
         modal.setRowCount(0);
 
         List<HoaDon> listSearch = getListFilter();
@@ -522,22 +411,22 @@ public class HoaDonPage extends javax.swing.JPanel {
         }
 
         loadTable(listSearch);
-    }//GEN-LAST:event_cboxNhanVienActionPerformed
+    }
 
-    private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtToPriceKeyReleased
+    private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
         List<HoaDon> listSearch = getListFilter();
         loadTable(listSearch);
-    }//GEN-LAST:event_txtToPriceKeyReleased
+    }
 
-    private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFromPriceKeyReleased
+    private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
         List<HoaDon> listSearch = getListFilter();
         loadTable(listSearch);
-    }//GEN-LAST:event_txtFromPriceKeyReleased
+    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+ 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -565,5 +454,5 @@ public class HoaDonPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtFromPrice;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtToPrice;
-    // End of variables declaration//GEN-END:variables
+   
 }

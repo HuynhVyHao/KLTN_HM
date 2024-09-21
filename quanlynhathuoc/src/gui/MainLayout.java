@@ -23,10 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.event.ChangeEvent;
 import utils.MessageDialog;
 
-/**
- *
- * @author atuandev
- */
+
 public class MainLayout extends javax.swing.JFrame {
 
     private ThuocPage thuoc;
@@ -80,7 +77,6 @@ public class MainLayout extends javax.swing.JFrame {
 
     private void sideBarLayout() {
 
-        // Add list item Sidebar
         listItem = new ArrayList<>();
         listItem.add(thongKeItem);
         listItem.add(hoaDonItem);
@@ -90,23 +86,19 @@ public class MainLayout extends javax.swing.JFrame {
         listItem.add(khachHangItem);
         listItem.add(nhanVienItem);
         listItem.add(taiKhoanItem);
-//        listItem.add(phieuDatHang);
         listItem.add(vaiTroItem);
 
-        // Default content
         mainContent.add(new ThongKePage(tk)).setVisible(true);
 
-        // Default selected
         listItem.get(0).setSelected(true);
         listItem.get(0).setBackground(ACTIVE_BACKGROUND_COLOR);
 
-        // Set active item
         for (JButton item : listItem) {
             item.getModel().addChangeListener((ChangeEvent e) -> {
                 ButtonModel model = (ButtonModel) e.getSource();
 
                 if (model.isSelected()) {
-                    item.setBackground(ACTIVE_BACKGROUND_COLOR); // Change color when selected
+                    item.setBackground(ACTIVE_BACKGROUND_COLOR); 
                 }
             });
         }
@@ -147,10 +139,8 @@ public class MainLayout extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        // Initialize components
         leftContent = new javax.swing.JPanel();
         infoPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -175,23 +165,23 @@ public class MainLayout extends javax.swing.JFrame {
         mainContent = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Hệ thống quản lý hiệu thuốc tây");
+        setTitle("Hệ Thống Quản Lý Nhà Thuốc H&M - Gò Vấp");
      
 
-        leftContent.setBackground(new java.awt.Color(230, 245, 245));
+        leftContent.setBackground(new java.awt.Color(218, 245, 211));
         leftContent.setPreferredSize(new java.awt.Dimension(250, 800));
         leftContent.setLayout(new java.awt.BorderLayout());
 
         infoPanel.setBackground(new java.awt.Color(255, 255, 255));
         infoPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(242, 242, 242), 2, true));
-        infoPanel.setPreferredSize(new java.awt.Dimension(250, 80));
+        infoPanel.setPreferredSize(new java.awt.Dimension(250, 70));
         infoPanel.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setPreferredSize(new java.awt.Dimension(64, 80));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnInfo.setIcon(new FlatSVGIcon("./icon/man.svg"));
         btnInfo.setBorderPainted(false);
         btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -199,21 +189,17 @@ public class MainLayout extends javax.swing.JFrame {
         btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInfo.setPreferredSize(new java.awt.Dimension(90, 90));
         btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoActionPerformed(evt);
-            }
-        });
+       
         jPanel2.add(btnInfo, java.awt.BorderLayout.CENTER);
 
         infoPanel.add(jPanel2, java.awt.BorderLayout.WEST);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtFullName.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        txtFullName.setFont(new java.awt.Font("Roboto", 1, 14)); 
         txtFullName.setText("Nguyễn Phan Anh Tuấn");
 
-        txtRole.setFont(new java.awt.Font("Roboto Light", 2, 13)); // NOI18N
+        txtRole.setFont(new java.awt.Font("Roboto Light", 2, 13)); 
         txtRole.setText("Nhân viên Quản lý sản phẩm");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -239,16 +225,16 @@ public class MainLayout extends javax.swing.JFrame {
 
         infoPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        btnLogout.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        btnLogout.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         btnLogout.setIcon(new FlatSVGIcon("./icon/logout.svg"));
-        btnLogout.setText("Đăng Xuất");
+        btnLogout.setText("Logout");
         btnLogout.setBorderPainted(false);
         btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogout.setFocusPainted(false);
         btnLogout.setFocusable(false);
         btnLogout.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         btnLogout.setIconTextGap(16);
-        btnLogout.setPreferredSize(new java.awt.Dimension(226, 46));
+        btnLogout.setPreferredSize(new java.awt.Dimension(230, 50));
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
@@ -268,7 +254,7 @@ public class MainLayout extends javax.swing.JFrame {
         itemPanel.setPreferredSize(new java.awt.Dimension(1130, 80));
         itemPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
 
-        thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         thongKeItem.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
         thongKeItem.setText("Biểu đồ");
         thongKeItem.setBorderPainted(false);
@@ -285,7 +271,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(thongKeItem);
 
-        hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
         hoaDonItem.setText("Hóa đơn");
         hoaDonItem.setBorderPainted(false);
@@ -302,7 +288,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(hoaDonItem);
 
-        khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         khachHangItem.setIcon(new FlatSVGIcon("./icon/customer.svg"));
         khachHangItem.setText("Khách hàng");
         khachHangItem.setBorderPainted(false);
@@ -321,7 +307,7 @@ public class MainLayout extends javax.swing.JFrame {
 
         itemPanel.add(jSeparator2);
 
-        thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         thuocItem.setIcon(new FlatSVGIcon("./icon/medicine.svg"));
         thuocItem.setText("Thuốc");
         thuocItem.setBorderPainted(false);
@@ -338,7 +324,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(thuocItem);
 
-        phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         phieuNhapItem.setIcon(new FlatSVGIcon("./icon/bill-import.svg"));
         phieuNhapItem.setText("Phiếu nhập");
         phieuNhapItem.setBorderPainted(false);
@@ -355,7 +341,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(phieuNhapItem);
 
-        nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         nhaCungCapItem.setIcon(new FlatSVGIcon("./icon/trucks.svg"));
         nhaCungCapItem.setText("Nhà cung cấp");
         nhaCungCapItem.setBorderPainted(false);
@@ -374,7 +360,7 @@ public class MainLayout extends javax.swing.JFrame {
 
         itemPanel.add(jSeparator3);
 
-        nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         nhanVienItem.setIcon(new FlatSVGIcon("./icon/employee.svg"));
         nhanVienItem.setText("Nhân viên");
         nhanVienItem.setBorderPainted(false);
@@ -391,7 +377,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(nhanVienItem);
 
-        taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         taiKhoanItem.setIcon(new FlatSVGIcon("./icon/account.svg"));
         taiKhoanItem.setText("Tài khoản");
         taiKhoanItem.setBorderPainted(false);
@@ -401,14 +387,10 @@ public class MainLayout extends javax.swing.JFrame {
         taiKhoanItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         taiKhoanItem.setIconTextGap(16);
         taiKhoanItem.setPreferredSize(new java.awt.Dimension(160, 60));
-        taiKhoanItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taiKhoanItemActionPerformed(evt);
-            }
-        });
+      
         itemPanel.add(taiKhoanItem);
 
-        vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         vaiTroItem.setIcon(new FlatSVGIcon("./icon/security.svg"));
         vaiTroItem.setText("Vai trò");
         vaiTroItem.setBorderPainted(false);
@@ -418,11 +400,7 @@ public class MainLayout extends javax.swing.JFrame {
         vaiTroItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         vaiTroItem.setIconTextGap(16);
         vaiTroItem.setPreferredSize(new java.awt.Dimension(140, 60));
-        vaiTroItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vaiTroItemActionPerformed(evt);
-            }
-        });
+      
         itemPanel.add(vaiTroItem);
 
         topMenuPanel.add(itemPanel, java.awt.BorderLayout.CENTER);
@@ -442,83 +420,82 @@ public class MainLayout extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Bạn có chắc chắn muốn đăng xuất không?", "Đăng xuẩt")) {
             this.dispose();
             new Login().setVisible(true);
         }
-    }//GEN-LAST:event_btnLogoutActionPerformed
+    }
 
-    private void taiKhoanItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taiKhoanItemActionPerformed
+    private void taiKhoanItemActionPerformed(java.awt.event.ActionEvent evt) {
         taiKhoan = new TaiKhoanPage();
         this.setPanel(taiKhoan);
         resetActive();
         taiKhoanItem.setSelected(true);
-    }//GEN-LAST:event_taiKhoanItemActionPerformed
+    }
 
-    private void nhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhanVienItemActionPerformed
+    private void nhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {
         nhanVien = new NhanVienPage();
         this.setPanel(nhanVien);
         resetActive();
         nhanVienItem.setSelected(true);
-    }//GEN-LAST:event_nhanVienItemActionPerformed
+    }
 
-    private void khachHangItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_khachHangItemActionPerformed
+    private void khachHangItemActionPerformed(java.awt.event.ActionEvent evt) {
         khachHang = new KhachHangPage();
         this.setPanel(khachHang);
         resetActive();
         khachHangItem.setSelected(true);
-    }//GEN-LAST:event_khachHangItemActionPerformed
+    }
 
-    private void nhaCungCapItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhaCungCapItemActionPerformed
+    private void nhaCungCapItemActionPerformed(java.awt.event.ActionEvent evt) {
         nhaCungCap = new NhaCungCapPage();
         this.setPanel(nhaCungCap);
         resetActive();
         nhaCungCapItem.setSelected(true);
-    }//GEN-LAST:event_nhaCungCapItemActionPerformed
+    }
 
-    private void hoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hoaDonItemActionPerformed
+    private void hoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {
         hoaDon = new HoaDonPage(this);
         this.setPanel(hoaDon);
         resetActive();
         hoaDonItem.setSelected(true);
-    }//GEN-LAST:event_hoaDonItemActionPerformed
+    }
 
-    private void thuocItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thuocItemActionPerformed
+    private void thuocItemActionPerformed(java.awt.event.ActionEvent evt) {
         thuoc = new ThuocPage(this);
         this.setPanel(thuoc);
         resetActive();
         thuocItem.setSelected(true);
-    }//GEN-LAST:event_thuocItemActionPerformed
+    }
 
-    private void vaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaiTroItemActionPerformed
+    private void vaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {
         vaiTro = new VaiTroPage();
         this.setPanel(vaiTro);
         resetActive();
         vaiTroItem.setSelected(true);
-    }//GEN-LAST:event_vaiTroItemActionPerformed
+    }
 
-    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
+    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         InfoDialog dialog = new InfoDialog(this, true, this, tk);
         dialog.setVisible(true);
-    }//GEN-LAST:event_btnInfoActionPerformed
+    }
 
-    private void phieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phieuNhapItemActionPerformed
+    private void phieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {
         phieuNhap = new PhieuNhapPage(this);
         this.setPanel(phieuNhap);
         resetActive();
         phieuNhapItem.setSelected(true);
-    }//GEN-LAST:event_phieuNhapItemActionPerformed
+    }
 
-    private void thongKeItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thongKeItemActionPerformed
+    private void thongKeItemActionPerformed(java.awt.event.ActionEvent evt) {
         thongke = new ThongKePage(tk);
         this.setPanel(thongke);
         resetActive();
         thongKeItem.setSelected(true);
-    }//GEN-LAST:event_thongKeItemActionPerformed
+    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInfo;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton hoaDonItem;
@@ -545,5 +522,4 @@ public class MainLayout extends javax.swing.JFrame {
     private javax.swing.JLabel txtFullName;
     private javax.swing.JLabel txtRole;
     private javax.swing.JButton vaiTroItem;
-    // End of variables declaration//GEN-END:variables
 }
