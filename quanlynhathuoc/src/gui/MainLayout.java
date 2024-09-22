@@ -78,17 +78,18 @@ public class MainLayout extends javax.swing.JFrame {
     private void sideBarLayout() {
 
         listItem = new ArrayList<>();
-        listItem.add(thongKeItem);
+        
         listItem.add(hoaDonItem);
         listItem.add(thuocItem);
         listItem.add(phieuNhapItem);
+        listItem.add(thongKeItem);
         listItem.add(nhaCungCapItem);
         listItem.add(khachHangItem);
         listItem.add(nhanVienItem);
         listItem.add(taiKhoanItem);
         listItem.add(vaiTroItem);
 
-        mainContent.add(new ThongKePage(tk)).setVisible(true);
+        mainContent.add(new HoaDonPage()).setVisible(true);
 
         listItem.get(0).setSelected(true);
         listItem.get(0).setBackground(ACTIVE_BACKGROUND_COLOR);
@@ -254,24 +255,9 @@ public class MainLayout extends javax.swing.JFrame {
         itemPanel.setPreferredSize(new java.awt.Dimension(1130, 80));
         itemPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
 
-        thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
-        thongKeItem.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
-        thongKeItem.setText("Biểu đồ");
-        thongKeItem.setBorderPainted(false);
-        thongKeItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        thongKeItem.setFocusPainted(false);
-        thongKeItem.setFocusable(false);
-        thongKeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        thongKeItem.setIconTextGap(16);
-        thongKeItem.setPreferredSize(new java.awt.Dimension(140, 60));
-        thongKeItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                thongKeItemActionPerformed(evt);
-            }
-        });
-        itemPanel.add(thongKeItem);
+       
 
-        hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
         hoaDonItem.setText("Hóa đơn");
         hoaDonItem.setBorderPainted(false);
@@ -288,7 +274,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(hoaDonItem);
 
-        khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         khachHangItem.setIcon(new FlatSVGIcon("./icon/customer.svg"));
         khachHangItem.setText("Khách hàng");
         khachHangItem.setBorderPainted(false);
@@ -307,7 +293,7 @@ public class MainLayout extends javax.swing.JFrame {
 
         itemPanel.add(jSeparator2);
 
-        thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         thuocItem.setIcon(new FlatSVGIcon("./icon/medicine.svg"));
         thuocItem.setText("Thuốc");
         thuocItem.setBorderPainted(false);
@@ -324,7 +310,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(thuocItem);
 
-        phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         phieuNhapItem.setIcon(new FlatSVGIcon("./icon/bill-import.svg"));
         phieuNhapItem.setText("Phiếu nhập");
         phieuNhapItem.setBorderPainted(false);
@@ -340,8 +326,25 @@ public class MainLayout extends javax.swing.JFrame {
             }
         });
         itemPanel.add(phieuNhapItem);
+        
+        thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
+        thongKeItem.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
+        thongKeItem.setText("Thống Kê");
+        thongKeItem.setBorderPainted(false);
+        thongKeItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        thongKeItem.setFocusPainted(false);
+        thongKeItem.setFocusable(false);
+        thongKeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        thongKeItem.setIconTextGap(16);
+        thongKeItem.setPreferredSize(new java.awt.Dimension(140, 60));
+        thongKeItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                thongKeItemActionPerformed(evt);
+            }
+        });
+        itemPanel.add(thongKeItem);
 
-        nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         nhaCungCapItem.setIcon(new FlatSVGIcon("./icon/trucks.svg"));
         nhaCungCapItem.setText("Nhà cung cấp");
         nhaCungCapItem.setBorderPainted(false);
@@ -360,7 +363,7 @@ public class MainLayout extends javax.swing.JFrame {
 
         itemPanel.add(jSeparator3);
 
-        nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         nhanVienItem.setIcon(new FlatSVGIcon("./icon/employee.svg"));
         nhanVienItem.setText("Nhân viên");
         nhanVienItem.setBorderPainted(false);
@@ -377,7 +380,7 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(nhanVienItem);
 
-        taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         taiKhoanItem.setIcon(new FlatSVGIcon("./icon/account.svg"));
         taiKhoanItem.setText("Tài khoản");
         taiKhoanItem.setBorderPainted(false);
@@ -390,7 +393,7 @@ public class MainLayout extends javax.swing.JFrame {
       
         itemPanel.add(taiKhoanItem);
 
-        vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
+        vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         vaiTroItem.setIcon(new FlatSVGIcon("./icon/security.svg"));
         vaiTroItem.setText("Vai trò");
         vaiTroItem.setBorderPainted(false);

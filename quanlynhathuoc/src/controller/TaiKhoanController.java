@@ -128,58 +128,58 @@ public class TaiKhoanController extends InterfaceConTroller<TaiKhoan, String> {
         return result;
     }
 
-    public void importExcel() {
-        File excelFile;
-        FileInputStream excelFIS = null;
-        BufferedInputStream excelBIS = null;
-        XSSFWorkbook excelJTableImport = null;
-        JFileChooser jf = new JFileChooser();
-        jf.setDialogTitle("Open file");
-        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXCEL FILES", "xls", "xlsx", "xlsm");
-        jf.setFileFilter(fnef);
-        int result = jf.showOpenDialog(null);
-
-        int check = 0;
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try {
-                excelFile = jf.getSelectedFile();
-                excelFIS = new FileInputStream(excelFile);
-                excelBIS = new BufferedInputStream(excelFIS);
-                excelJTableImport = new XSSFWorkbook(excelBIS);
-                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
-
-                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
-                    XSSFRow excelRow = excelSheet.getRow(row);
-
-                    // Select row cell
-                    String id = excelRow.getCell(0).getStringCellValue();
-                    String username = excelRow.getCell(1).getStringCellValue();
-                    String password = excelRow.getCell(2).getStringCellValue();
-                    String idNV = excelRow.getCell(3).getStringCellValue();
-                    String idVT = excelRow.getCell(4).getStringCellValue();
-
-                    // Validate row cell
-                    if (Validation.isEmpty(id) || Validation.isEmpty(username) || Validation.isEmpty(password)
-                            || Validation.isEmpty(idNV) || Validation.isEmpty(idVT)) {
-                        check += 1;
-                    } else {
-                        TaiKhoan tk = new TaiKhoan(id, username, password, new NhanVien(idNV), new VaiTro(idVT));
-                        TK_DAO.create(tk);
-                        TK_GUI.loadTable(this.getAllList());
-                    }
-
-                }
-                MessageDialog.info(null, "Nhập dữ liệu thành công!");
-
-            } catch (FileNotFoundException ex) {
-                MessageDialog.error(null, "Lỗi đọc file");
-            } catch (IOException ex) {
-                MessageDialog.error(null, "Lỗi đọc file");
-            }
-        }
-        if (check != 0) {
-            MessageDialog.error(null, "Có " + check + " dữ liệu không được thêm vào!");
-        }
-    }
+//    public void importExcel() {
+//        File excelFile;
+//        FileInputStream excelFIS = null;
+//        BufferedInputStream excelBIS = null;
+//        XSSFWorkbook excelJTableImport = null;
+//        JFileChooser jf = new JFileChooser();
+//        jf.setDialogTitle("Open file");
+//        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXCEL FILES", "xls", "xlsx", "xlsm");
+//        jf.setFileFilter(fnef);
+//        int result = jf.showOpenDialog(null);
+//
+//        int check = 0;
+//        if (result == JFileChooser.APPROVE_OPTION) {
+//            try {
+//                excelFile = jf.getSelectedFile();
+//                excelFIS = new FileInputStream(excelFile);
+//                excelBIS = new BufferedInputStream(excelFIS);
+//                excelJTableImport = new XSSFWorkbook(excelBIS);
+//                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
+//
+//                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
+//                    XSSFRow excelRow = excelSheet.getRow(row);
+//
+//                    // Select row cell
+//                    String id = excelRow.getCell(0).getStringCellValue();
+//                    String username = excelRow.getCell(1).getStringCellValue();
+//                    String password = excelRow.getCell(2).getStringCellValue();
+//                    String idNV = excelRow.getCell(3).getStringCellValue();
+//                    String idVT = excelRow.getCell(4).getStringCellValue();
+//
+//                    // Validate row cell
+//                    if (Validation.isEmpty(id) || Validation.isEmpty(username) || Validation.isEmpty(password)
+//                            || Validation.isEmpty(idNV) || Validation.isEmpty(idVT)) {
+//                        check += 1;
+//                    } else {
+//                        TaiKhoan tk = new TaiKhoan(id, username, password, new NhanVien(idNV), new VaiTro(idVT));
+//                        TK_DAO.create(tk);
+//                        TK_GUI.loadTable(this.getAllList());
+//                    }
+//
+//                }
+//                MessageDialog.info(null, "Nhập dữ liệu thành công!");
+//
+//            } catch (FileNotFoundException ex) {
+//                MessageDialog.error(null, "Lỗi đọc file");
+//            } catch (IOException ex) {
+//                MessageDialog.error(null, "Lỗi đọc file");
+//            }
+//        }
+//        if (check != 0) {
+//            MessageDialog.error(null, "Có " + check + " dữ liệu không được thêm vào!");
+//        }
+//    }
 
 }

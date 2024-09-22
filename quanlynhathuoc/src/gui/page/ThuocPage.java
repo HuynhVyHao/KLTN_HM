@@ -260,22 +260,7 @@ public class ThuocPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnDelete);
 
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
-        btnInfo.setText("INFO");
-        btnInfo.setBorder(null);
-        btnInfo.setBorderPainted(false);
-        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInfo.setFocusPainted(false);
-        btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInfo.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnInfo);
+      
 
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 

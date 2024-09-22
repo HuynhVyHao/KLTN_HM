@@ -171,6 +171,7 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         btnReload = new javax.swing.JButton();
         actionPanel = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
@@ -223,6 +224,19 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
        
         actionPanel.add(btnAdd);
+        
+        
+        btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnUpdate.setIcon(new FlatSVGIcon("./icon/update.svg"));
+        btnUpdate.setText("SỬA");
+        btnUpdate.setBorder(null);
+        btnUpdate.setBorderPainted(false);
+        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.setFocusPainted(false);
+        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdate.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        actionPanel.add(btnUpdate);
 
         btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
@@ -421,4 +435,5 @@ public class PhieuNhapPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtFromPrice;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtToPrice;
+    private javax.swing.JButton btnUpdate;
 }
