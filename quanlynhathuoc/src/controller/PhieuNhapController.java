@@ -6,10 +6,6 @@ import entity.PhieuNhap;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author HP
- */
 public class PhieuNhapController extends InterfaceConTroller<PhieuNhap, String> {
 
     public PhieuNhapDAO PN_DAO = new PhieuNhapDAO();

@@ -5,10 +5,7 @@ import entity.ChiTietPhieuNhap;
 
 import java.util.List;
 
-/**
- *
- * @author HP
- */
+
 public class ChiTietPhieuNhapController extends ChiTietInterfaceController<ChiTietPhieuNhap, String> {
 
     public ChiTietPhieuNhapDAO CTPN_DAO = new ChiTietPhieuNhapDAO();

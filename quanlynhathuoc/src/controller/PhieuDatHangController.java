@@ -6,10 +6,6 @@ import entity.PhieuDatHang;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author HP
- */
 public class PhieuDatHangController extends InterfaceConTroller<PhieuDatHang, String> {
 
     public PhieuDatHangDAO PDH_DAO = new PhieuDatHangDAO();

@@ -18,10 +18,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author HP
- */
 public class DonViTinhController extends InterfaceConTroller<DonViTinh, String> {
 
     DonViTinhDAO DVT_DAO = new DonViTinhDAO();
@@ -115,11 +111,9 @@ public class DonViTinhController extends InterfaceConTroller<DonViTinh, String> 
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
 
-                    // Select row cell
                     String id = excelRow.getCell(0).getStringCellValue();
                     String ten = excelRow.getCell(1).getStringCellValue();
 
-                    // Validate row cell
                     if (Validation.isEmpty(id) || Validation.isEmpty(ten)) {
                         check += 1;
                     } else {

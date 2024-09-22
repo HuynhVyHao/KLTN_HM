@@ -3,10 +3,6 @@ package entity;
 import java.util.Date;
 import java.util.Objects;
 
-/**
- *
- * @author HP
- */
 public class Thuoc {
 
     private String id;

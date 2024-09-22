@@ -3,10 +3,6 @@ package entity;
 import java.util.Objects;
 import java.sql.Timestamp;
 
-/**
- *
- * @author atuandev
- */
 public class PhieuDatHang {
 
     private String id;

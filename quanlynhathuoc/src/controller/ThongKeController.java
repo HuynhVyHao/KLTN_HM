@@ -7,10 +7,6 @@ import entity.ThongKeTheoThang;
 
 import java.util.List;
 
-/**
- *
- * @author HP
- */
 public class ThongKeController {
     private final ThongKeDAO TK_DAO = new ThongKeDAO();
     

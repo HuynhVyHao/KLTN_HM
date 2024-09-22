@@ -20,7 +20,6 @@ public class ThongKePage extends javax.swing.JPanel {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         tabPane = new javax.swing.JTabbedPane();
@@ -32,10 +31,8 @@ public class ThongKePage extends javax.swing.JPanel {
 
         tabPane.setPreferredSize(new java.awt.Dimension(100, 30));
         add(tabPane, java.awt.BorderLayout.PAGE_START);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane tabPane;
-    // End of variables declaration//GEN-END:variables
 }

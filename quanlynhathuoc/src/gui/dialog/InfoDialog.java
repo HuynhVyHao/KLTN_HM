@@ -9,10 +9,6 @@ import java.util.Date;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
 public class InfoDialog extends javax.swing.JDialog {
 
     private MainLayout main;
@@ -90,7 +86,6 @@ public class InfoDialog extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

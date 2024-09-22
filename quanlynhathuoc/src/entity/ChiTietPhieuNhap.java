@@ -2,10 +2,6 @@ package entity;
 
 import java.util.Objects;
 
-/**
- *
- * @author HP
- */
 public class ChiTietPhieuNhap {
 
     private PhieuNhap phieuNhap;

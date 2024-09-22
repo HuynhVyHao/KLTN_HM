@@ -413,7 +413,6 @@ public class MainLayout extends javax.swing.JFrame {
         mainContent.setPreferredSize(new java.awt.Dimension(1130, 620));
         mainContent.setLayout(new java.awt.BorderLayout());
 
-        // Add components to main frame
         getContentPane().add(leftContent, java.awt.BorderLayout.WEST);
         getContentPane().add(topMenuPanel, java.awt.BorderLayout.NORTH);
         getContentPane().add(mainContent, java.awt.BorderLayout.CENTER);

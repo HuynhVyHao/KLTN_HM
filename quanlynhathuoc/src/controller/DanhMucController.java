@@ -19,10 +19,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author HP
- */
 public class DanhMucController extends InterfaceConTroller<DanhMuc, String> {
 
     DanhMucDAO DM_DAO = new DanhMucDAO();
@@ -116,11 +112,9 @@ public class DanhMucController extends InterfaceConTroller<DanhMuc, String> {
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
 
-                    // Select row cell
                     String id = excelRow.getCell(0).getStringCellValue();
                     String ten = excelRow.getCell(1).getStringCellValue();
 
-                    // Validate row cell
                     if (Validation.isEmpty(id) || Validation.isEmpty(ten)) {
                         check += 1;
                     } else {

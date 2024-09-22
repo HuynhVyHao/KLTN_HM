@@ -5,10 +5,7 @@ import entity.ChiTietPhieuDatHang;
 
 import java.util.List;
 
-/**
- *
- * @author HP
- */
+
 public class ChiTietPhieuDatHangController extends ChiTietInterfaceController<ChiTietPhieuDatHang, String> {
 
     public ChiTietPhieuDatHangDAO CTPDH_DAO = new ChiTietPhieuDatHangDAO();

@@ -1,9 +1,5 @@
 package entity;
 
-/**
- *
- * @author HP
- */
 public class NhaCungCap {
     private String id;
     private String ten;

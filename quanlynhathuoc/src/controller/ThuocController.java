@@ -24,10 +24,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author HP
- */
 public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 
     public ThuocDAO THUOC_DAO = new ThuocDAO();
@@ -156,7 +152,6 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
 
-                    // Select row cell
                     String id = excelRow.getCell(0).getStringCellValue();
                     String tenThuoc = excelRow.getCell(1).getStringCellValue();
                     String image = excelRow.getCell(2).getStringCellValue();

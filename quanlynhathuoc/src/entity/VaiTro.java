@@ -1,9 +1,5 @@
 package entity;
 
-/**
- *
- * @author HP
- */
 public class VaiTro {
 
     private String id;

@@ -2,10 +2,7 @@ package entity;
 
 import java.util.Objects;
 
-/**
- *
- * @author HP
- */
+
 public class ChiTietPhieuDatHang {
 
     private PhieuDatHang phieuDatHang;

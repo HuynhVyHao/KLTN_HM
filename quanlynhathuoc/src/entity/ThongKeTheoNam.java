@@ -1,9 +1,5 @@
 package entity;
 
-/**
- *
- * @author HP
- */
 public class ThongKeTheoNam {
     private int nam;
     private double doanhThu;

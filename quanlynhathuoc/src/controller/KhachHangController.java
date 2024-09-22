@@ -20,10 +20,6 @@ import utils.MessageDialog;
 import utils.Validation;
 import static utils.Validation.isPhoneNumber;
 
-/**
- *
- * @author HP
- */
 public class KhachHangController extends InterfaceConTroller<KhachHang, String> {
 
     public KhachHangDAO KH_DAO = new KhachHangDAO();
@@ -134,7 +130,6 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
 
-                    // Select row cell
                     String id = excelRow.getCell(0).getStringCellValue();
                     String hoTen = excelRow.getCell(1).getStringCellValue();
                     String sdt = excelRow.getCell(2).getStringCellValue();
@@ -142,7 +137,6 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
                     String ngay = excelRow.getCell(4).getStringCellValue();
                     Date ngayThamGia = new Date(ngay);
 
-                    // Validate row cell
                     if (Validation.isEmpty(id) || Validation.isEmpty(hoTen)
                             || Validation.isEmpty(sdt) || !isPhoneNumber(sdt)
                             || Validation.isEmpty(gioitinh)

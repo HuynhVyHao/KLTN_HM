@@ -3,10 +3,6 @@ package entity;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-/**
- *
- * @author atuandev
- */
 public class HoaDon {
 
     private String id;

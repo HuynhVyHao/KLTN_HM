@@ -6,10 +6,6 @@ import entity.HoaDon;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author HP
- */
 public class HoaDonController extends InterfaceConTroller<HoaDon, String> {
 
     public HoaDonDAO HD_DAO = new HoaDonDAO();

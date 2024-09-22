@@ -176,7 +176,7 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
         btnUpdate.setBackground(new java.awt.Color(0, 204, 102));
         btnUpdate.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        btnUpdate.setText("CẬP NHẬP");
+        btnUpdate.setText("CẬP NHẬT");
         btnUpdate.setBorderPainted(false);
         btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUpdate.setFocusPainted(false);

@@ -18,10 +18,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author HP
- */
 public class VaiTroController extends InterfaceConTroller<VaiTro, String> {
 
     VaiTroDAO VT_DAO = new VaiTroDAO();

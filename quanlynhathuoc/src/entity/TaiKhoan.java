@@ -1,9 +1,5 @@
 package entity;
 
-/**
- *
- * @author Atuandev
- */
 public class TaiKhoan {
 
     private String id;

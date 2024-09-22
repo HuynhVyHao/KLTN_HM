@@ -2,10 +2,6 @@ package entity;
 
 import java.util.Date;
 
-/**
- *
- * @author HP
- */
 public class ThongKe {
 
     private Date thoiGian;

@@ -20,10 +20,6 @@ import utils.MessageDialog;
 import utils.Validation;
 import static utils.Validation.isPhoneNumber;
 
-/**
- *
- * @author HP
- */
 public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
 
     public NhanVienDAO NV_DAO = new NhanVienDAO();
@@ -138,7 +134,6 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
 
-                    // Select row cell
                     String id = excelRow.getCell(0).getStringCellValue();
                     String hoTen = excelRow.getCell(1).getStringCellValue();
                     String sdt = excelRow.getCell(2).getStringCellValue();
@@ -148,7 +143,6 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
                     String ngay = excelRow.getCell(5).getStringCellValue();
                     Date ngayVaoLam = new Date(ngay);
 
-                    // Validate row cell
                     if (Validation.isEmpty(id) || Validation.isEmpty(hoTen)
                             || Validation.isEmpty(sdt) || !isPhoneNumber(sdt)
                             || Validation.isEmpty(gioitinh) || Validation.isEmpty(ns)

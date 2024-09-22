@@ -20,10 +20,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utils.MessageDialog;
 import utils.Validation;
 
-/**
- *
- * @author HP
- */
 public class TaiKhoanController extends InterfaceConTroller<TaiKhoan, String> {
 
     public TaiKhoanDAO TK_DAO = new TaiKhoanDAO();

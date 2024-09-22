@@ -19,10 +19,6 @@ import utils.MessageDialog;
 import utils.Validation;
 import static utils.Validation.isPhoneNumber;
 
-/**
- *
- * @author HP
- */
 public class NhaCungCapController extends InterfaceConTroller<NhaCungCap, String> {
 
     public NhaCungCapDAO NCC_DAO = new NhaCungCapDAO();
@@ -125,13 +121,11 @@ public class NhaCungCapController extends InterfaceConTroller<NhaCungCap, String
                 for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
                     XSSFRow excelRow = excelSheet.getRow(row);
 
-                    // Select row cell
                     String id = excelRow.getCell(0).getStringCellValue();
                     String ten = excelRow.getCell(1).getStringCellValue();
                     String sdt = excelRow.getCell(2).getStringCellValue();
                     String diaChi = excelRow.getCell(3).getStringCellValue();
 
-                    // Validate row cell
                     if (Validation.isEmpty(id) || Validation.isEmpty(ten)
                             || Validation.isEmpty(sdt) || !isPhoneNumber(sdt)
                             || Validation.isEmpty(diaChi)) {

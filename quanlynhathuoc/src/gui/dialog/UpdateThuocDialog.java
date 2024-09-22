@@ -481,7 +481,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         btnAdd.setBackground(new java.awt.Color(0, 204, 102));
         btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdd.setText("CẬP NHẬP");
+        btnAdd.setText("CẬP NHẬT");
         btnAdd.setBorderPainted(false);
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdd.setFocusPainted(false);
