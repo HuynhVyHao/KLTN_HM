@@ -14,12 +14,16 @@ import gui.page.TaiKhoanPage;
 import gui.page.thongke.ThongKePage;
 import gui.page.VaiTroPage;
 import java.awt.Color;
+import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JSeparator;
 import javax.swing.event.ChangeEvent;
 import utils.MessageDialog;
 
@@ -35,6 +39,7 @@ public class MainLayout extends javax.swing.JFrame {
     private VaiTroPage vaiTro;
     private PhieuNhapPage phieuNhap;
     private ThongKePage thongke;
+   private boolean isMenuVisible;
 
     public TaiKhoan tk;
 
@@ -274,6 +279,63 @@ public class MainLayout extends javax.swing.JFrame {
         });
         itemPanel.add(hoaDonItem);
 
+     // Tạo menu thả xuống JPopupMenu
+        JPopupMenu popupMenu = new JPopupMenu();
+        popupMenu.setPreferredSize(new java.awt.Dimension(170, 120)); // Điều chỉnh kích thước tổng thể của menu
+        popupMenu.setBorderPainted(false);
+
+        popupMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        // Tạo các item trong menu với biểu tượng và văn bản
+        JMenuItem themItem = new JMenuItem("THÊM", new FlatSVGIcon("./icon/add.svg", 24, 24)); // Đặt kích thước biểu tượng
+        JMenuItem suaItem = new JMenuItem("SỬA", new FlatSVGIcon("./icon/update.svg", 24, 24));
+        JMenuItem xoaItem = new JMenuItem("XÓA", new FlatSVGIcon("./icon/delete.svg", 24, 24));
+
+        // Chỉnh khoảng cách giữa biểu tượng và văn bản
+        themItem.setIconTextGap(10); // Điều chỉnh khoảng cách giữa biểu tượng và văn bản
+        suaItem.setIconTextGap(10);
+        xoaItem.setIconTextGap(10);
+
+        // Chỉnh đệm (padding) cho từng mục trong menu để có khoảng cách rõ ràng hơn
+        themItem.setMargin(new Insets(5, 10, 5, 10));
+        suaItem.setMargin(new Insets(5, 10, 5, 10));
+        xoaItem.setMargin(new Insets(5, 10, 5, 10));
+
+        // Chỉnh phông chữ để văn bản hiển thị rõ ràng và đồng bộ với biểu tượng
+        themItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+        suaItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+        xoaItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+
+        // Thêm các item vào popupMenu
+        popupMenu.add(themItem);
+        popupMenu.add(new JSeparator());
+        popupMenu.add(suaItem);
+        popupMenu.add(new JSeparator());
+        popupMenu.add(xoaItem);
+
+
+        
+        // Gán sự kiện cho các item trong menu
+//        themItem.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent evt) {
+//                btnAddActionPerformed(evt); // Gọi hàm thực hiện cho nút "THÊM"
+//            }
+//        });
+
+//        suaItem.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent evt) {
+//                btnUpdateActionPerformed(evt); // Gọi hàm thực hiện cho nút "SỬA"
+//            }
+//        });
+
+//        xoaItem.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent evt) {
+//                btnDeleteActionPerformed(evt); // Gọi hàm thực hiện cho nút "XÓA"
+//            }
+//        });
+
+        // Thêm các item vào popupMenu
+       
+        
         khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         khachHangItem.setIcon(new FlatSVGIcon("./icon/customer.svg"));
         khachHangItem.setText("Khách hàng");
@@ -284,14 +346,29 @@ public class MainLayout extends javax.swing.JFrame {
         khachHangItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         khachHangItem.setIconTextGap(16);
         khachHangItem.setPreferredSize(new java.awt.Dimension(170, 60));
+     // Tạo biến để lưu trạng thái hiện/ẩn của menu
+        isMenuVisible = false; // Ban đầu menu đang ẩn
+
         khachHangItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                khachHangItemActionPerformed(evt);
+                if (isMenuVisible) {
+                    // Nếu menu đang hiện, ẩn nó đi
+                    popupMenu.setVisible(false);
+                    isMenuVisible = false; // Cập nhật trạng thái
+                } else {
+                    // Nếu menu đang ẩn, tính toán vị trí và hiển thị popupMenu
+                    int x = khachHangItem.getLocationOnScreen().x - khachHangItem.getParent().getLocationOnScreen().x;
+                    int y = khachHangItem.getLocationOnScreen().y - khachHangItem.getParent().getLocationOnScreen().y + khachHangItem.getHeight();
+                    
+                    // Hiển thị menu thả xuống ngay dưới nút khachHangItem
+                    popupMenu.show(khachHangItem.getParent(), x, y);
+                    isMenuVisible = true; // Cập nhật trạng thái
+                }
             }
         });
-        itemPanel.add(khachHangItem);
 
-        itemPanel.add(jSeparator2);
+
+        itemPanel.add(khachHangItem);
 
         thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); 
         thuocItem.setIcon(new FlatSVGIcon("./icon/medicine.svg"));
