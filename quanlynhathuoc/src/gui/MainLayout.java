@@ -5,12 +5,16 @@ import controller.TaiKhoanController;
 import entity.TaiKhoan;
 import gui.dialog.CreateKhachHangDialog;
 import gui.dialog.InfoDialog;
+import gui.page.BaoCaoHoaDonPage;
+import gui.page.BaoCaoKhachHangPage;
 import gui.page.HoaDonPage;
 import gui.page.KhachHangPage;
 import gui.page.NhaCungCapPage;
 import gui.page.NhanVienPage;
 import gui.page.PhieuNhapPage;
 import gui.page.ThuocPage;
+import gui.page.TimKiemHoaDonPage;
+import gui.page.TimKiemKhachHangPage;
 import gui.page.TaiKhoanPage;
 import gui.page.thongke.ThongKePage;
 import gui.page.VaiTroPage;
@@ -36,8 +40,12 @@ public class MainLayout extends javax.swing.JFrame {
 
 	private ThuocPage thuoc;
 	private HoaDonPage hoaDon;
+	private TimKiemHoaDonPage timKiemHoaDonPage;
+	private BaoCaoHoaDonPage baoCaoHoaDonPage;
 	private NhaCungCapPage nhaCungCap;
 	private KhachHangPage khachHang;
+	private TimKiemKhachHangPage timKiemKhachHang;
+	private BaoCaoKhachHangPage baoCaoKhachHang;
 	private NhanVienPage nhanVien;
 	private TaiKhoanPage taiKhoan;
 	private VaiTroPage vaiTro;
@@ -279,7 +287,51 @@ public class MainLayout extends javax.swing.JFrame {
 		itemPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 8, true));
 		itemPanel.setPreferredSize(new java.awt.Dimension(1130, 80));
 		itemPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10));
+		
+//-----------------HÓA ĐƠN--------------------------------------------
+		// Tạo menu thả xuống JPopupMenu
+		jpMenuHoaDon = new JPopupMenu();
+		jpMenuHoaDon.setPreferredSize(new java.awt.Dimension(170, 120)); // Điều chỉnh kích thước tổng thể của menu
+		jpMenuHoaDon.setBorderPainted(false);
 
+		jpMenuHoaDon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		// Tạo các item trong menu với biểu tượng và văn bản
+		JMenuItem capNhatHDItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); // Đặt kích thước biểu
+		capNhatHDItem.setIconTextGap(8); // Điều chỉnh khoảng cách giữa biểu tượng và văn bản
+		capNhatHDItem.setMargin(new Insets(5, 10, 5, 10));
+		capNhatHDItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+	    capNhatHDItem.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent evt) {
+            		hoaDonItemActionPerformed(evt);
+             }
+         });
+
+		JMenuItem timKiemHDItem = new JMenuItem("Tìm Kiếm", new FlatSVGIcon("./icon/search2.svg", 24, 24));
+		timKiemHDItem.setIconTextGap(8);
+		timKiemHDItem.setMargin(new Insets(5, 10, 5, 10));
+		timKiemHDItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+		timKiemHDItem.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent evt) {
+            		timKiemHoaDonItemActionPerformed(evt);
+             }
+         });
+		
+		JMenuItem baoCaoHDItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
+		baoCaoHDItem.setIconTextGap(8);
+		baoCaoHDItem.setMargin(new Insets(5, 10, 5, 10));
+		baoCaoHDItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+		baoCaoHDItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+           	 baoCaoHoaDonItemActionPerformed(evt);
+            }
+        });
+		
+		jpMenuHoaDon.add(capNhatHDItem);
+		jpMenuHoaDon.add(new JSeparator());
+		jpMenuHoaDon.add(timKiemHDItem);
+		jpMenuHoaDon.add(new JSeparator());
+		jpMenuHoaDon.add(baoCaoHDItem);
+		
 		hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
 		hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
 		hoaDonItem.setText("Hóa đơn");
@@ -290,14 +342,31 @@ public class MainLayout extends javax.swing.JFrame {
 		hoaDonItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
 		hoaDonItem.setIconTextGap(16);
 		hoaDonItem.setPreferredSize(new java.awt.Dimension(140, 60));
+		isMenuVisible = false;
 		hoaDonItem.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				hoaDonItemActionPerformed(evt);
+			
+				
+				if (isMenuVisible) {
+					// Nếu menu đang hiện, ẩn nó đi
+					jpMenuHoaDon.setVisible(false);
+					isMenuVisible = false; // Cập nhật trạng thái
+				} else {
+					// Nếu menu đang ẩn, tính toán vị trí và hiển thị popupMenu
+					int x = hoaDonItem.getLocationOnScreen().x - hoaDonItem.getParent().getLocationOnScreen().x;
+					int y = hoaDonItem.getLocationOnScreen().y - hoaDonItem.getParent().getLocationOnScreen().y
+							+ hoaDonItem.getHeight();
+
+					// Hiển thị menu thả xuống ngay dưới nút khachHangItem
+					jpMenuHoaDon.show(hoaDonItem.getParent(), x, y);
+					isMenuVisible = true; // Cập nhật trạng thái
+				}
 			}
+			
 		});
 		itemPanel.add(hoaDonItem);
 
-//        KHÁCH HÀNG
+//-----------------KHÁCH HÀNG--------------------------------------------
 
 		// Tạo menu thả xuống JPopupMenu
 		jpMenuKhachHang = new JPopupMenu();
@@ -306,43 +375,39 @@ public class MainLayout extends javax.swing.JFrame {
 
 		jpMenuKhachHang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		// Tạo các item trong menu với biểu tượng và văn bản
-		JMenuItem luuTruItem = new JMenuItem("Lưu Trữ", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); // Đặt kích thước biểu
-		luuTruItem.setIconTextGap(10); // Điều chỉnh khoảng cách giữa biểu tượng và văn bản
-		luuTruItem.setMargin(new Insets(5, 10, 5, 10));
-		luuTruItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-	    luuTruItem.addActionListener(new ActionListener() {
+		JMenuItem capNhatItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); // Đặt kích thước biểu
+		capNhatItem.setIconTextGap(8); // Điều chỉnh khoảng cách giữa biểu tượng và văn bản
+		capNhatItem.setMargin(new Insets(5, 10, 5, 10));
+		capNhatItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+	    capNhatItem.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent evt) {
             	 khachHangItemActionPerformed(evt); 
              }
          });
 
-		JMenuItem traCuuItem = new JMenuItem("Tra Cứu", new FlatSVGIcon("./icon/search2.svg", 24, 24));
-		traCuuItem.setIconTextGap(10);
-		traCuuItem.setMargin(new Insets(5, 10, 5, 10));
-		traCuuItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-		traCuuItem.addActionListener(new ActionListener() {
+		JMenuItem timKiemItem = new JMenuItem("Tìm Kiếm", new FlatSVGIcon("./icon/search2.svg", 24, 24));
+		timKiemItem.setIconTextGap(8);
+		timKiemItem.setMargin(new Insets(5, 10, 5, 10));
+		timKiemItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+		timKiemItem.addActionListener(new ActionListener() {
              public void actionPerformed(ActionEvent evt) {
-            	 khachHangItemActionPerformed(evt); 
+            	 timKiemKhachHangItemActionPerformed(evt); 
              }
          });
 		
 		JMenuItem baoCaoItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoItem.setIconTextGap(10);
+		baoCaoItem.setIconTextGap(8);
 		baoCaoItem.setMargin(new Insets(5, 10, 5, 10));
 		baoCaoItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
 		baoCaoItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-           	 khachHangItemActionPerformed(evt); 
+           	 baoCaoKhachHangItemActionPerformed(evt); 
             }
         });
 		
-
-
-
-
-		jpMenuKhachHang.add(luuTruItem);
+		jpMenuKhachHang.add(capNhatItem);
 		jpMenuKhachHang.add(new JSeparator());
-		jpMenuKhachHang.add(traCuuItem);
+		jpMenuKhachHang.add(timKiemItem);
 		jpMenuKhachHang.add(new JSeparator());
 		jpMenuKhachHang.add(baoCaoItem);
 	
@@ -540,27 +605,67 @@ public class MainLayout extends javax.swing.JFrame {
 		nhanVienItem.setSelected(true);
 	}// GEN-LAST:event_nhanVienItemActionPerformed
 
+//-------------CHỨC NĂNG KHÁCH HÀNG---------------------------
+	
 	private void khachHangItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_khachHangItemActionPerformed
 		khachHang = new KhachHangPage();
 		this.setPanel(khachHang);
 		resetActive();
 		khachHangItem.setSelected(true);
+		isMenuVisible = false;
 	}// GEN-LAST:event_khachHangItemActionPerformed
 	
+	private void timKiemKhachHangItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_khachHangItemActionPerformed
+		timKiemKhachHang = new TimKiemKhachHangPage();
+		this.setPanel(timKiemKhachHang);
+		resetActive();
+		khachHangItem.setSelected(true);
+		isMenuVisible = false;
+	}
 	
+	private void baoCaoKhachHangItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_khachHangItemActionPerformed
+		baoCaoKhachHang = new BaoCaoKhachHangPage();
+		this.setPanel(baoCaoKhachHang);
+		resetActive();
+		khachHangItem.setSelected(true);
+		isMenuVisible = false;
+	}
+
+//-------------CHỨC NĂNG HÓA ĐƠN---------------------------
+	
+	private void hoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hoaDonItemActionPerformed
+		hoaDon = new HoaDonPage(this);
+		this.setPanel(hoaDon);
+		resetActive();
+		hoaDonItem.setSelected(true);
+		isMenuVisible = false;
+	}
+	
+	private void timKiemHoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hoaDonItemActionPerformed
+		timKiemHoaDonPage = new TimKiemHoaDonPage(this);
+		this.setPanel(timKiemHoaDonPage);
+		resetActive();
+		hoaDonItem.setSelected(true);
+		isMenuVisible = false;
+	}
+	
+	private void baoCaoHoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hoaDonItemActionPerformed
+		baoCaoHoaDonPage= new BaoCaoHoaDonPage(this);
+		this.setPanel(baoCaoHoaDonPage);
+		resetActive();
+		hoaDonItem.setSelected(true);
+		isMenuVisible = false;
+	}
+	
+	
+	
+//-------------CHỨC NĂNG NHÀ CUNG CẤP---------------------------	
 	private void nhaCungCapItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_nhaCungCapItemActionPerformed
 		nhaCungCap = new NhaCungCapPage();
 		this.setPanel(nhaCungCap);
 		resetActive();
 		nhaCungCapItem.setSelected(true);
 	}// GEN-LAST:event_nhaCungCapItemActionPerformed
-
-	private void hoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hoaDonItemActionPerformed
-		hoaDon = new HoaDonPage(this);
-		this.setPanel(hoaDon);
-		resetActive();
-		hoaDonItem.setSelected(true);
-	}// GEN-LAST:event_hoaDonItemActionPerformed
 
 	private void thuocItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_thuocItemActionPerformed
 		thuoc = new ThuocPage(this);

@@ -2,7 +2,10 @@ package controller;
 
 import dao.KhachHangDAO;
 import entity.KhachHang;
+import gui.page.BaoCaoKhachHangPage;
 import gui.page.KhachHangPage;
+import gui.page.TimKiemKhachHangPage;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,12 +27,22 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
 
     public KhachHangDAO KH_DAO = new KhachHangDAO();
     public KhachHangPage KH_GUI;
+    public TimKiemKhachHangPage KH_GUITK;
+    public BaoCaoKhachHangPage KH_GUIBC;
 
     public KhachHangController() {
     }
 
     public KhachHangController(KhachHangPage KH_GUI) {
         this.KH_GUI = KH_GUI;
+    }
+    
+    public KhachHangController(TimKiemKhachHangPage KH_GUITK) {
+        this.KH_GUITK = KH_GUITK;
+    }
+    
+    public KhachHangController(BaoCaoKhachHangPage KH_GUIBC) {
+        this.KH_GUIBC = KH_GUIBC;
     }
 
     @Override
