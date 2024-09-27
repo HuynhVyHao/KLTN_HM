@@ -2,7 +2,10 @@ package controller;
 
 import dao.NhanVienDAO;
 import entity.NhanVien;
+import gui.page.BaoCaoNhanVienPage;
 import gui.page.NhanVienPage;
+import gui.page.TimKiemNhanVienPage;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,12 +27,20 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
 
     public NhanVienDAO NV_DAO = new NhanVienDAO();
     public NhanVienPage NV_GUI;
+    public TimKiemNhanVienPage NV_GUITK;
+    public BaoCaoNhanVienPage NV_GUIBC;
 
     public NhanVienController() {
     }
 
     public NhanVienController(NhanVienPage NV_GUI) {
         this.NV_GUI = NV_GUI;
+    }
+    public NhanVienController(TimKiemNhanVienPage NV_GUITK) {
+    	this.NV_GUITK = NV_GUITK;
+    }
+    public NhanVienController(BaoCaoNhanVienPage NV_GUIBC) {
+    	this.NV_GUIBC = NV_GUIBC;
     }
 
     @Override

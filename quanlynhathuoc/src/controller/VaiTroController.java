@@ -88,55 +88,55 @@ public class VaiTroController extends InterfaceConTroller<VaiTro, String> {
         return result;
     }
 
-//    public void importExcel() {
-//        File excelFile;
-//        FileInputStream excelFIS = null;
-//        BufferedInputStream excelBIS = null;
-//        XSSFWorkbook excelJTableImport = null;
-//        JFileChooser jf = new JFileChooser();
-//        jf.setDialogTitle("Open file");
-//        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXCEL FILES", "xls", "xlsx", "xlsm");
-//        jf.setFileFilter(fnef);
-//        int result = jf.showOpenDialog(null);
-//
-//        int check = 0;
-//        if (result == JFileChooser.APPROVE_OPTION) {
-//            try {
-//                excelFile = jf.getSelectedFile();
-//                excelFIS = new FileInputStream(excelFile);
-//                excelBIS = new BufferedInputStream(excelFIS);
-//                excelJTableImport = new XSSFWorkbook(excelBIS);
-//                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
-//
-//                // Import start at row 1
-//                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
-//                    XSSFRow excelRow = excelSheet.getRow(row);
-//
-//                    // Select row cell
-//                    String id = excelRow.getCell(0).getStringCellValue();
-//                    String ten = excelRow.getCell(1).getStringCellValue();
-//
-//                    // Validate row cell
-//                    if (Validation.isEmpty(id) || Validation.isEmpty(ten)) {
-//                        check += 1;
-//                    } else {
-//                        VaiTro e = new VaiTro(id, ten);
-//                        VT_DAO.create(e);
-//                        VT_GUI.loadTable();
-//                    }
-//
-//                }
-//                MessageDialog.info(VT_GUI, "Nhập dữ liệu thành công!");
-//
-//            } catch (FileNotFoundException ex) {
-//                MessageDialog.error(VT_GUI, "Lỗi đọc file");
-//            } catch (IOException ex) {
-//                MessageDialog.error(VT_GUI, "Lỗi đọc file");
-//            }
-//        }
-//        if (check != 0) {
-//            MessageDialog.error(VT_GUI, "Có " + check + " dòng dữ liệu không được thêm vào!");
-//        }
-//    }
+    public void importExcel() {
+        File excelFile;
+        FileInputStream excelFIS = null;
+        BufferedInputStream excelBIS = null;
+        XSSFWorkbook excelJTableImport = null;
+        JFileChooser jf = new JFileChooser();
+        jf.setDialogTitle("Open file");
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("EXCEL FILES", "xls", "xlsx", "xlsm");
+        jf.setFileFilter(fnef);
+        int result = jf.showOpenDialog(null);
+
+        int check = 0;
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try {
+                excelFile = jf.getSelectedFile();
+                excelFIS = new FileInputStream(excelFile);
+                excelBIS = new BufferedInputStream(excelFIS);
+                excelJTableImport = new XSSFWorkbook(excelBIS);
+                XSSFSheet excelSheet = excelJTableImport.getSheetAt(0);
+
+                // Import start at row 1
+                for (int row = 1; row <= excelSheet.getLastRowNum(); row++) {
+                    XSSFRow excelRow = excelSheet.getRow(row);
+
+                    // Select row cell
+                    String id = excelRow.getCell(0).getStringCellValue();
+                    String ten = excelRow.getCell(1).getStringCellValue();
+
+                    // Validate row cell
+                    if (Validation.isEmpty(id) || Validation.isEmpty(ten)) {
+                        check += 1;
+                    } else {
+                        VaiTro e = new VaiTro(id, ten);
+                        VT_DAO.create(e);
+                        VT_GUI.loadTable();
+                    }
+
+                }
+                MessageDialog.info(VT_GUI, "Nhập dữ liệu thành công!");
+
+            } catch (FileNotFoundException ex) {
+                MessageDialog.error(VT_GUI, "Lỗi đọc file");
+            } catch (IOException ex) {
+                MessageDialog.error(VT_GUI, "Lỗi đọc file");
+            }
+        }
+        if (check != 0) {
+            MessageDialog.error(VT_GUI, "Có " + check + " dòng dữ liệu không được thêm vào!");
+        }
+    }
 
 }

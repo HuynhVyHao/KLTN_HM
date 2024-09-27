@@ -2,7 +2,10 @@ package controller;
 
 import dao.NhaCungCapDAO;
 import entity.NhaCungCap;
+import gui.page.BaoCaoNhaCungCapPage;
 import gui.page.NhaCungCapPage;
+import gui.page.TimKiemNhaCungCapPage;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,12 +26,22 @@ public class NhaCungCapController extends InterfaceConTroller<NhaCungCap, String
 
     public NhaCungCapDAO NCC_DAO = new NhaCungCapDAO();
     public NhaCungCapPage NCC_GUI;
+    public BaoCaoNhaCungCapPage NCC_GUIBC;
+    public TimKiemNhaCungCapPage NCC_GUITK;
 
     public NhaCungCapController() {
     }
 
     public NhaCungCapController(NhaCungCapPage KH_GUI) {
         this.NCC_GUI = KH_GUI;
+    }
+    
+    public NhaCungCapController(BaoCaoNhaCungCapPage NCC_GUIBC) {
+        this.NCC_GUIBC = NCC_GUIBC;
+    }
+
+    public NhaCungCapController(TimKiemNhaCungCapPage NCC_GUITK) {
+    	this.NCC_GUITK = NCC_GUITK;
     }
 
     @Override
