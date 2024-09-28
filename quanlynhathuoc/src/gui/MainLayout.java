@@ -9,6 +9,7 @@ import gui.page.BaoCaoHoaDonPage;
 import gui.page.BaoCaoKhachHangPage;
 import gui.page.BaoCaoNhaCungCapPage;
 import gui.page.BaoCaoNhanVienPage;
+import gui.page.BaoCaoPhieuNhapPage;
 import gui.page.HoaDonPage;
 import gui.page.KhachHangPage;
 import gui.page.NhaCungCapPage;
@@ -19,6 +20,7 @@ import gui.page.TimKiemHoaDonPage;
 import gui.page.TimKiemKhachHangPage;
 import gui.page.TimKiemNhaCungCapPage;
 import gui.page.TimKiemNhanVienPage;
+import gui.page.TimKiemPhieuNhapPage;
 import gui.page.TaiKhoanPage;
 import gui.page.thongke.ThongKePage;
 import gui.page.VaiTroPage;
@@ -58,6 +60,8 @@ public class MainLayout extends javax.swing.JFrame {
 	private TaiKhoanPage taiKhoan;
 	private VaiTroPage vaiTro;
 	private PhieuNhapPage phieuNhap;
+	private TimKiemPhieuNhapPage timKiemPhieuNhap;
+	private BaoCaoPhieuNhapPage baoCaoPhieuNhap;
 	private ThongKePage thongke;
 	private boolean isMenuVisible;
 
@@ -343,7 +347,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuHD.add(new JSeparator());
 		jpMenuHD.add(baoCaoHDItem);
 
-		hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+		hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
 		hoaDonItem.setText("Hóa đơn");
 		hoaDonItem.setBorderPainted(false);
@@ -351,8 +355,8 @@ public class MainLayout extends javax.swing.JFrame {
 		hoaDonItem.setFocusPainted(false);
 		hoaDonItem.setFocusable(false);
 		hoaDonItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-		hoaDonItem.setIconTextGap(16);
-		hoaDonItem.setPreferredSize(new java.awt.Dimension(140, 60));
+		hoaDonItem.setIconTextGap(10);
+		hoaDonItem.setPreferredSize(new java.awt.Dimension(130, 60));
 		isMenuVisible = false;
 		hoaDonItem.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -431,8 +435,8 @@ public class MainLayout extends javax.swing.JFrame {
 		khachHangItem.setFocusPainted(false);
 		khachHangItem.setFocusable(false);
 		khachHangItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-		khachHangItem.setIconTextGap(16);
-		khachHangItem.setPreferredSize(new java.awt.Dimension(170, 60));
+		khachHangItem.setIconTextGap(10);
+		khachHangItem.setPreferredSize(new java.awt.Dimension(160, 60));
 		// Tạo biến để lưu trạng thái hiện/ẩn của menu
 		isMenuVisible = false; // Ban đầu menu đang ẩn
 
@@ -456,9 +460,7 @@ public class MainLayout extends javax.swing.JFrame {
 		});
 		itemPanel.add(khachHangItem);
 
-		itemPanel.add(jSeparator2);
-
-		thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+		thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		thuocItem.setIcon(new FlatSVGIcon("./icon/medicine.svg"));
 		thuocItem.setText("Thuốc");
 		thuocItem.setBorderPainted(false);
@@ -466,8 +468,8 @@ public class MainLayout extends javax.swing.JFrame {
 		thuocItem.setFocusPainted(false);
 		thuocItem.setFocusable(false);
 		thuocItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-		thuocItem.setIconTextGap(16);
-		thuocItem.setPreferredSize(new java.awt.Dimension(140, 60));
+		thuocItem.setIconTextGap(10);
+		thuocItem.setPreferredSize(new java.awt.Dimension(130, 60));
 		thuocItem.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				thuocItemActionPerformed(evt);
@@ -475,7 +477,7 @@ public class MainLayout extends javax.swing.JFrame {
 		});
 		itemPanel.add(thuocItem);
 
-		thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+		thongKeItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		thongKeItem.setIcon(new FlatSVGIcon("./icon/statistics.svg"));
 		thongKeItem.setText("Thống Kê");
 		thongKeItem.setBorderPainted(false);
@@ -483,7 +485,7 @@ public class MainLayout extends javax.swing.JFrame {
 		thongKeItem.setFocusPainted(false);
 		thongKeItem.setFocusable(false);
 		thongKeItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-		thongKeItem.setIconTextGap(16);
+		thongKeItem.setIconTextGap(10);
 		thongKeItem.setPreferredSize(new java.awt.Dimension(140, 60));
 		thongKeItem.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -492,7 +494,52 @@ public class MainLayout extends javax.swing.JFrame {
 		});
 		itemPanel.add(thongKeItem);
 
-		phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+//-----------------PHIẾU NHẬP--------------------------------------------		
+		// Tạo menu thả xuống JPopupMenu
+		jpMenuPhieuNhap = new JPopupMenu();
+		jpMenuPhieuNhap.setPreferredSize(new java.awt.Dimension(170, 120)); // Điều chỉnh kích thước tổng thể của menu
+		jpMenuPhieuNhap.setBorderPainted(false);
+
+		jpMenuPhieuNhap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		// Tạo các item trong menu với biểu tượng và văn bản
+		JMenuItem capNhatPNItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); // Đặt
+																												// kích
+		capNhatPNItem.setIconTextGap(8); // Điều chỉnh khoảng cách giữa biểu tượng và văn bản
+		capNhatPNItem.setMargin(new Insets(5, 10, 5, 10));
+		capNhatPNItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+		capNhatPNItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				phieuNhapItemActionPerformed(evt);
+			}
+		});
+
+		JMenuItem timKiemPNItem = new JMenuItem("Tìm Kiếm", new FlatSVGIcon("./icon/search2.svg", 24, 24));
+		timKiemPNItem.setIconTextGap(8);
+		timKiemPNItem.setMargin(new Insets(5, 10, 5, 10));
+		timKiemPNItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+		timKiemPNItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				timKiemPhieuNhapItemActionPerformed(evt);
+			}
+		});
+
+		JMenuItem baoCaoPNItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
+		baoCaoPNItem.setIconTextGap(8);
+		baoCaoPNItem.setMargin(new Insets(5, 10, 5, 10));
+		baoCaoPNItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+		baoCaoPNItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				baoCaoPhieuNhapItemActionPerformed(evt);
+			}
+		});
+
+		jpMenuPhieuNhap.add(capNhatPNItem);
+		jpMenuPhieuNhap.add(new JSeparator());
+		jpMenuPhieuNhap.add(timKiemPNItem);
+		jpMenuPhieuNhap.add(new JSeparator());
+		jpMenuPhieuNhap.add(baoCaoPNItem);
+
+		phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		phieuNhapItem.setIcon(new FlatSVGIcon("./icon/bill-import.svg"));
 		phieuNhapItem.setText("Phiếu nhập");
 		phieuNhapItem.setBorderPainted(false);
@@ -500,11 +547,24 @@ public class MainLayout extends javax.swing.JFrame {
 		phieuNhapItem.setFocusPainted(false);
 		phieuNhapItem.setFocusable(false);
 		phieuNhapItem.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-		phieuNhapItem.setIconTextGap(16);
+		phieuNhapItem.setIconTextGap(10);
 		phieuNhapItem.setPreferredSize(new java.awt.Dimension(170, 60));
 		phieuNhapItem.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				phieuNhapItemActionPerformed(evt);
+				if (isMenuVisible) {
+					// Nếu menu đang hiện, ẩn nó đi
+					jpMenuPhieuNhap.setVisible(false);
+					isMenuVisible = false; // Cập nhật trạng thái
+				} else {
+					// Nếu menu đang ẩn, tính toán vị trí và hiển thị popupMenu
+					int x = phieuNhapItem.getLocationOnScreen().x - phieuNhapItem.getParent().getLocationOnScreen().x;
+					int y = phieuNhapItem.getLocationOnScreen().y - phieuNhapItem.getParent().getLocationOnScreen().y
+							+ phieuNhapItem.getHeight();
+
+					// Hiển thị menu thả xuống ngay dưới nút khachHangItem
+					jpMenuPhieuNhap.show(phieuNhapItem.getParent(), x, y);
+					isMenuVisible = true; // Cập nhật trạng thái
+				}
 			}
 		});
 		itemPanel.add(phieuNhapItem);
@@ -518,10 +578,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuNhaCC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		// Tạo các item trong menu với biểu tượng và văn bản
 		JMenuItem capNhatNCCItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); // Đặt
-																												// kích
-																												// thước
-																												// biểu
-		capNhatNCCItem.setIconTextGap(8); // Điều chỉnh khoảng cách giữa biểu tượng và văn bản
+		capNhatNCCItem.setIconTextGap(8);// Điều chỉnh khoảng cách giữa biểu tượng và văn bản
 		capNhatNCCItem.setMargin(new Insets(5, 10, 5, 10));
 		capNhatNCCItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
 		capNhatNCCItem.addActionListener(new ActionListener() {
@@ -556,7 +613,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuNhaCC.add(new JSeparator());
 		jpMenuNhaCC.add(baoCaoNCCItem);
 
-		nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+		nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		nhaCungCapItem.setIcon(new FlatSVGIcon("./icon/trucks.svg"));
 		nhaCungCapItem.setText("Nhà cung cấp");
 		nhaCungCapItem.setBorderPainted(false);
@@ -602,7 +659,7 @@ public class MainLayout extends javax.swing.JFrame {
 				nhanVienItemActionPerformed(evt);
 			}
 		});
-		
+
 		JMenuItem timKiemNVItem = new JMenuItem("Tìm Kiếm", new FlatSVGIcon("./icon/search2.svg", 24, 24));
 		timKiemNVItem.setIconTextGap(8);
 		timKiemNVItem.setMargin(new Insets(5, 10, 5, 10));
@@ -628,9 +685,8 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuNhanVien.add(timKiemNVItem);
 		jpMenuNhanVien.add(new JSeparator());
 		jpMenuNhanVien.add(baoCaoNVItem);
-		
-		
-		nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+
+		nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		nhanVienItem.setIcon(new FlatSVGIcon("./icon/employee.svg"));
 		nhanVienItem.setText("Nhân viên");
 		nhanVienItem.setBorderPainted(false);
@@ -642,7 +698,7 @@ public class MainLayout extends javax.swing.JFrame {
 		nhanVienItem.setPreferredSize(new java.awt.Dimension(170, 60));
 		nhanVienItem.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				
+
 				if (isMenuVisible) {
 					// Nếu menu đang hiện, ẩn nó đi
 					jpMenuNhanVien.setVisible(false);
@@ -661,7 +717,7 @@ public class MainLayout extends javax.swing.JFrame {
 		});
 		itemPanel.add(nhanVienItem);
 
-		taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+		taiKhoanItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		taiKhoanItem.setIcon(new FlatSVGIcon("./icon/account.svg"));
 		taiKhoanItem.setText("Tài khoản");
 		taiKhoanItem.setBorderPainted(false);
@@ -678,7 +734,7 @@ public class MainLayout extends javax.swing.JFrame {
 		});
 		itemPanel.add(taiKhoanItem);
 
-		vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+		vaiTroItem.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
 		vaiTroItem.setIcon(new FlatSVGIcon("./icon/security.svg"));
 		vaiTroItem.setText("Vai trò");
 		vaiTroItem.setBorderPainted(false);
@@ -734,9 +790,9 @@ public class MainLayout extends javax.swing.JFrame {
 		nhanVienItem.setSelected(true);
 		isMenuVisible = false;
 	}
-	
+
 	private void timKiemNhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {
-		timKiemNhanVien= new TimKiemNhanVienPage();
+		timKiemNhanVien = new TimKiemNhanVienPage();
 		this.setPanel(timKiemNhanVien);
 		resetActive();
 		nhanVienItem.setSelected(true);
@@ -744,7 +800,7 @@ public class MainLayout extends javax.swing.JFrame {
 	}
 
 	private void baoCaoNhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoNhanVien= new BaoCaoNhanVienPage();
+		baoCaoNhanVien = new BaoCaoNhanVienPage();
 		this.setPanel(baoCaoNhanVien);
 		resetActive();
 		nhanVienItem.setSelected(true);
@@ -759,9 +815,9 @@ public class MainLayout extends javax.swing.JFrame {
 		resetActive();
 		khachHangItem.setSelected(true);
 		isMenuVisible = false;
-	}// GEN-LAST:event_khachHangItemActionPerformed
+	}
 
-	private void timKiemKhachHangItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_khachHangItemActionPerformed
+	private void timKiemKhachHangItemActionPerformed(java.awt.event.ActionEvent evt) {
 		timKiemKhachHang = new TimKiemKhachHangPage();
 		this.setPanel(timKiemKhachHang);
 		resetActive();
@@ -769,7 +825,7 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoKhachHangItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_khachHangItemActionPerformed
+	private void baoCaoKhachHangItemActionPerformed(java.awt.event.ActionEvent evt) {
 		baoCaoKhachHang = new BaoCaoKhachHangPage();
 		this.setPanel(baoCaoKhachHang);
 		resetActive();
@@ -779,7 +835,7 @@ public class MainLayout extends javax.swing.JFrame {
 
 //-------------CHỨC NĂNG HÓA ĐƠN---------------------------
 
-	private void hoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hoaDonItemActionPerformed
+	private void hoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {
 		hoaDon = new HoaDonPage(this);
 		this.setPanel(hoaDon);
 		resetActive();
@@ -787,7 +843,7 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void timKiemHoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_hoaDonItemActionPerformed
+	private void timKiemHoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {
 		timKiemHoaDonPage = new TimKiemHoaDonPage(this);
 		this.setPanel(timKiemHoaDonPage);
 		resetActive();
@@ -842,19 +898,35 @@ public class MainLayout extends javax.swing.JFrame {
 		this.setPanel(vaiTro);
 		resetActive();
 		vaiTroItem.setSelected(true);
-	}// GEN-LAST:event_vaiTroItemActionPerformed
+	}
 
-	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInfoActionPerformed
-		InfoDialog dialog = new InfoDialog(this, true, this, tk);
-		dialog.setVisible(true);
-	}// GEN-LAST:event_btnInfoActionPerformed
+//-------------CHỨC NĂNG PHIẾU NHẬP---------------------------			
 
-	private void phieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_phieuNhapItemActionPerformed
+	private void phieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {
 		phieuNhap = new PhieuNhapPage(this);
 		this.setPanel(phieuNhap);
 		resetActive();
 		phieuNhapItem.setSelected(true);
-	}// GEN-LAST:event_phieuNhapItemActionPerformed
+		isMenuVisible = false;
+	}
+
+	private void timKiemPhieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {
+		timKiemPhieuNhap= new TimKiemPhieuNhapPage(this);
+		this.setPanel(timKiemPhieuNhap);
+		resetActive();
+		phieuNhapItem.setSelected(true);
+		isMenuVisible = false;
+	}
+
+	private void baoCaoPhieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {
+		baoCaoPhieuNhap = new BaoCaoPhieuNhapPage(this);
+		this.setPanel(baoCaoPhieuNhap);
+		resetActive();
+		phieuNhapItem.setSelected(true);
+		isMenuVisible = false;
+	}
+
+//-------------CHỨC NĂNG THỐNG KÊ---------------------------			
 
 	private void thongKeItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_thongKeItemActionPerformed
 		thongke = new ThongKePage(tk);
@@ -862,6 +934,11 @@ public class MainLayout extends javax.swing.JFrame {
 		resetActive();
 		thongKeItem.setSelected(true);
 	}
+
+	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInfoActionPerformed
+		InfoDialog dialog = new InfoDialog(this, true, this, tk);
+		dialog.setVisible(true);
+	}// GEN-LAST:event_btnInfoActionPerformed
 
 	private JButton btnInfo;
 	private JButton btnLogout;

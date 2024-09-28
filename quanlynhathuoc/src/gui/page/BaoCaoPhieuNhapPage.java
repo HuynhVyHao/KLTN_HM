@@ -25,7 +25,7 @@ import utils.TableSorter;
 import utils.Validation;
 
 
-public class PhieuNhapPage extends javax.swing.JPanel {
+public class BaoCaoPhieuNhapPage extends javax.swing.JPanel {
 
     private final PhieuNhapController PN_CON = new PhieuNhapController();
     private List<PhieuNhap> listHD = PN_CON.getAllList();
@@ -33,13 +33,13 @@ public class PhieuNhapPage extends javax.swing.JPanel {
     private DefaultTableModel modal;
     private MainLayout main;
 
-    public PhieuNhapPage() {
+    public BaoCaoPhieuNhapPage() {
         initComponents();
         headerLayout();
         tableLayout();
     }
-    
-    public PhieuNhapPage(MainLayout main) {
+
+    public BaoCaoPhieuNhapPage(MainLayout main) {
         this.main = main;
         initComponents();
         headerLayout();
@@ -48,9 +48,7 @@ public class PhieuNhapPage extends javax.swing.JPanel {
 
     private void headerLayout() {
         List<JButton> listButton = new ArrayList<>();
-        listButton.add(btnAdd);
-        listButton.add(btnDelete);
-        listButton.add(btnInfo);
+        listButton.add(btnExport);
 
         // Border radius
         for (JButton item : listButton) {
@@ -99,14 +97,11 @@ public class PhieuNhapPage extends javax.swing.JPanel {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
         actionPanel = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnInfo = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -135,56 +130,22 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
-        btnAdd.setText("THÊM");
-        btnAdd.setBorder(null);
-        btnAdd.setBorderPainted(false);
-        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAdd.setFocusPainted(false);
-        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdd.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
+        btnExport.setText("EXPORT");
+        btnExport.setBorder(null);
+        btnExport.setBorderPainted(false);
+        btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExport.setFocusPainted(false);
+        btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnExportActionPerformed(evt);
             }
         });
-        actionPanel.add(btnAdd);
-
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
-        btnDelete.setText("XÓA");
-        btnDelete.setBorder(null);
-        btnDelete.setBorderPainted(false);
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDelete.setFocusPainted(false);
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnDelete);
-
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
-        btnInfo.setText("INFO");
-        btnInfo.setBorder(null);
-        btnInfo.setBorderPainted(false);
-        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInfo.setFocusPainted(false);
-        btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInfo.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnInfo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInfoActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnInfo);
+        actionPanel.add(btnExport);
 
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
@@ -248,49 +209,14 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         add(tablePanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        TaiKhoan tk = main.tk;
-        CreatePhieuNhapPage page = new CreatePhieuNhapPage(main, tk);
-        main.setPanel(page);
-    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            int row = table.getSelectedRow();
-            String id = table.getValueAt(row, 1).toString();
-
-            if (MessageDialog.confirm(this, "Bạn có chắc chắn xóa dòng này?", "Xóa")) {
-                new ChiTietPhieuNhapController().deleteById(id);
-                PN_CON.deleteById(id);
-                MessageDialog.info(this, "Xóa thành công!");
-                modal.removeRow(row);
-            }
-        } catch (Exception e) {
-            MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-
-    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
-        try {
-            int row = table.getSelectedRow();
-            PhieuNhap hoaDon = listHD.get(row);
-            List<ChiTietPhieuNhap> listCTPN = new ChiTietPhieuNhapController().selectAllById(hoaDon.getId());
-
-            DetailPhieuNhapDialog dialog = new DetailPhieuNhapDialog(null, true, listCTPN);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-        }
-    }//GEN-LAST:event_btnInfoActionPerformed
-
-
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        JTableExporter.exportJTableToExcel(table);
+    }//GEN-LAST:event_btnExportActionPerformed
 
 
     private javax.swing.JPanel actionPanel;
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnInfo;
+    private javax.swing.JButton btnExport;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
