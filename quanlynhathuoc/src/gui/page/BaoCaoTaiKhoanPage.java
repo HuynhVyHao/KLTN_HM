@@ -2,15 +2,16 @@ package gui.page;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import controller.TaiKhoanController;
 import controller.VaiTroController;
+import entity.TaiKhoan;
 import entity.VaiTro;
-import gui.dialog.CreateVaiTroDialog;
-import gui.dialog.UpdateVaiTroDialog;
+import gui.dialog.CreateTaiKhoanDialog;
+import gui.dialog.UpdateTaiKhoanDialog;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -18,12 +19,16 @@ import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
 
+public class BaoCaoTaiKhoanPage extends javax.swing.JPanel {
 
-public class VaiTroPage extends javax.swing.JPanel {
+    private final TaiKhoanController TK_CON = new TaiKhoanController(this);
+    private List<TaiKhoan> listTK = TK_CON.getAllList();
+    
+    private final List<VaiTro> listVT = new VaiTroController().getAllList();
 
-    private VaiTroController VT_CON = new VaiTroController(this);
+    DefaultTableModel modal;
 
-    public VaiTroPage() {
+    public BaoCaoTaiKhoanPage() {
         initComponents();
         headerLayout();
         tableLayout();
@@ -31,10 +36,8 @@ public class VaiTroPage extends javax.swing.JPanel {
 
     private void headerLayout() {
         List<JButton> listButton = new ArrayList<>();
-        listButton.add(btnAdd);
-        listButton.add(btnUpdate);
-        listButton.add(btnDelete);
-        listButton.add(btnInfo);
+        listButton.add(btnImport);
+        listButton.add(btnExport);
 
         // Border radius
         for (JButton item : listButton) {
@@ -43,10 +46,10 @@ public class VaiTroPage extends javax.swing.JPanel {
     }
 
     private void tableLayout() {
-        lblTable.setText("danh sách thông tin vai trò".toUpperCase());
-        String[] header = new String[]{"STT", "Mã vai trò", "Tên vai trò"};
+        lblTable.setText("danh sách thông tin tài khoản".toUpperCase());
+        String[] header = new String[]{"STT", "Mã tài khoản", "Username", "Password", "Tên nhân viên", "Vai Trò"};
 
-        DefaultTableModel modal = new DefaultTableModel();
+        modal = new DefaultTableModel();
         modal.setColumnIdentifiers(header);
         table.setModel(modal);
 
@@ -57,7 +60,7 @@ public class VaiTroPage extends javax.swing.JPanel {
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
         table.getColumnModel().getColumn(2).setPreferredWidth(200);
 
-        loadTable();
+        loadTable(listTK);
         sortTable();
     }
 
@@ -66,28 +69,27 @@ public class VaiTroPage extends javax.swing.JPanel {
         TableSorter.configureTableColumnSorter(table, 0, TableSorter.STRING_COMPARATOR);
     }
 
-    public void loadTable() {
-        DefaultTableModel modal = (DefaultTableModel) table.getModel();
+    public void loadTable(List<TaiKhoan> list) {
         modal.setRowCount(0);
 
-        List<VaiTro> list = VT_CON.getAllList();
+        listTK = list;
         int stt = 1;
-        for (VaiTro e : list) {
-            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getTen()});
+        for (TaiKhoan e : listTK) {
+            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getUsername(), e.getPassword(), e.getNhanVien().getHoTen(), e.getVaiTro().getTen()});
             stt++;
         }
     }
+    
+    
+
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
         actionPanel = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnInfo = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -104,67 +106,53 @@ public class VaiTroPage extends javax.swing.JPanel {
         headerPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(232, 232, 232), 2, true));
         headerPanel.setLayout(new java.awt.BorderLayout());
 
+
         actionPanel.setBackground(new java.awt.Color(255, 255, 255));
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
-        btnAdd.setText("THÊM");
-        btnAdd.setBorder(null);
-        btnAdd.setBorderPainted(false);
-        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnAdd.setFocusPainted(false);
-        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnAdd.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnAdd);
 
-        btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnUpdate.setIcon(new FlatSVGIcon("./icon/update.svg"));
-        btnUpdate.setText("SỬA");
-        btnUpdate.setBorder(null);
-        btnUpdate.setBorderPainted(false);
-        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnUpdate.setFocusPainted(false);
-        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnUpdate.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
+        btnImport.setText("IMPORT");
+        btnImport.setBorder(null);
+        btnImport.setBorderPainted(false);
+        btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImport.setFocusPainted(false);
+        btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnImportActionPerformed(evt);
             }
         });
-        actionPanel.add(btnUpdate);
+        actionPanel.add(btnImport);
 
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
-        btnDelete.setText("XÓA");
-        btnDelete.setBorder(null);
-        btnDelete.setBorderPainted(false);
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDelete.setFocusPainted(false);
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
+        btnExport.setText("EXPORT");
+        btnExport.setBorder(null);
+        btnExport.setBorderPainted(false);
+        btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExport.setFocusPainted(false);
+        btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnExportActionPerformed(evt);
             }
         });
-        actionPanel.add(btnDelete);
+        actionPanel.add(btnExport);
 
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
         add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
+        tablePanel.setBackground(new java.awt.Color(243, 243, 243));
         tablePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 2, true));
-        tablePanel.setLayout(new java.awt.BorderLayout());
+        tablePanel.setLayout(new java.awt.BorderLayout(2, 0));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,6 +185,9 @@ public class VaiTroPage extends javax.swing.JPanel {
         table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         table.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(table);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(1).setPreferredWidth(200);
+        }
 
         tablePanel.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -208,55 +199,30 @@ public class VaiTroPage extends javax.swing.JPanel {
         lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTable.setText("THÔNG TIN VAI TRÒ");
+        lblTable.setText("THÔNG TIN TÀI KHOẢN");
         jPanel5.add(lblTable, java.awt.BorderLayout.CENTER);
 
         tablePanel.add(jPanel5, java.awt.BorderLayout.NORTH);
 
+
+
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }
+    }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        CreateVaiTroDialog dialog = new CreateVaiTroDialog(null, true, this);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_btnAddActionPerformed
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+        TK_CON.importExcel();
+    }//GEN-LAST:event_btnImportActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        try {
-            int row = table.getSelectedRow();
-            String id = table.getValueAt(row, 1).toString();
-            VaiTro e = VT_CON.selectById(id);
-
-            UpdateVaiTroDialog dialog = new UpdateVaiTroDialog(null, true, this, e);
-            dialog.setVisible(true);
-        } catch (Exception e) {
-            MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        try {
-            DefaultTableModel modal = (DefaultTableModel) table.getModel();
-            int row = table.getSelectedRow();
-            String id = table.getValueAt(row, 1).toString();
-
-            if (MessageDialog.confirm(this, "Bạn có chắc chắn xóa dòng này?", "Xóa")) {
-                VT_CON.deleteById(id);
-                modal.removeRow(row);
-            }
-        } catch (Exception e) {
-            MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        JTableExporter.exportJTableToExcel(table);
+    }//GEN-LAST:event_btnExportActionPerformed
 
 
 
 
     private javax.swing.JPanel actionPanel;
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnImport;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

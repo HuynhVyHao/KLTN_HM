@@ -4,7 +4,10 @@ import dao.TaiKhoanDAO;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import entity.VaiTro;
+import gui.page.BaoCaoTaiKhoanPage;
 import gui.page.TaiKhoanPage;
+import gui.page.TimKiemTaiKhoanPage;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,12 +27,22 @@ public class TaiKhoanController extends InterfaceConTroller<TaiKhoan, String> {
 
     public TaiKhoanDAO TK_DAO = new TaiKhoanDAO();
     public TaiKhoanPage TK_GUI;
+    public TimKiemTaiKhoanPage TK_GUITK;
+    public BaoCaoTaiKhoanPage TK_GUIBC;
 
     public TaiKhoanController() {
     }
 
     public TaiKhoanController(TaiKhoanPage NV_GUI) {
         this.TK_GUI = NV_GUI;
+    }
+    
+    public TaiKhoanController(TimKiemTaiKhoanPage TK_GUITK) {
+        this.TK_GUITK = TK_GUITK;
+    }
+    
+    public TaiKhoanController(BaoCaoTaiKhoanPage TK_GUIBC) {
+        this.TK_GUIBC = TK_GUIBC;
     }
 
     @Override
