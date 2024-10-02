@@ -29,8 +29,7 @@ import utils.MessageDialog;
 import utils.TableSorter;
 import utils.Validation;
 
-public class ThuocPage extends javax.swing.JPanel {
-
+public class BaoCaoThuocPage extends javax.swing.JPanel {
 	private final ThuocController THUOC_CON = new ThuocController(this);
 	private List<Thuoc> listThuoc = THUOC_CON.getAllList();
 
@@ -42,13 +41,13 @@ public class ThuocPage extends javax.swing.JPanel {
 
 	private MainLayout main;
 
-	public ThuocPage() {
+	public BaoCaoThuocPage() {
 		initComponents();
 		headerLayout();
 		tableLayout();
 	}
 
-	public ThuocPage(MainLayout main) {
+	public BaoCaoThuocPage(MainLayout main) {
 		this.main = main;
 		initComponents();
 		headerLayout();
@@ -57,9 +56,8 @@ public class ThuocPage extends javax.swing.JPanel {
 
 	private void headerLayout() {
 		List<JButton> listButton = new ArrayList<>();
-		listButton.add(btnAdd);
-		listButton.add(btnUpdate);
-		listButton.add(btnDelete);
+		listButton.add(btnImport);
+		listButton.add(btnExport);
 
 		// Border radius
 		for (JButton item : listButton) {
@@ -112,9 +110,8 @@ public class ThuocPage extends javax.swing.JPanel {
 
 		headerPanel = new javax.swing.JPanel();
 		actionPanel = new javax.swing.JPanel();
-		btnAdd = new javax.swing.JButton();
-		btnUpdate = new javax.swing.JButton();
-		btnDelete = new javax.swing.JButton();
+		btnImport = new javax.swing.JButton();
+		btnExport = new javax.swing.JButton();
 		tablePanel = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		table = new javax.swing.JTable();
@@ -135,56 +132,39 @@ public class ThuocPage extends javax.swing.JPanel {
 		actionPanel.setPreferredSize(new java.awt.Dimension(700, 100));
 		actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-		btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-		btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
-		btnAdd.setText("THÊM");
-		btnAdd.setBorder(null);
-		btnAdd.setBorderPainted(false);
-		btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnAdd.setFocusPainted(false);
-		btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-		btnAdd.setPreferredSize(new java.awt.Dimension(90, 90));
-		btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-		btnAdd.addActionListener(new java.awt.event.ActionListener() {
+		btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
+		btnImport.setText("IMPORT");
+		btnImport.setBorder(null);
+		btnImport.setBorderPainted(false);
+		btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnImport.setFocusPainted(false);
+		btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
+		btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnImport.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAddActionPerformed(evt);
+				btnImportActionPerformed(evt);
 			}
 		});
-		actionPanel.add(btnAdd);
+		actionPanel.add(btnImport);
 
-		btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-		btnUpdate.setIcon(new FlatSVGIcon("./icon/update.svg"));
-		btnUpdate.setText("SỬA");
-		btnUpdate.setBorder(null);
-		btnUpdate.setBorderPainted(false);
-		btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnUpdate.setFocusPainted(false);
-		btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-		btnUpdate.setPreferredSize(new java.awt.Dimension(90, 90));
-		btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-		btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+		btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
+		btnExport.setText("EXPORT");
+		btnExport.setBorder(null);
+		btnExport.setBorderPainted(false);
+		btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnExport.setFocusPainted(false);
+		btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
+		btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnExport.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnUpdateActionPerformed(evt);
+				btnExportActionPerformed(evt);
 			}
 		});
-		actionPanel.add(btnUpdate);
-
-		btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-		btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
-		btnDelete.setText("XÓA");
-		btnDelete.setBorder(null);
-		btnDelete.setBorderPainted(false);
-		btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnDelete.setFocusPainted(false);
-		btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-		btnDelete.setPreferredSize(new java.awt.Dimension(90, 90));
-		btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-		btnDelete.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnDeleteActionPerformed(evt);
-			}
-		});
-		actionPanel.add(btnDelete);
+		actionPanel.add(btnExport);
 
 		headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
@@ -238,54 +218,25 @@ public class ThuocPage extends javax.swing.JPanel {
 		add(tablePanel, java.awt.BorderLayout.CENTER);
 	}
 
-	private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddActionPerformed
-		CreateThuocDialog dialog = new CreateThuocDialog(null, true, this);
-		dialog.setVisible(true);
-	}// GEN-LAST:event_btnAddActionPerformed
 
-	private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUpdateActionPerformed
-		try {
-			int row = table.getSelectedRow();
-			String id = table.getValueAt(row, 1).toString();
-			Thuoc thuoc = THUOC_CON.selectById(id);
+	private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnImportActionPerformed
+		THUOC_CON.importExcel();
+	}// GEN-LAST:event_btnImportActionPerformed
 
-			UpdateThuocDialog dialog = new UpdateThuocDialog(null, true, this, thuoc);
-			dialog.setVisible(true);
-		} catch (IndexOutOfBoundsException e) {
-			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-		}
-	}// GEN-LAST:event_btnUpdateActionPerformed
+	private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExportActionPerformed
+		JTableExporter.exportJTableToExcel(table);
+	}// GEN-LAST:event_btnExportActionPerformed
 
-	private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteActionPerformed
-		try {
-			int row = table.getSelectedRow();
-			String id = table.getValueAt(row, 1).toString();
 
-			if (MessageDialog.confirm(this, "Bạn có chắc chắn xóa dòng này?", "Xóa")) {
-				THUOC_CON.deleteById(id);
-				MessageDialog.info(this, "Xóa thành công!");
-				modal.removeRow(row);
-			}
-		} catch (Exception e) {
-			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-		}
-	}// GEN-LAST:event_btnDeleteActionPerformed
 
-	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThuocTinhActionPerformed
-		ThuocTinhDonViTinhDialog dialog = new ThuocTinhDonViTinhDialog(null, true);
-		dialog.setVisible(true);
-	}// GEN-LAST:event_btnThuocTinhActionPerformed
 
-	private void btnXuatXuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThuocTinhActionPerformed
-		ThuocTinhXuatXuDialog dialog = new ThuocTinhXuatXuDialog(null, true);
-		dialog.setVisible(true);
-	}// GEN-LAST:event_btnThuocTinhActionPerformed
+
+
 
 
 	private javax.swing.JPanel actionPanel;
-	private javax.swing.JButton btnAdd;
-	private javax.swing.JButton btnDelete;
-	private javax.swing.JButton btnUpdate;
+	private javax.swing.JButton btnExport;
+	private javax.swing.JButton btnImport;
 	private javax.swing.JPanel headerPanel;
 	private javax.swing.JPanel jPanel5;
 	private javax.swing.JScrollPane jScrollPane1;

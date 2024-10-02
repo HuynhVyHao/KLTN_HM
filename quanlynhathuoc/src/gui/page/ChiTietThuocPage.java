@@ -29,8 +29,7 @@ import utils.MessageDialog;
 import utils.TableSorter;
 import utils.Validation;
 
-public class ThuocPage extends javax.swing.JPanel {
-
+public class ChiTietThuocPage extends javax.swing.JPanel {
 	private final ThuocController THUOC_CON = new ThuocController(this);
 	private List<Thuoc> listThuoc = THUOC_CON.getAllList();
 
@@ -42,13 +41,13 @@ public class ThuocPage extends javax.swing.JPanel {
 
 	private MainLayout main;
 
-	public ThuocPage() {
+	public ChiTietThuocPage() {
 		initComponents();
 		headerLayout();
 		tableLayout();
 	}
 
-	public ThuocPage(MainLayout main) {
+	public ChiTietThuocPage(MainLayout main) {
 		this.main = main;
 		initComponents();
 		headerLayout();
@@ -57,9 +56,9 @@ public class ThuocPage extends javax.swing.JPanel {
 
 	private void headerLayout() {
 		List<JButton> listButton = new ArrayList<>();
-		listButton.add(btnAdd);
-		listButton.add(btnUpdate);
-		listButton.add(btnDelete);
+		listButton.add(btnInfo);
+		listButton.add(btnDonVi);
+		listButton.add(btnXuatXu);
 
 		// Border radius
 		for (JButton item : listButton) {
@@ -112,9 +111,9 @@ public class ThuocPage extends javax.swing.JPanel {
 
 		headerPanel = new javax.swing.JPanel();
 		actionPanel = new javax.swing.JPanel();
-		btnAdd = new javax.swing.JButton();
-		btnUpdate = new javax.swing.JButton();
-		btnDelete = new javax.swing.JButton();
+		btnInfo = new javax.swing.JButton();
+		btnDonVi = new javax.swing.JButton();
+		btnXuatXu = new javax.swing.JButton();
 		tablePanel = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		table = new javax.swing.JTable();
@@ -135,56 +134,56 @@ public class ThuocPage extends javax.swing.JPanel {
 		actionPanel.setPreferredSize(new java.awt.Dimension(700, 100));
 		actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-		btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-		btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
-		btnAdd.setText("THÊM");
-		btnAdd.setBorder(null);
-		btnAdd.setBorderPainted(false);
-		btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnAdd.setFocusPainted(false);
-		btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-		btnAdd.setPreferredSize(new java.awt.Dimension(90, 90));
-		btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-		btnAdd.addActionListener(new java.awt.event.ActionListener() {
+		btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
+		btnInfo.setText("INFO");
+		btnInfo.setBorder(null);
+		btnInfo.setBorderPainted(false);
+		btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnInfo.setFocusPainted(false);
+		btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnInfo.setPreferredSize(new java.awt.Dimension(90, 90));
+		btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnInfo.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnAddActionPerformed(evt);
+				btnInfoActionPerformed(evt);
 			}
 		});
-		actionPanel.add(btnAdd);
+		actionPanel.add(btnInfo);
 
-		btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-		btnUpdate.setIcon(new FlatSVGIcon("./icon/update.svg"));
-		btnUpdate.setText("SỬA");
-		btnUpdate.setBorder(null);
-		btnUpdate.setBorderPainted(false);
-		btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnUpdate.setFocusPainted(false);
-		btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-		btnUpdate.setPreferredSize(new java.awt.Dimension(90, 90));
-		btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-		btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+		btnDonVi.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
+		btnDonVi.setIcon(new FlatSVGIcon("./icon/study.svg"));
+		btnDonVi.setText("ĐƠN VỊ");
+		btnDonVi.setBorder(null);
+		btnDonVi.setBorderPainted(false);
+		btnDonVi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnDonVi.setFocusPainted(false);
+		btnDonVi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnDonVi.setPreferredSize(new java.awt.Dimension(100, 90));
+		btnDonVi.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnDonVi.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnUpdateActionPerformed(evt);
+				btnDonViActionPerformed(evt);
 			}
 		});
-		actionPanel.add(btnUpdate);
+		actionPanel.add(btnDonVi);
 
-		btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-		btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
-		btnDelete.setText("XÓA");
-		btnDelete.setBorder(null);
-		btnDelete.setBorderPainted(false);
-		btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		btnDelete.setFocusPainted(false);
-		btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-		btnDelete.setPreferredSize(new java.awt.Dimension(90, 90));
-		btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-		btnDelete.addActionListener(new java.awt.event.ActionListener() {
+		btnXuatXu.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
+		btnXuatXu.setIcon(new FlatSVGIcon("./icon/countries.svg"));
+		btnXuatXu.setText("XUẤT XỨ");
+		btnXuatXu.setBorder(null);
+		btnXuatXu.setBorderPainted(false);
+		btnXuatXu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnXuatXu.setFocusPainted(false);
+		btnXuatXu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnXuatXu.setPreferredSize(new java.awt.Dimension(100, 90));
+		btnXuatXu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnXuatXu.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnDeleteActionPerformed(evt);
+				btnXuatXuActionPerformed(evt);
 			}
 		});
-		actionPanel.add(btnDelete);
+		actionPanel.add(btnXuatXu);
 
 		headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
@@ -238,38 +237,25 @@ public class ThuocPage extends javax.swing.JPanel {
 		add(tablePanel, java.awt.BorderLayout.CENTER);
 	}
 
-	private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddActionPerformed
-		CreateThuocDialog dialog = new CreateThuocDialog(null, true, this);
-		dialog.setVisible(true);
-	}// GEN-LAST:event_btnAddActionPerformed
 
-	private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUpdateActionPerformed
+
+
+	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInfoActionPerformed
 		try {
 			int row = table.getSelectedRow();
 			String id = table.getValueAt(row, 1).toString();
 			Thuoc thuoc = THUOC_CON.selectById(id);
 
-			UpdateThuocDialog dialog = new UpdateThuocDialog(null, true, this, thuoc);
+			DetailThuocDialog dialog = new DetailThuocDialog(null, true, thuoc);
 			dialog.setVisible(true);
-		} catch (IndexOutOfBoundsException e) {
-			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-		}
-	}// GEN-LAST:event_btnUpdateActionPerformed
-
-	private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteActionPerformed
-		try {
-			int row = table.getSelectedRow();
-			String id = table.getValueAt(row, 1).toString();
-
-			if (MessageDialog.confirm(this, "Bạn có chắc chắn xóa dòng này?", "Xóa")) {
-				THUOC_CON.deleteById(id);
-				MessageDialog.info(this, "Xóa thành công!");
-				modal.removeRow(row);
-			}
 		} catch (Exception e) {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
 		}
-	}// GEN-LAST:event_btnDeleteActionPerformed
+	}// GEN-LAST:event_btnInfoActionPerformed
+
+
+
+
 
 	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThuocTinhActionPerformed
 		ThuocTinhDonViTinhDialog dialog = new ThuocTinhDonViTinhDialog(null, true);
@@ -282,10 +268,11 @@ public class ThuocPage extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnThuocTinhActionPerformed
 
 
+	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JPanel actionPanel;
-	private javax.swing.JButton btnAdd;
-	private javax.swing.JButton btnDelete;
-	private javax.swing.JButton btnUpdate;
+	private javax.swing.JButton btnInfo;
+	private javax.swing.JButton btnDonVi;
+	private javax.swing.JButton btnXuatXu;
 	private javax.swing.JPanel headerPanel;
 	private javax.swing.JPanel jPanel5;
 	private javax.swing.JScrollPane jScrollPane1;

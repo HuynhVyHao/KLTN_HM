@@ -2,8 +2,10 @@ package controller;
 
 import dao.DanhMucDAO;
 import entity.DanhMuc;
-import gui.dialog.ThuocTinhDanhMucDialog;
 import gui.dialog.ThuocTinhDonViTinhDialog;
+import gui.page.DanhMucPage;
+import gui.page.TimKiemDanhMucPage;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,13 +24,17 @@ import utils.Validation;
 public class DanhMucController extends InterfaceConTroller<DanhMuc, String> {
 
     DanhMucDAO DM_DAO = new DanhMucDAO();
-    ThuocTinhDanhMucDialog DM_GUI;
+    DanhMucPage DM_GUI;
+    TimKiemDanhMucPage DM_GUITK;
 
     public DanhMucController() {
     }
 
-    public DanhMucController(ThuocTinhDanhMucDialog DM_GUI) {
+    public DanhMucController(DanhMucPage DM_GUI) {
         this.DM_GUI = DM_GUI;
+    }
+    public DanhMucController(TimKiemDanhMucPage DM_GUITK) {
+    	this.DM_GUITK = DM_GUITK;
     }
 
     @Override

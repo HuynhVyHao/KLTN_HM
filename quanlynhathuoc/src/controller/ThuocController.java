@@ -5,8 +5,12 @@ import entity.DanhMuc;
 import entity.DonViTinh;
 import entity.Thuoc;
 import entity.XuatXu;
+import gui.page.BaoCaoThuocPage;
+import gui.page.ChiTietThuocPage;
 import gui.page.CreateHoaDonPage;
 import gui.page.ThuocPage;
+import gui.page.TimKiemThuocPage;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,12 +32,25 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 
     public ThuocDAO THUOC_DAO = new ThuocDAO();
     public ThuocPage THUOC_GUI;
+    public TimKiemThuocPage THUOC_GUITK;
+    public BaoCaoThuocPage THUOC_GUIBC;
+    public ChiTietThuocPage THUOC_GUICT;
 
     public ThuocController() {
     }
 
     public ThuocController(ThuocPage THUOC_GUI) {
         this.THUOC_GUI = THUOC_GUI;
+    }
+    public ThuocController(TimKiemThuocPage THUOC_GUITK) {
+    	this.THUOC_GUITK = THUOC_GUITK;
+    }
+    public ThuocController(BaoCaoThuocPage THUOC_GUIBC) {
+    	this.THUOC_GUIBC = THUOC_GUIBC;
+    }
+    
+    public ThuocController(ChiTietThuocPage THUOC_GUICT) {
+    	this.THUOC_GUICT = THUOC_GUICT;
     }
 
     @Override
