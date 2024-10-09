@@ -22,6 +22,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import utils.MessageDialog;
 import utils.Validation;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import com.toedter.calendar.JDateChooser;
 
 public class UpdateThuocDialog extends javax.swing.JDialog {
 
@@ -33,6 +40,8 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
     private final List<DanhMuc> listDM = new DanhMucController().getAllList();
     private final List<DonViTinh> listDVT = new DonViTinhController().getAllList();
     private final List<XuatXu> listXX = new XuatXuController().getAllList();
+
+     
 
     public UpdateThuocDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -75,8 +84,11 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         txtSoLuong.setText(String.valueOf(thuoc.getSoLuongTon()));
         txtGiaNhap.setText(String.valueOf(thuoc.getGiaNhap()));
         txtDonGia.setText(String.valueOf(thuoc.getDonGia()));
+        txtNgaySanXuat_1.setDate(thuoc.getNgaySanXuat()); // Thêm dòng này để hiển thị ngày sản xuất
         txtHanSuDung.setDate(thuoc.getHanSuDung());
+       
     }
+
 
     private boolean isValidateFields() {
         if (Validation.isEmpty(txtTenThuoc.getText().trim())) {
@@ -159,11 +171,19 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
             }
         }
         
+        if (txtNgaySanXuat_1.getDate() == null || !txtNgaySanXuat_1.getDateFormatString().equals("dd/MM/yyyy")) {
+            MessageDialog.warring(this, "Ngày sản xuất không được để trống và có kiểu dd/MM/yyyy");
+            return false;
+        } else if (txtNgaySanXuat_1.getDate().after(new Date())) {
+            MessageDialog.warring(this, "Ngày sản xuất phải trước ngày hiện tại");
+            return false;
+        }
+
         if (txtHanSuDung.getDate() == null || !txtHanSuDung.getDateFormatString().equals("dd/MM/yyyy")) {
             MessageDialog.warring(this, "Hạn sử dụng không được để trống và có kiểu dd/MM/yyyy");
             return false;
-        } else if (txtHanSuDung.getDate().before(new Date())) {
-            MessageDialog.warring(this, "Hạn sử dụng phải sau ngày hiện tại");
+        } else if (txtHanSuDung.getDate().before(txtHanSuDung.getDate())) {
+            MessageDialog.warring(this, "Hạn sử dụng phải sau ngày sản xuất");
             return false;
         }
 
@@ -184,10 +204,37 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         int soLuongTon = Integer.parseInt(txtSoLuong.getText());
         double giaNhap = Double.parseDouble(txtGiaNhap.getText().trim());
         double donGia = Double.parseDouble(txtDonGia.getText().trim());
+
+        // Lấy giá trị ngày sản xuất và hạn sử dụng
+        Date ngaySanXuat = txtNgaySanXuat_1.getDate();
         Date hanSuDung = txtHanSuDung.getDate();
 
-        return new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuongTon, giaNhap, donGia, hanSuDung);
+        System.out.println("Ngày sản xuất: " + txtNgaySanXuat_1.getDate());
+        System.out.println("Hạn sử dụng: " + txtHanSuDung.getDate());
+
+        // Kiểm tra xem ngày sản xuất có được chọn không
+        if (ngaySanXuat == null) {
+            MessageDialog.warring(this, "Ngày sản xuất không được để trống!");
+            return null;
+        }
+
+        // Kiểm tra xem hạn sử dụng có được chọn không
+        if (hanSuDung == null) {
+            MessageDialog.warring(this, "Hạn sử dụng không được để trống!");
+            return null;
+        }
+
+        // Kiểm tra xem ngày sản xuất có trước hạn sử dụng không
+        if (ngaySanXuat.after(hanSuDung)) {
+            MessageDialog.warring(this, "Ngày sản xuất phải trước hạn sử dụng!");
+            return null;
+        }
+
+        // Nếu tất cả các kiểm tra đều hợp lệ, trả về đối tượng Thuoc
+        return new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuongTon, giaNhap, donGia, ngaySanXuat, hanSuDung);
     }
+
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -219,7 +266,10 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         cboxDonViTinh = new javax.swing.JComboBox<>();
         jPanel22 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        txtNgaySanXuat_1 = new com.toedter.calendar.JDateChooser();
         txtHanSuDung = new com.toedter.calendar.JDateChooser();
+        
+        
         jPanel26 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         txtGiaNhap = new javax.swing.JTextField();
@@ -243,7 +293,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CẬP NHẬP THUỐC");
+        jLabel8.setText("CẬP NHẬT THUỐC");
         jLabel8.setPreferredSize(new java.awt.Dimension(149, 40));
         jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
 
@@ -390,22 +440,30 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
 
         jPanel1.add(jPanel24);
 
+        jPanel22_1 = new JPanel();
+        jPanel22_1.setPreferredSize(new Dimension(500, 40));
+        jPanel22_1.setBackground(Color.WHITE);
+        jPanel1.add(jPanel22_1);
+        jPanel22_1.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
+        
+        lblNgySnXut = new JLabel();
+        lblNgySnXut.setText("Ngày sản xuất");
+        lblNgySnXut.setPreferredSize(new Dimension(150, 40));
+        lblNgySnXut.setMaximumSize(new Dimension(44, 40));
+        lblNgySnXut.setFont(new Font("Dialog", Font.PLAIN, 14));
+        jPanel22_1.add(lblNgySnXut);
+        
+        txtNgaySanXuat_1 = new JDateChooser();
+        txtNgaySanXuat_1.setPreferredSize(new Dimension(300, 40));
+        txtNgaySanXuat_1.setDateFormatString("dd/MM/yyyy");
+        txtNgaySanXuat_1.setBackground(Color.WHITE);
+        jPanel22_1.add(txtNgaySanXuat_1);
+        
         jPanel22.setBackground(new java.awt.Color(255, 255, 255));
         jPanel22.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel22.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel15.setText("Hạn sử dụng");
-        jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
-        jLabel15.setPreferredSize(new java.awt.Dimension(150, 40));
-        jPanel22.add(jLabel15);
-
-        txtHanSuDung.setBackground(new java.awt.Color(255, 255, 255));
-        txtHanSuDung.setDateFormatString("dd/MM/yyyy");
-        txtHanSuDung.setPreferredSize(new java.awt.Dimension(300, 40));
-        jPanel22.add(txtHanSuDung);
-
-        jPanel1.add(jPanel22);
+       
 
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setPreferredSize(new java.awt.Dimension(500, 40));
@@ -422,23 +480,25 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel26.add(txtGiaNhap);
 
         jPanel1.add(jPanel26);
+        
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel15.setText("Hạn sử dụng");
+        jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
+        jLabel15.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanel22.add(jLabel15);
+
+        txtHanSuDung.setBackground(new java.awt.Color(255, 255, 255));
+        txtHanSuDung.setDateFormatString("dd/MM/yyyy");
+        txtHanSuDung.setPreferredSize(new java.awt.Dimension(300, 40));
+        jPanel22.add(txtHanSuDung);
+
+        jPanel1.add(jPanel22);
 
         jPanel25.setBackground(new java.awt.Color(255, 255, 255));
         jPanel25.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel25.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel18.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel18.setText("Đơn giá");
-        jLabel18.setMaximumSize(new java.awt.Dimension(44, 40));
-        jLabel18.setPreferredSize(new java.awt.Dimension(150, 40));
-        jPanel25.add(jLabel18);
-
-        txtDonGia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtDonGia.setPreferredSize(new java.awt.Dimension(300, 40));
-        jPanel25.add(txtDonGia);
-
-        jPanel1.add(jPanel25);
-
+       
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
@@ -454,8 +514,24 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel20.add(txtSoLuong);
 
         jPanel1.add(jPanel20);
+        jLabel18.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel18.setText("Đơn giá");
+        jLabel18.setMaximumSize(new java.awt.Dimension(44, 40));
+        jLabel18.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanel25.add(jLabel18);
+
+        txtDonGia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtDonGia.setPreferredSize(new java.awt.Dimension(300, 40));
+        jPanel25.add(txtDonGia);
+
+        jPanel1.add(jPanel25);
+
 
         jPanel2.add(jPanel1);
+        
+        
+        
+        
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -578,10 +654,18 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblHoTen;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtGiaNhap;
+
+    private  com.toedter.calendar.JDateChooser txtNgaySanXuat_1;
     private com.toedter.calendar.JDateChooser txtHanSuDung;
     private javax.swing.JLabel txtHinhAnh;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenThuoc;
     private javax.swing.JTextArea txtThanhPhan;
+
+    private JPanel jPanel22_1;
+    private JLabel lblNgySnXut;
+
+  
+
     // End of variables declaration//GEN-END:variables
 }

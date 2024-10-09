@@ -19,6 +19,9 @@ public class DetailThuocDialog extends javax.swing.JDialog {
     private byte[] thuocImage;
     private Thuoc thuoc;
 
+    /**
+     * @wbp.parser.constructor
+     */
     public DetailThuocDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

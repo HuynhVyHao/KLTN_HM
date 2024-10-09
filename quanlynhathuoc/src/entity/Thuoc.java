@@ -5,9 +5,9 @@ import java.util.Objects;
 
 public class Thuoc {
 
-    private String id;
-    private String ten;
-    private byte[] hinhAnh;
+    private String id; 
+    private String ten; 
+    private byte[] hinhAnh; 
     private String thanhPhan;
     private DonViTinh donViTinh;
     private DanhMuc danhMuc;
@@ -16,11 +16,12 @@ public class Thuoc {
     private double giaNhap;
     private double donGia;
     private Date hanSuDung;
+    private Date ngaySanXuat; // Thêm thuộc tính ngày sản xuất
 
     public Thuoc() {
     }
 
-    public Thuoc(String id, String ten, byte[] hinhAnh, String thanhPhan, DonViTinh donViTinh, DanhMuc danhMuc, XuatXu xuatXu, int soLuongTon, double giaNhap, double donGia, Date hanSuDung) {
+    public Thuoc(String id, String ten, byte[] hinhAnh, String thanhPhan, DonViTinh donViTinh, DanhMuc danhMuc, XuatXu xuatXu, int soLuongTon, double giaNhap, double donGia, Date hanSuDung, Date ngaySanXuat) {
         this.id = id;
         this.ten = ten;
         this.hinhAnh = hinhAnh;
@@ -31,9 +32,15 @@ public class Thuoc {
         this.soLuongTon = soLuongTon;
         this.giaNhap = giaNhap;
         this.donGia = donGia;
+        this.ngaySanXuat = ngaySanXuat; 
         this.hanSuDung = hanSuDung;
+        // Thêm ngày sản xuất vào constructor
     }
 
+    // Getter và Setter cho thuộc tính ngaySanXuat
+   
+
+    // Các Getter và Setter khác
     public String getId() {
         return id;
     }
@@ -113,7 +120,13 @@ public class Thuoc {
     public void setDonGia(double donGia) {
         this.donGia = donGia;
     }
+    public Date getNgaySanXuat() {
+        return ngaySanXuat;
+    }
 
+    public void setNgaySanXuat(Date ngaySanXuat) {
+        this.ngaySanXuat = ngaySanXuat;
+    }
     public Date getHanSuDung() {
         return hanSuDung;
     }
@@ -146,7 +159,6 @@ public class Thuoc {
 
     @Override
     public String toString() {
-        return "Thuoc{" + "id=" + id + ", ten=" + ten + ", hinhAnh=" + hinhAnh + ", thanhPhan=" + thanhPhan + ", donViTinh=" + donViTinh + ", danhMuc=" + danhMuc + ", xuatXu=" + xuatXu + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", donGia=" + donGia + ", hanSuDung=" + hanSuDung + '}';
+        return "Thuoc{" + "id=" + id + ", ten=" + ten + ", hinhAnh=" + hinhAnh + ", thanhPhan=" + thanhPhan + ", donViTinh=" + donViTinh + ", danhMuc=" + danhMuc + ", xuatXu=" + xuatXu + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", donGia=" + donGia + ", ngaySanXuat=" + ngaySanXuat + ", hanSuDung=" + hanSuDung + '}';
     }
-
 }

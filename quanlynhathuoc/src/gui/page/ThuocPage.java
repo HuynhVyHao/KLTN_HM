@@ -68,24 +68,26 @@ public class ThuocPage extends javax.swing.JPanel {
 	}
 
 	private void tableLayout() {
-		lblTable.setText("danh sách thông tin thuốc".toUpperCase());
-		String[] header = new String[] { "STT", "Mã thuốc", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính",
-				"Số lượng", "Đơn giá", "Hạn sử dụng" };
-		modal = new DefaultTableModel();
-		modal.setColumnIdentifiers(header);
-		table.setModel(modal);
+	    lblTable.setText("danh sách thông tin thuốc".toUpperCase());
+	    String[] header = new String[] { "STT", "Mã thuốc", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính",
+	            "Số lượng", "Đơn giá", "Ngày sản xuất", "Hạn sử dụng" }; // Thêm "Ngày sản xuất"
+	    modal = new DefaultTableModel();
+	    modal.setColumnIdentifiers(header);
+	    table.setModel(modal);
 
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		table.setDefaultRenderer(Object.class, centerRenderer);
-		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-		table.getColumnModel().getColumn(0).setPreferredWidth(30);
-		table.getColumnModel().getColumn(2).setPreferredWidth(200);
-		table.getColumnModel().getColumn(3).setPreferredWidth(200);
+	    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+	    table.setDefaultRenderer(Object.class, centerRenderer);
+	    centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+	    table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+	    table.getColumnModel().getColumn(0).setPreferredWidth(30);
+	    table.getColumnModel().getColumn(2).setPreferredWidth(200);
+	    table.getColumnModel().getColumn(3).setPreferredWidth(200);
+	    table.getColumnModel().getColumn(4).setPreferredWidth(200);
 
-		loadTable(listThuoc);
-		sortTable();
+	    loadTable(listThuoc);
+	    sortTable();
 	}
+
 
 	private void sortTable() {
 		table.setAutoCreateRowSorter(true);
@@ -93,17 +95,28 @@ public class ThuocPage extends javax.swing.JPanel {
 	}
 
 	public void loadTable(List<Thuoc> list) {
-		modal.setRowCount(0);
+	    modal.setRowCount(0);
 
-		listThuoc = list;
-		int stt = 1;
-		for (Thuoc e : listThuoc) {
-			modal.addRow(new Object[] { String.valueOf(stt), e.getId(), e.getTenThuoc(), e.getDanhMuc().getTen(),
-					e.getXuatXu().getTen(), e.getDonViTinh().getTen(), e.getSoLuongTon(),
-					Formatter.FormatVND(e.getDonGia()), Formatter.FormatDate(e.getHanSuDung()) });
-			stt++;
-		}
+	    listThuoc = list;
+	    int stt = 1;
+	    for (Thuoc e : listThuoc) {
+	        modal.addRow(new Object[]{
+	            String.valueOf(stt), 
+	            e.getId(), 
+	            e.getTenThuoc(), 
+	            e.getDanhMuc().getTen(), 
+	            e.getXuatXu().getTen(), 
+	            e.getDonViTinh().getTen(),
+	            e.getSoLuongTon(), 
+	            Formatter.FormatVND(e.getDonGia()), 
+	            Formatter.FormatDate(e.getNgaySanXuat()),  // Đảm bảo rằng đây là ngày sản xuất
+	            Formatter.FormatDate(e.getHanSuDung())    // Và đây là hạn sử dụng
+	        });
+	        stt++;
+	    }
 	}
+
+	
 
 
 

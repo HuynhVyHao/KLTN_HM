@@ -3,8 +3,8 @@ package dao;
 import connectDB.JDBCConnection;
 import entity.DanhMuc;
 import entity.DonViTinh;
-import entity.Thuoc;
-import entity.XuatXu;
+import entity.Thuoc; 
+import entity.XuatXu; 
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ import java.util.List;
 
 public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
 
-    private final String INSERT_SQL = "INSERT INTO Thuoc values (?,?,?,?,?,?,?,?,?,?,?)";
+    private final String INSERT_SQL = "INSERT INTO Thuoc values (?,?,?,?,?,?,?,?,?,?,?,?)"; // Thêm ngày sản xuất vào SQL
 
     private final String UPDATE_SQL
-            = "UPDATE Thuoc SET tenThuoc = ?, hinhAnh = ?, thanhPhan = ?, idDVT = ?, idDM = ?, idXX = ?,soLuongTon = ?, giaNhap = ?, donGia = ?, hanSuDung = ? "
-            + "WHERE idThuoc = ?";
+            = "UPDATE Thuoc SET tenThuoc = ?, hinhAnh = ?, thanhPhan = ?, idDVT = ?, idDM = ?, idXX = ?,soLuongTon = ?, giaNhap = ?, donGia = ?, ngaySanXuat = ?, hanSuDung = ? "
+            + "WHERE idThuoc = ?"; // Thêm ngày sản xuất vào SQL
 
     private final String DELETE_BY_ID = "DELETE from Thuoc where idThuoc = ?";
 
@@ -27,7 +27,7 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
             + "FROM Thuoc "
             + "INNER JOIN DonViTinh ON Thuoc.idDVT = DonViTinh.idDVT "
             + "INNER JOIN DanhMuc ON Thuoc.idDM = DanhMuc.idDM "
-            + "INNER JOIN XuatXu ON Thuoc.idXX = XuatXu.idXX";
+            + "INNER JOIN XuatXu ON Thuoc.idXX = XuatXu.idXX"; // Đảm bảo bao gồm cột ngaySanXuat trong SQL
 
     private final String SELECT_BY_ID = "SELECT Thuoc.*, "
             + "DonViTinh.idDVT, DonViTinh.ten AS tenDVT, "
@@ -37,20 +37,20 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
             + "INNER JOIN DonViTinh ON Thuoc.idDVT = DonViTinh.idDVT "
             + "INNER JOIN DanhMuc ON Thuoc.idDM = DanhMuc.idDM "
             + "INNER JOIN XuatXu ON Thuoc.idXX = XuatXu.idXX "
-            + "WHERE Thuoc.idThuoc = ?";
+            + "WHERE Thuoc.idThuoc = ?"; // Đảm bảo bao gồm cột ngaySanXuat trong SQL
 
     private final String UPDATE_SO_LUONG = "UPDATE Thuoc SET soLuongTon=? WHERE idThuoc = ?";
 
     @Override
     public void create(Thuoc e) {
         JDBCConnection.update(INSERT_SQL, e.getId(), e.getTenThuoc(), e.getHinhAnh(), e.getThanhPhan(), e.getDonViTinh().getId(),
-                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getHanSuDung());
+                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getNgaySanXuat(), e.getHanSuDung()); // Thêm ngày sản xuất vào create
     }
 
     @Override
     public void update(Thuoc e) {
         JDBCConnection.update(UPDATE_SQL, e.getTenThuoc(), e.getHinhAnh(), e.getThanhPhan(), e.getDonViTinh().getId(),
-                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getHanSuDung(), e.getId());
+                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getNgaySanXuat(), e.getHanSuDung(), e.getId()); // Thêm ngày sản xuất vào update
     }
 
     public void updateSoLuongTon(Thuoc e, int soLuong) {
@@ -95,6 +95,7 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
                 thuoc.setSoLuongTon(rs.getInt("soLuongTon"));
                 thuoc.setGiaNhap(rs.getDouble("giaNhap"));
                 thuoc.setDonGia(rs.getDouble("donGia"));
+                thuoc.setNgaySanXuat(rs.getDate("ngaySanXuat")); // Thêm ngày sản xuất vào selectBySql
                 thuoc.setHanSuDung(rs.getDate("hanSuDung"));
 
                 listE.add(thuoc);
@@ -117,7 +118,6 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
         if (list.isEmpty()) {
             return null;
         }
-        return list.get(0);
-    }
-
+        return list.get(0); 
+    } 
 }

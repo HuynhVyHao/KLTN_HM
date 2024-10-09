@@ -42,9 +42,11 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
     public ThuocController(ThuocPage THUOC_GUI) {
         this.THUOC_GUI = THUOC_GUI;
     }
+    
     public ThuocController(TimKiemThuocPage THUOC_GUITK) {
     	this.THUOC_GUITK = THUOC_GUITK;
     }
+    
     public ThuocController(BaoCaoThuocPage THUOC_GUIBC) {
     	this.THUOC_GUIBC = THUOC_GUIBC;
     }
@@ -120,13 +122,18 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
         return result;
     }
 
-    public List<Thuoc> getFilterTable(String tenDM, String tenDVT, String tenXX, long hanSuDung) {
+    // Cập nhật phương thức để bao gồm ngày sản xuất
+    public List<Thuoc> getFilterTable(String tenDM, String tenDVT, String tenXX, long ngaySanXuat, long hanSuDung) {
         List<Thuoc> result = new ArrayList<>();
 
         for (Thuoc e : this.getAllList()) {
             boolean match = false;
             long timeHSD = e.getHanSuDung().getTime() - new Date().getTime();
             long dateHSD = TimeUnit.MILLISECONDS.toDays(timeHSD);
+            
+            // Tính toán ngày sản xuất
+            long timeNSX = e.getNgaySanXuat().getTime() - new Date().getTime();
+            long dateNSX = TimeUnit.MILLISECONDS.toDays(timeNSX);
 
             if (e.getXuatXu().getTen().equals(tenXX)) {
                 match = true;
@@ -134,7 +141,7 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
                 match = true;
             } else if (e.getDonViTinh().getTen().equals(tenDVT)) {
                 match = true;
-            } else if (dateHSD < hanSuDung) {
+            } else if (dateHSD < hanSuDung || dateNSX < ngaySanXuat) {
                 match = true;
             }
 
@@ -146,6 +153,7 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
         return result;
     }
 
+    // Cập nhật quá trình nhập dữ liệu từ file Excel
     public void importExcel() {
         File excelFile;
         FileInputStream excelFIS = null;
@@ -190,7 +198,12 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
                     double giaNhap = Double.parseDouble(gn);
                     String dg = excelRow.getCell(9).getStringCellValue();
                     double donGia = Double.parseDouble(dg);
-                    String hsd = excelRow.getCell(10).getStringCellValue();
+
+                    // Thêm ngày sản xuất
+                    String nsx = excelRow.getCell(10).getStringCellValue();
+                    Date ngaySanXuat = new Date(nsx);
+
+                    String hsd = excelRow.getCell(11).getStringCellValue();
                     Date hanSuDung = new Date(hsd);
 
                     // Validate row cell
@@ -199,11 +212,10 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
                             || Validation.isEmpty(idXX) || Validation.isEmpty(sl) || Validation.isEmpty(gn) || Validation.isEmpty(dg)) {
                         check += 1;
                     } else {
-                        Thuoc e = new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuong, giaNhap, donGia, hanSuDung);
+                        Thuoc e = new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuong, giaNhap, donGia, ngaySanXuat, hanSuDung); // Thêm ngày sản xuất vào constructor
                         THUOC_DAO.create(e);
                         THUOC_GUI.loadTable(this.getAllList());
                     }
-
                 }
                 MessageDialog.info(null, "Nhập dữ liệu thành công!");
 
@@ -217,5 +229,4 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
             MessageDialog.error(null, "Có " + check + " dòng dữ liệu không được thêm vào!");
         }
     }
-
 }
