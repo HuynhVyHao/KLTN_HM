@@ -1,18 +1,28 @@
 package utils;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.itextpdf.text.Chunk;
 import java.awt.Desktop;
 import java.awt.FileDialog;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -20,7 +30,10 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.ColumnText;
+import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -218,6 +231,7 @@ public class WritePDF {
             sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
             sign.add(new Chunk(createWhiteSpace(23)));
             sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
+            
 
             document.add(paragraph);
             document.add(sign);
@@ -230,7 +244,7 @@ public class WritePDF {
         }
     }
 
-    public void printHoaDon(HoaDon hoaDon, List<ChiTietHoaDon> listCTHD) {
+    public void printHoaDon(HoaDon hoaDon, List<ChiTietHoaDon> listCTHD) throws WriterException{
         String url = "";
         try {
             fd.setTitle("In hóa đơn");
@@ -245,29 +259,25 @@ public class WritePDF {
             PdfWriter writer = PdfWriter.getInstance(document, file);
             document.open();
 
-            Paragraph company = new Paragraph("Hiệu thuốc tây Pharma Store", fontBold15);
+            Paragraph company = new Paragraph("Hiệu thuốc tây H&M -GÒ VẤP", fontBold15);
             company.add(new Chunk(createWhiteSpace(20)));
             Date today = new Date(System.currentTimeMillis());
             company.add(new Chunk("Thời gian in phiếu: " + formatDate.format(today), fontNormal10));
             company.setAlignment(Element.ALIGN_LEFT);
             document.add(company);
-            // Thêm tên công ty vào file PDF
             document.add(Chunk.NEWLINE);
+
             Paragraph header = new Paragraph("THÔNG TIN HÓA ĐƠN", fontBold25);
             header.setAlignment(Element.ALIGN_CENTER);
             document.add(header);
-            // Thêm dòng Paragraph vào file PDF
 
             Paragraph paragraph1 = new Paragraph("Mã phiếu: " + hoaDon.getId(), fontNormal10);
-
             String kh = hoaDon.getKhachHang().getHoTen();
             Paragraph paragraph2 = new Paragraph("Khách hàng: " + kh, fontNormal10);
             paragraph2.add(new Chunk(createWhiteSpace(5)));
-
             String nv = hoaDon.getNhanVien().getHoTen();
             Paragraph paragraph3 = new Paragraph("Người thực hiện: " + nv, fontNormal10);
             paragraph3.add(new Chunk(createWhiteSpace(5)));
-
             Paragraph paragraph4 = new Paragraph("Thời gian: " + formatDate.format(hoaDon.getThoiGian()), fontNormal10);
             document.add(paragraph1);
             document.add(paragraph2);
@@ -291,7 +301,7 @@ public class WritePDF {
                 table.addCell(cell);
             }
 
-            //Truyen thong tin tung chi tiet vao table
+            // Truyền thông tin từng chi tiết vào table
             for (ChiTietHoaDon cthd : listCTHD) {
                 table.addCell(new PdfPCell(new Phrase(cthd.getThuoc().getTenThuoc(), fontNormal10)));
                 table.addCell(new PdfPCell(new Phrase(cthd.getThuoc().getDonViTinh().toString(), fontNormal10)));
@@ -305,10 +315,11 @@ public class WritePDF {
 
             Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thành tiền: " + formatter.format(hoaDon.getTongTien()) + "đ", fontBold15));
             paraTongThanhToan.setIndentationLeft(300);
-
             document.add(paraTongThanhToan);
             document.add(Chunk.NEWLINE);
             document.add(Chunk.NEWLINE);
+
+            
             Paragraph paragraph = new Paragraph();
             paragraph.setIndentationLeft(22);
             paragraph.add(new Chunk("Người lập phiếu", fontBoldItalic15));
@@ -324,16 +335,54 @@ public class WritePDF {
             sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
             sign.add(new Chunk(createWhiteSpace(23)));
             sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
+         //// Tạo mã QR theo chuẩn MB Bank hoặc VNPAY QR
+            String qrCodeText = "STK: 070280237; NganHang: MB Bank; SoTien: " + hoaDon.getTongTien();
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bitMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, 150, 150);
+            BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+
+            // Chuyển mã QR thành image trong iText
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(qrImage, "png", baos);
+
+            Image qrCodeImage = Image.getInstance(baos.toByteArray());
+            qrCodeImage.scaleAbsolute(150, 150); // Đặt kích thước mã QR
+
+            // Lấy đối tượng PdfContentByte để thêm nội dung với tọa độ
+            PdfContentByte canvas = writer.getDirectContent();
+
+            // Xác định tọa độ đặt mã QR (gần đáy trang)
+            float qrX = (document.right() - qrCodeImage.getScaledWidth()) / 2; // Căn giữa theo chiều ngang
+            float qrY = document.bottom() + 150; // Vị trí gần đáy (điều chỉnh giá trị nếu cần)
+
+            // Thêm mã QR vào vị trí đã xác định
+            qrCodeImage.setAbsolutePosition(qrX, qrY);
+            canvas.addImage(qrCodeImage);
+
+            // Thêm đoạn văn bản thông tin tài khoản ngân hàng ngay dưới mã QR
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER,
+                    new Phrase("STK: 070280237 HUYNHVYHAO MB BANK", fontBold15),
+                    document.getPageSize().getWidth() / 2, qrY - 25, 0); // Điều chỉnh khoảng cách giữa QR và đoạn văn
+
+
 
             document.add(paragraph);
             document.add(sign);
+          
             document.close();
             writer.close();
             openFile(url);
 
         } catch (DocumentException | FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Lỗi khi ghi file " + url);
-        }
+        } catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
+
 
 }

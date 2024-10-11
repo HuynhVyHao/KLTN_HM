@@ -1,11 +1,15 @@
 package gui.dialog;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.google.zxing.WriterException;
+
 import controller.ChiTietHoaDonController;
 import entity.ChiTietHoaDon;
 import entity.HoaDon;
 
 import java.awt.Image;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -334,7 +338,12 @@ public class DetailHoaDonDialog extends javax.swing.JDialog {
         btnPrint.setPreferredSize(new java.awt.Dimension(200, 40));
         btnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrintActionPerformed(evt);
+                try {
+					btnPrintActionPerformed(evt);
+				} catch (WriterException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
         jPanel8.add(btnPrint);
@@ -357,7 +366,7 @@ public class DetailHoaDonDialog extends javax.swing.JDialog {
         txtHinhAnh.setIcon(imageIcon);
     }//GEN-LAST:event_tableMouseClicked
 
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, WriterException, IOException {//GEN-FIRST:event_btnPrintActionPerformed
         HoaDon hoaDon = listCTHD.get(0).getHoaDon();
         new WritePDF().printHoaDon(hoaDon, listCTHD);
     }//GEN-LAST:event_btnPrintActionPerformed

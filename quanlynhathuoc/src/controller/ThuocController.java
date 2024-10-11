@@ -128,13 +128,14 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 
         for (Thuoc e : this.getAllList()) {
             boolean match = false;
-            long timeHSD = e.getHanSuDung().getTime() - new Date().getTime();
-            long dateHSD = TimeUnit.MILLISECONDS.toDays(timeHSD);
-            
-            // Tính toán ngày sản xuất
+         // Tính toán ngày sản xuất
             long timeNSX = e.getNgaySanXuat().getTime() - new Date().getTime();
             long dateNSX = TimeUnit.MILLISECONDS.toDays(timeNSX);
 
+            long timeHSD = e.getHanSuDung().getTime() - new Date().getTime();
+            long dateHSD = TimeUnit.MILLISECONDS.toDays(timeHSD);
+            
+            
             if (e.getXuatXu().getTen().equals(tenXX)) {
                 match = true;
             } else if (e.getDanhMuc().getTen().equals(tenDM)) {

@@ -2,6 +2,8 @@ package gui.page;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.toedter.calendar.JDateChooser;
+
 import controller.DanhMucController;
 import controller.DonViTinhController;
 import controller.ThuocController;
@@ -17,6 +19,7 @@ import gui.dialog.ThuocTinhDonViTinhDialog;
 import gui.dialog.ThuocTinhXuatXuDialog;
 import gui.dialog.UpdateThuocDialog;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -28,6 +31,12 @@ import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
 import utils.Validation;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import javax.swing.JTextField;
 
 public class TimKiemThuocPage extends javax.swing.JPanel {
 	private final ThuocController THUOC_CON = new ThuocController(this);
@@ -77,24 +86,25 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	}
 
 	private void tableLayout() {
-		lblTable.setText("danh sách thông tin thuốc".toUpperCase());
-		String[] header = new String[] { "STT", "Mã thuốc", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính",
-				"Số lượng", "Đơn giá", "Hạn sử dụng" };
-		modal = new DefaultTableModel();
-		modal.setColumnIdentifiers(header);
-		table.setModel(modal);
+	    lblTable.setText("danh sách thông tin thuốc".toUpperCase());
+	    String[] header = new String[] { "STT", "Mã thuốc", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính",
+	            "Số lượng", "Đơn giá", "Ngày sản xuất", "Hạn sử dụng" }; // Thêm cột Ngày sản xuất
+	    modal = new DefaultTableModel();
+	    modal.setColumnIdentifiers(header);
+	    table.setModel(modal);
 
-		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-		table.setDefaultRenderer(Object.class, centerRenderer);
-		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-		table.getColumnModel().getColumn(0).setPreferredWidth(30);
-		table.getColumnModel().getColumn(2).setPreferredWidth(200);
-		table.getColumnModel().getColumn(3).setPreferredWidth(200);
+	    DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+	    table.setDefaultRenderer(Object.class, centerRenderer);
+	    centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+	    table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+	    table.getColumnModel().getColumn(0).setPreferredWidth(30);
+	    table.getColumnModel().getColumn(2).setPreferredWidth(200);
+	    table.getColumnModel().getColumn(3).setPreferredWidth(200);
 
-		loadTable(listThuoc);
-		sortTable();
+	    loadTable(listThuoc);
+	    sortTable();
 	}
+
 
 	private void sortTable() {
 		table.setAutoCreateRowSorter(true);
@@ -102,17 +112,27 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	}
 
 	public void loadTable(List<Thuoc> list) {
-		modal.setRowCount(0);
+	    modal.setRowCount(0);
 
-		listThuoc = list;
-		int stt = 1;
-		for (Thuoc e : listThuoc) {
-			modal.addRow(new Object[] { String.valueOf(stt), e.getId(), e.getTenThuoc(), e.getDanhMuc().getTen(),
-					e.getXuatXu().getTen(), e.getDonViTinh().getTen(), e.getSoLuongTon(),
-					Formatter.FormatVND(e.getDonGia()), Formatter.FormatDate(e.getHanSuDung()) });
-			stt++;
-		}
+	    listThuoc = list;
+	    int stt = 1;
+	    for (Thuoc e : listThuoc) {
+	        modal.addRow(new Object[] { 
+	            String.valueOf(stt), 
+	            e.getId(), 
+	            e.getTenThuoc(), 
+	            e.getDanhMuc().getTen(),
+	            e.getXuatXu().getTen(), 
+	            e.getDonViTinh().getTen(), 
+	            e.getSoLuongTon(), 
+	            Formatter.FormatVND(e.getDonGia()), 
+	            Formatter.FormatDate(e.getNgaySanXuat()), // Thêm ngày sản xuất
+	            Formatter.FormatDate(e.getHanSuDung())    // Hiển thị hạn sử dụng
+	        });
+	        stt++;
+	    }
 	}
+
 
 	private void fillCombobox() {
 		cboxDonViTinh.addItem("Tất cả");
@@ -132,28 +152,38 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	}
 
 	private List<Thuoc> getListFilter() {
-		String tenDM = "";
-		String tenDVT = "";
-		String tenXX = "";
-		long hanSuDung = 0;
+	    String tenDM = "";
+	    String tenDVT = "";
+	    String tenXX = "";
+	    Date ngaySanXuat = null; // Ngày sản xuất sẽ là đối tượng Date
+	    
+	    long hanSuDung = 0;
 
-		// Check if selected item is not null before converting to string
-		if (cboxDanhMuc.getSelectedItem() != null) {
-			tenDM = cboxDanhMuc.getSelectedItem().toString();
-		}
-		if (cboxDonViTinh.getSelectedItem() != null) {
-			tenDVT = cboxDonViTinh.getSelectedItem().toString();
-		}
-		if (cboxXuatXu.getSelectedItem() != null) {
-			tenXX = cboxXuatXu.getSelectedItem().toString();
-		}
+	    // Lấy các giá trị từ combobox
+	    if (cboxDanhMuc.getSelectedItem() != null) {
+	        tenDM = cboxDanhMuc.getSelectedItem().toString();
+	    }
+	    if (cboxDonViTinh.getSelectedItem() != null) {
+	        tenDVT = cboxDonViTinh.getSelectedItem().toString();
+	    }
+	    if (cboxXuatXu.getSelectedItem() != null) {
+	        tenXX = cboxXuatXu.getSelectedItem().toString();
+	    }
+	    
+	    // Lấy giá trị ngày sản xuất từ JDateChooser
+	    if (txtNSX.getDate() != null) {
+	        ngaySanXuat = txtNSX.getDate(); // Lấy giá trị ngày
+	    }
 
-		if (!Validation.isEmpty(txtHSD.getText()) || Validation.isNumber(txtHSD.getText())) {
-			hanSuDung = Long.parseLong(txtHSD.getText());
-		}
+	    // Kiểm tra và lấy giá trị hạn sử dụng
+	    if (!Validation.isEmpty(txtHSD.getText()) || Validation.isNumber(txtHSD.getText())) {
+	        hanSuDung = Long.parseLong(txtHSD.getText());
+	    }
 
-		return THUOC_CON.getFilterTable(tenDM, tenDVT, tenXX, hanSuDung);
+	    // Truyền tất cả các giá trị vào phương thức lọc
+	    return THUOC_CON.getFilterTable(tenDM, tenDVT, tenXX, ngaySanXuat, hanSuDung);
 	}
+
 
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
@@ -379,14 +409,37 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 				btnSubmitHSDActionPerformed(evt);
 			}
 		});
+		
+		jPanel9_1 = new JPanel();
+		jPanel9_1.setPreferredSize(new Dimension(200, 80));
+		jPanel9_1.setBackground(Color.WHITE);
+		jPanel4.add(jPanel9_1);
+		jPanel9_1.setLayout(new FlowLayout(FlowLayout.LEFT, 16, 8));
+		
+		lblNgySnXut = new JLabel();
+		lblNgySnXut.setText("Ngày sản xuất");
+		lblNgySnXut.setPreferredSize(new Dimension(140, 20));
+		lblNgySnXut.setFont(new Font("Dialog", Font.PLAIN, 14));
+		jPanel9_1.add(lblNgySnXut);
+
+		jPanel2_1 = new JPanel();
+		jPanel2_1.setPreferredSize(new Dimension(170, 40));
+		jPanel2_1.setMinimumSize(new Dimension(170, 40));
+		jPanel2_1.setBackground(Color.WHITE);
+		jPanel9_1.add(jPanel2_1);
+		jPanel2_1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
+
+		// Tạo JDateChooser để chọn ngày
+		JDateChooser txtNgaySanXuat = new JDateChooser();
+		txtNgaySanXuat.setDateFormatString("dd/MM/yyyy"); // Định dạng ngày
+		txtNgaySanXuat.setPreferredSize(new Dimension(160, 40)); // Kích thước cho JDateChooser
+		jPanel2_1.add(txtNgaySanXuat); // Thêm vào panel
+
 		jPanel2.add(btnSubmitHSD);
-
 		jPanel9.add(jPanel2);
-
 		jPanel4.add(jPanel9);
 
 		tablePanel.add(jPanel4, java.awt.BorderLayout.LINE_START);
-
 		add(tablePanel, java.awt.BorderLayout.CENTER);
 	}
 
@@ -509,5 +562,9 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	private javax.swing.JPanel tablePanel;
 	private javax.swing.JTextField txtHSD;
 	private javax.swing.JTextField txtSearch;
+	private JPanel jPanel9_1;
+	private JLabel lblNgySnXut;
+	private JPanel jPanel2_1;
+	private JTextField txtNSX;
 }
 

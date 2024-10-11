@@ -2,6 +2,8 @@ package gui.page;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
+import com.google.zxing.WriterException;
+
 import controller.ChiTietHoaDonController;
 import controller.HoaDonController;
 import controller.KhachHangController;
@@ -846,7 +848,12 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         btnThanhToan.setPreferredSize(new java.awt.Dimension(200, 40));
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThanhToanActionPerformed(evt);
+                try {
+					btnThanhToanActionPerformed(evt);
+				} catch (WriterException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
         });
         jPanel8.add(btnThanhToan);
@@ -987,7 +994,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         return true;
     }
 
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) throws WriterException {//GEN-FIRST:event_btnThanhToanActionPerformed
         if (isValidHoaDon() && isValidPayment()) {
             if (MessageDialog.confirm(this, "Xác nhận thanh toán?", "Lập hóa đơn")) {
                 HoaDon hd = getInputHoaDon();

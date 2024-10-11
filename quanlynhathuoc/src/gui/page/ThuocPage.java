@@ -109,8 +109,9 @@ public class ThuocPage extends javax.swing.JPanel {
 	            e.getDonViTinh().getTen(),
 	            e.getSoLuongTon(), 
 	            Formatter.FormatVND(e.getDonGia()), 
-	            Formatter.FormatDate(e.getNgaySanXuat()),  // Đảm bảo rằng đây là ngày sản xuất
-	            Formatter.FormatDate(e.getHanSuDung())    // Và đây là hạn sử dụng
+	        
+	            Formatter.FormatDate(e.getHanSuDung())  ,  // Và đây là hạn sử dụng
+	            Formatter.FormatDate(e.getNgaySanXuat()) // Đảm bảo rằng đây là ngày sản xuất
 	        });
 	        stt++;
 	    }
