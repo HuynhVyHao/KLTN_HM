@@ -27,16 +27,26 @@ public class DanhMucPage extends javax.swing.JPanel {
 
 	public DanhMucPage() {
 		initComponents();
+		searchLayout();
 		tableLayout();
 	}
 
 	public DanhMucPage(MainLayout main) {
 		this.main = main;
 		initComponents();
+		searchLayout();
 		tableLayout();
 	}
 
+	private void searchLayout() {
+		btnReload.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
+		txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tìm kiếm...");
 
+		String[] searchType = { "Tất cả", "Mã", "Tên" };
+		DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(searchType);
+		cboxSearch.setModel(model);
+	}
+	
 	private void tableLayout() {
 		String[] header = new String[] { "STT", "Mã danh mục thuốc", "Tên danh mục thuốc" };
 
@@ -94,6 +104,11 @@ public class DanhMucPage extends javax.swing.JPanel {
 		headerPanel = new javax.swing.JPanel();
 		jPanel15 = new javax.swing.JPanel();
 		lblTable = new javax.swing.JLabel();
+		jPanel1 = new javax.swing.JPanel();
+		jPanel3 = new javax.swing.JPanel();
+		cboxSearch = new javax.swing.JComboBox<>();
+		txtSearch = new javax.swing.JTextField();
+		btnReload = new javax.swing.JButton();
 		actionPanel = new javax.swing.JPanel();
 		btnAdd = new javax.swing.JButton();
 		tablePanel = new javax.swing.JPanel();
@@ -114,7 +129,51 @@ public class DanhMucPage extends javax.swing.JPanel {
 		headerPanel.setBackground(new java.awt.Color(255, 255, 255));
 		headerPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(232, 232, 232), 2, true));
 		headerPanel.setLayout(new java.awt.BorderLayout());
+		// Search Panel
 
+				jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+				jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));
+				jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 16, 24));
+
+				jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+				jPanel3.setPreferredSize(new java.awt.Dimension(370, 50));
+				jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
+
+				cboxSearch.setToolTipText("");
+				cboxSearch.setPreferredSize(new java.awt.Dimension(100, 40));
+				jPanel3.add(cboxSearch);
+
+				txtSearch.setToolTipText("Tìm kiếm");
+				txtSearch.setPreferredSize(new java.awt.Dimension(200, 40));
+				txtSearch.setSelectionColor(new java.awt.Color(230, 245, 245));
+				txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+					public void keyReleased(java.awt.event.KeyEvent evt) {
+						txtSearchKeyReleased(evt);
+					}
+				});
+				jPanel3.add(txtSearch);
+
+				btnReload.setIcon(new FlatSVGIcon("./icon/reload.svg"));
+				btnReload.setToolTipText("Làm mới");
+				btnReload.setBorder(null);
+				btnReload.setBorderPainted(false);
+				btnReload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+				btnReload.setFocusPainted(false);
+				btnReload.setFocusable(false);
+				btnReload.setPreferredSize(new java.awt.Dimension(40, 40));
+				btnReload.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						btnReloadActionPerformed(evt);
+					}
+				});
+				jPanel3.add(btnReload);
+
+				jPanel1.add(jPanel3);
+
+				headerPanel.add(jPanel1, java.awt.BorderLayout.CENTER); // Đặt phần tìm kiếm vào góc phải của headerPanel
+
+
+				add(headerPanel, java.awt.BorderLayout.PAGE_START); // Thêm headerP
 		// Action Panel
 		actionPanel.setBackground(new java.awt.Color(255, 255, 255));
 		actionPanel.setPreferredSize(new java.awt.Dimension(700, 100));
@@ -246,6 +305,32 @@ public class DanhMucPage extends javax.swing.JPanel {
 
 		add(tablePanel, java.awt.BorderLayout.CENTER); // Thêm bảng vào giao diện chính
 	}
+	
+	private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtSearchKeyReleased
+		DefaultTableModel modal = (DefaultTableModel) table.getModel();
+		modal.setRowCount(0);
+
+		String search = txtSearch.getText().toLowerCase().trim();
+		String searchType = cboxSearch.getSelectedItem().toString();
+		List<DanhMuc> listsearch = DM_CON.getSearchTable(search, searchType);
+
+		int stt = 1;
+		for (DanhMuc e : listsearch) {
+			modal.addRow(new Object[] { String.valueOf(stt), e.getId(), e.getTen() });
+			stt++;
+		}
+	}
+
+
+	private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
+		txtTenDVT.setText("");
+		txtSearch.setText("");
+		cboxSearch.setSelectedIndex(0);
+		loadTable();
+	}
+
+	
+
 
 	private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRemoveActionPerformed
 		try {
@@ -296,6 +381,9 @@ public class DanhMucPage extends javax.swing.JPanel {
 		txtTenDVT.setText(table.getValueAt(row, 2).toString());
 	}
 
+	private javax.swing.JButton btnReload;
+	private javax.swing.JComboBox<String> cboxSearch;
+	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel actionPanel;
 	private javax.swing.JButton btnAdd;
 	private javax.swing.JButton btnRemove;
@@ -305,8 +393,10 @@ public class DanhMucPage extends javax.swing.JPanel {
 	private javax.swing.JPanel jPanel18;
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JLabel lblTenDVT;
+	private javax.swing.JPanel jPanel3;
 	private javax.swing.JLabel lblTable;
 	private javax.swing.JPanel tablePanel;
 	private javax.swing.JTable table;
 	private javax.swing.JTextField txtTenDVT;
+	private javax.swing.JTextField txtSearch;
 }
