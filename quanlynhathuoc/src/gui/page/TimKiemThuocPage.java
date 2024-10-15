@@ -19,6 +19,7 @@ import gui.dialog.ThuocTinhDonViTinhDialog;
 import gui.dialog.ThuocTinhXuatXuDialog;
 import gui.dialog.UpdateThuocDialog;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -36,6 +37,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import javax.swing.JTextField;
 
 public class TimKiemThuocPage extends javax.swing.JPanel {
@@ -155,8 +161,7 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	    String tenDM = "";
 	    String tenDVT = "";
 	    String tenXX = "";
-	    Date ngaySanXuat = null; // Ngày sản xuất sẽ là đối tượng Date
-	    
+	    Date ngaySanXuat = null;
 	    long hanSuDung = 0;
 
 	    // Lấy các giá trị từ combobox
@@ -169,10 +174,15 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	    if (cboxXuatXu.getSelectedItem() != null) {
 	        tenXX = cboxXuatXu.getSelectedItem().toString();
 	    }
-	    
-	    // Lấy giá trị ngày sản xuất từ JDateChooser
-	    if (txtNSX.getDate() != null) {
-	        ngaySanXuat = txtNSX.getDate(); // Lấy giá trị ngày
+
+	    // Kiểm tra nếu txtNSX khác null và không rỗng
+	    if (txtNSX != null && !txtNSX.getText().isEmpty()) {
+	        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	        try {
+	            ngaySanXuat = dateFormat.parse(txtNSX.getText());
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
 	    }
 
 	    // Kiểm tra và lấy giá trị hạn sử dụng
@@ -180,9 +190,11 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	        hanSuDung = Long.parseLong(txtHSD.getText());
 	    }
 
-	    // Truyền tất cả các giá trị vào phương thức lọc
-	    return THUOC_CON.getFilterTable(tenDM, tenDVT, tenXX, ngaySanXuat, hanSuDung);
+	    long ngaySanXuatLong = (ngaySanXuat != null) ? ngaySanXuat.getTime() : 0;
+	    return THUOC_CON.getFilterTable(tenDM, tenDVT, tenXX, ngaySanXuatLong, hanSuDung);
 	}
+
+
 
 
 	@SuppressWarnings("unchecked")
@@ -430,9 +442,24 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		jPanel2_1.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
 
 		// Tạo JDateChooser để chọn ngày
-		JDateChooser txtNgaySanXuat = new JDateChooser();
+		txtNgaySanXuat = new JDateChooser();
 		txtNgaySanXuat.setDateFormatString("dd/MM/yyyy"); // Định dạng ngày
 		txtNgaySanXuat.setPreferredSize(new Dimension(160, 40)); // Kích thước cho JDateChooser
+		// Thêm sự kiện vào JDateChooser
+		txtNgaySanXuat.addPropertyChangeListener("date", new java.beans.PropertyChangeListener() {
+		    public void propertyChange(java.beans.PropertyChangeEvent evt) {
+		        if ("date".equals(evt.getPropertyName())) {
+		            Date selectedDate = (Date) evt.getNewValue(); // Lấy ngày mới được chọn
+		            if (selectedDate != null) {
+		                // Gọi phương thức lọc theo ngày sản xuất
+		                filterByProductionDate(selectedDate);
+		            }
+		        }
+		    }
+		});
+
+
+
 		jPanel2_1.add(txtNgaySanXuat); // Thêm vào panel
 
 		jPanel2.add(btnSubmitHSD);
@@ -441,6 +468,65 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 
 		tablePanel.add(jPanel4, java.awt.BorderLayout.LINE_START);
 		add(tablePanel, java.awt.BorderLayout.CENTER);
+	}
+	
+	private void filterByProductionDate(Date selectedDate) {
+	    // Lấy danh sách thuốc từ cơ sở dữ liệu hoặc danh sách hiện tại
+	    List<Thuoc> allMedicines = THUOC_CON.getAllList(); // Giả định có phương thức này để lấy tất cả thuốc
+	    List<Thuoc> filteredMedicines = new ArrayList<>();
+
+	    // Lọc thuốc theo ngày sản xuất
+	    for (Thuoc thuoc : allMedicines) {
+	        // Giả định có phương thức getProductionDate() trả về ngày sản xuất dưới dạng Date
+	        Date productionDate = thuoc.getNgaySanXuat(); // Thay đổi nếu cần
+	        
+	        // So sánh ngày sản xuất
+	        if (productionDate != null && isSameDay(productionDate, selectedDate)) {
+	            filteredMedicines.add(thuoc);
+	        }
+	    }
+
+	    // Gọi loadTable để hiển thị danh sách thuốc đã lọc
+	    loadTable(filteredMedicines);
+	}
+	private boolean isSameDay(Date date1, Date date2) {
+	    Calendar cal1 = Calendar.getInstance();
+	    Calendar cal2 = Calendar.getInstance();
+	    
+	    cal1.setTime(date1);
+	    cal2.setTime(date2);
+	    
+	    return (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+	            cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) &&
+	            cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH));
+	}
+
+
+
+	private void txtNgaySanXuatPropertyChange(java.beans.PropertyChangeEvent evt) {
+	    if (txtNgaySanXuat.getDate() != null) {
+	        modal.setRowCount(0);
+
+	        Date selectedDate = txtNgaySanXuat.getDate();
+	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	        String ngaySanXuat = sdf.format(selectedDate);
+
+	        List<Thuoc> listSearch = getListFilter();
+	        List<Thuoc> filteredList = new ArrayList<>();
+
+	        for (Thuoc thuoc : listSearch) {
+	            if (sdf.format(thuoc.getNgaySanXuat()).equals(ngaySanXuat)) {
+	                filteredList.add(thuoc);
+	            }
+	        }
+
+	        if (filteredList.isEmpty()) {
+	            System.out.println("Không tìm thấy thuốc nào với ngày sản xuất: " + ngaySanXuat);
+	            filteredList = THUOC_CON.getAllList(); // Tải lại nếu không tìm thấy
+	        }
+
+	        loadTable(filteredList);
+	    }
 	}
 
 
@@ -566,5 +652,6 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	private JLabel lblNgySnXut;
 	private JPanel jPanel2_1;
 	private JTextField txtNSX;
+	private JDateChooser txtNgaySanXuat;
 }
 
