@@ -138,7 +138,7 @@ public class MainLayout extends javax.swing.JFrame {
 		listItem.add(vaiTroItem);
 
 		// Default content
-		mainContent.add(new HoaDonPage()).setVisible(true);
+		mainContent.add(new HoaDonPage(this)).setVisible(true);
 
 		// Default selected
 		listItem.get(0).setSelected(true);

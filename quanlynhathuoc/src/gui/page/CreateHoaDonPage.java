@@ -255,7 +255,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
@@ -851,7 +850,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
                 try {
 					btnThanhToanActionPerformed(evt);
 				} catch (WriterException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
             }
@@ -863,9 +861,9 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         billPanel.add(billInfoPanel, java.awt.BorderLayout.SOUTH);
 
         add(billPanel, java.awt.BorderLayout.EAST);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
 
         String search = txtSearch.getText().toLowerCase().trim();
@@ -873,15 +871,15 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         List<Thuoc> listsearch = THUOC_CON.getSearchTable(search, searchType);
 
         loadTable(listsearch);
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtSearch.setText("");
         cboxSearch.setSelectedIndex(0);
         loadTable(THUOC_CON.getAllList());
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {
         int row = table.getSelectedRow();
         String idThuoc = modal.getValueAt(row, 1).toString();
         Thuoc e = THUOC_CON.selectById(idThuoc);
@@ -893,9 +891,9 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         txtTenThuoc.setText(e.getTenThuoc());
         txtThanhPhan.setText(e.getThanhPhan());
         txtDonGia.setText(Formatter.FormatVND(e.getDonGia()));
-    }//GEN-LAST:event_tableMouseClicked
+    }
 
-    private void btnAddCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCartActionPerformed
+    private void btnAddCartActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidChiTietHoaDon()) {
             ChiTietHoaDon cthd = getInputChiTietHoaDon();
             listCTHD.add(cthd);
@@ -909,9 +907,9 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
 
             txtSoLuong.setText("");
         }
-    }//GEN-LAST:event_btnAddCartActionPerformed
+    }
 
-    private void btnDeleteCartItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCartItemActionPerformed
+    private void btnDeleteCartItemActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Bạn có chắc muốc xóa khỏi giỏ hàng?", "Xóa thuốc khỏi giỏ hàng")) {
             if (listCTHD.isEmpty()) {
                 MessageDialog.error(this, "Không có sản phẩm trong giỏ hàng!");
@@ -929,9 +927,9 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
             THUOC_CON.updateSoLuongTon(thuoc, updatedSoLuongTon);
             loadTable(THUOC_CON.getAllList());
         }
-    }//GEN-LAST:event_btnDeleteCartItemActionPerformed
+    }
 
-    private void btnSearchKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchKHActionPerformed
+    private void btnSearchKHActionPerformed(java.awt.event.ActionEvent evt) {
         KhachHang kh = new KhachHangController().selectBySdt(txtSdtKH.getText());
 
         if (kh == null) {
@@ -946,12 +944,12 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
             txtHoTenKH.setEnabled(false);
             cboxGioiTinhKH.setEnabled(false);
         }
-    }//GEN-LAST:event_btnSearchKHActionPerformed
+    }
 
     private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
         CreateKhachHangDialog dialog = new CreateKhachHangDialog(null, true, new KhachHangPage());
         dialog.setVisible(true);
-    }//GEN-LAST:event_btnAddCustomerActionPerformed
+    }
 
     private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
         if (isValidHoaDon()) {

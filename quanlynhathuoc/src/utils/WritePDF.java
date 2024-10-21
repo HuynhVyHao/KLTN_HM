@@ -302,20 +302,35 @@ public class WritePDF {
             }
 
             // Truyền thông tin từng chi tiết vào table
+            double tongTien = 0;
             for (ChiTietHoaDon cthd : listCTHD) {
                 table.addCell(new PdfPCell(new Phrase(cthd.getThuoc().getTenThuoc(), fontNormal10)));
                 table.addCell(new PdfPCell(new Phrase(cthd.getThuoc().getDonViTinh().toString(), fontNormal10)));
                 table.addCell(new PdfPCell(new Phrase(formatter.format(cthd.getDonGia()) + "đ", fontNormal10)));
                 table.addCell(new PdfPCell(new Phrase(String.valueOf(cthd.getSoLuong()), fontNormal10)));
                 table.addCell(new PdfPCell(new Phrase(formatter.format(cthd.getDonGia() * cthd.getSoLuong()) + "đ", fontNormal10)));
+
+                // Cộng dồn tổng tiền
+                tongTien += cthd.getDonGia() * cthd.getSoLuong();
             }
 
             document.add(table);
             document.add(Chunk.NEWLINE);
 
-            Paragraph paraTongThanhToan = new Paragraph(new Phrase("Tổng thành tiền: " + formatter.format(hoaDon.getTongTien()) + "đ", fontBold15));
-            paraTongThanhToan.setIndentationLeft(300);
-            document.add(paraTongThanhToan);
+            // Tính VAT (nếu VAT là 5%)
+            double vat = tongTien * 0.05; // Tính VAT 5%
+            double tongSauThue = tongTien + vat; // Tổng sau khi cộng VAT
+
+            // Hiển thị VAT
+            Paragraph paraVAT = new Paragraph(new Phrase("VAT 5%: " + formatter.format(vat) + "đ", fontBold15));
+            paraVAT.setIndentationLeft(300);
+            document.add(paraVAT);
+            document.add(Chunk.NEWLINE);
+
+            // Hiển thị Tổng tiền sau thuế
+            Paragraph paraTongSauThue = new Paragraph(new Phrase("Tổng tiền sau thuế: " + formatter.format(tongSauThue) + "đ", fontBold15));
+            paraTongSauThue.setIndentationLeft(300);
+            document.add(paraTongSauThue);	
             document.add(Chunk.NEWLINE);
             document.add(Chunk.NEWLINE);
 
