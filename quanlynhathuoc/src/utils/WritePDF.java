@@ -259,7 +259,7 @@ public class WritePDF {
             PdfWriter writer = PdfWriter.getInstance(document, file);
             document.open();
 
-            Paragraph company = new Paragraph("Hiệu thuốc tây H&M -GÒ VẤP", fontBold15);
+            Paragraph company = new Paragraph("Hiệu thuốc tây H&M - GÒ VẤP", fontBold15);
             company.add(new Chunk(createWhiteSpace(20)));
             Date today = new Date(System.currentTimeMillis());
             company.add(new Chunk("Thời gian in phiếu: " + formatDate.format(today), fontNormal10));
@@ -291,11 +291,33 @@ public class WritePDF {
             table.setWidths(new float[]{40f, 20f, 20f, 20f, 20f});
             PdfPCell cell;
 
-            table.addCell(new PdfPCell(new Phrase("Tên thuốc", fontBold15)));
-            table.addCell(new PdfPCell(new Phrase("Đơn vị tính", fontBold15)));
-            table.addCell(new PdfPCell(new Phrase("Đơn giá", fontBold15)));
-            table.addCell(new PdfPCell(new Phrase("Số lượng", fontBold15)));
-            table.addCell(new PdfPCell(new Phrase("Thành tiền", fontBold15)));
+         // Tăng chiều cao cho các ô tiêu đề
+            cell = new PdfPCell(new Phrase("Tên thuốc", fontBold15));
+            cell.setFixedHeight(25f);  // Thiết lập chiều cao cho ô
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER); // Căn giữa
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Đơn vị tính", fontBold15));
+            cell.setFixedHeight(25f);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER); // Căn giữa
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Đơn giá", fontBold15));
+            cell.setFixedHeight(25f);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER); // Căn giữa
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Số lượng", fontBold15));
+            cell.setFixedHeight(25f);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER); // Căn giữa
+            table.addCell(cell);
+
+            cell = new PdfPCell(new Phrase("Thành tiền", fontBold15));
+            cell.setFixedHeight(25f);
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER); // Căn giữa
+            table.addCell(cell);
+
+            // Tăng chiều cao cho các ô trống (ở đây là hàng sau tiêu đề)
             for (int i = 0; i < 5; i++) {
                 cell = new PdfPCell(new Phrase(""));
                 table.addCell(cell);
@@ -306,14 +328,39 @@ public class WritePDF {
             for (ChiTietHoaDon cthd : listCTHD) {
                 table.addCell(new PdfPCell(new Phrase(cthd.getThuoc().getTenThuoc(), fontNormal10)));
                 table.addCell(new PdfPCell(new Phrase(cthd.getThuoc().getDonViTinh().toString(), fontNormal10)));
-                table.addCell(new PdfPCell(new Phrase(formatter.format(cthd.getDonGia()) + "đ", fontNormal10)));
-                table.addCell(new PdfPCell(new Phrase(String.valueOf(cthd.getSoLuong()), fontNormal10)));
-                table.addCell(new PdfPCell(new Phrase(formatter.format(cthd.getDonGia() * cthd.getSoLuong()) + "đ", fontNormal10)));
+                // Ô Đơn giá căn phải
+                PdfPCell donGiaCell = new PdfPCell(new Phrase(formatter.format(cthd.getDonGia()) + "đ", fontNormal10));
+                donGiaCell.setHorizontalAlignment(Element.ALIGN_RIGHT); // Căn phải
+                table.addCell(donGiaCell);
+
+                // Ô Số lượng căn phải
+                PdfPCell soLuongCell = new PdfPCell(new Phrase(String.valueOf(cthd.getSoLuong()), fontNormal10));
+                soLuongCell.setHorizontalAlignment(Element.ALIGN_RIGHT); // Căn phải
+                table.addCell(soLuongCell);
+
+                // Ô Thành tiền căn phải
+                PdfPCell thanhTienCell = new PdfPCell(new Phrase(formatter.format(cthd.getDonGia() * cthd.getSoLuong()) + "đ", fontNormal10));
+                thanhTienCell.setHorizontalAlignment(Element.ALIGN_RIGHT); // Căn phải
+                table.addCell(thanhTienCell);
 
                 // Cộng dồn tổng tiền
                 tongTien += cthd.getDonGia() * cthd.getSoLuong();
             }
 
+         // Thêm hàng Tổng Tiền
+            PdfPCell tongTienCell = new PdfPCell(new Phrase("Tổng Tiền", fontBold15));
+            tongTienCell.setColspan(4); // Gộp 4 cột
+            tongTienCell.setHorizontalAlignment(Element.ALIGN_CENTER); // Căn giữa
+            tongTienCell.setFixedHeight(25f); // Thiết lập chiều cao
+            table.addCell(tongTienCell);
+
+            // Ô chứa giá tổng tiền
+            PdfPCell giaTienCell = new PdfPCell(new Phrase(formatter.format(tongTien) + "đ", fontBold15));
+            giaTienCell.setHorizontalAlignment(Element.ALIGN_RIGHT); // Căn phải
+            giaTienCell.setFixedHeight(25f);
+            table.addCell(giaTienCell);
+            
+            
             document.add(table);
             document.add(Chunk.NEWLINE);
 
@@ -338,20 +385,33 @@ public class WritePDF {
             Paragraph paragraph = new Paragraph();
             paragraph.setIndentationLeft(22);
             paragraph.add(new Chunk("Người lập phiếu", fontBoldItalic15));
-            paragraph.add(new Chunk(createWhiteSpace(30)));
-            paragraph.add(new Chunk("Người giao", fontBoldItalic15));
-            paragraph.add(new Chunk(createWhiteSpace(30)));
+            paragraph.add(new Chunk(createWhiteSpace(85)));
             paragraph.add(new Chunk("Khách hàng", fontBoldItalic15));
 
             Paragraph sign = new Paragraph();
-            sign.setIndentationLeft(20);
+            sign.setIndentationLeft(21);
             sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
-            sign.add(new Chunk(createWhiteSpace(25)));
+            sign.add(new Chunk(createWhiteSpace(82)));
             sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
-            sign.add(new Chunk(createWhiteSpace(23)));
-            sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
-         //// Tạo mã QR theo chuẩn MB Bank hoặc VNPAY QR
-            String qrCodeText = "STK: 070280237; NganHang: MB Bank; SoTien: " + hoaDon.getTongTien();
+            
+            Paragraph name = new Paragraph();
+            name.setIndentationLeft(20);
+            name.add(new Chunk(nv, fontBold15));
+            name.add(new Chunk(createWhiteSpace(78)));
+            name.add(new Chunk(kh, fontBold15));
+            
+            
+            document.add(paragraph);
+            document.add(sign);
+            for (int i = 0; i < 4; i++) {
+                document.add(Chunk.NEWLINE);
+            }
+            document.add(name);
+            document.add(Chunk.NEWLINE);
+            document.add(createHorizontalLine(77));
+        
+         // Tạo mã QR theo chuẩn MB Bank hoặc VNPAY QR
+            String qrCodeText = "STK:1770414937; NganHang:BIDV;SoTien:" +hoaDon.getTongTien();
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
             BitMatrix bitMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, 150, 150);
             BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
@@ -367,22 +427,30 @@ public class WritePDF {
             PdfContentByte canvas = writer.getDirectContent();
 
             // Xác định tọa độ đặt mã QR (gần đáy trang)
-            float qrX = (document.right() - qrCodeImage.getScaledWidth()) / 2; // Căn giữa theo chiều ngang
-            float qrY = document.bottom() + 150; // Vị trí gần đáy (điều chỉnh giá trị nếu cần)
+            float qrX = (document.getPageSize().getWidth() - qrCodeImage.getScaledWidth()) / 2; // Căn giữa theo chiều ngang
+            float qrY = document.bottom() + 65; // Vị trí gần đáy (điều chỉnh giá trị nếu cần)
 
             // Thêm mã QR vào vị trí đã xác định
             qrCodeImage.setAbsolutePosition(qrX, qrY);
             canvas.addImage(qrCodeImage);
 
+            // Tạo Phrase cho nội dung
+            Phrase phrase1 = new Phrase("STK: 070280237 - MB BANK", fontBold15); // Dòng đầu tiên
+            Phrase phrase2 = new Phrase("HUYNH VY HAO", fontBold15); // Dòng thứ hai
+
             // Thêm đoạn văn bản thông tin tài khoản ngân hàng ngay dưới mã QR
             ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER,
-                    new Phrase("STK: 070280237 HUYNHVYHAO MB BANK", fontBold15),
+                    phrase1,
                     document.getPageSize().getWidth() / 2, qrY - 25, 0); // Điều chỉnh khoảng cách giữa QR và đoạn văn
 
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER,
+                    phrase2,
+                    document.getPageSize().getWidth() / 2, qrY - 45, 0); // Điều chỉnh khoảng cách cho dòng thứ hai
 
 
-            document.add(paragraph);
-            document.add(sign);
+
+
+         
           
             document.close();
             writer.close();
@@ -398,6 +466,12 @@ public class WritePDF {
 			e.printStackTrace();
 		}
     }
-
+    private Chunk createHorizontalLine(float length) {
+        StringBuilder line = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            line.append("=");
+        }
+        return new Chunk(line.toString(), fontNormal10); // Sử dụng font phù hợp
+    }
 
 }
