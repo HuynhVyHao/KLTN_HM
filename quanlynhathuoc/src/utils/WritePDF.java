@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -410,47 +411,40 @@ public class WritePDF {
             document.add(Chunk.NEWLINE);
             document.add(createHorizontalLine(77));
         
-         // Tạo mã QR theo chuẩn MB Bank hoặc VNPAY QR
-            String qrCodeText = "STK:1770414937; NganHang:BIDV;SoTien:" +hoaDon.getTongTien();
-            QRCodeWriter qrCodeWriter = new QRCodeWriter();
-            BitMatrix bitMatrix = qrCodeWriter.encode(qrCodeText, BarcodeFormat.QR_CODE, 150, 150);
-            BufferedImage qrImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+         // Cài đặt mã QR theo chuẩn VietQR
+            String bankCode = "BIDV";  // Mã ngân hàng, có thể thay đổi
+            String accountNumber = "1770414937";  // Số tài khoản
+            String amount = String.valueOf((int) hoaDon.getTongTien());  // Số tiền
+            String addInfo = "ThanhToanHoaDon" + hoaDon.getId();  // Nội dung thanh toán
 
-            // Chuyển mã QR thành image trong iText
+            // URL QR code VietQR
+            String vietQRUrl = "https://img.vietqr.io/image/" + bankCode + "-" + accountNumber +
+                               "-qr_only.png?amount=" + amount + "&addInfo=" + addInfo;
+            URL qrURL = new URL(vietQRUrl);
+            BufferedImage qrImage = ImageIO.read(qrURL);  // Đọc hình ảnh từ URL
+
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(qrImage, "png", baos);
-
             Image qrCodeImage = Image.getInstance(baos.toByteArray());
-            qrCodeImage.scaleAbsolute(150, 150); // Đặt kích thước mã QR
+            qrCodeImage.scaleAbsolute(150, 150);  // Đặt kích thước mã QR
 
-            // Lấy đối tượng PdfContentByte để thêm nội dung với tọa độ
+            // Vị trí mã QR trong PDF
             PdfContentByte canvas = writer.getDirectContent();
+            float qrX = (document.getPageSize().getWidth() - qrCodeImage.getScaledWidth()) / 2;
+            float qrY = document.bottom() + 65;
 
-            // Xác định tọa độ đặt mã QR (gần đáy trang)
-            float qrX = (document.getPageSize().getWidth() - qrCodeImage.getScaledWidth()) / 2; // Căn giữa theo chiều ngang
-            float qrY = document.bottom() + 65; // Vị trí gần đáy (điều chỉnh giá trị nếu cần)
-
-            // Thêm mã QR vào vị trí đã xác định
             qrCodeImage.setAbsolutePosition(qrX, qrY);
             canvas.addImage(qrCodeImage);
 
-            // Tạo Phrase cho nội dung
-            Phrase phrase1 = new Phrase("STK: 070280237 - MB BANK", fontBold15); // Dòng đầu tiên
-            Phrase phrase2 = new Phrase("HUYNH VY HAO", fontBold15); // Dòng thứ hai
+            // Hiển thị thông tin tài khoản dưới mã QR
+            Phrase phrase1 = new Phrase("STK: 113366668888 - BIDV", fontBold15);
+            Phrase phrase2 = new Phrase("HUYNH VY HAO", fontBold15);
 
-            // Thêm đoạn văn bản thông tin tài khoản ngân hàng ngay dưới mã QR
-            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER,
-                    phrase1,
-                    document.getPageSize().getWidth() / 2, qrY - 25, 0); // Điều chỉnh khoảng cách giữa QR và đoạn văn
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase1,
+                                       document.getPageSize().getWidth() / 2, qrY - 25, 0);
 
-            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER,
-                    phrase2,
-                    document.getPageSize().getWidth() / 2, qrY - 45, 0); // Điều chỉnh khoảng cách cho dòng thứ hai
-
-
-
-
-         
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase2,
+                                       document.getPageSize().getWidth() / 2, qrY - 45, 0);
           
             document.close();
             writer.close();
@@ -466,6 +460,7 @@ public class WritePDF {
 			e.printStackTrace();
 		}
     }
+    
     private Chunk createHorizontalLine(float length) {
         StringBuilder line = new StringBuilder();
         for (int i = 0; i < length; i++) {
