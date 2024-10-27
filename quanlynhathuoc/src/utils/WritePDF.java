@@ -58,6 +58,7 @@ public class WritePDF {
     private JFrame jf = new JFrame();
     private FileDialog fd = new FileDialog(jf, "Xuất pdf", FileDialog.SAVE);
     private Font fontNormal10;
+    private Font fontNormal15;
     private Font fontBold15;
     private Font fontBold25;
     private Font fontBoldItalic15;
@@ -65,6 +66,7 @@ public class WritePDF {
     public WritePDF() {
         try {
             fontNormal10 = new Font(BaseFont.createFont("lib/TimesNewRoman/SVN-Times New Roman.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED), 12, Font.NORMAL);
+            fontNormal15= new Font(BaseFont.createFont("lib/TimesNewRoman/SVN-Times New Roman.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED), 15, Font.NORMAL);
             fontBold25 = new Font(BaseFont.createFont("lib/TimesNewRoman/SVN-Times New Roman Bold.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED), 25, Font.NORMAL);
             fontBold15 = new Font(BaseFont.createFont("lib/TimesNewRoman/SVN-Times New Roman Bold.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED), 15, Font.NORMAL);
             fontBoldItalic15 = new Font(BaseFont.createFont("lib/TimesNewRoman/SVN-Times New Roman Bold Italic.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED), 15, Font.NORMAL);
@@ -276,14 +278,18 @@ public class WritePDF {
             String kh = hoaDon.getKhachHang().getHoTen();
             Paragraph paragraph2 = new Paragraph("Khách hàng: " + kh, fontNormal10);
             paragraph2.add(new Chunk(createWhiteSpace(5)));
-            String nv = hoaDon.getNhanVien().getHoTen();
-            Paragraph paragraph3 = new Paragraph("Người thực hiện: " + nv, fontNormal10);
+            String khSDT = hoaDon.getKhachHang().getSdt();
+            Paragraph paragraph3 = new Paragraph("SĐT: " + khSDT, fontNormal10);
             paragraph3.add(new Chunk(createWhiteSpace(5)));
-            Paragraph paragraph4 = new Paragraph("Thời gian: " + formatDate.format(hoaDon.getThoiGian()), fontNormal10);
+            String nv = hoaDon.getNhanVien().getHoTen();
+            Paragraph paragraph4 = new Paragraph("Người thực hiện: " + nv, fontNormal10);
+            paragraph3.add(new Chunk(createWhiteSpace(5)));
+            Paragraph paragraph5 = new Paragraph("Thời gian: " + formatDate.format(hoaDon.getThoiGian()), fontNormal10);
             document.add(paragraph1);
             document.add(paragraph2);
             document.add(paragraph3);
             document.add(paragraph4);
+            document.add(paragraph5);
             document.add(Chunk.NEWLINE);
 
             // Thêm table 5 cột vào file PDF
@@ -348,73 +354,153 @@ public class WritePDF {
                 tongTien += cthd.getDonGia() * cthd.getSoLuong();
             }
 
-         // Thêm hàng Tổng Tiền
-            PdfPCell tongTienCell = new PdfPCell(new Phrase("Tổng Tiền", fontBold15));
+         // Tính VAT (nếu VAT là 5%)
+            double vat = 0;
+            double discountRate = 0;
+            double discountAmount = 0;
+
+            // Tính mức giảm giá
+            if (tongTien >= 200000 && tongTien < 500000) {
+                discountRate = 0.05; // Giảm giá 5%
+            } else if (tongTien >= 500000) {
+                discountRate = 0.10; // Giảm giá 10%
+            }
+
+            // Tính số tiền giảm giá
+            discountAmount = tongTien * discountRate;
+
+            // Tính tổng tiền sau giảm giá
+            double discountedTotal = tongTien - discountAmount;
+
+            // Tính VAT trên tổng tiền đã giảm
+            vat = discountedTotal * 0.05; // Tính VAT 5%
+            double tongSauThue = discountedTotal + vat; // Tổng sau khi cộng VAT 
+
+            // Hàng Tổng Tiền
+            PdfPCell tongTienCell = new PdfPCell(new Phrase("Tổng Thành Tiền", fontNormal15));
             tongTienCell.setColspan(4); // Gộp 4 cột
-            tongTienCell.setHorizontalAlignment(Element.ALIGN_CENTER); // Căn giữa
-            tongTienCell.setFixedHeight(25f); // Thiết lập chiều cao
+            tongTienCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            tongTienCell.setFixedHeight(25f);
+            tongTienCell.setBorder(PdfPCell.TOP | PdfPCell.LEFT | PdfPCell.RIGHT); // Giữ viền trên, trái, và phải
             table.addCell(tongTienCell);
 
             // Ô chứa giá tổng tiền
-            PdfPCell giaTienCell = new PdfPCell(new Phrase(formatter.format(tongTien) + "đ", fontBold15));
-            giaTienCell.setHorizontalAlignment(Element.ALIGN_RIGHT); // Căn phải
+            PdfPCell giaTienCell = new PdfPCell(new Phrase(formatter.format(tongTien) + "đ", fontNormal15));
+            giaTienCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             giaTienCell.setFixedHeight(25f);
+            giaTienCell.setBorder(PdfPCell.RIGHT); // Giữ viền phải, bỏ viền trái và dưới
             table.addCell(giaTienCell);
-            
-            
+
+            // Hàng Giảm Giá
+            PdfPCell discountCell = new PdfPCell(new Phrase("Giảm Giá (" + (discountRate * 100) + "%)", fontNormal15));
+            discountCell.setColspan(4); // Gộp 4 cột
+            discountCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            discountCell.setFixedHeight(25f);
+            discountCell.setBorder(PdfPCell.LEFT | PdfPCell.RIGHT); // Giữ viền trái và phải
+            table.addCell(discountCell);
+
+            // Ô chứa giá giảm giá
+            PdfPCell giaDiscountCell = new PdfPCell(new Phrase(formatter.format(discountedTotal) + "đ", fontNormal15));
+            giaDiscountCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            giaDiscountCell.setFixedHeight(25f);
+            giaDiscountCell.setBorder(PdfPCell.RIGHT); // Giữ viền phải
+            table.addCell(giaDiscountCell);
+
+            // Hàng VAT
+            PdfPCell vatCell = new PdfPCell(new Phrase("VAT 5%", fontNormal15));
+            vatCell.setColspan(4); // Gộp 4 cột
+            vatCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            vatCell.setFixedHeight(25f);
+            vatCell.setBorder(PdfPCell.LEFT | PdfPCell.RIGHT); // Giữ viền trái và phải
+            table.addCell(vatCell);
+
+            // Ô chứa giá VAT
+            PdfPCell giaVatCell = new PdfPCell(new Phrase(formatter.format(vat) + "đ", fontNormal15));
+            giaVatCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            giaVatCell.setFixedHeight(25f);
+            giaVatCell.setBorder(PdfPCell.RIGHT); // Giữ viền phải
+            table.addCell(giaVatCell);
+
+            // Hàng Tổng Tiền Sau Thuế
+            PdfPCell tongSauThueCell = new PdfPCell(new Phrase("Tổng Tiền", fontBold15));
+            tongSauThueCell.setColspan(4); // Gộp 4 cột
+            tongSauThueCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            tongSauThueCell.setFixedHeight(25f);
+            table.addCell(tongSauThueCell);
+
+            // Ô chứa giá Tổng Tiền Sau Thuế
+            PdfPCell giaTongSauThueCell = new PdfPCell(new Phrase(formatter.format(tongSauThue) + "đ", fontBold15));
+            giaTongSauThueCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+            giaTongSauThueCell.setFixedHeight(25f);
+            table.addCell(giaTongSauThueCell);
+
+
             document.add(table);
             document.add(Chunk.NEWLINE);
 
-            // Tính VAT (nếu VAT là 5%)
-            double vat = tongTien * 0.05; // Tính VAT 5%
-            double tongSauThue = tongTien + vat; // Tổng sau khi cộng VAT
+         // Tạo bảng với 2 cột
+            PdfPTable tableFooter = new PdfPTable(2);
+            tableFooter.setWidthPercentage(100); // Căn chỉnh cho bảng rộng 100%
+            tableFooter.setWidths(new float[] {1, 1}); // Đặt tỷ lệ các cột bằng nhau
 
-            // Hiển thị VAT
-            Paragraph paraVAT = new Paragraph(new Phrase("VAT 5%: " + formatter.format(vat) + "đ", fontBold15));
-            paraVAT.setIndentationLeft(300);
-            document.add(paraVAT);
-            document.add(Chunk.NEWLINE);
+            // Dòng 1: "Người lập phiếu" và "Khách hàng"
+            PdfPCell cell1 = new PdfPCell(new Phrase("Người lập phiếu", fontBoldItalic15));
+            cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell1.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell1);
 
-            // Hiển thị Tổng tiền sau thuế
-            Paragraph paraTongSauThue = new Paragraph(new Phrase("Tổng tiền sau thuế: " + formatter.format(tongSauThue) + "đ", fontBold15));
-            paraTongSauThue.setIndentationLeft(300);
-            document.add(paraTongSauThue);	
-            document.add(Chunk.NEWLINE);
-            document.add(Chunk.NEWLINE);
+            PdfPCell cell2 = new PdfPCell(new Phrase("Khách hàng", fontBoldItalic15));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell2);
+
+            // Dòng 2: "(Ký và ghi rõ họ tên)"
+            PdfPCell cell3 = new PdfPCell(new Phrase("(Ký và ghi rõ họ tên)", fontNormal10));
+            cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell3.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell3);
+
+            PdfPCell cell4 = new PdfPCell(new Phrase("(Ký và ghi rõ họ tên)", fontNormal10));
+            cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell4.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell4);
+
+            // Dòng 3: Tên nv và kh
+            PdfPCell cell5 = new PdfPCell(new Phrase(nv, fontBold15));
+            cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell5.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell5);
+
+            PdfPCell cell6 = new PdfPCell(new Phrase(kh, fontBold15));
+            cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell6.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell6);
+
+            // Thêm bảng vào tài liệu
+            document.add(tableFooter);
 
             
-            Paragraph paragraph = new Paragraph();
-            paragraph.setIndentationLeft(22);
-            paragraph.add(new Chunk("Người lập phiếu", fontBoldItalic15));
-            paragraph.add(new Chunk(createWhiteSpace(85)));
-            paragraph.add(new Chunk("Khách hàng", fontBoldItalic15));
-
-            Paragraph sign = new Paragraph();
-            sign.setIndentationLeft(21);
-            sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
-            sign.add(new Chunk(createWhiteSpace(82)));
-            sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
-            
-            Paragraph name = new Paragraph();
-            name.setIndentationLeft(20);
-            name.add(new Chunk(nv, fontBold15));
-            name.add(new Chunk(createWhiteSpace(78)));
-            name.add(new Chunk(kh, fontBold15));
-            
-            
-            document.add(paragraph);
-            document.add(sign);
-            for (int i = 0; i < 4; i++) {
-                document.add(Chunk.NEWLINE);
-            }
-            document.add(name);
             document.add(Chunk.NEWLINE);
             document.add(createHorizontalLine(77));
+         // Tạo đoạn văn bản thông tin
+            String[] infoLines = {
+                "Không áp dụng đổi trả với các sản phẩm được khuyến mãi.",
+                "Khách hàng đồng ý nhận thuốc và thanh toán.",
+                "Vui lòng mang theo Hóa đơn để tiện việc tra cứu đơn hàng đổi trả.",
+                "(Chỉ xuất Hóa đơn tài chính trong ngày)"
+            };
+
+            // Thêm từng dòng vào tài liệu
+            for (String line : infoLines) {
+                Paragraph infoParagraph = new Paragraph(line, fontNormal15); // fontNormal là kiểu chữ bạn đã định nghĩa
+                infoParagraph.setAlignment(Element.ALIGN_CENTER); // Căn trái
+                document.add(infoParagraph);
+            }
         
          // Cài đặt mã QR theo chuẩn VietQR
             String bankCode = "BIDV";  // Mã ngân hàng, có thể thay đổi
             String accountNumber = "1770414937";  // Số tài khoản
-            String amount = String.valueOf((int) hoaDon.getTongTien());  // Số tiền
+            String amount = String.valueOf((int) tongSauThue);  // Số tiền
             String addInfo = "ThanhToanHoaDon" + hoaDon.getId();  // Nội dung thanh toán
 
             // URL QR code VietQR
@@ -431,7 +517,7 @@ public class WritePDF {
             // Vị trí mã QR trong PDF
             PdfContentByte canvas = writer.getDirectContent();
             float qrX = (document.getPageSize().getWidth() - qrCodeImage.getScaledWidth()) / 2;
-            float qrY = document.bottom() + 65;
+            float qrY = document.bottom() + 50;
 
             qrCodeImage.setAbsolutePosition(qrX, qrY);
             canvas.addImage(qrCodeImage);
