@@ -3,8 +3,10 @@ package gui.dialog;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.google.zxing.WriterException;
 
-import controller.ChiTietHoaDonController;
+import controller.ChiTietDatHangController;
+import entity.ChiTietDatHang;
 import entity.ChiTietHoaDon;
+import entity.DatHang;
 import entity.HoaDon;
 
 import java.awt.Image;
@@ -19,36 +21,36 @@ import utils.Formatter;
 import utils.WritePDF;
 
 
-public class DetailHoaDonDialog extends javax.swing.JDialog {
+public class DetailDatHangDialog extends javax.swing.JDialog {
 
-    private final ChiTietHoaDonController CTHD_CON = new ChiTietHoaDonController();
-    private List<ChiTietHoaDon> listCTHD;
+    private final ChiTietDatHangController CTDH_CON = new ChiTietDatHangController();
+    private List<ChiTietDatHang> listCTDH;
 
     private DefaultTableModel modal;
 
-    public DetailHoaDonDialog(java.awt.Frame parent, boolean modal) {
+    public DetailDatHangDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public DetailHoaDonDialog(java.awt.Frame parent, boolean modal, List<ChiTietHoaDon> cthd) {
+    public DetailDatHangDialog(java.awt.Frame parent, boolean modal, List<ChiTietDatHang> ctdh) {
         super(parent, modal);
         initComponents();
-        this.listCTHD = cthd;
+        this.listCTDH = ctdh;
         fillInput();
         fillTable();
     }
 
     private void fillInput() {
-        HoaDon hoaDon = listCTHD.get(0).getHoaDon();
-        txtMaHD.setText(hoaDon.getId());
-        txtTenKH.setText(hoaDon.getKhachHang().getHoTen());
-        txtTenNV.setText(hoaDon.getNhanVien().getHoTen());
+        DatHang datHang = listCTDH.get(0).getDatHang();
+        txtMaHD.setText(datHang.getId());
+        txtTenKH.setText(datHang.getKhachHang().getHoTen());
+        txtTenNV.setText(datHang.getNhanVien().getHoTen());
     }
 
     private void fillTable() {
         modal = new DefaultTableModel();
-        String[] header = new String[]{"STT", "Tên thuốc", "Đơn vị tính", "Số lượng", "Đơn giá", "Thành tiền"};
+        String[] header = new String[]{"STT", "Tên thuốc", "Đơn vị tính", "Số lượng", "Đơn giá", "Thành tiền","Trạng thái"};
         modal.setColumnIdentifiers(header);
         table.setModel(modal);
 
@@ -59,19 +61,19 @@ public class DetailHoaDonDialog extends javax.swing.JDialog {
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
         table.getColumnModel().getColumn(1).setPreferredWidth(200);
 
-        loadTableCTHD(listCTHD);
+        loadTableCTHD(listCTDH);
     }
 
-    public void loadTableCTHD(List<ChiTietHoaDon> list) {
+    public void loadTableCTHD(List<ChiTietDatHang> list) {
         modal.setRowCount(0);
 
-        listCTHD = list;
+        listCTDH = list;
         int stt = 1;
         double sum = 0;
-        for (ChiTietHoaDon e : listCTHD) {
+        for (ChiTietDatHang e : listCTDH) {
             sum += e.getThanhTien();
             modal.addRow(new Object[]{String.valueOf(stt), e.getThuoc().getTenThuoc(), e.getThuoc().getDonViTinh(),
-                e.getSoLuong(), Formatter.FormatVND(e.getDonGia()), Formatter.FormatVND(e.getThanhTien())});
+                e.getSoLuong(), Formatter.FormatVND(e.getDonGia()), Formatter.FormatVND(e.getThanhTien()),e.getDatHang().getTrangThai()});
             stt++;
         }
         txtTong.setText(Formatter.FormatVND(sum));
@@ -358,15 +360,15 @@ public class DetailHoaDonDialog extends javax.swing.JDialog {
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         int row = table.getSelectedRow();
-        byte[] thuocImage = listCTHD.get(row).getThuoc().getHinhAnh();
+        byte[] thuocImage = listCTDH.get(row).getThuoc().getHinhAnh();
         ImageIcon imageIcon = new ImageIcon(
                 new ImageIcon(thuocImage).getImage().getScaledInstance(txtHinhAnh.getWidth(), txtHinhAnh.getHeight(), Image.SCALE_SMOOTH));
         txtHinhAnh.setIcon(imageIcon);
     }//GEN-LAST:event_tableMouseClicked
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, WriterException, IOException {//GEN-FIRST:event_btnPrintActionPerformed
-        HoaDon hoaDon = listCTHD.get(0).getHoaDon();
-        new WritePDF().printHoaDon(hoaDon, listCTHD);
+//        DatHang hoaDon = listCTDH.get(0).getDatHang();
+//        new WritePDF().printHoaDon(hoaDon, listCTDH);
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private javax.swing.JButton btnHuy;

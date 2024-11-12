@@ -4,11 +4,12 @@ import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.google.zxing.WriterException;
 
-import controller.ChiTietHoaDonController;
-import controller.HoaDonController;
+import controller.ChiTietDatHangController;
+import controller.DatHangController;
 import controller.KhachHangController;
 import controller.ThuocController;
-import entity.ChiTietHoaDon;
+import entity.ChiTietDatHang;
+import entity.DatHang;
 import entity.HoaDon;
 import entity.KhachHang;
 import entity.NhanVien;
@@ -22,7 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
@@ -32,14 +35,14 @@ import utils.TableSorter;
 import utils.Validation;
 import utils.WritePDF;
 
-public class CreateHoaDonPage extends javax.swing.JPanel {
+public class CreateDatHangPage extends javax.swing.JPanel {
 
     private final ThuocController THUOC_CON = new ThuocController();
-    private final HoaDonController HD_CON = new HoaDonController();
-    private final ChiTietHoaDonController CTHD_CON = new ChiTietHoaDonController();
+    private final DatHangController DH_CON = new DatHangController();
+    private final ChiTietDatHangController CTHD_CON = new ChiTietDatHangController();
 
     private List<Thuoc> listThuoc = THUOC_CON.getAllList();
-    private List<ChiTietHoaDon> listCTHD = new ArrayList<>();
+    private List<ChiTietDatHang> listCTDH = new ArrayList<>();
 
     private MainLayout main;
     private TaiKhoan tk;
@@ -47,7 +50,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private DefaultTableModel modal;
     private DefaultTableModel modalCart;
 
-    public CreateHoaDonPage() {
+    public CreateDatHangPage() {
         initComponents();
         pruductLayout();
         billLayout();
@@ -55,7 +58,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         tableCartLayout();
     }
 
-    public CreateHoaDonPage(MainLayout main, TaiKhoan tk) {
+    public CreateDatHangPage(MainLayout main, TaiKhoan tk) {
         this.main = main;
         this.tk = tk;
         initComponents();
@@ -126,17 +129,17 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         tableCart.getColumnModel().getColumn(0).setPreferredWidth(30);
         tableCart.getColumnModel().getColumn(1).setPreferredWidth(200);
 
-        loadTableCTHD(listCTHD);
+        loadTableCTHD(listCTDH);
         sortTable();
     }
 
-    public void loadTableCTHD(List<ChiTietHoaDon> list) {
+    public void loadTableCTHD(List<ChiTietDatHang> list) {
         modalCart.setRowCount(0);
 
-        listCTHD = list;
+        listCTDH = list;
         int stt = 1;
         double sum = 0;
-        for (ChiTietHoaDon e : listCTHD) {
+        for (ChiTietDatHang e : listCTDH) {
             sum += e.getThanhTien();
             modalCart.addRow(new Object[]{String.valueOf(stt), e.getThuoc().getTenThuoc(), e.getSoLuong(), Formatter.FormatVND(e.getDonGia())});
             stt++;
@@ -160,12 +163,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     }
 
     private boolean isValidHoaDon() {
-        if (Validation.isEmpty(txtTienKhachDua.getText().trim())) {
-            txtTienKhachDua.requestFocus();
-            return false;
-        }
-
-        if (listCTHD.isEmpty()) {
+        if (listCTDH.isEmpty()) {
             MessageDialog.warring(this, "Vui lòng chọn sản phẩm!");
             return false;
         }
@@ -173,19 +171,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         if (Validation.isEmpty(txtSdtKH.getText())) {
             MessageDialog.warring(this, "Vui lòng chọn khách hàng!");
             txtSdtKH.requestFocus();
-            return false;
-        }
-
-        try {
-            double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
-            if (tienKhachDua < 0) {
-                MessageDialog.warring(this, "Tiền khách đưa phải >= 0");
-                Validation.resetTextfield(txtTienKhachDua);
-                return false;
-            }
-        } catch (NumberFormatException e) {
-            MessageDialog.warring(this, "Tiền khách đưa phải là số!");
-            Validation.resetTextfield(txtTienKhachDua);
             return false;
         }
 
@@ -225,7 +210,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         }
 
         Thuoc selectedThuoc = THUOC_CON.selectById(txtMaThuoc.getText());
-        for (ChiTietHoaDon cthd : listCTHD) {
+        for (ChiTietDatHang cthd : listCTDH) {
             if (cthd.getThuoc().equals(selectedThuoc)) {
                 MessageDialog.warring(this, "Thuốc đã tồn tại trong giỏ hàng!");
                 return false;
@@ -235,23 +220,28 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         return true;
     }
 
-    private HoaDon getInputHoaDon() {
+    private DatHang getInputDatHang() {
         String idHD = txtMaHoaDon.getText();
         Timestamp thoiGian = new Timestamp(System.currentTimeMillis());
         NhanVien nhanVien = tk.getNhanVien();
         KhachHang khachHang = new KhachHangController().selectBySdt(txtSdtKH.getText());
         double tongTien = Formatter.unformatVND(txtTong.getText());
 
-        return new HoaDon(idHD, thoiGian, nhanVien, khachHang, tongTien);
+        // Lấy trạng thái thanh toán từ JComboBox (Chưa thanh toán hoặc Đã thanh toán)
+        String trangThaiThanhToan = (String) cboxThanhToan.getSelectedItem();
+
+        // Trả về đối tượng DatHang với tất cả các thông tin bao gồm trạng thái thanh toán
+        return new DatHang(idHD, thoiGian, nhanVien, khachHang, tongTien, trangThaiThanhToan);
     }
 
-    private ChiTietHoaDon getInputChiTietHoaDon() {
-        HoaDon hoaDon = getInputHoaDon();
+
+    private ChiTietDatHang getInputChiTietHoaDon() {
+        DatHang datHang = getInputDatHang();
         Thuoc thuoc = THUOC_CON.selectById(txtMaThuoc.getText());
         int soLuong = Integer.parseInt(txtSoLuong.getText());
         double donGia = thuoc.getDonGia();
 
-        return new ChiTietHoaDon(hoaDon, thuoc, soLuong, donGia);
+        return new ChiTietDatHang(datHang, thuoc, soLuong, donGia);
     }
 
     @SuppressWarnings("unchecked")
@@ -323,10 +313,8 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         txtTong = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        txtTienKhachDua = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txtTienThua = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         btnHuy = new javax.swing.JButton();
         btnThanhToan = new javax.swing.JButton();
@@ -782,37 +770,25 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
+        // Tạo JComboBox với các lựa chọn
+        cboxThanhToan = new JComboBox<>(new String[] { "Chưa thanh toán", "Đã thanh toán" });
+        cboxThanhToan.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel6.setText("Tiền khách đưa:");
-        jLabel6.setPreferredSize(new java.awt.Dimension(120, 40));
-        jPanel10.add(jLabel6);
+        // Tạo một panel để chứa JComboBox
+        JPanel paymentStatusPanel = new JPanel();
+        paymentStatusPanel.setBackground(new java.awt.Color(255, 255, 255));
+        paymentStatusPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        txtTienKhachDua.setPreferredSize(new java.awt.Dimension(200, 40));
-        txtTienKhachDua.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtTienKhachDuaKeyReleased(evt);
-            }
-        });
-        jPanel10.add(txtTienKhachDua);
+        JLabel labelThanhToan = new JLabel("Trạng thái thanh toán:");
+        labelThanhToan.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        labelThanhToan.setPreferredSize(new java.awt.Dimension(150, 40));
+        paymentStatusPanel.add(labelThanhToan);
 
+        paymentStatusPanel.add(cboxThanhToan);
+
+        // Thêm paymentStatusPanel vào jPanel6 ngay sau jPanel26
+        jPanel10.add(paymentStatusPanel);
         jPanel26.add(jPanel10);
-
-        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
-
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel5.setText("Tiền thừa:");
-        jLabel5.setPreferredSize(new java.awt.Dimension(120, 40));
-        jPanel9.add(jLabel5);
-
-        txtTienThua.setEditable(false);
-        txtTienThua.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); // NOI18N
-        txtTienThua.setFocusable(false);
-        txtTienThua.setPreferredSize(new java.awt.Dimension(200, 40));
-        jPanel9.add(txtTienThua);
-
-        jPanel26.add(jPanel9);
 
         jPanel6.add(jPanel26);
 
@@ -839,7 +815,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         btnThanhToan.setBackground(new java.awt.Color(0, 204, 51));
         btnThanhToan.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
         btnThanhToan.setForeground(new java.awt.Color(255, 255, 255));
-        btnThanhToan.setText("THANH TOÁN");
+        btnThanhToan.setText("ĐẶT HÀNG");
         btnThanhToan.setBorderPainted(false);
         btnThanhToan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThanhToan.setFocusPainted(false);
@@ -895,9 +871,9 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
 
     private void btnAddCartActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidChiTietHoaDon()) {
-            ChiTietHoaDon cthd = getInputChiTietHoaDon();
-            listCTHD.add(cthd);
-            loadTableCTHD(listCTHD);
+            ChiTietDatHang cthd = getInputChiTietHoaDon();
+            listCTDH.add(cthd);
+            loadTableCTHD(listCTDH);
 
             // Update số lượng tồn
             Thuoc thuoc = THUOC_CON.selectById(txtMaThuoc.getText());
@@ -911,14 +887,14 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
 
     private void btnDeleteCartItemActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Bạn có chắc muốc xóa khỏi giỏ hàng?", "Xóa thuốc khỏi giỏ hàng")) {
-            if (listCTHD.isEmpty()) {
+            if (listCTDH.isEmpty()) {
                 MessageDialog.error(this, "Không có sản phẩm trong giỏ hàng!");
                 return;
             }
 
-            ChiTietHoaDon cthd = listCTHD.get(tableCart.getSelectedRow());
-            listCTHD.remove(tableCart.getSelectedRow());
-            loadTableCTHD(listCTHD);
+            ChiTietDatHang cthd = listCTDH.get(tableCart.getSelectedRow());
+            listCTDH.remove(tableCart.getSelectedRow());
+            loadTableCTHD(listCTDH);
 
             // Update số lượng tồn
             Thuoc thuocCTHD = cthd.getThuoc();
@@ -951,23 +927,9 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         dialog.setVisible(true);
     }
 
-    private void txtTienKhachDuaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKhachDuaKeyReleased
-        if (isValidHoaDon()) {
-            Double tong = Formatter.unformatVND(txtTong.getText());
-            Double tienKhachDua = Double.valueOf(txtTienKhachDua.getText());
-            Double tienThua = tienKhachDua - tong;
-
-            if (tienThua <= 0) {
-                tienThua = 0.0;
-            }
-
-            txtTienThua.setText(Formatter.FormatVND(tienThua));
-        }
-    }
-
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         if (MessageDialog.confirm(this, "Xác nhận hủy hóa đơn?", "Hủy hóa đơn")) {
-            for (ChiTietHoaDon cthd : listCTHD) {
+            for (ChiTietDatHang cthd : listCTDH) {
                 Thuoc thuocCTHD = cthd.getThuoc();
                 Thuoc thuoc = listThuoc.get(listThuoc.indexOf(thuocCTHD));
                 int updatedSoLuongTon = thuoc.getSoLuongTon() + cthd.getSoLuong();
@@ -977,36 +939,17 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
             main.setPanel(new HoaDonPage(main));
         }
     }
-
-    private boolean isValidPayment() {
-        if (isValidHoaDon()) {
-            double tongTien = Formatter.unformatVND(txtTong.getText());
-            double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
-            if (tienKhachDua < tongTien) {
-                MessageDialog.warring(this, "Không đủ tiền thanh toán!");
-                txtTienKhachDua.requestFocus();
-                return false;
-            }
-        }
-
-        return true;
-    }
-
+    
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) throws WriterException {//GEN-FIRST:event_btnThanhToanActionPerformed
-        if (isValidHoaDon() && isValidPayment()) {
-            if (MessageDialog.confirm(this, "Xác nhận thanh toán?", "Lập hóa đơn")) {
-                HoaDon hd = getInputHoaDon();
-                HD_CON.create(hd);
-                CTHD_CON.create(listCTHD);
-                MessageDialog.info(this, "Lập hóa đơn thành công!");
-
-                // In hóa đơn
-                if (MessageDialog.confirm(this, "Bạn có muốn in hóa đơn không?", "In hóa đơn")) {
-                    new WritePDF().printHoaDon(hd, listCTHD);
-                }
+        if (isValidHoaDon() ) {
+            if (MessageDialog.confirm(this, "Xác nhận đặt hàng?", "Đặt hàng")) {
+                DatHang dh = getInputDatHang();
+                DH_CON.create(dh);
+                CTHD_CON.create(listCTDH);
+                MessageDialog.info(this, "Đặt hàng thành công!");
 
                 // Trở về trang hóa đơn
-                main.setPanel(new HoaDonPage(main));
+                main.setPanel(new DatHangPage(main));
             }
         }
     }
@@ -1024,6 +967,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private javax.swing.JPanel cardPanel;
     private javax.swing.JComboBox<String> cboxGioiTinhKH;
     private javax.swing.JComboBox<String> cboxSearch;
+    private javax.swing.JComboBox<String> cboxThanhToan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1081,7 +1025,5 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenThuoc;
     private javax.swing.JTextArea txtThanhPhan;
-    private javax.swing.JTextField txtTienKhachDua;
-    private javax.swing.JTextField txtTienThua;
     private javax.swing.JTextField txtTong;
 }

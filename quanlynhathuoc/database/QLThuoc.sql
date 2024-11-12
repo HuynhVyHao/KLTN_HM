@@ -299,3 +299,53 @@ VALUES
 	('C45PX5VYN', 'VFZCHLHIE', 300, 250000),
 	('A4B3VKX8V', 'ESMJMM7T1', 100, 95000);
 go
+
+
+-- Tạo bảng DatHang
+CREATE TABLE DatHang (
+    idDH NVARCHAR(10) NOT NULL PRIMARY KEY,         -- Mã đơn đặt hàng
+    thoiGian DATETIME NOT NULL,                     -- Thời gian đặt hàng
+    idNV NVARCHAR(10) NOT NULL,                     -- Mã nhân viên, giả sử liên kết với bảng NhanVien
+    idKH NVARCHAR(10) NOT NULL,                     -- Mã khách hàng, giả sử liên kết với bảng KhachHang
+    tongTien FLOAT NOT NULL,                        -- Tổng tiền của đơn đặt hàng
+    trangThai NVARCHAR(50),                         -- Trạng thái đơn đặt hàng (Chưa thanh toán, Đã thanh toán)
+    FOREIGN KEY (idNV) REFERENCES NhanVien(idNV),   -- Liên kết với bảng NhanVien
+    FOREIGN KEY (idKH) REFERENCES KhachHang(idKH)  -- Liên kết với bảng KhachHang
+);
+go
+
+-- Thêm dữ liệu mẫu vào bảng DatHang
+INSERT INTO DatHang (idDH, thoiGian, idNV, idKH, tongTien, trangThai)
+VALUES
+('DH001','2024-04-02 16:12:51', 'ADMIN', 'XYZ98765Z', 500000, 'Chưa thanh toán'),
+('DH002', '2024-04-02 16:12:51', 'ADMIN', 'XYZ98765Z', 300000, 'Chưa thanh toán'),
+('DH003','2024-04-02 16:12:51', 'ADMIN', 'XYZ98765Z', 150000, 'Chưa thanh toán'),
+('DH004', '2024-04-02 16:12:51', 'ADMIN', 'XYZ98765Z', 750000, 'Chưa thanh toán');
+go
+
+-- Tạo bảng ChiTietDatHang
+CREATE TABLE ChiTietDatHang (
+    idDH NVARCHAR(10) NOT NULL,            -- Mã đơn đặt hàng, liên kết với bảng DatHang
+    idThuoc NVARCHAR(10) NOT NULL,         -- Mã thuốc, giả sử liên kết với bảng Thuoc
+    soLuong INT NOT NULL,                  -- Số lượng thuốc trong đơn
+    donGia FLOAT NOT NULL,                 -- Đơn giá thuốc
+    CONSTRAINT idCTDH PRIMARY KEY (idDH, idThuoc),  -- Đổi tên ràng buộc thành 'idCTDH' để tránh trùng
+    FOREIGN KEY (idDH) REFERENCES DatHang(idDH),  -- Liên kết với bảng DatHang
+    FOREIGN KEY (idThuoc) REFERENCES Thuoc(idThuoc)  -- Liên kết với bảng Thuoc
+);
+go
+
+
+-- Thêm dữ liệu mẫu vào bảng ChiTietDatHang
+INSERT INTO ChiTietDatHang (idDH, idThuoc, soLuong, donGia)
+VALUES
+('DH001', '798E63U16', 10, 50000),  -- Đơn đặt hàng DH001, thuốc mã 1, số lượng 10, đơn giá 50000
+('DH001', 'XRBIFO4BZ', 5, 70000),   -- Đơn đặt hàng DH001, thuốc mã 2, số lượng 5, đơn giá 70000 (Đổi mã thuốc)
+('DH002', 'VFZCHLHIE', 3, 100000),  -- Đơn đặt hàng DH002, thuốc mã 3, số lượng 3, đơn giá 100000 (Đổi mã thuốc)
+('DH003', '798E63U16', 2, 50000),   -- Đơn đặt hàng DH003, thuốc mã 1, số lượng 2, đơn giá 50000
+('DH003', 'VFZCHLHIE', 1, 70000),   -- Đơn đặt hàng DH003, thuốc mã 2, số lượng 1, đơn giá 70000
+('DH004', '798E63U16', 15, 50000);  -- Đơn đặt hàng DH004, thuốc mã 1, số lượng 15, đơn giá 50000
+go
+
+
+	

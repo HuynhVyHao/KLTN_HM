@@ -14,7 +14,9 @@ import gui.page.BaoCaoTaiKhoanPage;
 import gui.page.BaoCaoThuocPage;
 import gui.page.BaoCaoVaiTroPage;
 import gui.page.ChiTietThuocPage;
+import gui.page.CreateDatHangPage;
 import gui.page.DanhMucPage;
+import gui.page.DatHangPage;
 import gui.page.HoaDonPage;
 import gui.page.KhachHangPage;
 import gui.page.NhaCungCapPage;
@@ -72,6 +74,8 @@ public class MainLayout extends javax.swing.JFrame {
 	private NhanVienPage nhanVien;
 	private TimKiemNhanVienPage timKiemNhanVien;
 	private BaoCaoNhanVienPage baoCaoNhanVien;
+//	private CreateDatHangPage datHangNhanVien;
+	private DatHangPage datHangNhanVien;
 	private TaiKhoanPage taiKhoan;
 	private TimKiemTaiKhoanPage timKiemTaiKhoan;
 	private BaoCaoTaiKhoanPage baoCaoTaiKhoan;
@@ -820,7 +824,7 @@ public class MainLayout extends javax.swing.JFrame {
 
 //================== NHÂN VIÊN ===============================
 		jpMenuNhanVien = new JPopupMenu();
-		jpMenuNhanVien.setPreferredSize(new java.awt.Dimension(170, 120)); // Điều chỉnh kích thước tổng thể của menu
+		jpMenuNhanVien.setPreferredSize(new java.awt.Dimension(170, 170)); // Điều chỉnh kích thước tổng thể của menu
 		jpMenuNhanVien.setBorderPainted(false);
 		jpMenuNhanVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
@@ -844,7 +848,7 @@ public class MainLayout extends javax.swing.JFrame {
 				timKiemNhanVienItemActionPerformed(evt);
 			}
 		});
-
+		
 		 baoCaoNVItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
 		baoCaoNVItem.setIconTextGap(8);
 		baoCaoNVItem.setMargin(new Insets(5, 10, 5, 10));
@@ -864,6 +868,16 @@ public class MainLayout extends javax.swing.JFrame {
 				thongKeItemActionPerformed(evt);
 			}
 		});
+		
+		 datHangNVItem = new JMenuItem("Đặt Hàng", new FlatSVGIcon("./icon/trolley.svg", 24, 24));
+		 datHangNVItem.setIconTextGap(8);
+		 datHangNVItem.setMargin(new Insets(5, 10, 5, 10));
+		 datHangNVItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
+		 datHangNVItem.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent evt) {
+					datHangNhanVienItemActionPerformed(evt);
+				}
+			});
 
 		jpMenuNhanVien.add(capNhatNVItem);
 		jpMenuNhanVien.add(new JSeparator());
@@ -872,6 +886,8 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuNhanVien.add(baoCaoNVItem);
 		jpMenuNhanVien.add(new JSeparator());
 		jpMenuNhanVien.add(thongKeNVItem);
+		jpMenuNhanVien.add(new JSeparator());
+		jpMenuNhanVien.add(datHangNVItem);
 
 		nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
 		nhanVienItem.setIcon(new FlatSVGIcon("./icon/employee.svg"));
@@ -1215,6 +1231,15 @@ public class MainLayout extends javax.swing.JFrame {
 		nhanVienItem.setSelected(true);
 		isMenuVisible = false;
 	}
+	
+	private void datHangNhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {
+//		datHangNhanVien = new CreateDatHangPage();
+		datHangNhanVien = new DatHangPage(this);
+		this.setPanel(datHangNhanVien);
+		resetActive();
+		nhanVienItem.setSelected(true);
+		isMenuVisible = false;
+	}
 
 	private void baoCaoNhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {
 		baoCaoNhanVien = new BaoCaoNhanVienPage();
@@ -1449,6 +1474,7 @@ public class MainLayout extends javax.swing.JFrame {
 	private JPopupMenu jpMenuDanhMuc;
 	private JMenuItem thongKeNVItem;
 	private JMenuItem capNhatNVItem;
+	private JMenuItem datHangNVItem;
 	private JMenuItem timKiemNVItem;
 	private JMenuItem baoCaoNVItem;
 }
