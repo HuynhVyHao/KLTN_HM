@@ -52,7 +52,6 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         listButton.add(btnDelete);
         listButton.add(btnInfo);
 
-        // Border radius
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
@@ -99,7 +98,6 @@ public class PhieuNhapPage extends javax.swing.JPanel {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
@@ -135,7 +133,7 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
         btnAdd.setText("THÊM");
         btnAdd.setBorder(null);
@@ -152,7 +150,7 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnAdd);
 
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
         btnDelete.setText("XÓA");
         btnDelete.setBorder(null);
@@ -169,7 +167,7 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnDelete);
 
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
         btnInfo.setText("INFO");
         btnInfo.setBorder(null);
@@ -236,7 +234,7 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -246,15 +244,15 @@ public class PhieuNhapPage extends javax.swing.JPanel {
 
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         TaiKhoan tk = main.tk;
         CreatePhieuNhapPage page = new CreatePhieuNhapPage(main, tk);
         main.setPanel(page);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             String id = table.getValueAt(row, 1).toString();
@@ -268,10 +266,10 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
 
-    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
+    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             PhieuNhap hoaDon = listHD.get(row);
@@ -282,10 +280,7 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnInfoActionPerformed
-
-
-
+    }
 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;

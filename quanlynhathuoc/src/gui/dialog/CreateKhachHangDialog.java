@@ -65,7 +65,6 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();
@@ -95,7 +94,7 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        lblDialog.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblDialog.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblDialog.setForeground(new java.awt.Color(255, 255, 255));
         lblDialog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDialog.setText("THÊM KHÁCH HÀNG");
@@ -110,13 +109,13 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         jPanel18.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
         lblHoTen.setText("Họ tên");
         lblHoTen.setMaximumSize(new java.awt.Dimension(44, 40));
         lblHoTen.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel18.add(lblHoTen);
 
-        txtHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtHoTen.setFont(new java.awt.Font("Roboto", 0, 14));
         txtHoTen.setToolTipText("");
         txtHoTen.setPreferredSize(new java.awt.Dimension(330, 40));
         jPanel18.add(txtHoTen);
@@ -127,13 +126,13 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         jPanel19.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel12.setText("Số điện thoại");
         jLabel12.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel12.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel19.add(jLabel12);
 
-        txtSdt.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtSdt.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtSdt.setPreferredSize(new java.awt.Dimension(330, 40));
         jPanel19.add(txtSdt);
 
@@ -143,7 +142,7 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         jPanel21.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel14.setText("Giới tính");
         jLabel14.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel14.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -159,7 +158,7 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         jPanel22.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel22.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel15.setText("Ngày tham gia");
         jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel15.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -178,7 +177,7 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
 
         btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setText("HỦY BỎ");
         btnHuy.setBorderPainted(false);
@@ -194,7 +193,7 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         jPanel8.add(btnHuy);
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 102));
-        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("THÊM");
         btnAdd.setBorderPainted(false);
@@ -213,13 +212,13 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-    }//GEN-LAST:event_btnHuyActionPerformed
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidateFields()) {
             KhachHang nv = getInputFields();
             KH_CON.create(nv);
@@ -227,10 +226,8 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
             KH_GUI.loadTable();
             this.dispose();
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnHuy;
     private javax.swing.JComboBox<String> cboxGioiTinh;
@@ -249,5 +246,4 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtHoTen;
     private com.toedter.calendar.JDateChooser txtNgayThamGia;
     private javax.swing.JTextField txtSdt;
-    // End of variables declaration//GEN-END:variables
 }

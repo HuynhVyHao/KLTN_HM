@@ -218,7 +218,7 @@ public class TimKiemTaiKhoanPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN TÀI KHOẢN");
@@ -234,7 +234,7 @@ public class TimKiemTaiKhoanPage extends javax.swing.JPanel {
         jPanel8.setPreferredSize(new java.awt.Dimension(200, 80));
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel3.setText("Vai Trò");
         jLabel3.setPreferredSize(new java.awt.Dimension(140, 20));
         jPanel8.add(jLabel3);
@@ -253,10 +253,10 @@ public class TimKiemTaiKhoanPage extends javax.swing.JPanel {
         tablePanel.add(jPanel4, java.awt.BorderLayout.LINE_START);
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
 
         String search = txtSearch.getText().toLowerCase().trim();
@@ -264,15 +264,15 @@ public class TimKiemTaiKhoanPage extends javax.swing.JPanel {
         List<TaiKhoan> listSearch = TK_CON.getSearchTable(search, searchType);
 
         loadTable(listSearch);
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtSearch.setText("");
         cboxSearch.setSelectedIndex(0);
         loadTable(listTK);
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
-    private void cboxVaiTroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxVaiTroActionPerformed
+    private void cboxVaiTroActionPerformed(java.awt.event.ActionEvent evt) {
         modal.setRowCount(0);
 
         List<TaiKhoan> listSearch = getListFilter();
@@ -283,10 +283,8 @@ public class TimKiemTaiKhoanPage extends javax.swing.JPanel {
         }
 
         loadTable(listSearch);
-    }//GEN-LAST:event_cboxVaiTroActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnReload;
     private javax.swing.JComboBox<String> cboxSearch;
     private javax.swing.JComboBox<String> cboxVaiTro;
@@ -302,5 +300,4 @@ public class TimKiemTaiKhoanPage extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTextField txtSearch;
-    // End of variables declaration//GEN-END:variables
 }

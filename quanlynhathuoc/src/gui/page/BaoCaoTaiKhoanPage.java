@@ -39,7 +39,6 @@ public class BaoCaoTaiKhoanPage extends javax.swing.JPanel {
         listButton.add(btnImport);
         listButton.add(btnExport);
 
-        // Border radius
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
@@ -80,9 +79,6 @@ public class BaoCaoTaiKhoanPage extends javax.swing.JPanel {
         }
     }
     
-    
-
-
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
@@ -112,7 +108,7 @@ public class BaoCaoTaiKhoanPage extends javax.swing.JPanel {
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
 
-        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
         btnImport.setText("IMPORT");
         btnImport.setBorder(null);
@@ -129,7 +125,7 @@ public class BaoCaoTaiKhoanPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnImport);
 
-        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
         btnExport.setText("EXPORT");
         btnExport.setBorder(null);
@@ -196,7 +192,7 @@ public class BaoCaoTaiKhoanPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN TÀI KHOẢN");
@@ -204,21 +200,16 @@ public class BaoCaoTaiKhoanPage extends javax.swing.JPanel {
 
         tablePanel.add(jPanel5, java.awt.BorderLayout.NORTH);
 
-
-
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
         TK_CON.importExcel();
-    }//GEN-LAST:event_btnImportActionPerformed
+    }
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
-    }//GEN-LAST:event_btnExportActionPerformed
-
-
-
+    }
 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnExport;

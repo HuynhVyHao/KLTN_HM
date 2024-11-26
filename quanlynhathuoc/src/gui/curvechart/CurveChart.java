@@ -138,7 +138,6 @@ public class CurveChart extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         blankPlotChart = new gui.curvechart.blankchart.BlankPlotChart();
@@ -167,10 +166,8 @@ public class CurveChart extends javax.swing.JPanel {
                                 .addComponent(panelLegend, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
-    }// </editor-fold>                        
+    }                       
 
-    // Variables declaration - do not modify                     
     private gui.curvechart.blankchart.BlankPlotChart blankPlotChart;
     private javax.swing.JPanel panelLegend;
-    // End of variables declaration                   
 }

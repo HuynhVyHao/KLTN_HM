@@ -17,10 +17,6 @@ import utils.RandomGenerator;
 import utils.TableSorter;
 import utils.Validation;
 
-/**
- *
- * @author atuandev
- */
 public class CreateTaiKhoanDialog extends javax.swing.JDialog {
 
     private final TaiKhoanController TK_CON = new TaiKhoanController();
@@ -130,7 +126,6 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();
@@ -160,7 +155,7 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("THÊM TÀI KHOẢN");
@@ -176,13 +171,13 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
         jPanel18.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
 
-        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
         lblHoTen.setText("Username");
         lblHoTen.setMaximumSize(new java.awt.Dimension(44, 40));
         lblHoTen.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel18.add(lblHoTen);
 
-        txtUsername.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtUsername.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtUsername.setToolTipText("");
         txtUsername.setPreferredSize(new java.awt.Dimension(330, 40));
         jPanel18.add(txtUsername);
@@ -193,7 +188,7 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
         jPanel19.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
 
-        Password.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        Password.setFont(new java.awt.Font("Roboto", 0, 14)); 
         Password.setText("Password");
         Password.setMaximumSize(new java.awt.Dimension(44, 40));
         Password.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -208,7 +203,7 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
         jPanel22.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel22.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
 
-        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel15.setText("Vai trò");
         jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel15.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -280,7 +275,7 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
         jPanel8.add(btnHuy);
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 102));
-        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("THÊM");
         btnAdd.setBorderPainted(false);
@@ -299,13 +294,13 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-    }//GEN-LAST:event_btnHuyActionPerformed
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidateFields()) {
             TaiKhoan e = getInputFields();
             TK_CON.create(e);
@@ -313,10 +308,8 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
             MessageDialog.info(this, "Thêm thành công!");
             TK_GUI.loadTable(TK_CON.getAllList());
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Password;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnHuy;
@@ -335,5 +328,4 @@ public class CreateTaiKhoanDialog extends javax.swing.JDialog {
     private javax.swing.JTable tableNV;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
-    // End of variables declaration//GEN-END:variables
 }

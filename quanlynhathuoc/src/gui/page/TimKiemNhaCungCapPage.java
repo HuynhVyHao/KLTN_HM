@@ -193,7 +193,7 @@ public class TimKiemNhaCungCapPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -202,7 +202,7 @@ public class TimKiemNhaCungCapPage extends javax.swing.JPanel {
         tablePanel.add(jPanel5, java.awt.BorderLayout.NORTH);
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
    
 
@@ -239,5 +239,4 @@ public class TimKiemNhaCungCapPage extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTextField txtSearch;
-    // End of variables declaration//GEN-END:variables
 }

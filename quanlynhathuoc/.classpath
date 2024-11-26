@@ -39,5 +39,6 @@
 	<classpathentry kind="lib" path="lib/svgSalamander-1.1.4.jar"/>
 	<classpathentry kind="lib" path="lib/TimingFramework-0.55.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-5.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Minh/Hoc/Code/KLTN_HM/quanlynhathuoc/lib/core-3.5.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

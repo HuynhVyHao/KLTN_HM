@@ -153,7 +153,6 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
     private List<PhieuNhap> getListFilter() {
         String tenNV = "";
 
-        // Check if selected item is not null before converting to string
         if (cboxNhanVien.getSelectedItem() != null) {
             tenNV = cboxNhanVien.getSelectedItem().toString();
         }
@@ -290,7 +289,7 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -306,7 +305,7 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         jPanel8.setPreferredSize(new java.awt.Dimension(200, 80));
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel3.setText("Tên nhân viên");
         jLabel3.setPreferredSize(new java.awt.Dimension(140, 20));
         jPanel8.add(jLabel3);
@@ -329,7 +328,7 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         jPanel9.setPreferredSize(new java.awt.Dimension(200, 80));
         jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel4.setText("Từ số tiền");
         jLabel4.setPreferredSize(new java.awt.Dimension(140, 20));
         jPanel9.add(jLabel4);
@@ -348,7 +347,7 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         jPanel10.setPreferredSize(new java.awt.Dimension(200, 80));
         jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel5.setText("Đến số tiền:");
         jLabel5.setPreferredSize(new java.awt.Dimension(140, 20));
         jPanel10.add(jLabel5);
@@ -366,15 +365,15 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         tablePanel.add(jPanel4, java.awt.BorderLayout.LINE_START);
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         TaiKhoan tk = main.tk;
         CreatePhieuNhapPage page = new CreatePhieuNhapPage(main, tk);
         main.setPanel(page);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             String id = table.getValueAt(row, 1).toString();
@@ -388,13 +387,13 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
-    }//GEN-LAST:event_btnExportActionPerformed
+    }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
 
         String search = txtSearch.getText().toLowerCase().trim();
@@ -402,18 +401,18 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         List<PhieuNhap> listsearch = PN_CON.getSearchTable(search, searchType);
 
         loadTable(listsearch);
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtSearch.setText("");
         txtFromPrice.setText("");
         txtToPrice.setText("");
         cboxSearch.setSelectedIndex(0);
         cboxNhanVien.setSelectedIndex(0);
         loadTable(listHD);
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
-    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInfoActionPerformed
+    private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             PhieuNhap hoaDon = listHD.get(row);
@@ -424,9 +423,9 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnInfoActionPerformed
+    }
 
-    private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxNhanVienActionPerformed
+    private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {
         modal.setRowCount(0);
 
         List<PhieuNhap> listSearch = getListFilter();
@@ -437,20 +436,19 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         }
 
         loadTable(listSearch);
-    }//GEN-LAST:event_cboxNhanVienActionPerformed
+    }
 
-    private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtToPriceKeyReleased
+    private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
         List<PhieuNhap> listSearch = getListFilter();
         loadTable(listSearch);
-    }//GEN-LAST:event_txtToPriceKeyReleased
+    }
 
-    private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFromPriceKeyReleased
+    private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
         List<PhieuNhap> listSearch = getListFilter();
         loadTable(listSearch);
-    }//GEN-LAST:event_txtFromPriceKeyReleased
-
+    }
 
     private javax.swing.JButton btnReload;
     private javax.swing.JComboBox<String> cboxNhanVien;
@@ -474,5 +472,4 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtFromPrice;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtToPrice;
-    // End of variables declaration//GEN-END:variables
 }

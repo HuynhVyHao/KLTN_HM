@@ -92,9 +92,7 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -152,12 +150,12 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setPreferredSize(new java.awt.Dimension(120, 100));
 
-        txtTongThuoc.setFont(new java.awt.Font("Roboto Mono", 1, 36)); // NOI18N
+        txtTongThuoc.setFont(new java.awt.Font("Roboto Mono", 1, 36)); 
         txtTongThuoc.setForeground(new java.awt.Color(51, 51, 51));
         txtTongThuoc.setText("50");
         txtTongThuoc.setPreferredSize(new java.awt.Dimension(100, 16));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto", 2, 14)); 
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Thuốc hiện có trong kho");
 
@@ -206,12 +204,12 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setPreferredSize(new java.awt.Dimension(120, 100));
 
-        txtTongKhachHang.setFont(new java.awt.Font("Roboto Mono", 1, 36)); // NOI18N
+        txtTongKhachHang.setFont(new java.awt.Font("Roboto Mono", 1, 36)); 
         txtTongKhachHang.setForeground(new java.awt.Color(51, 51, 51));
         txtTongKhachHang.setText("50");
         txtTongKhachHang.setPreferredSize(new java.awt.Dimension(100, 16));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Roboto", 2, 14)); 
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Khách hàng từ trước đến nay");
 
@@ -260,12 +258,12 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setPreferredSize(new java.awt.Dimension(120, 100));
 
-        txtTongNhanVien.setFont(new java.awt.Font("Roboto Mono", 1, 36)); // NOI18N
+        txtTongNhanVien.setFont(new java.awt.Font("Roboto Mono", 1, 36)); 
         txtTongNhanVien.setForeground(new java.awt.Color(51, 51, 51));
         txtTongNhanVien.setText("50");
         txtTongNhanVien.setPreferredSize(new java.awt.Dimension(100, 16));
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto", 2, 14)); 
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Nhân viên đang hoạt động");
 
@@ -303,7 +301,7 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(1188, 30));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblChart.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
+        lblChart.setFont(new java.awt.Font("Roboto", 1, 16)); 
         lblChart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblChart.setText("Thống kê");
         lblChart.setPreferredSize(new java.awt.Dimension(37, 30));
@@ -352,10 +350,8 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
         jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         add(jPanel4, java.awt.BorderLayout.PAGE_END);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private gui.curvechart.CurveChart curveChart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -382,5 +378,4 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
     private javax.swing.JLabel txtTongKhachHang;
     private javax.swing.JLabel txtTongNhanVien;
     private javax.swing.JLabel txtTongThuoc;
-    // End of variables declaration//GEN-END:variables
 }

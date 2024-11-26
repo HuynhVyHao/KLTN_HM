@@ -38,7 +38,6 @@ public class KhachHangPage extends javax.swing.JPanel {
         listButton.add(btnImport);
         listButton.add(btnExport);
 
-        // Border radius
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
@@ -88,7 +87,6 @@ public class KhachHangPage extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
@@ -166,7 +164,7 @@ public class KhachHangPage extends javax.swing.JPanel {
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
         btnAdd.setText("THÊM");
         btnAdd.setBorder(null);
@@ -183,7 +181,7 @@ public class KhachHangPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnAdd);
 
-        btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnUpdate.setIcon(new FlatSVGIcon("./icon/update.svg"));
         btnUpdate.setText("SỬA");
         btnUpdate.setBorder(null);
@@ -200,7 +198,7 @@ public class KhachHangPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnUpdate);
 
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
         btnDelete.setText("XÓA");
         btnDelete.setBorder(null);
@@ -217,7 +215,7 @@ public class KhachHangPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnDelete);
 
-//        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+//        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
 //        btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
 //        btnInfo.setText("INFO");
 //        btnInfo.setBorder(null);
@@ -229,7 +227,7 @@ public class KhachHangPage extends javax.swing.JPanel {
 //        btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 //        actionPanel.add(btnInfo);
 
-        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
         btnImport.setText("IMPORT");
         btnImport.setBorder(null);
@@ -246,7 +244,7 @@ public class KhachHangPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnImport);
 
-        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
         btnExport.setText("EXPORT");
         btnExport.setBorder(null);
@@ -312,7 +310,7 @@ public class KhachHangPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -321,14 +319,14 @@ public class KhachHangPage extends javax.swing.JPanel {
         tablePanel.add(jPanel5, java.awt.BorderLayout.NORTH);
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         CreateKhachHangDialog dialog = new CreateKhachHangDialog(null, true, this);
         dialog.setVisible(true);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             String id = table.getValueAt(row, 1).toString();
@@ -339,9 +337,9 @@ public class KhachHangPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             DefaultTableModel modal = (DefaultTableModel) table.getModel();
             int row = table.getSelectedRow();
@@ -354,17 +352,17 @@ public class KhachHangPage extends javax.swing.JPanel {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
         KH_CON.importExcel();
-    }//GEN-LAST:event_btnImportActionPerformed
+    }
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
-    }//GEN-LAST:event_btnExportActionPerformed
+    }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         DefaultTableModel modal = (DefaultTableModel) table.getModel();
         modal.setRowCount(0);
 
@@ -377,16 +375,14 @@ public class KhachHangPage extends javax.swing.JPanel {
             modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getHoTen(), e.getSdt(), e.getGioiTinh(), Formatter.FormatDate(e.getNgayThamGia())});
             stt++;
         }
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtSearch.setText("");
         cboxSearch.setSelectedIndex(0);
         loadTable();
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -405,5 +401,4 @@ public class KhachHangPage extends javax.swing.JPanel {
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JTextField txtSearch;
-    // End of variables declaration//GEN-END:variables
 }

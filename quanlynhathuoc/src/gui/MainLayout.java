@@ -207,7 +207,6 @@ public class MainLayout extends javax.swing.JFrame {
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
-		// Initialize components
 		leftContent = new javax.swing.JPanel();
 		infoPanel = new javax.swing.JPanel();
 		jPanel2 = new javax.swing.JPanel();
@@ -259,7 +258,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jPanel2.setPreferredSize(new java.awt.Dimension(64, 80));
 		jPanel2.setLayout(new java.awt.BorderLayout());
 
-		btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
 		btnInfo.setIcon(new FlatSVGIcon("./icon/man.svg"));
 		btnInfo.setBorderPainted(false);
 		btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -278,10 +277,10 @@ public class MainLayout extends javax.swing.JFrame {
 
 		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-		txtFullName.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		txtFullName.setFont(new java.awt.Font("Roboto", 1, 14)); 
 		txtFullName.setText("Nguyễn Phan Anh Tuấn");
 
-		txtRole.setFont(new java.awt.Font("Roboto Light", 2, 13)); // NOI18N
+		txtRole.setFont(new java.awt.Font("Roboto Light", 2, 13)); 
 		txtRole.setText("Nhân viên Quản lý sản phẩm");
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -305,7 +304,7 @@ public class MainLayout extends javax.swing.JFrame {
 
 		infoPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
-		btnLogout.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+		btnLogout.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
 		btnLogout.setIcon(new FlatSVGIcon("./icon/logout.svg"));
 		btnLogout.setText("Đăng Xuất");
 		btnLogout.setBorderPainted(false);
@@ -381,7 +380,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuHD.add(new JSeparator());
 		jpMenuHD.add(baoCaoHDItem);
 
-		hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+		hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); 
 		hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
 		hoaDonItem.setText("Hóa đơn");
 		hoaDonItem.setBorderPainted(false);
@@ -502,7 +501,7 @@ public class MainLayout extends javax.swing.JFrame {
 
 		jpMenuThuoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		// Tạo các item trong menu với biểu tượng và văn bản
-		JMenuItem capNhatThuocItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); // Đặt
+		JMenuItem capNhatThuocItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); 
 		capNhatThuocItem.setIconTextGap(8);// Điều chỉnh khoảng cách giữa biểu tượng và văn bản
 		capNhatThuocItem.setMargin(new Insets(5, 10, 5, 10));
 		capNhatThuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
@@ -562,7 +561,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuThuoc.add(new JSeparator());
 		jpMenuThuoc.add(danhMucThuocItem);
 
-		thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+		thuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); 
 		thuocItem.setIcon(new FlatSVGIcon("./icon/medicine.svg"));
 		thuocItem.setText("Thuốc");
 		thuocItem.setBorderPainted(false);
@@ -718,7 +717,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuPhieuNhap.add(new JSeparator());
 		jpMenuPhieuNhap.add(baoCaoPNItem);
 
-		phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+		phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 12));
 		phieuNhapItem.setIcon(new FlatSVGIcon("./icon/bill-import.svg"));
 		phieuNhapItem.setText("Phiếu nhập");
 		phieuNhapItem.setBorderPainted(false);
@@ -756,7 +755,7 @@ public class MainLayout extends javax.swing.JFrame {
 
 		jpMenuNhaCC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 		// Tạo các item trong menu với biểu tượng và văn bản
-		JMenuItem capNhatNCCItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); // Đặt
+		JMenuItem capNhatNCCItem = new JMenuItem("Cập Nhật", new FlatSVGIcon("./icon/checklist.svg", 24, 24)); 
 		capNhatNCCItem.setIconTextGap(8);// Điều chỉnh khoảng cách giữa biểu tượng và văn bản
 		capNhatNCCItem.setMargin(new Insets(5, 10, 5, 10));
 		capNhatNCCItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
@@ -792,7 +791,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuNhaCC.add(new JSeparator());
 		jpMenuNhaCC.add(baoCaoNCCItem);
 
-		nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+		nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); 
 		nhaCungCapItem.setIcon(new FlatSVGIcon("./icon/trucks.svg"));
 		nhaCungCapItem.setText("Nhà cung cấp");
 		nhaCungCapItem.setBorderPainted(false);
@@ -889,7 +888,7 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuNhanVien.add(new JSeparator());
 		jpMenuNhanVien.add(datHangNVItem);
 
-		nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+		nhanVienItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); 
 		nhanVienItem.setIcon(new FlatSVGIcon("./icon/employee.svg"));
 		nhanVienItem.setText("Nhân viên");
 		nhanVienItem.setBorderPainted(false);
@@ -911,7 +910,6 @@ public class MainLayout extends javax.swing.JFrame {
 					int x = nhanVienItem.getLocationOnScreen().x - nhanVienItem.getParent().getLocationOnScreen().x;
 					int y = nhanVienItem.getLocationOnScreen().y - nhanVienItem.getParent().getLocationOnScreen().y
 							+ nhanVienItem.getHeight();
-
 					// Hiển thị menu thả xuống ngay dưới nút khachHangItem
 					jpMenuNhanVien.show(nhanVienItem.getParent(), x, y);
 					isMenuVisible = true; // Cập nhật trạng thái
@@ -1370,7 +1368,7 @@ public class MainLayout extends javax.swing.JFrame {
 	}
 
 //-------------CHỨC NĂNG VAI TRÒ---------------------------		
-	private void vaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_vaiTroItemActionPerformed
+	private void vaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {
 		vaiTro = new VaiTroPage();
 		this.setPanel(vaiTro);
 		resetActive();
@@ -1378,7 +1376,7 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void timKiemVaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_vaiTroItemActionPerformed
+	private void timKiemVaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {
 		timKiemVaiTro = new TimKiemVaiTroPage();
 		this.setPanel(timKiemVaiTro);
 		resetActive();
@@ -1386,7 +1384,7 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoVaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_vaiTroItemActionPerformed
+	private void baoCaoVaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {
 		baoCaoVaiTro = new BaoCaoVaiTroPage();
 		this.setPanel(baoCaoVaiTro);
 		resetActive();
@@ -1422,17 +1420,17 @@ public class MainLayout extends javax.swing.JFrame {
 
 //-------------CHỨC NĂNG THỐNG KÊ---------------------------			
 
-	private void thongKeItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_thongKeItemActionPerformed
+	private void thongKeItemActionPerformed(java.awt.event.ActionEvent evt) {
 		thongke = new ThongKePage(tk);
 		this.setPanel(thongke);
 		resetActive();
 		thongKeItem.setSelected(true);
 	}
 
-	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInfoActionPerformed
+	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
 		InfoDialog dialog = new InfoDialog(this, true, this, tk);
 		dialog.setVisible(true);
-	}// GEN-LAST:event_btnInfoActionPerformed
+	}
 
 	private JButton btnInfo;
 	private JButton btnLogout;

@@ -34,7 +34,6 @@ public class BaoCaoNhaCungCapPage extends javax.swing.JPanel {
 		listButton.add(btnImport);
 		listButton.add(btnExport);
 
-		// Border radius
 		for (JButton item : listButton) {
 			item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
 		}
@@ -177,7 +176,7 @@ public class BaoCaoNhaCungCapPage extends javax.swing.JPanel {
 		jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
 		jPanel5.setLayout(new java.awt.BorderLayout());
 
-		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
 		lblTable.setForeground(new java.awt.Color(255, 255, 255));
 		lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		lblTable.setText("THÔNG TIN NHÂN VIÊN");

@@ -87,7 +87,6 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();
@@ -116,7 +115,7 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        lblDialog.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblDialog.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblDialog.setForeground(new java.awt.Color(255, 255, 255));
         lblDialog.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDialog.setText("XUẤT XỨ");
@@ -133,13 +132,13 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
         jPanel18.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
 
-        lblTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); 
         lblTenDVT.setText("Tên xuất xứ");
         lblTenDVT.setMaximumSize(new java.awt.Dimension(44, 40));
         lblTenDVT.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel18.add(lblTenDVT);
 
-        txtTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtTenDVT.setToolTipText("");
         txtTenDVT.setPreferredSize(new java.awt.Dimension(330, 40));
         jPanel18.add(txtTenDVT);
@@ -240,7 +239,7 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
 
         btnRemove.setBackground(new java.awt.Color(255, 102, 102));
-        btnRemove.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnRemove.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnRemove.setForeground(new java.awt.Color(255, 255, 255));
         btnRemove.setText("XÓA");
         btnRemove.setBorderPainted(false);
@@ -256,7 +255,7 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
         jPanel8.add(btnRemove);
 
         btnUpdate.setBackground(new java.awt.Color(255, 204, 51));
-        btnUpdate.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("SỬA");
         btnUpdate.setBorderPainted(false);
@@ -272,7 +271,7 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
         jPanel8.add(btnUpdate);
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 102));
-        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("THÊM");
         btnAdd.setBorderPainted(false);
@@ -291,9 +290,9 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
+    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             DefaultTableModel modal = (DefaultTableModel) table.getModel();
             int row = table.getSelectedRow();
@@ -307,18 +306,18 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
         } catch (Exception e) {
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnRemoveActionPerformed
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidateFields()) {
             XuatXu tk = getInputFields();
             XX_CON.create(tk);
             MessageDialog.info(this, "Thêm thành công!");
             this.loadTable();
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         DefaultTableModel modal = (DefaultTableModel) table.getModel();
         modal.setRowCount(0);
 
@@ -331,9 +330,9 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
             modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getTen()});
             stt++;
         }
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidateFields()) {
             try {
                 int row = table.getSelectedRow();
@@ -348,22 +347,20 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
                 MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
             }
         }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtTenDVT.setText("");
         txtSearch.setText("");
         cboxSearch.setSelectedIndex(0);
         loadTable();
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {
         int row = table.getSelectedRow();
         txtTenDVT.setText(table.getValueAt(row, 2).toString());
-    }//GEN-LAST:event_tableMouseClicked
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnReload;
     private javax.swing.JButton btnRemove;
@@ -382,5 +379,4 @@ public class ThuocTinhXuatXuDialog extends javax.swing.JDialog {
     private javax.swing.JTable table;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTenDVT;
-    // End of variables declaration//GEN-END:variables
 }

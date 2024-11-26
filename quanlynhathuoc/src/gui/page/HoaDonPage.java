@@ -54,12 +54,9 @@ public class HoaDonPage extends javax.swing.JPanel {
         listButton.add(btnDelete);
         listButton.add(btnInfo);
 
-        // Border radius
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
-
-       
     }
 
     private void tableLayout() {
@@ -150,7 +147,6 @@ public class HoaDonPage extends javax.swing.JPanel {
     private List<HoaDon> getListFilter() {
         String tenNV = "";
 
-        // Check if selected item is not null before converting to string
         if (cboxNhanVien.getSelectedItem() != null) {
             tenNV = cboxNhanVien.getSelectedItem().toString();
         }
@@ -208,7 +204,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
         actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
         btnAdd.setText("THÊM");
         btnAdd.setBorder(null);
@@ -225,7 +221,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnAdd);
 
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14));
         btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
         btnDelete.setText("XÓA");
         btnDelete.setBorder(null);
@@ -242,7 +238,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnDelete);
 
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
         btnInfo.setText("INFO");
         btnInfo.setBorder(null);
@@ -311,7 +307,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
         lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -322,15 +318,15 @@ public class HoaDonPage extends javax.swing.JPanel {
        
 
         add(tablePanel, java.awt.BorderLayout.CENTER);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         TaiKhoan tk = main.tk;
         CreateHoaDonPage page = new CreateHoaDonPage(main, tk);
         main.setPanel(page);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
             String id = table.getValueAt(row, 1).toString();
@@ -345,13 +341,13 @@ public class HoaDonPage extends javax.swing.JPanel {
             e.printStackTrace();
             MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
         }
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    }
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
-    }//GEN-LAST:event_btnExportActionPerformed
+    }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
 
         String search = txtSearch.getText().toLowerCase().trim();
@@ -359,16 +355,16 @@ public class HoaDonPage extends javax.swing.JPanel {
         List<HoaDon> listsearch = HD_CON.getSearchTable(search, searchType);
 
         loadTable(listsearch);
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtSearch.setText("");
         txtFromPrice.setText("");
         txtToPrice.setText("");
         cboxSearch.setSelectedIndex(0);
         cboxNhanVien.setSelectedIndex(0);
         loadTable(listHD);
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         try {
@@ -390,7 +386,7 @@ public class HoaDonPage extends javax.swing.JPanel {
         }
     }
 
-    private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxNhanVienActionPerformed
+    private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {
         modal.setRowCount(0);
 
         List<HoaDon> listSearch = getListFilter();
@@ -401,22 +397,20 @@ public class HoaDonPage extends javax.swing.JPanel {
         }
 
         loadTable(listSearch);
-    }//GEN-LAST:event_cboxNhanVienActionPerformed
+    }
 
-    private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtToPriceKeyReleased
+    private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
         List<HoaDon> listSearch = getListFilter();
         loadTable(listSearch);
-    }//GEN-LAST:event_txtToPriceKeyReleased
+    }
 
-    private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFromPriceKeyReleased
+    private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
         List<HoaDon> listSearch = getListFilter();
         loadTable(listSearch);
-    }//GEN-LAST:event_txtFromPriceKeyReleased
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -444,5 +438,4 @@ public class HoaDonPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtFromPrice;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtToPrice;
-    // End of variables declaration//GEN-END:variables
 }

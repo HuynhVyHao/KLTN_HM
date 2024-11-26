@@ -156,7 +156,6 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         btnAddCustomer.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         formatNumberFields();
 
-        // Set Random HoaDon ID
         txtMaHoaDon.setText(RandomGenerator.getRandomId());
     }
 
@@ -234,7 +233,6 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
@@ -324,7 +322,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 30));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        lblThuoc.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        lblThuoc.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         lblThuoc.setForeground(new java.awt.Color(255, 255, 255));
         lblThuoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblThuoc.setText("Thông tin thuốc");
@@ -351,7 +349,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel17.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel10.setText("Mã thuốc:");
         jLabel10.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel10.setPreferredSize(new java.awt.Dimension(90, 40));
@@ -367,7 +365,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel18.setPreferredSize(new java.awt.Dimension(340, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel11.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel11.setText("Tên thuốc:");
         jLabel11.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel11.setPreferredSize(new java.awt.Dimension(90, 40));
@@ -382,7 +380,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel19.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel12.setText("Thành phần:");
         jLabel12.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel12.setPreferredSize(new java.awt.Dimension(90, 40));
@@ -404,14 +402,14 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel21.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel14.setText("Đơn giá:");
         jLabel14.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel14.setPreferredSize(new java.awt.Dimension(90, 40));
         jPanel21.add(jLabel14);
 
         txtDonGia.setEditable(false);
-        txtDonGia.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); // NOI18N
+        txtDonGia.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); 
         txtDonGia.setText("123123");
         txtDonGia.setFocusable(false);
         txtDonGia.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -509,12 +507,12 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel13.setPreferredSize(new java.awt.Dimension(260, 60));
         jPanel13.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 8));
 
-        txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 12)); 
         txtSoLuong.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel13.add(txtSoLuong);
 
         btnAddCart.setBackground(new java.awt.Color(0, 179, 246));
-        btnAddCart.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        btnAddCart.setFont(new java.awt.Font("Roboto Black", 0, 16)); 
         btnAddCart.setForeground(new java.awt.Color(255, 220, 0));
         btnAddCart.setIcon(new FlatSVGIcon("./icon/add-to-cart.svg"));
         btnAddCart.setText("THÊM");
@@ -599,7 +597,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(500, 30));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Chi tiết phiếu nhập");
@@ -613,7 +611,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 6, 2));
 
         btnDeleteCartItem.setBackground(new java.awt.Color(255, 102, 102));
-        btnDeleteCartItem.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        btnDeleteCartItem.setFont(new java.awt.Font("Roboto Mono", 1, 14)); 
         btnDeleteCartItem.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteCartItem.setIcon(new FlatSVGIcon("./icon/trash-cart.svg"));
         btnDeleteCartItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -639,7 +637,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 30));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Hóa đơn");
@@ -657,13 +655,13 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel4.setText("Mã phiếu nhập");
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel7.add(jLabel4);
 
         txtMaHoaDon.setEditable(false);
-        txtMaHoaDon.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        txtMaHoaDon.setFont(new java.awt.Font("Roboto Mono", 1, 14)); 
         txtMaHoaDon.setText("Z2NX8CN1A");
         txtMaHoaDon.setFocusable(false);
         txtMaHoaDon.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -674,7 +672,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel3.setText("Tên nhà cung cấp:");
         jLabel3.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel3.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -706,7 +704,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel25.setBackground(new java.awt.Color(255, 255, 255));
         jPanel25.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel8.setText("Số điện thoại:");
         jLabel8.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel25.add(jLabel8);
@@ -735,12 +733,12 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel27.setBackground(new java.awt.Color(255, 255, 255));
         jPanel27.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel6.setText("Hình thức thanh toán:");
         jLabel6.setPreferredSize(new java.awt.Dimension(140, 40));
         jPanel27.add(jLabel6);
 
-        cboxHinhThucThanhToan.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        cboxHinhThucThanhToan.setFont(new java.awt.Font("Roboto", 0, 14)); 
         cboxHinhThucThanhToan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tiền mặt", "Chuyển khoản" }));
         cboxHinhThucThanhToan.setPreferredSize(new java.awt.Dimension(200, 40));
         jPanel27.add(cboxHinhThucThanhToan);
@@ -750,14 +748,14 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Roboto", 1, 14)); 
         jLabel7.setForeground(new java.awt.Color(255, 51, 0));
         jLabel7.setText("Tổng hóa đơn:");
         jLabel7.setPreferredSize(new java.awt.Dimension(140, 40));
         jPanel11.add(jLabel7);
 
         txtTong.setEditable(false);
-        txtTong.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); // NOI18N
+        txtTong.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); 
         txtTong.setForeground(new java.awt.Color(255, 51, 0));
         txtTong.setText("1000000");
         txtTong.setFocusable(false);
@@ -773,7 +771,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setText("HỦY BỎ");
         btnHuy.setBorderPainted(false);
@@ -789,7 +787,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel8.add(btnHuy);
 
         btnThanhToan.setBackground(new java.awt.Color(0, 204, 51));
-        btnThanhToan.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnThanhToan.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnThanhToan.setForeground(new java.awt.Color(255, 255, 255));
         btnThanhToan.setText("THANH TOÁN");
         btnThanhToan.setBorderPainted(false);
@@ -809,9 +807,9 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         billPanel.add(billInfoPanel, java.awt.BorderLayout.SOUTH);
 
         add(billPanel, java.awt.BorderLayout.EAST);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
         modal.setRowCount(0);
 
         String search = txtSearch.getText().toLowerCase().trim();
@@ -819,15 +817,15 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         List<Thuoc> listsearch = THUOC_CON.getSearchTable(search, searchType);
 
         loadTable(listsearch);
-    }//GEN-LAST:event_txtSearchKeyReleased
+    }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
         txtSearch.setText("");
         cboxSearch.setSelectedIndex(0);
         loadTable(THUOC_CON.getAllList());
-    }//GEN-LAST:event_btnReloadActionPerformed
+    }
 
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {
         int row = table.getSelectedRow();
         String idThuoc = modal.getValueAt(row, 1).toString();
         Thuoc e = THUOC_CON.selectById(idThuoc);
@@ -839,9 +837,9 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         txtTenThuoc.setText(e.getTenThuoc());
         txtThanhPhan.setText(e.getThanhPhan());
         txtDonGia.setText(Formatter.FormatVND(e.getDonGia()));
-    }//GEN-LAST:event_tableMouseClicked
+    }
 
-    private void btnAddCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCartActionPerformed
+    private void btnAddCartActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidInputChiTietHoaDon()) {
             ChiTietPhieuNhap cthd = getInputChiTietHoaDon();
             listCTPN.add(cthd);
@@ -849,16 +847,16 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
 
             txtSoLuong.setText("");
         }
-    }//GEN-LAST:event_btnAddCartActionPerformed
+    }
 
-    private void btnDeleteCartItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteCartItemActionPerformed
+    private void btnDeleteCartItemActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Bạn có chắc muốc xóa khỏi giỏ hàng?", "Xóa thuốc khỏi giỏ hàng")) {
             listCTPN.remove(tableCart.getSelectedRow());
             loadTableCTHD(listCTPN);
         }
-    }//GEN-LAST:event_btnDeleteCartItemActionPerformed
+    }
 
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Xác nhận thanh toán và in hóa đơn?", "Lập hóa đơn")) {
             if (isValidHoaDonFields()) {
                 // Update số lượng tồn
@@ -882,27 +880,25 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
                 }
             }
         }
-    }//GEN-LAST:event_btnThanhToanActionPerformed
+    }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Xác nhận hủy hóa đơn?", "Hủy hóa đơn")) {
             main.setPanel(new PhieuNhapPage(main));
         }
-    }//GEN-LAST:event_btnHuyActionPerformed
+    }
 
-    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
+    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {
         CreateNhaCungCapDialog dialog = new CreateNhaCungCapDialog(null, true, new NhaCungCapPage());
         dialog.setVisible(true);
-    }//GEN-LAST:event_btnAddCustomerActionPerformed
+    }
 
-    private void cboxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxNhaCungCapActionPerformed
+    private void cboxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {
         String idNCC = listNCC.get(cboxNhaCungCap.getSelectedIndex()).getId();
         NhaCungCap ncc = new NhaCungCapController().selectById(idNCC);
         txtSdtNcc.setText(ncc.getSdt());
-    }//GEN-LAST:event_cboxNhaCungCapActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionPanel;
     private javax.swing.JPanel billInfoPanel;
     private javax.swing.JPanel billPanel;
@@ -972,6 +968,4 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtTenThuoc;
     private javax.swing.JTextArea txtThanhPhan;
     private javax.swing.JTextField txtTong;
-    // End of variables declaration//GEN-END:variables
-
 }

@@ -3,10 +3,6 @@ package utils;
 import java.util.regex.Pattern;
 import javax.swing.JTextField;
 
-/**
- *
- * @author atuandev
- */
 public class Validation {
 
     public static Boolean isEmpty(String input) {

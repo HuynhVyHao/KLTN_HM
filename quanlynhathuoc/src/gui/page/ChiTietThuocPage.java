@@ -60,7 +60,6 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 		listButton.add(btnDonVi);
 		listButton.add(btnXuatXu);
 
-		// Border radius
 		for (JButton item : listButton) {
 			item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
 		}
@@ -134,7 +133,7 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 		actionPanel.setPreferredSize(new java.awt.Dimension(700, 100));
 		actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-		btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
 		btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
 		btnInfo.setText("INFO");
 		btnInfo.setBorder(null);
@@ -151,7 +150,7 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 		});
 		actionPanel.add(btnInfo);
 
-		btnDonVi.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
+		btnDonVi.setFont(new java.awt.Font("Roboto", 1, 10)); 
 		btnDonVi.setIcon(new FlatSVGIcon("./icon/study.svg"));
 		btnDonVi.setText("ĐƠN VỊ");
 		btnDonVi.setBorder(null);
@@ -168,7 +167,7 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 		});
 		actionPanel.add(btnDonVi);
 
-		btnXuatXu.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
+		btnXuatXu.setFont(new java.awt.Font("Roboto", 1, 10)); 
 		btnXuatXu.setIcon(new FlatSVGIcon("./icon/countries.svg"));
 		btnXuatXu.setText("XUẤT XỨ");
 		btnXuatXu.setBorder(null);
@@ -226,7 +225,7 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 		jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
 		jPanel5.setLayout(new java.awt.BorderLayout());
 
-		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
 		lblTable.setForeground(new java.awt.Color(255, 255, 255));
 		lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -240,7 +239,7 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 
 
 
-	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInfoActionPerformed
+	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			int row = table.getSelectedRow();
 			String id = table.getValueAt(row, 1).toString();
@@ -251,24 +250,22 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 		} catch (Exception e) {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
 		}
-	}// GEN-LAST:event_btnInfoActionPerformed
+	}
 
 
 
 
 
-	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThuocTinhActionPerformed
+	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {
 		ThuocTinhDonViTinhDialog dialog = new ThuocTinhDonViTinhDialog(null, true);
 		dialog.setVisible(true);
-	}// GEN-LAST:event_btnThuocTinhActionPerformed
+	}
 
-	private void btnXuatXuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThuocTinhActionPerformed
+	private void btnXuatXuActionPerformed(java.awt.event.ActionEvent evt) {
 		ThuocTinhXuatXuDialog dialog = new ThuocTinhXuatXuDialog(null, true);
 		dialog.setVisible(true);
-	}// GEN-LAST:event_btnThuocTinhActionPerformed
+	}
 
-
-	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JPanel actionPanel;
 	private javax.swing.JButton btnInfo;
 	private javax.swing.JButton btnDonVi;

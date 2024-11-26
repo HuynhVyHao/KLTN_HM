@@ -237,7 +237,6 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
 
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();
@@ -290,7 +289,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("CẬP NHẬT THUỐC");
@@ -358,13 +357,13 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel18.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
         lblHoTen.setText("Tên thuốc");
         lblHoTen.setMaximumSize(new java.awt.Dimension(44, 40));
         lblHoTen.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel18.add(lblHoTen);
 
-        txtTenThuoc.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtTenThuoc.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtTenThuoc.setToolTipText("");
         txtTenThuoc.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel18.add(txtTenThuoc);
@@ -375,7 +374,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel19.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel12.setText("Thành phần");
         jLabel12.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel12.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -385,7 +384,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 50));
 
         txtThanhPhan.setColumns(20);
-        txtThanhPhan.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtThanhPhan.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtThanhPhan.setLineWrap(true);
         txtThanhPhan.setRows(4);
         txtThanhPhan.setPreferredSize(new java.awt.Dimension(252, 50));
@@ -399,7 +398,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel21.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel14.setText("Danh mục");
         jLabel14.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel14.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -414,7 +413,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel23.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel23.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel16.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel16.setText("Xuất xứ");
         jLabel16.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel16.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -429,7 +428,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel24.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel24.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel17.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel17.setText("Đơn vị tính");
         jLabel17.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel17.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -469,19 +468,19 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel26.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel26.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel19.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Roboto", 0, 14));
         jLabel19.setText("Giá nhập");
         jLabel19.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel19.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel26.add(jLabel19);
 
-        txtGiaNhap.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtGiaNhap.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtGiaNhap.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel26.add(txtGiaNhap);
 
         jPanel1.add(jPanel26);
         
-        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel15.setText("Hạn sử dụng");
         jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel15.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -503,35 +502,30 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel20.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
 
-        jLabel13.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel13.setText("Số lượng");
         jLabel13.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel13.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel20.add(jLabel13);
 
-        txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtSoLuong.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel20.add(txtSoLuong);
 
         jPanel1.add(jPanel20);
-        jLabel18.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel18.setText("Đơn giá");
         jLabel18.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel18.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel25.add(jLabel18);
 
-        txtDonGia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtDonGia.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtDonGia.setPreferredSize(new java.awt.Dimension(300, 40));
         jPanel25.add(txtDonGia);
 
         jPanel1.add(jPanel25);
 
-
         jPanel2.add(jPanel1);
-        
-        
-        
-        
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
@@ -539,7 +533,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
 
         btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setText("HỦY BỎ");
         btnHuy.setBorderPainted(false);
@@ -555,7 +549,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         jPanel8.add(btnHuy);
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 102));
-        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("CẬP NHẬT");
         btnAdd.setBorderPainted(false);
@@ -574,13 +568,13 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-    }//GEN-LAST:event_btnHuyActionPerformed
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidateFields()) {
             Thuoc e = getInputFields();
             THUOC_CON.update(e);
@@ -588,9 +582,9 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
             MessageDialog.info(this, "Cập nhập thành công!");
             THUOC_GUI.loadTable(THUOC_CON.getAllList());
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-    private void btnChooseImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseImageActionPerformed
+    private void btnChooseImageActionPerformed(java.awt.event.ActionEvent evt) {
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -616,10 +610,8 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
                 MessageDialog.error(this, "Lỗi nhập file!");
             }
         }
-    }//GEN-LAST:event_btnChooseImageActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnChooseImage;
     private javax.swing.JButton btnHuy;
@@ -654,18 +646,12 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblHoTen;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtGiaNhap;
-
     private  com.toedter.calendar.JDateChooser txtNgaySanXuat_1;
     private com.toedter.calendar.JDateChooser txtHanSuDung;
     private javax.swing.JLabel txtHinhAnh;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtTenThuoc;
     private javax.swing.JTextArea txtThanhPhan;
-
     private JPanel jPanel22_1;
     private JLabel lblNgySnXut;
-
-  
-
-    // End of variables declaration//GEN-END:variables
 }

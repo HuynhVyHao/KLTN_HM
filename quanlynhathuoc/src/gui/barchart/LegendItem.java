@@ -10,7 +10,6 @@ public class LegendItem extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lbColor = new gui.barchart.LabelColor();
@@ -43,11 +42,8 @@ public class LegendItem extends javax.swing.JPanel {
                     .addComponent(lbColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private gui.barchart.LabelColor lbColor;
     private javax.swing.JLabel lbName;
-    // End of variables declaration//GEN-END:variables
 }

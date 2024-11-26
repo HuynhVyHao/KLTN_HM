@@ -11,7 +11,6 @@ public class LegendItem2 extends javax.swing.JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         lbColor = new gui.curvechart.LabelColor2();
@@ -44,11 +43,8 @@ public class LegendItem2 extends javax.swing.JPanel {
                     .addComponent(lbColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-    }// </editor-fold>                        
+    }             
 
-
-    // Variables declaration - do not modify                     
     private gui.curvechart.LabelColor2 lbColor;
     private javax.swing.JLabel lbName;
-    // End of variables declaration                   
 }

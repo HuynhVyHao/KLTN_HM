@@ -5,10 +5,14 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.google.zxing.WriterException;
 
 import controller.ChiTietDatHangController;
+import controller.ChiTietHoaDonController;
 import controller.DatHangController;
+import controller.HoaDonController;
 import controller.KhachHangController;
 import controller.ThuocController;
+import dao.HoaDonDAO;
 import entity.ChiTietDatHang;
+import entity.ChiTietHoaDon;
 import entity.DatHang;
 import entity.HoaDon;
 import entity.KhachHang;
@@ -39,8 +43,10 @@ public class CreateDatHangPage extends javax.swing.JPanel {
 
     private final ThuocController THUOC_CON = new ThuocController();
     private final DatHangController DH_CON = new DatHangController();
-    private final ChiTietDatHangController CTHD_CON = new ChiTietDatHangController();
-
+    private final ChiTietDatHangController CTDH_CON = new ChiTietDatHangController();
+    private final HoaDonController HD_CON = new HoaDonController();
+    private final ChiTietHoaDonController CTHD_CON = new ChiTietHoaDonController();
+    private List<ChiTietHoaDon> listCTHD = new ArrayList<>();
     private List<Thuoc> listThuoc = THUOC_CON.getAllList();
     private List<ChiTietDatHang> listCTDH = new ArrayList<>();
 
@@ -151,7 +157,6 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         btnAddCustomer.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         formatNumberFields();
 
-        // Set Random HoaDon ID
         txtMaHoaDon.setText(RandomGenerator.getRandomId());
     }
 
@@ -336,7 +341,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 30));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        lblThuoc.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        lblThuoc.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         lblThuoc.setForeground(new java.awt.Color(255, 255, 255));
         lblThuoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblThuoc.setText("Thông tin thuốc");
@@ -363,7 +368,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel17.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel10.setText("Mã thuốc:");
         jLabel10.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel10.setPreferredSize(new java.awt.Dimension(90, 40));
@@ -379,7 +384,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel18.setPreferredSize(new java.awt.Dimension(340, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel11.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel11.setText("Tên thuốc:");
         jLabel11.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel11.setPreferredSize(new java.awt.Dimension(90, 40));
@@ -394,7 +399,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel19.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel12.setText("Thành phần:");
         jLabel12.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel12.setPreferredSize(new java.awt.Dimension(90, 40));
@@ -416,14 +421,14 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel21.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
-        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel14.setText("Đơn giá:");
         jLabel14.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel14.setPreferredSize(new java.awt.Dimension(90, 40));
         jPanel21.add(jLabel14);
 
         txtDonGia.setEditable(false);
-        txtDonGia.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); // NOI18N
+        txtDonGia.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); 
         txtDonGia.setText("123123");
         txtDonGia.setFocusable(false);
         txtDonGia.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -521,12 +526,12 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel13.setPreferredSize(new java.awt.Dimension(260, 60));
         jPanel13.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 8));
 
-        txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 12)); 
         txtSoLuong.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel13.add(txtSoLuong);
 
         btnAddCart.setBackground(new java.awt.Color(0, 179, 246));
-        btnAddCart.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
+        btnAddCart.setFont(new java.awt.Font("Roboto Black", 0, 16)); 
         btnAddCart.setForeground(new java.awt.Color(255, 220, 0));
         btnAddCart.setIcon(new FlatSVGIcon("./icon/add-to-cart.svg"));
         btnAddCart.setText("THÊM");
@@ -611,7 +616,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel3.setPreferredSize(new java.awt.Dimension(500, 30));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Giỏ hàng");
@@ -625,7 +630,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 6, 2));
 
         btnDeleteCartItem.setBackground(new java.awt.Color(255, 102, 102));
-        btnDeleteCartItem.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        btnDeleteCartItem.setFont(new java.awt.Font("Roboto Mono", 1, 14)); 
         btnDeleteCartItem.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteCartItem.setIcon(new FlatSVGIcon("./icon/trash-cart.svg"));
         btnDeleteCartItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -651,7 +656,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel5.setPreferredSize(new java.awt.Dimension(500, 30));
         jPanel5.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Hóa đơn");
@@ -669,13 +674,13 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel4.setText("Mã hóa đơn ");
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel7.add(jLabel4);
 
         txtMaHoaDon.setEditable(false);
-        txtMaHoaDon.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        txtMaHoaDon.setFont(new java.awt.Font("Roboto Mono", 1, 14)); 
         txtMaHoaDon.setText("Z2NX8CN1A");
         txtMaHoaDon.setFocusable(false);
         txtMaHoaDon.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -686,7 +691,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel25.setBackground(new java.awt.Color(255, 255, 255));
         jPanel25.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel8.setText("Số điện thoại:");
         jLabel8.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel25.add(jLabel8);
@@ -725,7 +730,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel3.setText("Tên khách hàng");
         jLabel3.setMaximumSize(new java.awt.Dimension(44, 40));
         jLabel3.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -752,14 +757,14 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Roboto", 1, 14)); 
         jLabel7.setForeground(new java.awt.Color(255, 51, 0));
         jLabel7.setText("Tổng hóa đơn:");
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel11.add(jLabel7);
 
         txtTong.setEditable(false);
-        txtTong.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); // NOI18N
+        txtTong.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); 
         txtTong.setForeground(new java.awt.Color(255, 51, 0));
         txtTong.setText("1000000");
         txtTong.setFocusable(false);
@@ -780,7 +785,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         paymentStatusPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
         JLabel labelThanhToan = new JLabel("Trạng thái thanh toán:");
-        labelThanhToan.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        labelThanhToan.setFont(new java.awt.Font("Roboto", 0, 14)); 
         labelThanhToan.setPreferredSize(new java.awt.Dimension(150, 40));
         paymentStatusPanel.add(labelThanhToan);
 
@@ -797,7 +802,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setText("HỦY BỎ");
         btnHuy.setBorderPainted(false);
@@ -813,7 +818,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel8.add(btnHuy);
 
         btnThanhToan.setBackground(new java.awt.Color(0, 204, 51));
-        btnThanhToan.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnThanhToan.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnThanhToan.setForeground(new java.awt.Color(255, 255, 255));
         btnThanhToan.setText("ĐẶT HÀNG");
         btnThanhToan.setBorderPainted(false);
@@ -824,7 +829,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
-					btnThanhToanActionPerformed(evt);
+					btnDatHangActionPerformed(evt);
 				} catch (WriterException e) {
 					e.printStackTrace();
 				}
@@ -922,12 +927,12 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         }
     }
 
-    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCustomerActionPerformed
+    private void btnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {
         CreateKhachHangDialog dialog = new CreateKhachHangDialog(null, true, new KhachHangPage());
         dialog.setVisible(true);
     }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Xác nhận hủy hóa đơn?", "Hủy hóa đơn")) {
             for (ChiTietDatHang cthd : listCTDH) {
                 Thuoc thuocCTHD = cthd.getThuoc();
@@ -940,19 +945,69 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         }
     }
     
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) throws WriterException {//GEN-FIRST:event_btnThanhToanActionPerformed
-        if (isValidHoaDon() ) {
+    private void btnDatHangActionPerformed(java.awt.event.ActionEvent evt) throws WriterException { 
+        if (isValidHoaDon()) { // Kiểm tra tính hợp lệ của hóa đơn
             if (MessageDialog.confirm(this, "Xác nhận đặt hàng?", "Đặt hàng")) {
+                // Lấy thông tin đơn đặt hàng từ giao diện
                 DatHang dh = getInputDatHang();
-                DH_CON.create(dh);
-                CTHD_CON.create(listCTDH);
+                
+                // Lưu đơn đặt hàng vào cơ sở dữ liệu
+                DH_CON.create(dh);  // Lưu đơn đặt hàng
+                CTDH_CON.create(listCTDH);  // Lưu chi tiết đơn đặt hàng
+                
+                // Kiểm tra trạng thái thanh toán của đơn đặt hàng
+                if (dh.getTrangThai().equalsIgnoreCase("Đã thanh toán")) {
+                    // Tạo đối tượng HoaDon từ đơn đặt hàng
+                    HoaDon hoaDon = new HoaDon();
+                    hoaDon.setId(dh.getId());  // Có thể tạo mã hóa đơn riêng nếu cần
+                    hoaDon.setTongTien(dh.getTongTien()); 
+                    hoaDon.setThoiGian(dh.getThoiGian());
+                    hoaDon.setKhachHang(dh.getKhachHang());
+                    hoaDon.setNhanVien(dh.getNhanVien());
+                    
+                    // Tạo ChiTietHoaDon từ các chi tiết đơn hàng và liên kết với HoaDon
+                    List<ChiTietHoaDon> listCTHD = new ArrayList<>();
+                    for (ChiTietDatHang ctDH : listCTDH) {
+                        ChiTietHoaDon chiTietHoaDon = new ChiTietHoaDon();
+                        chiTietHoaDon.setThuoc(ctDH.getThuoc());
+                        chiTietHoaDon.setSoLuong(ctDH.getSoLuong());
+                        chiTietHoaDon.setDonGia(ctDH.getDonGia());
+                        chiTietHoaDon.setHoaDon(hoaDon); // Liên kết với hóa đơn
+                        listCTHD.add(chiTietHoaDon); // Thêm vào list chi tiết hóa đơn
+                    }
+                    
+                    // Lưu hóa đơn vào cơ sở dữ liệu
+                    try {
+                        HD_CON.create(hoaDon); // Lưu hóa đơn vào cơ sở dữ liệu
+                        CTHD_CON.create(listCTHD); // Lưu chi tiết hóa đơn vào cơ sở dữ liệu
+                        System.out.println("HoaDon đã lưu: " + hoaDon.toString());
+                    } catch (Exception e) {
+                        MessageDialog.error(this, "Lưu hóa đơn thất bại: " + e.getMessage());
+                        e.printStackTrace(); // In chi tiết lỗi để dễ dàng debug
+                        return;
+                    }
+                    
+                    // Hỏi người dùng có muốn in hóa đơn không
+                    if (MessageDialog.confirm(this, "Bạn có muốn in hóa đơn không?", "In hóa đơn")) {
+                        // Thực hiện in hóa đơn
+                        try {
+                            new WritePDF().printHoaDon(hoaDon, listCTHD);
+                        } catch (Exception e) {
+                            MessageDialog.error(this, "In hóa đơn thất bại: " + e.getMessage());
+                            e.printStackTrace();
+                        }
+                    }
+                }
+                
+                // Hiển thị thông báo thành công
                 MessageDialog.info(this, "Đặt hàng thành công!");
-
+                
                 // Trở về trang hóa đơn
                 main.setPanel(new DatHangPage(main));
             }
         }
     }
+
 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JPanel billInfoPanel;

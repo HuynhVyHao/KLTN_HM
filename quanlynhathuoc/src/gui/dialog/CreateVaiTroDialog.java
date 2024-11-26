@@ -6,10 +6,6 @@ import gui.page.VaiTroPage;
 import java.util.List;
 import utils.MessageDialog;
 
-/**
- *
- * @author atuandev
- */
 public class CreateVaiTroDialog extends javax.swing.JDialog {
 
     private VaiTroController VT_CON = new VaiTroController();
@@ -59,7 +55,6 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();
@@ -83,7 +78,7 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("THÊM VAI TRÒ");
@@ -99,13 +94,13 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
         jPanel19.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
 
-        lblmaVaiTro.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblmaVaiTro.setFont(new java.awt.Font("Roboto", 0, 14)); 
         lblmaVaiTro.setText("Mã vai trò");
         lblmaVaiTro.setMaximumSize(new java.awt.Dimension(44, 40));
         lblmaVaiTro.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel19.add(lblmaVaiTro);
 
-        txtId.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtId.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtId.setToolTipText("");
         txtId.setPreferredSize(new java.awt.Dimension(330, 40));
         jPanel19.add(txtId);
@@ -116,13 +111,13 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
         jPanel18.setPreferredSize(new java.awt.Dimension(500, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
 
-        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
         lblHoTen.setText("Tên vai trò");
         lblHoTen.setMaximumSize(new java.awt.Dimension(44, 40));
         lblHoTen.setPreferredSize(new java.awt.Dimension(150, 40));
         jPanel18.add(lblHoTen);
 
-        txtTen.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtTen.setFont(new java.awt.Font("Roboto", 0, 14));
         txtTen.setToolTipText("");
         txtTen.setPreferredSize(new java.awt.Dimension(330, 40));
         jPanel18.add(txtTen);
@@ -135,7 +130,7 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
 
         btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setText("HỦY BỎ");
         btnHuy.setBorderPainted(false);
@@ -151,7 +146,7 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
         jPanel8.add(btnHuy);
 
         btnAdd.setBackground(new java.awt.Color(0, 204, 102));
-        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("THÊM");
         btnAdd.setBorderPainted(false);
@@ -170,23 +165,21 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-    }//GEN-LAST:event_btnHuyActionPerformed
+    }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidateFields()) {
             VaiTro e = getInputFields();
             VT_CON.create(e);
             VT_GUI.loadTable();
             this.dispose();
         }
-    }//GEN-LAST:event_btnAddActionPerformed
+    }
 
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnHuy;
     private javax.swing.JLabel jLabel8;
@@ -199,5 +192,4 @@ public class CreateVaiTroDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblmaVaiTro;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtTen;
-    // End of variables declaration//GEN-END:variables
 }

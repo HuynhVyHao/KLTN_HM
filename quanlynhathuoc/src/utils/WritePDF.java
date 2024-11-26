@@ -517,7 +517,7 @@ public class WritePDF {
             // Vị trí mã QR trong PDF
             PdfContentByte canvas = writer.getDirectContent();
             float qrX = (document.getPageSize().getWidth() - qrCodeImage.getScaledWidth()) / 2;
-            float qrY = document.bottom() + 50;
+            float qrY = document.bottom() + 20;
 
             qrCodeImage.setAbsolutePosition(qrX, qrY);
             canvas.addImage(qrCodeImage);

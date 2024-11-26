@@ -320,7 +320,7 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
 		jPanel5.setLayout(new java.awt.BorderLayout());
 
-		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
 		lblTable.setForeground(new java.awt.Color(255, 255, 255));
 		lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -336,7 +336,7 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		jPanel8.setPreferredSize(new java.awt.Dimension(200, 80));
 		jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-		jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+		jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); 
 		jLabel3.setText("Danh mục thuốc");
 		jLabel3.setPreferredSize(new java.awt.Dimension(140, 20));
 		jPanel8.add(jLabel3);
@@ -356,7 +356,7 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		jPanel6.setPreferredSize(new java.awt.Dimension(200, 80));
 		jPanel6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-		jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+		jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); 
 		jLabel1.setText("Xuất xứ");
 		jLabel1.setPreferredSize(new java.awt.Dimension(140, 20));
 		jPanel6.add(jLabel1);
@@ -376,7 +376,7 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		jPanel7.setPreferredSize(new java.awt.Dimension(200, 80));
 		jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-		jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+		jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); 
 		jLabel2.setText("Đơn vị tính");
 		jLabel2.setPreferredSize(new java.awt.Dimension(140, 20));
 		jPanel7.add(jLabel2);
@@ -396,7 +396,7 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		jPanel9.setPreferredSize(new java.awt.Dimension(200, 80));
 		jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 16, 8));
 
-		jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+		jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); 
 		jLabel4.setText("Hạn sử dụng còn");
 		jLabel4.setPreferredSize(new java.awt.Dimension(140, 20));
 		jPanel9.add(jLabel4);
@@ -461,7 +461,6 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 
 
 		jPanel2_1.add(txtNgaySanXuat); // Thêm vào panel
-
 		jPanel2.add(btnSubmitHSD);
 		jPanel9.add(jPanel2);
 		jPanel4.add(jPanel9);
@@ -529,8 +528,7 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	    }
 	}
 
-
-	private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtSearchKeyReleased
+	private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
 		modal.setRowCount(0);
 
 		String search = txtSearch.getText().toLowerCase().trim();
@@ -538,9 +536,9 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		List<Thuoc> listsearch = THUOC_CON.getSearchTable(search, searchType);
 
 		loadTable(listsearch);
-	}// GEN-LAST:event_txtSearchKeyReleased
+	}
 
-	private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnReloadActionPerformed
+	private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
 		txtSearch.setText("");
 		txtHSD.setText("");
 		cboxSearch.setSelectedIndex(0);
@@ -548,9 +546,9 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		cboxDonViTinh.setSelectedIndex(0);
 		cboxXuatXu.setSelectedIndex(0);
 		loadTable(listThuoc);
-	}// GEN-LAST:event_btnReloadActionPerformed
+	}
 
-	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnInfoActionPerformed
+	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			int row = table.getSelectedRow();
 			String id = table.getValueAt(row, 1).toString();
@@ -561,9 +559,9 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		} catch (Exception e) {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
 		}
-	}// GEN-LAST:event_btnInfoActionPerformed
+	}
 
-	private void cboxXuatXuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cboxXuatXuActionPerformed
+	private void cboxXuatXuActionPerformed(java.awt.event.ActionEvent evt) {
 		modal.setRowCount(0);
 
 		List<Thuoc> listSearch = getListFilter();
@@ -574,9 +572,9 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		}
 
 		loadTable(listSearch);
-	}// GEN-LAST:event_cboxXuatXuActionPerformed
+	}
 
-	private void cboxDonViTinhActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cboxDonViTinhActionPerformed
+	private void cboxDonViTinhActionPerformed(java.awt.event.ActionEvent evt) {
 		modal.setRowCount(0);
 
 		List<Thuoc> listSearch = getListFilter();
@@ -587,9 +585,9 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		}
 
 		loadTable(listSearch);
-	}// GEN-LAST:event_cboxDonViTinhActionPerformed
+	}
 
-	private void cboxDanhMucActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cboxDanhMucActionPerformed
+	private void cboxDanhMucActionPerformed(java.awt.event.ActionEvent evt) {
 		modal.setRowCount(0);
 
 		List<Thuoc> listSearch = getListFilter();
@@ -600,27 +598,26 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		}
 
 		loadTable(listSearch);
-	}// GEN-LAST:event_cboxDanhMucActionPerformed
+	}
 
-	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThuocTinhActionPerformed
+	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {
 		ThuocTinhDonViTinhDialog dialog = new ThuocTinhDonViTinhDialog(null, true);
 		dialog.setVisible(true);
-	}// GEN-LAST:event_btnThuocTinhActionPerformed
+	}
 
-	private void btnXuatXuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThuocTinhActionPerformed
+	private void btnXuatXuActionPerformed(java.awt.event.ActionEvent evt) {
 		ThuocTinhXuatXuDialog dialog = new ThuocTinhXuatXuDialog(null, true);
 		dialog.setVisible(true);
-	}// GEN-LAST:event_btnThuocTinhActionPerformed
+	}
 
-	private void btnSubmitHSDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSubmitHSDActionPerformed
+	private void btnSubmitHSDActionPerformed(java.awt.event.ActionEvent evt) {
 		modal.setRowCount(0);
 
 		List<Thuoc> listSearch = getListFilter();
 
 		loadTable(listSearch);
-	}// GEN-LAST:event_btnSubmitHSDActionPerformed
+	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton btnReload;
 	private javax.swing.JButton btnSubmitHSD;
 	private javax.swing.JButton btnThuocTinh;

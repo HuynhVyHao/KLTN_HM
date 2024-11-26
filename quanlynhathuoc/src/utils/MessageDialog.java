@@ -3,10 +3,9 @@ package utils;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Anh Tuan
- */
+import gui.page.CreateDatHangPage;
+
+
 public class MessageDialog {
 
     public static void info(Component parent, String message) {
@@ -28,5 +27,12 @@ public class MessageDialog {
 
     public static String prompt(Component parent, String message, String title) {
         return JOptionPane.showInputDialog(parent, message, title, JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void error(CreateDatHangPage parent, String message) {
+        JOptionPane.showMessageDialog(parent, 
+                                      message, 
+                                      "Lỗi", 
+                                      JOptionPane.ERROR_MESSAGE);
     }
 }

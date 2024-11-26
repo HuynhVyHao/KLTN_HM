@@ -129,8 +129,8 @@ public class DanhMucPage extends javax.swing.JPanel {
 		headerPanel.setBackground(new java.awt.Color(255, 255, 255));
 		headerPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(232, 232, 232), 2, true));
 		headerPanel.setLayout(new java.awt.BorderLayout());
+		
 		// Search Panel
-
 				jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 				jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));
 				jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 16, 24));
@@ -173,13 +173,13 @@ public class DanhMucPage extends javax.swing.JPanel {
 				headerPanel.add(jPanel1, java.awt.BorderLayout.CENTER); // Đặt phần tìm kiếm vào góc phải của headerPanel
 
 
-				add(headerPanel, java.awt.BorderLayout.PAGE_START); // Thêm headerP
+				add(headerPanel, java.awt.BorderLayout.PAGE_START); // Thêm header
 		// Action Panel
 		actionPanel.setBackground(new java.awt.Color(255, 255, 255));
 		actionPanel.setPreferredSize(new java.awt.Dimension(700, 100));
 		actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
 
-		btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnAdd.setFont(new java.awt.Font("Roboto", 1, 14)); 
 		btnAdd.setIcon(new FlatSVGIcon("./icon/add.svg"));
 		btnAdd.setText("THÊM");
 		btnAdd.setBorder(null);
@@ -196,7 +196,7 @@ public class DanhMucPage extends javax.swing.JPanel {
 		});
 		actionPanel.add(btnAdd);
 
-		btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnUpdate.setFont(new java.awt.Font("Roboto", 1, 14)); 
 		btnUpdate.setIcon(new FlatSVGIcon("./icon/update.svg"));
 		btnUpdate.setText("SỬA");
 		btnUpdate.setBorder(null);
@@ -213,7 +213,7 @@ public class DanhMucPage extends javax.swing.JPanel {
 		});
 		actionPanel.add(btnUpdate);
 
-		btnRemove.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+		btnRemove.setFont(new java.awt.Font("Roboto", 1, 14)); 
 		btnRemove.setIcon(new FlatSVGIcon("./icon/delete.svg"));
 		btnRemove.setText("XÓA");
 		btnRemove.setBorder(null);
@@ -235,10 +235,10 @@ public class DanhMucPage extends javax.swing.JPanel {
 		add(headerPanel, java.awt.BorderLayout.PAGE_START); // Thêm headerPanel vào layout chính
 
 		// Main Content Panel
-
 		tablePanel.setBackground(new java.awt.Color(243, 243, 243));
 		tablePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 2, true));
 		tablePanel.setLayout(new java.awt.BorderLayout(2, 0));
+		
 		// Table Panel
 		table.setModel(new javax.swing.table.DefaultTableModel(
 				new Object[][] { { "123", "Anh Tuấn", "123123", null, null, null },
@@ -276,7 +276,7 @@ public class DanhMucPage extends javax.swing.JPanel {
 		jPanel15.setPreferredSize(new java.awt.Dimension(500, 40));
 		jPanel15.setLayout(new java.awt.BorderLayout());
 
-		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
 		lblTable.setForeground(new java.awt.Color(255, 255, 255));
 		lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 		lblTable.setText("DANH MỤC THUỐC");
@@ -288,25 +288,25 @@ public class DanhMucPage extends javax.swing.JPanel {
 		jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
 		lblTenDVT = new JLabel();
-		lblTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+		lblTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); 
 		lblTenDVT.setText("Tên danh mục thuốc");
 		lblTenDVT.setMaximumSize(new java.awt.Dimension(150, 40));
 		lblTenDVT.setPreferredSize(new java.awt.Dimension(150, 40));
 		jPanel18.add(lblTenDVT);
 
 		txtTenDVT = new JTextField();
-		txtTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+		txtTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); 
 		txtTenDVT.setPreferredSize(new java.awt.Dimension(330, 40));
 		jPanel18.add(txtTenDVT);
 		
 	
 		tablePanel.add(jPanel18, BorderLayout.NORTH); // Thêm panel vào phía trên tablePanel
-		tablePanel.add(jScrollPane1, BorderLayout.CENTER); // Thê
+		tablePanel.add(jScrollPane1, BorderLayout.CENTER); 
 
 		add(tablePanel, java.awt.BorderLayout.CENTER); // Thêm bảng vào giao diện chính
 	}
 	
-	private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtSearchKeyReleased
+	private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
 		DefaultTableModel modal = (DefaultTableModel) table.getModel();
 		modal.setRowCount(0);
 
@@ -329,10 +329,7 @@ public class DanhMucPage extends javax.swing.JPanel {
 		loadTable();
 	}
 
-	
-
-
-	private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRemoveActionPerformed
+	private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {
 		try {
 			DefaultTableModel modal = (DefaultTableModel) table.getModel();
 			int row = table.getSelectedRow();
@@ -346,19 +343,19 @@ public class DanhMucPage extends javax.swing.JPanel {
 		} catch (Exception e) {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
 		}
-	}// GEN-LAST:event_btnRemoveActionPerformed
+	}
 
-	private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddActionPerformed
+	private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
 		if (isValidateFields()) {
 			DanhMuc tk = getInputFields();
 			DM_CON.create(tk);
 			MessageDialog.info(this, "Thêm thành công!");
 			this.loadTable();
 		}
-	}// GEN-LAST:event_btnAddActionPerformed
+	}
 
 
-	private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnUpdateActionPerformed
+	private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
 		if (isValidateFields()) {
 			try {
 				int row = table.getSelectedRow();

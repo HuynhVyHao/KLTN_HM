@@ -28,9 +28,6 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	    }
 
 	    private void headerLayout() {
-	        
-
-	        // Border radius
 	        btnReload.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
 
 	        txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tìm kiếm...");
@@ -77,7 +74,6 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	    }
 
 	    @SuppressWarnings("unchecked")
-	    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
 	    private void initComponents() {
 
 	        headerPanel = new javax.swing.JPanel();
@@ -191,7 +187,7 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	        jPanel5.setPreferredSize(new java.awt.Dimension(500, 40));
 	        jPanel5.setLayout(new java.awt.BorderLayout());
 
-	        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+	        lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
 	        lblTable.setForeground(new java.awt.Color(255, 255, 255));
 	        lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 	        lblTable.setText("THÔNG TIN NHÂN VIÊN");
@@ -200,11 +196,11 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	        tablePanel.add(jPanel5, java.awt.BorderLayout.NORTH);
 
 	        add(tablePanel, java.awt.BorderLayout.CENTER);
-	    }// </editor-fold>//GEN-END:initComponents
+	    }
 
 
 
-	    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+	    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
 	        DefaultTableModel modal = (DefaultTableModel) table.getModel();
 	        modal.setRowCount(0);
 
@@ -217,16 +213,14 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getHoTen(), e.getSdt(), e.getGioiTinh(), Formatter.FormatDate(e.getNgayThamGia())});
 	            stt++;
 	        }
-	    }//GEN-LAST:event_txtSearchKeyReleased
+	    }
 
-	    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReloadActionPerformed
+	    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
 	        txtSearch.setText("");
 	        cboxSearch.setSelectedIndex(0);
 	        loadTable();
-	    }//GEN-LAST:event_btnReloadActionPerformed
+	    }
 
-
-	    // Variables declaration - do not modify//GEN-BEGIN:variables
 	    private javax.swing.JPanel actionPanel;
 	    private javax.swing.JButton btnAdd;
 	    private javax.swing.JButton btnDelete;
@@ -245,5 +239,4 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	    private javax.swing.JTable table;
 	    private javax.swing.JPanel tablePanel;
 	    private javax.swing.JTextField txtSearch;
-	    // End of variables declaration//GEN-END:variables
 }

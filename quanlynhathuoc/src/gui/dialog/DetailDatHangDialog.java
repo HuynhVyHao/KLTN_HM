@@ -118,7 +118,7 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
         jPanel15.setLayout(new java.awt.BorderLayout());
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("CHI TIẾT HÓA ĐƠN");
@@ -138,13 +138,13 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel7.setPreferredSize(new java.awt.Dimension(340, 40));
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel4.setText("Mã hóa đơn ");
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel7.add(jLabel4);
 
         txtMaHD.setEditable(false);
-        txtMaHD.setFont(new java.awt.Font("Roboto Mono", 1, 14)); // NOI18N
+        txtMaHD.setFont(new java.awt.Font("Roboto Mono", 1, 14)); 
         txtMaHD.setText("Z2NX8CN1A");
         txtMaHD.setFocusable(false);
         txtMaHD.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -156,13 +156,13 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel9.setPreferredSize(new java.awt.Dimension(340, 40));
         jPanel9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel5.setText("Tên khách hàng");
         jLabel5.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel9.add(jLabel5);
 
         txtTenKH.setEditable(false);
-        txtTenKH.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtTenKH.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtTenKH.setText("Nguyễn Văn A");
         txtTenKH.setFocusable(false);
         txtTenKH.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -174,13 +174,13 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel11.setPreferredSize(new java.awt.Dimension(340, 40));
         jPanel11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel7.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel7.setText("Tên nhân viên");
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel11.add(jLabel7);
 
         txtTenNV.setEditable(false);
-        txtTenNV.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtTenNV.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtTenNV.setText("Vũ Nương");
         txtTenNV.setFocusable(false);
         txtTenNV.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -274,14 +274,14 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
-        jLabel9.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Roboto", 1, 14)); 
         jLabel9.setForeground(new java.awt.Color(255, 51, 0));
         jLabel9.setText("Tổng hóa đơn:");
         jLabel9.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel12.add(jLabel9);
 
         txtTong.setEditable(false);
-        txtTong.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); // NOI18N
+        txtTong.setFont(new java.awt.Font("Roboto Mono Medium", 0, 14)); 
         txtTong.setForeground(new java.awt.Color(255, 51, 0));
         txtTong.setText("1000000");
         txtTong.setFocusable(false);
@@ -297,7 +297,7 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel16.setPreferredSize(new java.awt.Dimension(500, 30));
         jPanel16.setLayout(new java.awt.BorderLayout());
 
-        lblThuoc.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        lblThuoc.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         lblThuoc.setForeground(new java.awt.Color(255, 255, 255));
         lblThuoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblThuoc.setText("Thông tin thuốc");
@@ -313,7 +313,7 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
 
         btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnHuy.setForeground(new java.awt.Color(255, 255, 255));
         btnHuy.setText("HỦY BỎ");
         btnHuy.setBorderPainted(false);
@@ -329,7 +329,7 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel8.add(btnHuy);
 
         btnPrint.setBackground(new java.awt.Color(0, 153, 153));
-        btnPrint.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); // NOI18N
+        btnPrint.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
         btnPrint.setForeground(new java.awt.Color(255, 255, 255));
         btnPrint.setText("In hóa đơn");
         btnPrint.setBorderPainted(false);
@@ -352,24 +352,24 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-    }//GEN-LAST:event_btnHuyActionPerformed
+    }
 
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {
         int row = table.getSelectedRow();
         byte[] thuocImage = listCTDH.get(row).getThuoc().getHinhAnh();
         ImageIcon imageIcon = new ImageIcon(
                 new ImageIcon(thuocImage).getImage().getScaledInstance(txtHinhAnh.getWidth(), txtHinhAnh.getHeight(), Image.SCALE_SMOOTH));
         txtHinhAnh.setIcon(imageIcon);
-    }//GEN-LAST:event_tableMouseClicked
+    }
 
-    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, WriterException, IOException {//GEN-FIRST:event_btnPrintActionPerformed
+    private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) throws MalformedURLException, WriterException, IOException {
 //        DatHang hoaDon = listCTDH.get(0).getDatHang();
 //        new WritePDF().printHoaDon(hoaDon, listCTDH);
-    }//GEN-LAST:event_btnPrintActionPerformed
+    }
 
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnPrint;
