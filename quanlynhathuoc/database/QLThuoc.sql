@@ -142,6 +142,23 @@ VALUES
     ('745KCI1KX', N'Ninh Tâm Vương Hồng Bàng', (SELECT BulkColumn FROM Openrowset(BULK 'D:\Minh\Hoc\Code\KLTN_HM\quanlynhathuoc\src\product-image\ninh-tam-vuong-hong-bang.png', SINGLE_BLOB) as image), N'L-Carnitine, Taurine, Đan sâm, Khổ sâm bắc, Nattokinase, Hoàng đằng, Magie, Tá dược vừa đủ', 'CVB123ERT', 'ZXC311QWE', 'XCVSDF124', 1054, 165000, 180000, '2026-08-15', '2028-08-15');
 go
 
+SELECT hanSuDung FROM Thuoc WHERE hanSuDung IS NULL OR hanSuDung < '2025-01-01';
+
+     SELECT 
+            CASE
+                WHEN hanSuDung >= GETDATE() THEN N'Còn hạn sử dụng'
+                ELSE N'Đã hết hạn sử dụng'
+            END AS trangThai,
+            COUNT(*) AS soLuongThuoc,
+            SUM(soLuongTon) AS tongSoLuong
+        FROM Thuoc
+        GROUP BY CASE
+                     WHEN hanSuDung >= GETDATE() THEN N'Còn hạn sử dụng'
+                     ELSE N'Đã hết hạn sử dụng'
+                 END;
+
+
+
 CREATE TABLE PhieuDatHang (
     idPDH NVARCHAR(10) NOT NULL PRIMARY KEY,
     thoiGian DATETIME NOT NULL,

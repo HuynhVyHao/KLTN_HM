@@ -157,7 +157,7 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Roboto", 2, 14)); 
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("Thuốc hiện có trong kho");
+        jLabel3.setText("Thuốc hiện có đang bán");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);

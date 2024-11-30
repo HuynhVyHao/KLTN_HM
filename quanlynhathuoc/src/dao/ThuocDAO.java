@@ -41,6 +41,43 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
 
     private final String UPDATE_SO_LUONG = "UPDATE Thuoc SET soLuongTon=? WHERE idThuoc = ?";
 
+ // Truy vấn SQL để lấy thống kê thuốc còn hạn sử dụng và đã hết hạn sử dụng
+    private final String SELECT_THONG_KE_THUOC = """
+        SELECT 
+            CASE
+                WHEN hanSuDung >= GETDATE() THEN N'Còn hạn sử dụng'
+                ELSE N'Đã hết hạn sử dụng'
+            END AS trangThai,
+            COUNT(*) AS soLuongThuoc,
+            SUM(soLuongTon) AS tongSoLuong
+        FROM Thuoc
+        GROUP BY CASE
+                     WHEN hanSuDung >= GETDATE() THEN N'Còn hạn sử dụng'
+                     ELSE N'Đã hết hạn sử dụng'
+                 END;
+    """;
+
+    // Phương thức để lấy thống kê thuốc
+    public List<String[]> selectThongKeThuoc() {
+        List<String[]> resultList = new ArrayList<>();
+        try {
+            ResultSet rs = JDBCConnection.query(SELECT_THONG_KE_THUOC);
+            while (rs.next()) {
+                String trangThai = rs.getString("trangThai");
+                int soLuongThuoc = rs.getInt("soLuongThuoc");
+                int tongSoLuong = rs.getInt("tongSoLuong");
+
+                // Thêm kết quả thống kê vào danh sách
+                resultList.add(new String[]{trangThai, String.valueOf(soLuongThuoc), String.valueOf(tongSoLuong)});
+            }
+            rs.getStatement().getConnection().close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return resultList;
+    }
+
+    
     @Override
     public void create(Thuoc e) {
         JDBCConnection.update(INSERT_SQL, e.getId(), e.getTenThuoc(), e.getHinhAnh(), e.getThanhPhan(), e.getDonViTinh().getId(),

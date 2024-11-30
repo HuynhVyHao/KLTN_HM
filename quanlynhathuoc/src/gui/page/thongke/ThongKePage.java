@@ -33,6 +33,7 @@ public class ThongKePage extends javax.swing.JPanel {
 
         tabPane.addTab("Tổng quan", new ThongKeTongQuanPage());
         tabPane.addTab("Doanh thu", new ThongKeDoanhThuPage());
+        tabPane.addTab("Hạn Sử Dụng", new ThongKeHSDThuocPage());
         
         this.add(tabPane);
     }
