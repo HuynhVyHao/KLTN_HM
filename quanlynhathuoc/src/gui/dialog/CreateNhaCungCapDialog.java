@@ -1,6 +1,11 @@
 package gui.dialog;
 
+import java.util.List;
+
+import controller.DanhMucController;
 import controller.NhaCungCapController;
+import dao.DanhMucDAO;
+import entity.DanhMuc;
 import entity.NhaCungCap;
 import gui.page.NhaCungCapPage;
 import utils.MessageDialog;
@@ -12,16 +17,30 @@ public class CreateNhaCungCapDialog extends javax.swing.JDialog {
 
     private NhaCungCapController NCC_CON = new NhaCungCapController();
     private NhaCungCapPage NCC_GUI;
+	private final List<DanhMuc> list = new DanhMucController().getAllList();
 
     public CreateNhaCungCapDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        loadDanhMuc();
     }
-
     public CreateNhaCungCapDialog(java.awt.Frame parent, boolean modal, NhaCungCapPage NCC_GUI) {
         super(parent, modal);
         initComponents();
         this.NCC_GUI = NCC_GUI;
+        loadDanhMuc();  // Load danh mục vào combobox khi dialog được mở
+    }
+
+    // Load danh mục into the combobox
+    private void loadDanhMuc() {
+        try {
+            cboDanhMuc.removeAllItems();  // Clear any previous items
+            for (DanhMuc vt : list) {
+                cboDanhMuc.addItem(vt.getTen());  // Add each danh mục name to the combobox
+            }
+        } catch (Exception e) {
+            MessageDialog.error(this, "Lỗi nạp danh mục: " + e.getMessage());
+        }
     }
 
     private boolean isValidateFields() {
@@ -46,13 +65,18 @@ public class CreateNhaCungCapDialog extends javax.swing.JDialog {
         return true;
     }
 
-    private NhaCungCap getInputFields() {
-        String id = RandomGenerator.getRandomId();
-        String hoTen = txtTen.getText().trim();
-        String sdt = txtSdt.getText().trim();
-        String diaChi = txtDiaChi.getText().trim();
 
-        return new NhaCungCap(id, hoTen, sdt, diaChi);
+    // Get input data from fields
+    private NhaCungCap getInputFields() {
+        String id = RandomGenerator.getRandomId();  // Generate random ID
+        String hoTen = txtTen.getText().trim();  // Get the name
+        String sdt = txtSdt.getText().trim();  // Get the phone number
+        String diaChi = txtDiaChi.getText().trim();  // Get the address
+        String idDM = list.get(cboDanhMuc.getSelectedIndex()).getId();  // Get the selected danh mục ID
+        DanhMuc danhMuc = new DanhMucController().selectById(idDM);  // Get the danh mục object
+
+        // Create and return the NhaCungCap object
+        return new NhaCungCap(id, hoTen, sdt, diaChi, danhMuc);
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +97,9 @@ public class CreateNhaCungCapDialog extends javax.swing.JDialog {
         jPanel8 = new javax.swing.JPanel();
         btnHuy = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        jPanelDanhMuc = new javax.swing.JPanel();
+        jLabelDanhMuc = new javax.swing.JLabel();
+        cboDanhMuc = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -141,6 +168,23 @@ public class CreateNhaCungCapDialog extends javax.swing.JDialog {
         jPanel20.add(txtDiaChi);
 
         jPanel1.add(jPanel20);
+        
+     // Trong initComponents
+        jPanelDanhMuc.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelDanhMuc.setPreferredSize(new java.awt.Dimension(500, 40));
+        jPanelDanhMuc.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+
+        jLabelDanhMuc.setFont(new java.awt.Font("Roboto", 0, 14));
+        jLabelDanhMuc.setText("Danh mục");
+        jLabelDanhMuc.setMaximumSize(new java.awt.Dimension(44, 40));
+        jLabelDanhMuc.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanelDanhMuc.add(jLabelDanhMuc);
+
+//        cboDanhMuc.setFont(new java.awt.Font("Roboto", 0, 14));
+        cboDanhMuc.setPreferredSize(new java.awt.Dimension(300, 40));
+        jPanelDanhMuc.add(cboDanhMuc);
+
+        jPanel1.add(jPanelDanhMuc);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -200,6 +244,7 @@ public class CreateNhaCungCapDialog extends javax.swing.JDialog {
 
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnHuy;
+    private javax.swing.JComboBox<String> cboDanhMuc;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;
@@ -209,6 +254,8 @@ public class CreateNhaCungCapDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanelDanhMuc;
+    private javax.swing.JLabel jLabelDanhMuc;
     private javax.swing.JLabel lblHoTen;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtSdt;

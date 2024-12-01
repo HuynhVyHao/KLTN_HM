@@ -21,6 +21,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
@@ -85,13 +86,19 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         cboxSearch.setModel(model);
     }
 
+ 
+
+    // Phương thức xử lý khi tạo lại bảng ban đầu
     private void tableThuocLayout() {
-        lblThuoc.setText(" thông tin thuốc".toUpperCase());
+        lblThuoc.setText("Thông tin thuốc".toUpperCase());
+        
+        // Tạo header cho bảng thuốc
         String[] header = new String[]{"STT", "Mã thuốc", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính", "Số lượng tồn", "Giá nhập"};
         modal = new DefaultTableModel();
         modal.setColumnIdentifiers(header);
         table.setModel(modal);
 
+        // Căn chỉnh các cột của bảng
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         table.setDefaultRenderer(Object.class, centerRenderer);
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);
@@ -100,22 +107,33 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         table.getColumnModel().getColumn(2).setPreferredWidth(200);
         table.getColumnModel().getColumn(3).setPreferredWidth(200);
 
-        loadTable(listThuoc);
-        sortTable();
+        // Lọc danh sách thuốc khi bắt đầu và khi nhà cung cấp thay đổi
+        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
+        if (selectedIndex != -1) { // Kiểm tra chỉ số hợp lệ
+            NhaCungCap selectedNCC = listNCC.get(selectedIndex); // Lấy nhà cung cấp đã chọn
+            List<Thuoc> filteredList = filterThuocByNhaCungCap(selectedNCC); // Lọc danh sách thuốc theo danh mục của nhà cung cấp
+            loadTable(filteredList); // Gọi phương thức loadTable với danh sách thuốc đã lọc
+        } else {
+            System.out.println("Vui lòng chọn nhà cung cấp.");
+        }
+
+        sortTable(); // Gọi phương thức sắp xếp bảng nếu cần
     }
 
-    public void loadTable(List<Thuoc> list) {
-        modal.setRowCount(0);
+ // Phương thức cập nhật bảng thuốc
+    private void loadTable(List<Thuoc> list) {
+        modal.setRowCount(0); // Xóa dữ liệu hiện tại trong bảng
 
-        listThuoc = list;
         int stt = 1;
-        for (Thuoc e : listThuoc) {
-            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getTenThuoc(), e.getDanhMuc().getTen(),
-                e.getXuatXu().getTen(), e.getDonViTinh().getTen(), e.getSoLuongTon(), Formatter.FormatVND(e.getGiaNhap())});
+        for (Thuoc thuoc : list) {
+            // Thêm mỗi dòng dữ liệu vào bảng
+            modal.addRow(new Object[]{String.valueOf(stt), thuoc.getId(), thuoc.getTenThuoc(),
+                    thuoc.getDanhMuc().getTen(), thuoc.getXuatXu().getTen(), thuoc.getDonViTinh().getTen(),
+                    thuoc.getSoLuongTon(), Formatter.FormatVND(thuoc.getGiaNhap())});
             stt++;
         }
     }
-
+    
     private void sortTable() {
         table.setAutoCreateRowSorter(true);
         TableSorter.configureTableColumnSorter(table, 0, TableSorter.STRING_COMPARATOR);
@@ -150,6 +168,8 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
             stt++;
         }
         txtTong.setText(Formatter.FormatVND(sum));
+        // Cập nhật trạng thái của ComboBox nhà cung cấp
+        toggleNhaCungCapComboBox();
     }
 
     private void billLayout() {
@@ -853,6 +873,8 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         if (MessageDialog.confirm(this, "Bạn có chắc muốc xóa khỏi giỏ hàng?", "Xóa thuốc khỏi giỏ hàng")) {
             listCTPN.remove(tableCart.getSelectedRow());
             loadTableCTHD(listCTPN);
+            // Cập nhật trạng thái của ComboBox nhà cung cấp
+            toggleNhaCungCapComboBox();
         }
     }
 
@@ -893,10 +915,58 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         dialog.setVisible(true);
     }
 
+  
+    // Sự kiện thay đổi nhà cung cấp
     private void cboxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {
-        String idNCC = listNCC.get(cboxNhaCungCap.getSelectedIndex()).getId();
-        NhaCungCap ncc = new NhaCungCapController().selectById(idNCC);
-        txtSdtNcc.setText(ncc.getSdt());
+        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
+//        if (!listCTPN.isEmpty()) {
+//            // Nếu giỏ hàng có thuốc, khóa ComboBox
+//            JOptionPane.showMessageDialog(this, "Giỏ hàng đã có thuốc. Không thể thay đổi nhà cung cấp.");
+//            return;  // Không thực hiện thay đổi nhà cung cấp
+//        }
+        // Kiểm tra chỉ số hợp lệ
+        if (selectedIndex != -1) {
+            // Lấy nhà cung cấp đã chọn
+            String idNCC = listNCC.get(selectedIndex).getId();
+            NhaCungCap ncc = new NhaCungCapController().selectById(idNCC);
+            txtSdtNcc.setText(ncc.getSdt());
+
+            // Lọc danh sách thuốc theo nhà cung cấp mới
+            List<Thuoc> filteredList = filterThuocByNhaCungCap(ncc);
+            loadTable(filteredList); // Cập nhật lại bảng thuốc sau khi lọc
+        } else {
+            System.out.println("Vui lòng chọn nhà cung cấp.");
+        }
+    }
+
+    private void toggleNhaCungCapComboBox() {
+        // Nếu giỏ hàng có thuốc, khóa ComboBox
+        if (!listCTPN.isEmpty()) {
+            cboxNhaCungCap.setEnabled(false); // Không cho phép thay đổi nhà cung cấp
+        } else {
+            cboxNhaCungCap.setEnabled(true);  // Cho phép thay đổi nhà cung cấp khi giỏ hàng trống
+        }
+    }
+
+    
+ // Phương thức lọc danh sách thuốc theo nhà cung cấp
+    private List<Thuoc> filterThuocByNhaCungCap(NhaCungCap nhaCungCap) {
+        List<Thuoc> filteredList = new ArrayList<>();
+        
+        // Lấy lại toàn bộ danh sách thuốc
+        List<Thuoc> listThuoc = THUOC_CON.getAllList(); // Lấy lại danh sách thuốc từ nguồn gốc
+
+        // Lọc danh sách thuốc theo ID danh mục thuốc của nhà cung cấp
+        for (Thuoc thuoc : listThuoc) {
+            // Kiểm tra nếu thuốc có danh mục trùng với danh mục của nhà cung cấp
+            if (thuoc.getDanhMuc().getId().equals(nhaCungCap.getDanhMuc().getId())) {
+                filteredList.add(thuoc);
+            }
+        }
+
+        // In ra số lượng thuốc sau khi lọc
+        System.out.println("Số lượng thuốc sau khi lọc: " + filteredList.size());
+        return filteredList;
     }
 
     private javax.swing.JPanel actionPanel;

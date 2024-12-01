@@ -1,6 +1,7 @@
 package dao;
 
 import connectDB.JDBCConnection;
+import entity.DanhMuc;
 import entity.NhaCungCap;
 
 import java.sql.ResultSet;
@@ -9,21 +10,28 @@ import java.util.List;
 
 public class NhaCungCapDAO extends InterfaceDAO<NhaCungCap, String> {
 
-    private final String INSERT_SQL = "INSERT INTO NhaCungCap values(?,?,?,?)";
-    private final String UPDATE_SQL = "UPDATE NhaCungCap SET tenNCC=?, sdt=?, diaChi=? where idNCC=?";
+    private final String INSERT_SQL = "INSERT INTO NhaCungCap values(?,?,?,?,?)";
+    private final String UPDATE_SQL = "UPDATE NhaCungCap SET tenNCC=?, sdt=?, diaChi=?, idDM = ? where idNCC=?";
     private final String DELETE_BY_ID = "DELETE from NhaCungCap where idNCC = ?";
 
-    private final String SELECT_ALL_SQL = "SELECT * FROM NhaCungCap";
-    private final String SELECT_BY_ID = "SELECT * FROM NhaCungCap WHERE idNCC = ?";
+    private final String SELECT_ALL_SQL = "SELECT NhaCungCap.*, DanhMuc.ten AS tenDM "
+            + "FROM NhaCungCap "
+            + "INNER JOIN DanhMuc ON NhaCungCap.idDM = DanhMuc.idDM";  // Thêm JOIN với bảng DanhMuc
+
+private final String SELECT_BY_ID = "SELECT NhaCungCap.*, DanhMuc.ten AS tenDM "
+            + "FROM NhaCungCap "
+            + "INNER JOIN DanhMuc ON NhaCungCap.idDM = DanhMuc.idDM "
+            + "WHERE NhaCungCap.idNCC = ?";
+
 
     @Override
     public void create(NhaCungCap e) {
-        JDBCConnection.update(INSERT_SQL, e.getId(), e.getTen(), e.getSdt(), e.getDiaChi());
+        JDBCConnection.update(INSERT_SQL, e.getId(), e.getTen(), e.getSdt(), e.getDiaChi(),e.getDanhMuc().getId());
     }
 
     @Override
     public void update(NhaCungCap e) {
-        JDBCConnection.update(UPDATE_SQL, e.getTen(), e.getSdt(), e.getDiaChi(), e.getId());
+        JDBCConnection.update(UPDATE_SQL, e.getTen(), e.getSdt(), e.getDiaChi(),e.getDanhMuc().getId(), e.getId());
     }
 
     @Override
@@ -42,6 +50,13 @@ public class NhaCungCapDAO extends InterfaceDAO<NhaCungCap, String> {
                 e.setTen(rs.getString("tenNCC"));
                 e.setSdt(rs.getString("sdt"));
                 e.setDiaChi(rs.getString("diaChi"));
+                
+                // Create DanhMuc object
+                DanhMuc danhMuc = new DanhMuc();
+                danhMuc.setId(rs.getString("idDM"));
+                danhMuc.setTen(rs.getString("tenDM"));
+                e.setDanhMuc(danhMuc);
+                
                 listE.add(e);
             }
             rs.getStatement().getConnection().close();

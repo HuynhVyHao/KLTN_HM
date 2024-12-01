@@ -510,6 +510,9 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
 
         txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 14)); 
         txtSoLuong.setPreferredSize(new java.awt.Dimension(300, 40));
+        txtSoLuong.setEnabled(false); // Vô hiệu hóa
+        // Hoặc
+        txtSoLuong.setEditable(false); // Chỉ cho phép đọc
         jPanel20.add(txtSoLuong);
 
         jPanel1.add(jPanel20);

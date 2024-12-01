@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
@@ -43,7 +44,7 @@ public class NhaCungCapPage extends javax.swing.JPanel {
 
     private void tableLayout() {
         lblTable.setText("danh sách thông tin nhà cung cấp".toUpperCase());
-        String[] header = new String[]{"STT", "Mã nhà cung cấp", "Tên nhà cung cấp", "Số điện thoại", "Địa chỉ"};
+        String[] header = new String[]{"STT", "Mã nhà cung cấp", "Tên nhà cung cấp", "Số điện thoại", "Địa chỉ","Cung Cấp"};
         DefaultTableModel modal = new DefaultTableModel();
         modal.setColumnIdentifiers(header);
         table.setModel(modal);
@@ -54,6 +55,24 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         table.getColumnModel().getColumn(0).setPreferredWidth(30);
         table.getColumnModel().getColumn(2).setPreferredWidth(200);
+        // Đặt chiều rộng cho cột "Địa chỉ"
+        table.getColumnModel().getColumn(4).setPreferredWidth(300);
+
+        // Tạo renderer cho việc xuống dòng trong cột "Địa chỉ"
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer() {
+            @Override
+            public void setValue(Object value) {
+                if (value != null) {
+                    setText("<html>" + value.toString().replaceAll("\n", "<br/>") + "</html>");
+                }
+                super.setValue(value);
+            }
+        };
+        table.getColumnModel().getColumn(4).setCellRenderer(renderer);
+
+        // Cho phép tự động điều chỉnh chiều cao của các dòng
+        table.setRowHeight(50);
+
 
         loadTable();
         sortTable();
@@ -71,7 +90,7 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         List<NhaCungCap> list = NCC_CON.getAllList();
         int stt = 1;
         for (NhaCungCap e : list) {
-            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getTen(), e.getSdt(), e.getDiaChi()});
+            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getTen(), e.getSdt(), e.getDiaChi(),e.getDanhMuc().getTen()});
             stt++;
         }
     }

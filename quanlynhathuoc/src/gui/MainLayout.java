@@ -496,7 +496,7 @@ public class MainLayout extends javax.swing.JFrame {
 //-----------------THUỐC--------------------------------------------	
 		// Tạo menu thả xuống JPopupMenu
 		jpMenuThuoc = new JPopupMenu();
-		jpMenuThuoc.setPreferredSize(new java.awt.Dimension(170, 120)); // Điều chỉnh kích thước tổng thể của menu
+		jpMenuThuoc.setPreferredSize(new java.awt.Dimension(170, 170)); // Điều chỉnh kích thước tổng thể của menu
 		jpMenuThuoc.setBorderPainted(false);
 
 		jpMenuThuoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

@@ -1,6 +1,7 @@
 package controller;
 
 import dao.NhaCungCapDAO;
+import entity.DanhMuc;
 import entity.NhaCungCap;
 import gui.page.BaoCaoNhaCungCapPage;
 import gui.page.NhaCungCapPage;
@@ -138,13 +139,15 @@ public class NhaCungCapController extends InterfaceConTroller<NhaCungCap, String
                     String ten = excelRow.getCell(1).getStringCellValue();
                     String sdt = excelRow.getCell(2).getStringCellValue();
                     String diaChi = excelRow.getCell(3).getStringCellValue();
+                    String idDM = excelRow.getCell(4).getStringCellValue();
+					DanhMuc danhMuc = new DanhMucController().selectById(idDM);
 
                     if (Validation.isEmpty(id) || Validation.isEmpty(ten)
                             || Validation.isEmpty(sdt) || !isPhoneNumber(sdt)
-                            || Validation.isEmpty(diaChi)) {
+                            || Validation.isEmpty(diaChi) || Validation.isEmpty(idDM)) {
                         check += 1;
                     } else {
-                        NhaCungCap ncc = new NhaCungCap(id, ten, sdt, diaChi);
+                        NhaCungCap ncc = new NhaCungCap(id, ten, sdt, diaChi, danhMuc);
                         NCC_DAO.create(ncc);
                         NCC_GUI.loadTable();
                     }

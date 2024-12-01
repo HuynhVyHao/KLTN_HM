@@ -16,10 +16,10 @@ go
 
 INSERT INTO NhanVien (idNV, hoTen, sdt, gioiTinh, namSinh, ngayVaoLam)
 VALUES
-('ADMIN', N'Phạm Văn An', '0123456789', N'Nam', 1990, '2025-01-01'),
-('LKD2SFSL1', N'Nguyễn Thị Hạnh', '0987654321', N'Nữ', 1995, '2025-02-12'),
-('IU42JDKJ2', N'Lê Hoàng Nam', '0911223344', N'Nam', 1988, '2025-02-15'),
-('DKJFJO1K2', N'Trần Thuỳ Dương', '0933667788', N'Nữ', 1993, '2025-02-20');
+('ADMIN', N'Huỳnh Văn Minh', '0376993928', N'Nam', 2002, '2023-05-18'),
+('LKD2SFSL1', N'Nguyễn Thị Tường Vy', '0989998111', N'Nữ', 1999, '2023-02-12'),
+('IU42JDKJ2', N'Trần Văn Nam', '0989998222', N'Nam', 2000, '2023-02-15'),
+('DKJFJO1K2', N'Nguyễn Thị Mai', '0989998333', N'Nữ', 2001, '2024-02-20');
 go
 
 CREATE TABLE VaiTro (
@@ -61,17 +61,16 @@ go
 
 INSERT INTO KhachHang (idKH, hoTen, sdt, gioiTinh, ngayThamGia)
 VALUES
-('ASDASN131', N'Phạm Minh Hùng', '0911122233', N'Nam', '2024-02-15'),
-('12ZAS1SX1', N'Bùi Ngọc Hà', '0944455566', N'Nữ', '2024-02-15'),
-('SDF3F13DZ', N'Trần Quốc Toàn', '0933344455', N'Nam', '2024-02-15'),
-('ABCD12345', N'Ngô Thùy Dung', '0966677788', N'Nữ', '2024-02-15'),
-('XYZ98765Z', N'Vũ Hoàng Long', '0922233445', N'Nam', '2024-02-15'),
-('KLM45678X', N'Phan Thị Vân', '0909988776', N'Nữ', '2024-02-15'),
-('PQR23456V', N'Lê Quốc Bảo', '0915566778', N'Nam', '2024-02-15'),
-('789ABCDEF', N'Huỳnh Ngọc Trâm', '0956677889', N'Nữ', '2024-02-15'),
-('456ZYXWVQ', N'Nguyễn Thị Kim', '0907788991', N'Nữ', '2024-02-15'),
-('QWE78901S', N'Đỗ Hoàng Quân', '0928899002', N'Nam', '2024-02-15');
-
+('ASDASN131', N'Phạm Tuấn Anh', '0911122233', N'Nam', '2024-02-15'),
+('12ZAS1SX1', N'Phạm Ngọc Mai', '0944455566', N'Nữ', '2024-02-15'),
+('SDF3F13DZ', N'Trần Đình Ngoạn', '0933344455', N'Nam', '2024-02-15'),
+('ABCD12345', N'Ngô Lan Hương', '0966677788', N'Nữ', '2024-02-15'),
+('XYZ98765Z', N'Vũ Đình Lâm', '0922233445', N'Nam', '2024-02-15'),
+('KLM45678X', N'Phan Thị Nữ', '0909988776', N'Nữ', '2024-02-15'),
+('PQR23456V', N'Lê Tấn Nam', '0915566778', N'Nam', '2024-02-15'),
+('789ABCDEF', N'Ngô Thị Ân', '0956677889', N'Nữ', '2024-02-15'),
+('456ZYXWVQ', N'Nguyễn Ngọc Linh', '0907788991', N'Nữ', '2024-02-15'),
+('QWE78901S', N'Nguyễn Đăng Khoa', '0928899002', N'Nam', '2024-02-15');
 go
 
 CREATE TABLE DonViTinh (
@@ -79,6 +78,7 @@ CREATE TABLE DonViTinh (
     ten NVARCHAR(255) NOT NULL,
 );
 go
+
 INSERT INTO DonViTinh (idDVT, ten)
 VALUES
 	('CVBDF123T', N'Viên'),
@@ -93,6 +93,7 @@ CREATE TABLE XuatXu (
     ten NVARCHAR(255) NOT NULL,
 );
 go
+
 INSERT INTO XuatXu (idXX, ten)
 VALUES
 	('XCVSDF123', N'Việt Nam'),
@@ -106,6 +107,7 @@ CREATE TABLE DanhMuc (
     ten NVARCHAR(255) NOT NULL,
 );
 go
+
 INSERT INTO DanhMuc (idDM, ten)
 VALUES
 	('ZXC311QWE', N'Hệ tim mạch & tạo máu'),
@@ -191,6 +193,7 @@ CREATE TABLE HoaDon (
     FOREIGN KEY (idKH) REFERENCES KhachHang(idKH)
 );
 go
+
 INSERT INTO HoaDon (idHD, thoiGian, idNV, idKH, tongTien)
 VALUES
     ('V1DFWISZ0', '2024-04-01 14:21:13', 'DKJFJO1K2', 'ABCD12345', 105000),
@@ -224,6 +227,7 @@ CREATE TABLE ChiTietHoaDon (
 	FOREIGN KEY(idThuoc) REFERENCES Thuoc(idThuoc),
 );
 go
+
 INSERT INTO ChiTietHoaDon(idHD, idThuoc, soLuong, donGia)
 VALUES
 	('V1DFWISZ0', '798E63U16', 1, 105000),
@@ -257,25 +261,20 @@ VALUES
 	('MNXS72JXA', 'X12IFO4BZ', 1, 25000);
 go
 
-
-
 CREATE TABLE NhaCungCap (
     idNCC NVARCHAR(10) NOT NULL PRIMARY KEY,
     tenNCC NVARCHAR(255) NOT NULL,
 	sdt NVARCHAR(10) NOT NULL,
 	diaChi NVARCHAR(255) NOT NULL,
+	idDM NVARCHAR(10) NOT NULL FOREIGN KEY REFERENCES DanhMuc(idDM),
 );
 go
 
-  INSERT INTO NhaCungCap (idNCC, tenNCC, sdt, diaChi)
+  INSERT INTO NhaCungCap (idNCC, tenNCC, sdt, diaChi,idDM)
 VALUES
-    ('XCZXWE123', N'Công ty Dược phẩm Hưng Phát', '0283899999', N'130 Nguyễn Trãi, Phường Bến Thành, Quận 1, TP.HCM'),
-    ('23HUSZ173', N'Công ty Dược phẩm An Khang', '0243833333', N'110 Lê Văn Lương, Phường Tân Kiểng, Quận 7, TP.HCM'),
-    ('ZXHUWE12S', N'Hệ thống nhà thuốc An Bình', '0283777888', N'150 Đinh Tiên Hoàng, Phường 3, Quận Bình Thạnh, TP.HCM'),
-    ('N4M35KL1B', N'Công ty Dược phẩm Minh Phúc', '0243599999', N'75 Trần Duy Hưng, Quận Cầu Giấy, Hà Nội'),
-    ('XCHUWE123', N'Công ty TNHH Dược Hồng Quang', '0243834455', N'180 Trường Chinh, Quận Thanh Xuân, Hà Nội'),
-    ('2B32N31B2', N'Công ty Dược phẩm Thanh Tâm', '0285466111', N'600 Đường Nguyễn Thị Thập, Phường Tân Phong, Quận 7, TP.HCM');
-
+    ('23HUSZ173', N'Công ty Dược phẩm An Khang', '0243833333', N'110 Lê Văn Lương, Phường Tân Kiểng, Quận 7, TP.HCM','ZXC311QWE'),
+    ('ZXHUWE12S', N'Hệ thống nhà thuốc An Bình', '0283777888', N'150 Đinh Tiên Hoàng, Phường 3, Quận Bình Thạnh, TP.HCM','ZXC321QWE'),
+    ('2B32N31B2', N'Công ty Dược phẩm Thanh Tâm', '0285466111', N'600 Đường Nguyễn Thị Thập, Phường Tân Phong, Quận 7, TP.HCM','ZAQ321QWE');
 go
 
 CREATE TABLE PhieuNhap (
@@ -289,11 +288,9 @@ go
 
 INSERT INTO PhieuNhap(idPN, thoiGian, idNV, idNCC, tongTien)
 VALUES
-    ('PPJ9DNBL7', '2024-03-04 13:12:42', 'DKJFJO1K2', 'XCZXWE123', 10500000),
     ('RXPXRWR36', '2024-03-05 11:31:26', 'ADMIN', '23HUSZ173', 19800000),
     ('ZQKV59121', '2024-03-06 07:18:32', 'LKD2SFSL1', 'ZXHUWE12S', 6000000),
-    ('C45PX5VYN', '2024-03-07 10:26:21', 'IU42JDKJ2', 'XCHUWE123', 77000000),
-    ('A4B3VKX8V', '2024-03-11 08:35:37', 'IU42JDKJ2', 'XCHUWE123', 9500000);
+    ('C45PX5VYN', '2024-03-07 10:26:21', 'IU42JDKJ2', '2B32N31B2', 77000000);
 go
 
 CREATE TABLE ChiTietPhieuNhap (
@@ -309,12 +306,10 @@ go
 
 INSERT INTO ChiTietPhieuNhap(idPN, idThuoc, soLuong, donGia)
 VALUES
-	('PPJ9DNBL7', '798E63U16', 100, 105000),
 	('RXPXRWR36', '745KCI1KX', 110, 180000),
 	('ZQKV59121', 'XRBIFO4BZ', 200, 30000),
 	('C45PX5VYN', 'XRZXFO4BZ', 500, 4000),
-	('C45PX5VYN', 'VFZCHLHIE', 300, 250000),
-	('A4B3VKX8V', 'ESMJMM7T1', 100, 95000);
+	('C45PX5VYN', 'VFZCHLHIE', 300, 250000);
 go
 
 
