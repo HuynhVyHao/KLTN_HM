@@ -567,14 +567,25 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 	}
 
 	private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
-		if (isValidateFields()) {
-			Thuoc e = getInputFields();
-			THUOC_CON.create(e);
-			MessageDialog.info(this, "Thêm thành công!");
-			THUOC_GUI.loadTable(THUOC_CON.getAllList());
-			this.dispose();
-		}
+	    if (isValidateFields()) {
+	        String tenThuoc = txtTenThuoc.getText().trim();
+	        
+	        // Kiểm tra trùng lặp tên thuốc
+	        if (THUOC_CON.isDuplicate(tenThuoc)) {
+	            MessageDialog.warring(this, "Tên thuốc '" + tenThuoc + "' đã tồn tại trong cơ sở dữ liệu!");
+	            txtTenThuoc.requestFocus();
+	            return;
+	        }
+	        
+	        // Nếu không trùng lặp, thêm thuốc
+	        Thuoc e = getInputFields();
+	        THUOC_CON.create(e);
+	        MessageDialog.info(this, "Thêm thành công!");
+	        THUOC_GUI.loadTable(THUOC_CON.getAllList());
+	        this.dispose();
+	    }
 	}
+
 
 	private void btnChooseImageActionPerformed(java.awt.event.ActionEvent evt) {
 		JFileChooser fileChooser = new JFileChooser();

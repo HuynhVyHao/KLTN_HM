@@ -14,9 +14,12 @@ import entity.TaiKhoan;
 import entity.Thuoc;
 import gui.MainLayout;
 import gui.dialog.CreateNhaCungCapDialog;
+import gui.dialog.UpdateThuocDialog;
+
 import java.awt.Image;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -90,7 +93,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
  
 
     // Phương thức xử lý khi tạo lại bảng ban đầu
-    private void tableThuocLayout() {
+    public void tableThuocLayout() {
         lblThuoc.setText("Thông tin thuốc".toUpperCase());
         
         // Tạo header cho bảng thuốc
@@ -203,6 +206,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
     }
 
     private boolean isValidInputChiTietHoaDon() {
+        // Kiểm tra số lượng thuốc
         if (Validation.isEmpty(txtSoLuong.getText().trim())) {
             MessageDialog.warring(this, "Số lượng không được để trống!");
             txtSoLuong.requestFocus();
@@ -211,17 +215,16 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
             try {
                 int sl = Integer.parseInt(txtSoLuong.getText());
                 if (sl < 0) {
-                    MessageDialog.warring(this, "Số lượng đưa phải >= 0");
+                    MessageDialog.warring(this, "Số lượng phải >= 0");
                     txtSoLuong.requestFocus();
                     return false;
                 }
             } catch (NumberFormatException e) {
-                MessageDialog.warring(this, "Số lượng đưa phải là số!");
+                MessageDialog.warring(this, "Số lượng phải là số!");
                 txtSoLuong.requestFocus();
                 return false;
             }
         }
-
 
         // Lấy thông tin thuốc từ database
         Thuoc selectedThuoc = THUOC_CON.selectById(txtMaThuoc.getText());
@@ -235,7 +238,34 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         // Kiểm tra thuốc đã hết hạn chưa
         Date currentDate = new Date(); // Lấy ngày hiện tại
         if (selectedThuoc.getHanSuDung().before(currentDate)) {
-            MessageDialog.warring(this, "Thuốc đã hết hạn, không thể nhập!");
+            MessageDialog.warring(this, "Thuốc đã hết hạn, vui lòng cập nhật lại thuốc!");
+            
+            // Cập nhật số lượng tồn về 0 trong cơ sở dữ liệu khi thuốc hết hạn
+            selectedThuoc.setSoLuongTon(0);
+            THUOC_CON.update(selectedThuoc); // Cập nhật thuốc với số lượng tồn bằng 0
+            
+            // Mở form cập nhật thuốc khi hết hạn
+            UpdateThuocDialog dialog = new UpdateThuocDialog(null, true,this, selectedThuoc);
+            dialog.setVisible(true);
+            return false;
+        }
+
+        // Kiểm tra thuốc gần hết hạn (ví dụ: còn 1 tháng nữa hết hạn)
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, 1); // Thêm 1 tháng vào ngày hiện tại
+        Date oneMonthFromNow = cal.getTime();
+
+        if (selectedThuoc.getHanSuDung().before(oneMonthFromNow)) {
+            // Hiển thị thông báo yêu cầu người dùng nhập lô thuốc mới
+            MessageDialog.warring(this, "Thuốc sắp hết hạn. Vui lòng nhập lô thuốc mới!");
+            
+            // Cập nhật số lượng tồn về 0 trong cơ sở dữ liệu khi thuốc hết hạn
+            selectedThuoc.setSoLuongTon(0);
+            THUOC_CON.update(selectedThuoc); // Cập nhật thuốc với số lượng tồn bằng 0
+            
+            // Mở form cập nhật khi thuốc gần hết hạn
+            UpdateThuocDialog dialog = new UpdateThuocDialog(null, true,this, selectedThuoc);
+            dialog.setVisible(true);
             return false;
         }
 
@@ -249,6 +279,10 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
 
         return true;
     }
+
+
+
+
 
     private PhieuNhap getInputHoaDon() {
         String idHD = txtMaHoaDon.getText();
@@ -901,9 +935,10 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
             listCTPN.add(cthd);
             loadTableCTHD(listCTPN);
 
-            txtSoLuong.setText("");
+            txtSoLuong.setText(""); // Reset lại số lượng
         }
     }
+
 
     private void btnDeleteCartItemActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Bạn có chắc muốc xóa khỏi giỏ hàng?", "Xóa thuốc khỏi giỏ hàng")) {
@@ -1004,6 +1039,11 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         System.out.println("Số lượng thuốc sau khi lọc: " + filteredList.size());
         return filteredList;
     }
+    
+
+
+
+
 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JPanel billInfoPanel;

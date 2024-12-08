@@ -9,6 +9,7 @@ import entity.DanhMuc;
 import entity.DonViTinh;
 import entity.Thuoc;
 import entity.XuatXu;
+import gui.page.CreatePhieuNhapPage;
 import gui.page.ThuocPage;
 import java.awt.Image;
 import java.io.ByteArrayOutputStream;
@@ -35,6 +36,7 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
     private final ThuocController THUOC_CON = new ThuocController();
     private ThuocPage THUOC_GUI;
     private Thuoc thuoc;
+    private CreatePhieuNhapPage PN_GUI;
     private byte[] thuocImage;
 
     private final List<DanhMuc> listDM = new DanhMucController().getAllList();
@@ -56,7 +58,15 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         fillCombobox();
         fillInput();
     }
-
+    public UpdateThuocDialog(java.awt.Frame parent, boolean modal, CreatePhieuNhapPage PN_GUI, Thuoc thuoc) {
+        super(parent, modal);
+        initComponents();
+        this.PN_GUI = PN_GUI; // Lưu đối tượng CreatePhieuNhapPage vào biến này
+        this.thuoc = thuoc;
+        fillCombobox();
+        fillInput();
+    }
+    
     private void fillCombobox() {
         for (DanhMuc vt : listDM) {
             cboxDanhMuc.addItem(vt.getTen());
@@ -223,12 +233,14 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
             return null;
         }
 
-        // Kiểm tra xem hạn sử dụng có được chọn không
+     // Kiểm tra xem hạn sử dụng có được chọn không
         if (hanSuDung == null) {
             MessageDialog.warring(this, "Hạn sử dụng không được để trống!");
             return null;
+        } else if (hanSuDung.before(new Date())) {
+            MessageDialog.warring(this, "Hạn sử dụng phải sau ngày hiện tại!");
+            return null;
         }
-
         // Kiểm tra xem ngày sản xuất có trước hạn sử dụng không
         if (ngaySanXuat.after(hanSuDung)) {
             MessageDialog.warring(this, "Ngày sản xuất phải trước hạn sử dụng!");
@@ -605,10 +617,16 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidateFields()) {
             Thuoc e = getInputFields();
-            THUOC_CON.update(e);
-            this.dispose();
-            MessageDialog.info(this, "Cập nhập thành công!");
-            THUOC_GUI.loadTable(THUOC_CON.getAllList());
+            THUOC_CON.update(e);  // Cập nhật thuốc trong cơ sở dữ liệu
+            this.dispose();  // Đóng cửa sổ
+            MessageDialog.info(this, "Cập nhật thành công!");
+            
+            // Kiểm tra đối tượng nào đang tồn tại và gọi phương thức làm mới bảng tương ứng
+            if (THUOC_GUI != null) {
+                THUOC_GUI.loadTable(THUOC_CON.getAllList());  // Làm mới bảng thuốc trong ThuocPage
+            } else if (PN_GUI != null) {
+                PN_GUI.tableThuocLayout();  // Làm mới bảng thuốc trong CreatePhieuNhapPage
+            }
         }
     }
 

@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,6 +25,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import connectDB.JDBCConnection;
 import utils.MessageDialog;
 import utils.Validation;
 
@@ -250,5 +253,10 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 			MessageDialog.error(null, "Có " + check + " dòng dữ liệu không được thêm vào!");
 		}
 	}
+	 
+	public boolean isDuplicate(String tenThuoc) {
+	    return THUOC_DAO.isDuplicate(tenThuoc);
+	}
+	
 }
 

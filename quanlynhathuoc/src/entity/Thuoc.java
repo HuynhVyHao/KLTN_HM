@@ -23,7 +23,7 @@ public class Thuoc {
     public Thuoc() {
     }
 
-    public Thuoc(String id, String ten, byte[] hinhAnh, String thanhPhan, DonViTinh donViTinh, DanhMuc danhMuc, XuatXu xuatXu, int soLuongTon, double giaNhap, double donGia, Date hanSuDung, Date ngaySanXuat, String loaiThuoc) {
+    public Thuoc(String id, String ten, byte[] hinhAnh, String thanhPhan, DonViTinh donViTinh, DanhMuc danhMuc, XuatXu xuatXu, int soLuongTon, double giaNhap, double donGia, Date ngaySanXuat, Date hanSuDung, String loaiThuoc) {
         this.id = id;
         this.ten = ten;
         this.hinhAnh = hinhAnh;

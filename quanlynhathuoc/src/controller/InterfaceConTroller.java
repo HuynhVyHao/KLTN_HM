@@ -13,4 +13,6 @@ public abstract class InterfaceConTroller<Entity, Key> {
     abstract public List<Entity> getAllList();
 
     abstract public Entity selectById(Key id);
+
+	
 }

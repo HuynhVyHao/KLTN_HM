@@ -158,4 +158,19 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
         }
         return list.get(0); 
     } 
+    
+    public boolean isDuplicate(String tenThuoc) {
+        final String CHECK_DUPLICATE_SQL = "SELECT COUNT(*) AS count FROM Thuoc WHERE LOWER(tenThuoc) = LOWER(?)";
+        try {
+            ResultSet rs = JDBCConnection.query(CHECK_DUPLICATE_SQL, tenThuoc);
+            if (rs.next()) {
+                int count = rs.getInt("count");
+                rs.getStatement().getConnection().close();
+                return count > 0; // Nếu count > 0, tức là đã có thuốc trùng lặp
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
 }
