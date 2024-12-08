@@ -1,10 +1,13 @@
 package controller;
 
 import dao.PhieuNhapDAO;
+import entity.ChiPhiThuocHetHan;
 import entity.PhieuNhap;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import connectDB.JDBCConnection;
 
 public class PhieuNhapController extends InterfaceConTroller<PhieuNhap, String> {
 
@@ -12,6 +15,11 @@ public class PhieuNhapController extends InterfaceConTroller<PhieuNhap, String> 
 
     public PhieuNhapController() {
     }
+    
+    public void createHH(ChiPhiThuocHetHan chiPhiThuocHetHan) {
+    	PN_DAO.createHH(chiPhiThuocHetHan);
+    }
+    
 
     @Override
     public void create(PhieuNhap e) {

@@ -391,4 +391,18 @@ VALUES
 go
 
 
-	
+CREATE TABLE ChiPhiThuocHetHan (
+    id INT IDENTITY(1,1) PRIMARY KEY,   -- Mã chi phí, tự tăng (IDENTITY thay cho AUTO_INCREMENT)
+    idThuoc NVARCHAR(10) NOT NULL,       -- Mã thuốc (liên kết với bảng Thuoc)
+    tongChiPhi FLOAT NOT NULL,           -- Tổng chi phí của thuốc hết hạn
+	thoiGian DATETIME NOT NULL,                     -- Thời gian đặt hàng
+    FOREIGN KEY (idThuoc) REFERENCES Thuoc(idThuoc)  -- Liên kết với bảng Thuoc
+);
+
+drop table ChiPhiThuocHetHan
+
+
+SELECT * FROM ChiPhiThuocHetHan;
+
+DELETE FROM ChiPhiThuocHetHan
+WHERE id = 1;

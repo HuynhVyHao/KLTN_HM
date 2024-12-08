@@ -6,6 +6,7 @@ import controller.ChiTietPhieuNhapController;
 import controller.NhaCungCapController;
 import controller.PhieuNhapController;
 import controller.ThuocController;
+import entity.ChiPhiThuocHetHan;
 import entity.ChiTietPhieuNhap;
 import entity.NhaCungCap;
 import entity.NhanVien;
@@ -89,8 +90,6 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(searchType);
         cboxSearch.setModel(model);
     }
-
- 
 
     // Phương thức xử lý khi tạo lại bảng ban đầu
     public void tableThuocLayout() {
@@ -235,15 +234,26 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
             return false;
         }
 
-        // Kiểm tra thuốc đã hết hạn chưa
+     // Kiểm tra thuốc đã hết hạn chưa
         Date currentDate = new Date(); // Lấy ngày hiện tại
         if (selectedThuoc.getHanSuDung().before(currentDate)) {
             MessageDialog.warring(this, "Thuốc đã hết hạn, vui lòng cập nhật lại thuốc!");
-            
+
+            // Tính chi phí cho thuốc hết hạn
+            double chiPhi = selectedThuoc.getSoLuongTon() * selectedThuoc.getDonGia(); // Tính chi phí
+
+            // Lưu vào ChiPhiThuocHetHan
+            ChiPhiThuocHetHan chiPhiThuocHetHan = new ChiPhiThuocHetHan();
+            chiPhiThuocHetHan.setThuoc(selectedThuoc); // Set thuốc hết hạn
+            chiPhiThuocHetHan.setTongChiPhi(chiPhi); // Set chi phí
+            Timestamp thoiGian = new Timestamp(System.currentTimeMillis());
+            chiPhiThuocHetHan.setThoiGian(thoiGian);
+            PN_CON.createHH(chiPhiThuocHetHan); // Lưu vào bảng ChiPhiThuocHetHan
+
             // Cập nhật số lượng tồn về 0 trong cơ sở dữ liệu khi thuốc hết hạn
             selectedThuoc.setSoLuongTon(0);
             THUOC_CON.update(selectedThuoc); // Cập nhật thuốc với số lượng tồn bằng 0
-            
+
             // Mở form cập nhật thuốc khi hết hạn
             UpdateThuocDialog dialog = new UpdateThuocDialog(null, true,this, selectedThuoc);
             dialog.setVisible(true);
@@ -258,16 +268,28 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         if (selectedThuoc.getHanSuDung().before(oneMonthFromNow)) {
             // Hiển thị thông báo yêu cầu người dùng nhập lô thuốc mới
             MessageDialog.warring(this, "Thuốc sắp hết hạn. Vui lòng nhập lô thuốc mới!");
-            
-            // Cập nhật số lượng tồn về 0 trong cơ sở dữ liệu khi thuốc hết hạn
+
+            // Tính chi phí cho thuốc gần hết hạn
+            double chiPhi = selectedThuoc.getSoLuongTon() * selectedThuoc.getDonGia(); // Tính chi phí
+
+            // Lưu vào ChiPhiThuocHetHan
+            ChiPhiThuocHetHan chiPhiThuocHetHan = new ChiPhiThuocHetHan();
+            chiPhiThuocHetHan.setThuoc(selectedThuoc); // Set thuốc gần hết hạn
+            chiPhiThuocHetHan.setTongChiPhi(chiPhi); // Set chi phí
+            Timestamp thoiGian = new Timestamp(System.currentTimeMillis());
+            chiPhiThuocHetHan.setThoiGian(thoiGian);
+            PN_CON.createHH(chiPhiThuocHetHan); // Lưu vào bảng ChiPhiThuocHetHan
+
+            // Cập nhật số lượng tồn về 0 trong cơ sở dữ liệu khi thuốc gần hết hạn
             selectedThuoc.setSoLuongTon(0);
             THUOC_CON.update(selectedThuoc); // Cập nhật thuốc với số lượng tồn bằng 0
-            
+
             // Mở form cập nhật khi thuốc gần hết hạn
             UpdateThuocDialog dialog = new UpdateThuocDialog(null, true,this, selectedThuoc);
             dialog.setVisible(true);
             return false;
         }
+
 
         // Kiểm tra thuốc đã tồn tại trong giỏ hàng chưa
         for (ChiTietPhieuNhap cthd : listCTPN) {

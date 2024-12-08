@@ -2,6 +2,7 @@ package dao;
 
 import connectDB.JDBCConnection;
 import controller.NhaCungCapController;
+import entity.ChiPhiThuocHetHan;
 import entity.NhanVien;
 import entity.PhieuNhap;
 
@@ -34,6 +35,14 @@ public class PhieuNhapDAO extends InterfaceDAO<PhieuNhap, String> {
         WHERE idPN = ? 
         ORDER BY PN.thoiGian;""";
 
+    private final String INSERT_CHI_PHI_THUOC_HET_HAN_SQL = "INSERT INTO ChiPhiThuocHetHan (idThuoc, tongChiPhi, thoiGian) VALUES (?, ?, ?)";
+
+    // Phương thức để tạo một bản ghi mới trong bảng ChiPhiThuocHetHan
+    public void createHH(ChiPhiThuocHetHan chiPhiThuocHetHan) {
+        // Cập nhật dữ liệu vào bảng ChiPhiThuocHetHan
+        JDBCConnection.update(INSERT_CHI_PHI_THUOC_HET_HAN_SQL, chiPhiThuocHetHan.getThuoc().getId(), chiPhiThuocHetHan.getTongChiPhi(),chiPhiThuocHetHan.getThoiGian());
+    }
+    
     @Override
     public void create(PhieuNhap e) {
         JDBCConnection.update(INSERT_SQL, e.getId(), e.getThoiGian(), e.getNhanVien().getId(), e.getNcc().getId(), e.getTongTien());

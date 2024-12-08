@@ -14,87 +14,107 @@ public class ThongKeDAO {
 
     private final String SELECT_7_DAYS_AGO = """
                                         WITH dates AS (
-                                            SELECT DATEADD(DAY, -6, GETDATE()) AS date
-                                            UNION ALL
-                                            SELECT DATEADD(DAY, 1, date)
-                                            FROM dates
-                                            WHERE date < CAST(GETDATE() AS DATE)
-                                        )
-                                        SELECT 
-                                            dates.date AS ngay,
-                                            COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
-                                            COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) AS chiphi
-                                        FROM dates
-                                        LEFT JOIN HoaDon ON CONVERT(DATE, HoaDon.thoiGian) = CONVERT(DATE, dates.date)
-                                        LEFT JOIN ChiTietHoaDon ON ChiTietHoaDon.idHD = HoaDon.idHD
-                                        LEFT JOIN Thuoc ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
-                                        GROUP BY dates.date
-                                        ORDER BY dates.date;
+										    SELECT CAST(GETDATE() - 6 AS DATE) AS date -- Ngày bắt đầu (6 ngày trước)
+										    UNION ALL
+										    SELECT DATEADD(DAY, 1, date) 
+										    FROM dates
+										    WHERE date < CAST(GETDATE() AS DATE) -- Dừng tại ngày hiện tại
+										)
+										SELECT 
+										    dates.date AS ngay,
+										    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
+										    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) + 
+										    COALESCE(SUM(ChiPhiThuocHetHan.tongChiPhi), 0) AS chiphi
+										FROM dates
+										LEFT JOIN HoaDon 
+										    ON CONVERT(DATE, HoaDon.thoiGian) = dates.date
+										LEFT JOIN ChiTietHoaDon 
+										    ON ChiTietHoaDon.idHD = HoaDon.idHD
+										LEFT JOIN Thuoc 
+										    ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
+										LEFT JOIN ChiPhiThuocHetHan 
+										    ON CONVERT(DATE, ChiPhiThuocHetHan.thoiGian) = dates.date
+										GROUP BY dates.date
+										ORDER BY dates.date;
                                         """;
 
     private final String SELECT_FROM_YEAR_TO_YEAR = """
                                                     DECLARE @start_year INT = ?;
-                                                    DECLARE @end_year INT = ?;
-                                                                                                        
-                                                    WITH years(year) AS (
-                                                        SELECT @start_year
-                                                        UNION ALL
-                                                        SELECT year + 1
-                                                        FROM years
-                                                        WHERE year < @end_year
-                                                    )
-                                                    SELECT 
-                                                        years.year AS nam,
-                                                        COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
-                                                        COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) AS chiphi
-                                                    FROM years
-                                                    LEFT JOIN HoaDon ON YEAR(HoaDon.thoiGian) = years.year
-                                                    LEFT JOIN ChiTietHoaDon ON HoaDon.idHD = ChiTietHoaDon.idHD
-                                                    LEFT JOIN Thuoc ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
-                                                    GROUP BY years.year
-                                                    ORDER BY years.year;
+													DECLARE @end_year INT = ?;
+													
+													WITH years(year) AS (
+													    SELECT @start_year
+													    UNION ALL
+													    SELECT year + 1
+													    FROM years
+													    WHERE year < @end_year
+													)
+													SELECT 
+													    years.year AS nam,
+													    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
+													    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) + 
+													    COALESCE(SUM(ChiPhiThuocHetHan.tongChiPhi), 0) AS chiphi
+													FROM years
+													LEFT JOIN HoaDon ON YEAR(HoaDon.thoiGian) = years.year
+													LEFT JOIN ChiTietHoaDon ON HoaDon.idHD = ChiTietHoaDon.idHD
+													LEFT JOIN Thuoc ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
+													LEFT JOIN ChiPhiThuocHetHan ON YEAR(ChiPhiThuocHetHan.thoiGian) = years.year
+													GROUP BY years.year
+													ORDER BY years.year;
                                                     """;
 
     private final String SELECT_MOUNTH_BY_YEAR = """
-                                          DECLARE @year INT = ?;
-                                          
-                                          SELECT 
-                                          	months.month AS thang,
-                                          	COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
-                                          	COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) AS chiphi
-                                          FROM (
-                                                 VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12)
-                                               ) AS months(month)
-                                          LEFT JOIN HoaDon ON MONTH(HoaDon.thoiGian) = months.month AND YEAR(HoaDon.thoiGian) = @year
-                                          LEFT JOIN ChiTietHoaDon ON ChiTietHoaDon.idHD = HoaDon.idHD
-                                          LEFT JOIN Thuoc ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
-                                          GROUP BY months.month
-                                          ORDER BY months.month;
+                                         DECLARE @year INT = ?;
+
+											SELECT 
+											    months.month AS thang,
+											    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
+											    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) + 
+											    COALESCE(SUM(ChiPhiThuocHetHan.tongChiPhi), 0) AS chiphi
+											FROM (
+											       VALUES (1), (2), (3), (4), (5), (6), (7), (8), (9), (10), (11), (12)
+											     ) AS months(month)
+											LEFT JOIN HoaDon 
+											    ON MONTH(HoaDon.thoiGian) = months.month AND YEAR(HoaDon.thoiGian) = @year
+											LEFT JOIN ChiTietHoaDon 
+											    ON ChiTietHoaDon.idHD = HoaDon.idHD
+											LEFT JOIN Thuoc 
+											    ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
+											LEFT JOIN ChiPhiThuocHetHan 
+											    ON MONTH(ChiPhiThuocHetHan.thoiGian) = months.month AND YEAR(ChiPhiThuocHetHan.thoiGian) = @year
+											GROUP BY months.month
+											ORDER BY months.month;																					
                                           """;
     
     private final String SELECT_DAYS_BY_MONTH_YEAR = """
-                                                     DECLARE @thang INT = ?;
-                                                     DECLARE @nam INT = ?;
-                                                     
-                                                     DECLARE @ngayString NVARCHAR(10) = CONVERT(NVARCHAR(10), @nam) + '-' + RIGHT('0' + CONVERT(NVARCHAR(2), @thang), 2) + '-01';
-                                                     
-                                                     WITH numbers AS (
-                                                         SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) - 1 AS number
-                                                         FROM master..spt_values
-                                                     )
-                                                     SELECT dates.date AS ngay,
-                                                     	COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
-                                                     	COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) AS chiphi
-                                                     FROM (
-                                                         SELECT DATEADD(DAY, c.number, @ngayString) AS date
-                                                         FROM numbers c
-                                                         WHERE DATEADD(DAY, c.number, @ngayString) <= DATEADD(DAY, -1, DATEADD(MONTH, DATEDIFF(MONTH, 0, @ngayString) + 1, 0))
-                                                     ) AS dates
-                                                         LEFT JOIN HoaDon ON CONVERT(DATE, HoaDon.thoiGian) = CONVERT(DATE, dates.date)
-                                                         LEFT JOIN ChiTietHoaDon ON ChiTietHoaDon.idHD = HoaDon.idHD
-                                                         LEFT JOIN Thuoc ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
-                                                     GROUP BY dates.date
-                                                     ORDER BY dates.date;
+                                                    DECLARE @thang INT = ?;
+													DECLARE @nam INT = ?;
+													
+													DECLARE @ngayString NVARCHAR(10) = CONVERT(NVARCHAR(10), @nam) + '-' + RIGHT('0' + CONVERT(NVARCHAR(2), @thang), 2) + '-01';
+													
+													WITH numbers AS (
+													    SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) - 1 AS number
+													    FROM master..spt_values
+													)
+													SELECT dates.date AS ngay,
+													    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.donGia), 0) AS doanhthu,
+													    COALESCE(SUM(ChiTietHoaDon.soLuong * Thuoc.giaNhap), 0) + 
+													    COALESCE(SUM(ChiPhiThuocHetHan.tongChiPhi), 0) AS chiphi
+													FROM (
+													    SELECT DATEADD(DAY, c.number, @ngayString) AS date
+													    FROM numbers c
+													    WHERE DATEADD(DAY, c.number, @ngayString) <= DATEADD(DAY, -1, DATEADD(MONTH, DATEDIFF(MONTH, 0, @ngayString) + 1, 0))
+													) AS dates
+													LEFT JOIN HoaDon 
+													    ON CONVERT(DATE, HoaDon.thoiGian) = CONVERT(DATE, dates.date)
+													LEFT JOIN ChiTietHoaDon 
+													    ON ChiTietHoaDon.idHD = HoaDon.idHD
+													LEFT JOIN Thuoc 
+													    ON Thuoc.idThuoc = ChiTietHoaDon.idThuoc
+													LEFT JOIN ChiPhiThuocHetHan 
+													    ON CONVERT(DATE, ChiPhiThuocHetHan.thoiGian) = CONVERT(DATE, dates.date)
+													GROUP BY dates.date
+													ORDER BY dates.date;
                                                      """;
     
     public List<ThongKe> select7DaysAgo() {
