@@ -121,7 +121,7 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CHI TIẾT HÓA ĐƠN");
+        jLabel8.setText("CHI TIẾT ĐẶT HÀNG");
         jLabel8.setPreferredSize(new java.awt.Dimension(149, 40));
         jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
 
@@ -139,7 +139,7 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); 
-        jLabel4.setText("Mã hóa đơn ");
+        jLabel4.setText("Mã đặt hàng ");
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel7.add(jLabel4);
 

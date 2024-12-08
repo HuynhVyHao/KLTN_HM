@@ -36,6 +36,8 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         listButton.add(btnUpdate);
         listButton.add(btnDelete);
         listButton.add(btnInfo);
+        listButton.add(btnImport);
+		listButton.add(btnExport);
 
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
@@ -104,6 +106,8 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
+		btnExport = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -189,6 +193,40 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         actionPanel.add(btnInfo);
 
+        btnImport.setFont(new java.awt.Font("Roboto", 1, 14));
+		btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
+		btnImport.setText("IMPORT");
+		btnImport.setBorder(null);
+		btnImport.setBorderPainted(false);
+		btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnImport.setFocusPainted(false);
+		btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
+		btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnImport.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnImportActionPerformed(evt);
+			}
+		});
+		actionPanel.add(btnImport);
+
+		btnExport.setFont(new java.awt.Font("Roboto", 1, 14));
+		btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
+		btnExport.setText("EXPORT");
+		btnExport.setBorder(null);
+		btnExport.setBorderPainted(false);
+		btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnExport.setFocusPainted(false);
+		btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
+		btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnExport.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnExportActionPerformed(evt);
+			}
+		});
+		actionPanel.add(btnExport);
+        
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
         add(headerPanel, java.awt.BorderLayout.PAGE_START);
@@ -271,22 +309,55 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         try {
             DefaultTableModel modal = (DefaultTableModel) table.getModel();
             int row = table.getSelectedRow();
+
+            // Kiểm tra xem có dòng nào được chọn không
+            if (row == -1) {
+                MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
+                return;
+            }
+
             String id = table.getValueAt(row, 1).toString();
 
+            // Xác nhận xóa
             if (MessageDialog.confirm(this, "Bạn có chắc chắn xóa dòng này?", "Xóa")) {
-                NCC_CON.deleteById(id);
-                modal.removeRow(row);
+                try {
+                    // Gọi phương thức xóa dữ liệu từ DAO
+                    NCC_CON.deleteById(id);  // Gọi phương thức xóa trong DAO
+
+                    // Nếu xóa thành công, cập nhật bảng
+                    modal.removeRow(row);
+                } catch (Exception e) {
+                    // Kiểm tra lỗi ràng buộc khóa ngoại
+                    if (e.getMessage().contains("REFERENCE constraint")) {
+                        MessageDialog.error(this, "Không thể xóa vì có dữ liệu liên quan trong các bảng khác.");
+                    } else {
+                        // Các lỗi khác (nếu có)
+                        MessageDialog.error(this, "Lỗi xảy ra: " + e.getMessage());
+                    }
+                }
             }
         } catch (Exception e) {
-            MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
+            // Các lỗi khác ngoài SQLException
+            MessageDialog.error(this, "Lỗi xảy ra: " + e.getMessage());
         }
     }
+    
+	private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
+		NCC_CON.importExcel();
+	}
+
+	private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
+		JTableExporter.exportJTableToExcel(table);
+	}
+
 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInfo;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnExport;
+	private javax.swing.JButton btnImport;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;

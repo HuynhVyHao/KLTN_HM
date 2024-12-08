@@ -659,7 +659,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 14)); 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Hóa đơn");
+        jLabel2.setText("Chi tiết");
         jPanel5.add(jLabel2, java.awt.BorderLayout.CENTER);
 
         billInfoPanel.add(jPanel5, java.awt.BorderLayout.NORTH);
@@ -675,7 +675,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         jPanel7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 0));
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); 
-        jLabel4.setText("Mã hóa đơn ");
+        jLabel4.setText("Mã đặt hàng: ");
         jLabel4.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel7.add(jLabel4);
 
@@ -759,7 +759,7 @@ public class CreateDatHangPage extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 14)); 
         jLabel7.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel7.setText("Tổng hóa đơn:");
+        jLabel7.setText("Tổng đặt hàng:");
         jLabel7.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel11.add(jLabel7);
 

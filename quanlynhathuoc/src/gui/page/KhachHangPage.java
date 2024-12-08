@@ -41,14 +41,6 @@ public class KhachHangPage extends javax.swing.JPanel {
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
         }
-        btnReload.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
-
-        txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tìm kiếm...");
-        txtSearch.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/search.svg"));
-
-        String[] searchType = {"Tất cả", "Mã", "Tên", "Số điện thoại", "Năm sinh"};
-        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(searchType);
-        cboxSearch.setModel(model);
     }
 
     private void tableLayout() {
@@ -90,11 +82,6 @@ public class KhachHangPage extends javax.swing.JPanel {
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        cboxSearch = new javax.swing.JComboBox<>();
-        txtSearch = new javax.swing.JTextField();
-        btnReload = new javax.swing.JButton();
         actionPanel = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -118,47 +105,6 @@ public class KhachHangPage extends javax.swing.JPanel {
         headerPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(232, 232, 232), 2, true));
         headerPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 16, 24));
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setPreferredSize(new java.awt.Dimension(584, 50));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
-
-        cboxSearch.setToolTipText("");
-        cboxSearch.setPreferredSize(new java.awt.Dimension(100, 40));
-        jPanel3.add(cboxSearch);
-
-        txtSearch.setToolTipText("Tìm kiếm");
-        txtSearch.setPreferredSize(new java.awt.Dimension(200, 40));
-        txtSearch.setSelectionColor(new java.awt.Color(230, 245, 245));
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtSearchKeyReleased(evt);
-            }
-        });
-        jPanel3.add(txtSearch);
-
-        btnReload.setIcon(new FlatSVGIcon("./icon/reload.svg"));
-        btnReload.setToolTipText("Làm mới");
-        btnReload.setBorder(null);
-        btnReload.setBorderPainted(false);
-        btnReload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnReload.setFocusPainted(false);
-        btnReload.setFocusable(false);
-        btnReload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReload.setPreferredSize(new java.awt.Dimension(40, 40));
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReloadActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnReload);
-
-        jPanel1.add(jPanel3);
-
-        headerPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         actionPanel.setBackground(new java.awt.Color(255, 255, 255));
         actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
@@ -362,43 +308,19 @@ public class KhachHangPage extends javax.swing.JPanel {
         JTableExporter.exportJTableToExcel(table);
     }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
-        DefaultTableModel modal = (DefaultTableModel) table.getModel();
-        modal.setRowCount(0);
 
-        String search = txtSearch.getText().toLowerCase().trim();
-        String searchType = cboxSearch.getSelectedItem().toString();
-        List<KhachHang> listsearch = KH_CON.getSearchTable(search, searchType);
-
-        int stt = 1;
-        for (KhachHang e : listsearch) {
-            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getHoTen(), e.getSdt(), e.getGioiTinh(), Formatter.FormatDate(e.getNgayThamGia())});
-            stt++;
-        }
-    }
-
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
-        txtSearch.setText("");
-        cboxSearch.setSelectedIndex(0);
-        loadTable();
-    }
 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnInfo;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnImport;
-    private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnReload;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cboxSearch;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTable;
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
-    private javax.swing.JTextField txtSearch;
 }

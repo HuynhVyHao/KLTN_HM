@@ -37,7 +37,6 @@ public class HoaDonPage extends javax.swing.JPanel {
         initComponents();
         headerLayout();
         tableLayout();
-        fillCombobox();
     }
 
     public HoaDonPage(MainLayout main) {
@@ -45,7 +44,6 @@ public class HoaDonPage extends javax.swing.JPanel {
         initComponents();
         headerLayout();
         tableLayout();
-        fillCombobox();
     }
 
     private void headerLayout() {
@@ -53,6 +51,8 @@ public class HoaDonPage extends javax.swing.JPanel {
         listButton.add(btnAdd);
         listButton.add(btnDelete);
         listButton.add(btnInfo);
+        listButton.add(btnImport);
+        listButton.add(btnExport);
 
         for (JButton item : listButton) {
             item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
@@ -94,99 +94,21 @@ public class HoaDonPage extends javax.swing.JPanel {
         }
     }
 
-    private void fillCombobox() {
-        List<NhanVien> listNV = new NhanVienController().getAllList();
-        cboxNhanVien.addItem("Tất cả");
-        for (NhanVien e : listNV) {
-            cboxNhanVien.addItem(e.getHoTen());
-        }
-    }
-
-    private boolean isValidFilterFields() {
-        if (Validation.isEmpty(txtFromPrice.getText().trim())) {
-            return false;
-        } else {
-            try {
-                double fromPrice = Double.parseDouble(txtFromPrice.getText());
-                if (fromPrice < 0) {
-                    MessageDialog.warring(this, "Số tiền phải >= 0");
-                    txtFromPrice.setText("");
-                    txtFromPrice.requestFocus();
-                    return false;
-                }
-            } catch (NumberFormatException e) {
-                MessageDialog.warring(this, "Số tiền phải là số!");
-                txtFromPrice.setText("");
-                txtFromPrice.requestFocus();
-                return false;
-            }
-        }
-
-        if (Validation.isEmpty(txtToPrice.getText().trim())) {
-            return false;
-        } else {
-            try {
-                double toPrice = Double.parseDouble(txtToPrice.getText());
-                if (toPrice < 0) {
-                    MessageDialog.warring(this, "Số tiền phải >= 0");
-                    txtToPrice.setText("");
-                    txtToPrice.requestFocus();
-                    return false;
-                }
-            } catch (NumberFormatException e) {
-                MessageDialog.warring(this, "Số tiền phải là số!");
-                txtToPrice.setText("");
-                txtToPrice.requestFocus();
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    private List<HoaDon> getListFilter() {
-        String tenNV = "";
-
-        if (cboxNhanVien.getSelectedItem() != null) {
-            tenNV = cboxNhanVien.getSelectedItem().toString();
-        }
-
-        double fromPrice = isValidFilterFields() ? Double.parseDouble(txtFromPrice.getText()) : 0;
-        double toPrice = isValidFilterFields() ? Double.parseDouble(txtToPrice.getText()) : 0;
-        
-        return HD_CON.getFilterTable(tenNV, fromPrice, toPrice);
-    }
-
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        cboxSearch = new javax.swing.JComboBox<>();
-        txtSearch = new javax.swing.JTextField();
-        btnReload = new javax.swing.JButton();
         actionPanel = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnInfo = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         lblTable = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        cboxNhanVien = new javax.swing.JComboBox<>();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        txtFromPrice = new javax.swing.JTextField();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        txtToPrice = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(230, 245, 245));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 245, 245), 6, true));
@@ -255,7 +177,39 @@ public class HoaDonPage extends javax.swing.JPanel {
         });
         actionPanel.add(btnInfo);
 
-      
+        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); 
+        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
+        btnImport.setText("IMPORT");
+        btnImport.setBorder(null);
+        btnImport.setBorderPainted(false);
+        btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImport.setFocusPainted(false);
+        btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImportActionPerformed(evt);
+            }
+        });
+        actionPanel.add(btnImport);
+
+        btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); 
+        btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
+        btnExport.setText("EXPORT");
+        btnExport.setBorder(null);
+        btnExport.setBorderPainted(false);
+        btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExport.setFocusPainted(false);
+        btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
+        btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+        actionPanel.add(btnExport);
 
         headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
@@ -346,38 +300,22 @@ public class HoaDonPage extends javax.swing.JPanel {
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
     }
-
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
-        modal.setRowCount(0);
-
-        String search = txtSearch.getText().toLowerCase().trim();
-        String searchType = cboxSearch.getSelectedItem().toString();
-        List<HoaDon> listsearch = HD_CON.getSearchTable(search, searchType);
-
-        loadTable(listsearch);
+    
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
+        
     }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
-        txtSearch.setText("");
-        txtFromPrice.setText("");
-        txtToPrice.setText("");
-        cboxSearch.setSelectedIndex(0);
-        cboxNhanVien.setSelectedIndex(0);
-        loadTable(listHD);
-    }
+
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             int row = table.getSelectedRow();
-            System.out.println("Selected row: " + row); // Kiểm tra xem row được chọn là gì
             if (row == -1) {
                 throw new Exception("No row selected");
             }
 
             HoaDon hoaDon = listHD.get(row);
             List<ChiTietHoaDon> listCTHD = new ChiTietHoaDonController().selectAllById(hoaDon.getId());
-            System.out.println("Size of listCTHD: " + listCTHD.size());
-
 
             DetailHoaDonDialog dialog = new DetailHoaDonDialog(null, true, listCTHD);
             dialog.setVisible(true);
@@ -386,56 +324,18 @@ public class HoaDonPage extends javax.swing.JPanel {
         }
     }
 
-    private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {
-        modal.setRowCount(0);
 
-        List<HoaDon> listSearch = getListFilter();
-
-        String tenDM = cboxNhanVien.getSelectedItem().toString();
-        if (tenDM.equals("Tất cả")) {
-            listSearch = HD_CON.getAllList();
-        }
-
-        loadTable(listSearch);
-    }
-
-    private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {
-        modal.setRowCount(0);
-        List<HoaDon> listSearch = getListFilter();
-        loadTable(listSearch);
-    }
-
-    private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {
-        modal.setRowCount(0);
-        List<HoaDon> listSearch = getListFilter();
-        loadTable(listSearch);
-    }
 
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnImport;
     private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnReload;
-    private javax.swing.JComboBox<String> cboxNhanVien;
-    private javax.swing.JComboBox<String> cboxSearch;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblTable;
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
-    private javax.swing.JTextField txtFromPrice;
-    private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtToPrice;
 }

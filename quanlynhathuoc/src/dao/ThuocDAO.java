@@ -12,12 +12,12 @@ import java.util.List;
 
 public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
 
-    private final String INSERT_SQL = "INSERT INTO Thuoc values (?,?,?,?,?,?,?,?,?,?,?,?)"; // Thêm ngày sản xuất vào SQL
+	private final String INSERT_SQL = "INSERT INTO Thuoc (idThuoc, tenThuoc, hinhAnh, thanhPhan, idDVT, idDM, idXX, soLuongTon, giaNhap, donGia, ngaySanXuat, hanSuDung, loaiThuoc) "
+            + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)"; // Thêm loaiThuoc vào INSERT
 
-    private final String UPDATE_SQL
-            = "UPDATE Thuoc SET tenThuoc = ?, hinhAnh = ?, thanhPhan = ?, idDVT = ?, idDM = ?, idXX = ?,soLuongTon = ?, giaNhap = ?, donGia = ?, ngaySanXuat = ?, hanSuDung = ? "
-            + "WHERE idThuoc = ?"; // Thêm ngày sản xuất vào SQL
-
+    private final String UPDATE_SQL = "UPDATE Thuoc SET tenThuoc = ?, hinhAnh = ?, thanhPhan = ?, idDVT = ?, idDM = ?, idXX = ?, soLuongTon = ?, giaNhap = ?, donGia = ?, ngaySanXuat = ?, hanSuDung = ?, loaiThuoc = ? "
+            + "WHERE idThuoc = ?"; // Thêm loaiThuoc vào UPDATE
+    
     private final String DELETE_BY_ID = "DELETE from Thuoc where idThuoc = ?";
 
     private final String SELECT_ALL_SQL = "SELECT Thuoc.*, "
@@ -81,13 +81,13 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
     @Override
     public void create(Thuoc e) {
         JDBCConnection.update(INSERT_SQL, e.getId(), e.getTenThuoc(), e.getHinhAnh(), e.getThanhPhan(), e.getDonViTinh().getId(),
-                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getNgaySanXuat(), e.getHanSuDung()); // Thêm ngày sản xuất vào create
+                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getNgaySanXuat(), e.getHanSuDung(), e.getLoaiThuoc()); // Thêm loaiThuoc vào create
     }
 
     @Override
     public void update(Thuoc e) {
         JDBCConnection.update(UPDATE_SQL, e.getTenThuoc(), e.getHinhAnh(), e.getThanhPhan(), e.getDonViTinh().getId(),
-                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getNgaySanXuat(), e.getHanSuDung(), e.getId()); // Thêm ngày sản xuất vào update
+                e.getDanhMuc().getId(), e.getXuatXu().getId(), e.getSoLuongTon(), e.getGiaNhap(), e.getDonGia(), e.getNgaySanXuat(), e.getHanSuDung(), e.getLoaiThuoc(), e.getId()); // Thêm loaiThuoc vào update
     }
 
     public void updateSoLuongTon(Thuoc e, int soLuong) {
@@ -134,7 +134,8 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
                 thuoc.setDonGia(rs.getDouble("donGia"));
                 thuoc.setNgaySanXuat(rs.getDate("ngaySanXuat")); // Thêm ngày sản xuất vào selectBySql
                 thuoc.setHanSuDung(rs.getDate("hanSuDung"));
-
+                thuoc.setLoaiThuoc(rs.getString("loaiThuoc")); 
+                
                 listE.add(thuoc);
             }
             rs.getStatement().getConnection().close();

@@ -2,7 +2,6 @@ package controller;
 
 import dao.KhachHangDAO;
 import entity.KhachHang;
-import gui.page.BaoCaoKhachHangPage;
 import gui.page.KhachHangPage;
 import gui.page.TimKiemKhachHangPage;
 
@@ -28,7 +27,6 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
     public KhachHangDAO KH_DAO = new KhachHangDAO();
     public KhachHangPage KH_GUI;
     public TimKiemKhachHangPage KH_GUITK;
-    public BaoCaoKhachHangPage KH_GUIBC;
 
     public KhachHangController() {
     }
@@ -41,9 +39,6 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
         this.KH_GUITK = KH_GUITK;
     }
     
-    public KhachHangController(BaoCaoKhachHangPage KH_GUIBC) {
-        this.KH_GUIBC = KH_GUIBC;
-    }
 
     @Override
     public void create(KhachHang e) {
@@ -174,5 +169,8 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
             MessageDialog.error(KH_GUI, "Có " + check + " dòng dữ liệu không được thêm vào!");
         }
     }
-
+    public boolean isPhoneNumberExists(String phoneNumber) {
+        KhachHang kh = KH_DAO.selectBySdt(phoneNumber);
+        return kh != null;  // Nếu tìm thấy khách hàng, trả về true
+    }
 }

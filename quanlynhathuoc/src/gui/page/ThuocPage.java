@@ -60,6 +60,8 @@ public class ThuocPage extends javax.swing.JPanel {
 		listButton.add(btnAdd);
 		listButton.add(btnUpdate);
 		listButton.add(btnDelete);
+		listButton.add(btnImport);
+		listButton.add(btnExport);
 
 		for (JButton item : listButton) {
 			item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
@@ -68,7 +70,7 @@ public class ThuocPage extends javax.swing.JPanel {
 
 	private void tableLayout() {
 	    lblTable.setText("danh sách thông tin thuốc".toUpperCase());
-	    String[] header = new String[] { "STT", "Mã thuốc", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính",
+	    String[] header = new String[] { "STT", "Mã thuốc", "Tên thuốc", "Danh mục","Loại Thuốc", "Xuất xứ", "Đơn vị tính",
 	            "Số lượng", "Đơn giá", "Ngày sản xuất", "Hạn sử dụng" }; // Thêm "Ngày sản xuất"
 	    modal = new DefaultTableModel();
 	    modal.setColumnIdentifiers(header);
@@ -80,8 +82,8 @@ public class ThuocPage extends javax.swing.JPanel {
 	    table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 	    table.getColumnModel().getColumn(0).setPreferredWidth(30);
 	    table.getColumnModel().getColumn(2).setPreferredWidth(200);
-	    table.getColumnModel().getColumn(3).setPreferredWidth(200);
-	    table.getColumnModel().getColumn(4).setPreferredWidth(200);
+	    table.getColumnModel().getColumn(3).setPreferredWidth(150);
+	    table.getColumnModel().getColumn(4).setPreferredWidth(100);
 
 	    loadTable(listThuoc);
 	    sortTable();
@@ -104,6 +106,7 @@ public class ThuocPage extends javax.swing.JPanel {
 	            e.getId(), 
 	            e.getTenThuoc(), 
 	            e.getDanhMuc().getTen(), 
+	            e.getLoaiThuoc(),
 	            e.getXuatXu().getTen(), 
 	            e.getDonViTinh().getTen(),
 	            e.getSoLuongTon(), 
@@ -123,6 +126,8 @@ public class ThuocPage extends javax.swing.JPanel {
 		btnAdd = new javax.swing.JButton();
 		btnUpdate = new javax.swing.JButton();
 		btnDelete = new javax.swing.JButton();
+		btnImport = new javax.swing.JButton();
+		btnExport = new javax.swing.JButton();
 		tablePanel = new javax.swing.JPanel();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		table = new javax.swing.JTable();
@@ -193,6 +198,40 @@ public class ThuocPage extends javax.swing.JPanel {
 			}
 		});
 		actionPanel.add(btnDelete);
+		
+		btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); 
+		btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
+		btnImport.setText("IMPORT");
+		btnImport.setBorder(null);
+		btnImport.setBorderPainted(false);
+		btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnImport.setFocusPainted(false);
+		btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
+		btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnImport.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnImportActionPerformed(evt);
+			}
+		});
+		actionPanel.add(btnImport);
+
+		btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); 
+		btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
+		btnExport.setText("EXPORT");
+		btnExport.setBorder(null);
+		btnExport.setBorderPainted(false);
+		btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnExport.setFocusPainted(false);
+		btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+		btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
+		btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+		btnExport.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnExportActionPerformed(evt);
+			}
+		});
+		actionPanel.add(btnExport);
 
 		headerPanel.add(actionPanel, java.awt.BorderLayout.WEST);
 
@@ -238,7 +277,7 @@ public class ThuocPage extends javax.swing.JPanel {
 		lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
 		lblTable.setForeground(new java.awt.Color(255, 255, 255));
 		lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-		lblTable.setText("THÔNG TIN NHÂN VIÊN");
+//		lblTable.setText("THÔNG TIN NHÂN VIÊN");
 		jPanel5.add(lblTable, java.awt.BorderLayout.CENTER);
 
 		tablePanel.add(jPanel5, java.awt.BorderLayout.NORTH);
@@ -289,10 +328,20 @@ public class ThuocPage extends javax.swing.JPanel {
 		dialog.setVisible(true);
 	}
 
+	
+	private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
+		THUOC_CON.importExcel();
+	}
+
+	private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
+		JTableExporter.exportJTableToExcel(table);
+	}
 	private javax.swing.JPanel actionPanel;
 	private javax.swing.JButton btnAdd;
 	private javax.swing.JButton btnDelete;
 	private javax.swing.JButton btnUpdate;
+	private javax.swing.JButton btnExport;
+	private javax.swing.JButton btnImport;
 	private javax.swing.JPanel headerPanel;
 	private javax.swing.JPanel jPanel5;
 	private javax.swing.JScrollPane jScrollPane1;

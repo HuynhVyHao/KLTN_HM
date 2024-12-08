@@ -5,7 +5,6 @@ import entity.DanhMuc;
 import entity.DonViTinh;
 import entity.Thuoc;
 import entity.XuatXu;
-import gui.page.BaoCaoThuocPage;
 import gui.page.ChiTietThuocPage;
 import gui.page.CreateHoaDonPage;
 import gui.page.ThuocPage;
@@ -33,7 +32,6 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 	public ThuocDAO THUOC_DAO = new ThuocDAO();
 	public ThuocPage THUOC_GUI;
 	public TimKiemThuocPage THUOC_GUITK;
-	public BaoCaoThuocPage THUOC_GUIBC;
 	public ChiTietThuocPage THUOC_GUICT;
 
 	public ThuocController() {
@@ -49,10 +47,6 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 
 	public ThuocController(TimKiemThuocPage THUOC_GUITK) {
 		this.THUOC_GUITK = THUOC_GUITK;
-	}
-
-	public ThuocController(BaoCaoThuocPage THUOC_GUIBC) {
-		this.THUOC_GUIBC = THUOC_GUIBC;
 	}
 
 	public ThuocController(ChiTietThuocPage THUOC_GUICT) {
@@ -229,6 +223,7 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 
 					String hsd = excelRow.getCell(11).getStringCellValue();
 					Date hanSuDung = new Date(hsd);
+					String loaiThuoc=excelRow.getCell(12).getStringCellValue();
 
 					// Validate row cell
 					if (Validation.isEmpty(id) || Validation.isEmpty(tenThuoc) || Validation.isEmpty(image)
@@ -238,7 +233,7 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 						check += 1;
 					} else {
 						Thuoc e = new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuong,
-								giaNhap, donGia, ngaySanXuat, hanSuDung); // Thêm ngày sản xuất vào constructor
+								giaNhap, donGia, ngaySanXuat, hanSuDung,loaiThuoc); // Thêm ngày sản xuất vào constructor
 						THUOC_DAO.create(e);
 						THUOC_GUI.loadTable(this.getAllList());
 					}
@@ -256,3 +251,4 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 		}
 	}
 }
+

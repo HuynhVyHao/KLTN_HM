@@ -113,7 +113,7 @@ public class DetailPhieuNhapDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CHI TIẾT HÓA ĐƠN");
+        jLabel8.setText("CHI TIẾT PHIẾU NHẬP");
         jLabel8.setPreferredSize(new java.awt.Dimension(149, 40));
         jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
 

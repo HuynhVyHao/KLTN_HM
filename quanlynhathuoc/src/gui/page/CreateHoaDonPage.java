@@ -196,43 +196,56 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
             MessageDialog.warring(this, "Số lượng không được để trống!");
             txtSoLuong.requestFocus();
             return false;
-        } else {
-            try {
-                Thuoc selectedThuoc = THUOC_CON.selectById(txtMaThuoc.getText());
+        }
 
-                if (selectedThuoc == null) {
-                    MessageDialog.warring(this, "Vui lòng chọn sản phẩm");
-                    return false;
-                }
+        try {
+            Thuoc selectedThuoc = THUOC_CON.selectById(txtMaThuoc.getText());
 
-                int soLuongTon = selectedThuoc.getSoLuongTon();
-                int sl = Integer.parseInt(txtSoLuong.getText());
-                if (sl < 0) {
-                    MessageDialog.warring(this, "Số lượng đưa phải >= 0");
-                    txtSoLuong.requestFocus();
-                    return false;
-                } else if (soLuongTon < sl) {
-                    MessageDialog.warring(this, "Không đủ số lượng!");
-                    txtSoLuong.requestFocus();
-                    return false;
-                }
-            } catch (NumberFormatException e) {
-                MessageDialog.warring(this, "Số lượng đưa phải là số!");
+            if (selectedThuoc == null) {
+                MessageDialog.warring(this, "Vui lòng chọn sản phẩm");
+                return false;
+            }
+
+            int soLuongTon = selectedThuoc.getSoLuongTon();
+            int sl = Integer.parseInt(txtSoLuong.getText());
+            if (sl < 0) {
+                MessageDialog.warring(this, "Số lượng đưa phải >= 0");
+                txtSoLuong.requestFocus();
+                return false;
+            } else if (soLuongTon < sl) {
+                MessageDialog.warring(this, "Không đủ số lượng!");
                 txtSoLuong.requestFocus();
                 return false;
             }
-        }
 
-        Thuoc selectedThuoc = THUOC_CON.selectById(txtMaThuoc.getText());
-        for (ChiTietHoaDon cthd : listCTHD) {
-            if (cthd.getThuoc().equals(selectedThuoc)) {
-                MessageDialog.warring(this, "Thuốc đã tồn tại trong giỏ hàng!");
-                return false;
+         // Kiểm tra nếu là thuốc kê đơn
+            if ("Kê đơn".equalsIgnoreCase(selectedThuoc.getLoaiThuoc())) {
+                boolean confirm = MessageDialog.confirm(this, 
+                    "Thuốc này là thuốc kê đơn. Bạn đã kiểm tra đơn thuốc từ bác sĩ chưa?", 
+                    "Xác nhận thêm thuốc kê đơn");
+                if (!confirm) {
+                    return false; // Người dùng không xác nhận
+                }
             }
+
+
+            // Kiểm tra xem thuốc đã tồn tại trong giỏ hàng chưa
+            for (ChiTietHoaDon cthd : listCTHD) {
+                if (cthd.getThuoc().equals(selectedThuoc)) {
+                    MessageDialog.warring(this, "Thuốc đã tồn tại trong giỏ hàng!");
+                    return false;
+                }
+            }
+        } catch (NumberFormatException e) {
+            MessageDialog.warring(this, "Số lượng đưa phải là số!");
+            txtSoLuong.requestFocus();
+            return false;
         }
 
         return true;
     }
+
+
 
     private HoaDon getInputHoaDon() {
         String idHD = txtMaHoaDon.getText();
@@ -314,6 +327,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtHoTenKH = new javax.swing.JTextField();
+        txtLoaiThuoc = new javax.swing.JTextField();
         cboxGioiTinhKH = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel26 = new javax.swing.JPanel();
@@ -322,6 +336,8 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         txtTong = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel27 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
         txtTienKhachDua = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -374,6 +390,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         jPanel17.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
+        // Mã thuốc
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel10.setText("Mã thuốc:");
         jLabel10.setMaximumSize(new java.awt.Dimension(44, 40));
@@ -385,6 +402,20 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         txtMaThuoc.setFocusable(false);
         txtMaThuoc.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel17.add(txtMaThuoc);
+
+        // Loại thuốc
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        jLabel15.setText("Loại thuốc:");
+        jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
+        jLabel15.setPreferredSize(new java.awt.Dimension(90, 40));
+        jPanel17.add(jLabel15);
+
+        txtLoaiThuoc.setEditable(false);
+        txtLoaiThuoc.setText(" ");
+        txtLoaiThuoc.setFocusable(false);
+        txtLoaiThuoc.setPreferredSize(new java.awt.Dimension(120, 40));
+        jPanel17.add(txtLoaiThuoc);
+
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setPreferredSize(new java.awt.Dimension(340, 40));
@@ -887,6 +918,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         txtHinhAnh.setIcon(imageIcon);
         txtHinhAnh.setIcon(imageIcon);
         txtMaThuoc.setText(e.getId());
+        txtLoaiThuoc.setText(e.getLoaiThuoc());
         txtTenThuoc.setText(e.getTenThuoc());
         txtThanhPhan.setText(e.getThanhPhan());
         txtDonGia.setText(Formatter.FormatVND(e.getDonGia()));
@@ -895,11 +927,23 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private void btnAddCartActionPerformed(java.awt.event.ActionEvent evt) {
         if (isValidChiTietHoaDon()) {
             ChiTietHoaDon cthd = getInputChiTietHoaDon();
+            Thuoc thuoc = THUOC_CON.selectById(txtMaThuoc.getText());
+
+//            // Nếu là thuốc kê đơn, hiển thị xác nhận
+//            if ("Kê đơn".equalsIgnoreCase(thuoc.getLoaiThuoc())) {
+//                boolean confirm = MessageDialog.confirm(this, 
+//                    "Thuốc này là thuốc kê đơn. Bạn có chắc chắn muốn thêm vào hóa đơn?", 
+//                    "Thêm thuốc kê đơn");
+//                if (!confirm) {
+//                    return; // Người dùng không đồng ý, thoát khỏi hàm
+//                }
+//            }
+
+            // Thêm thuốc vào danh sách chi tiết hóa đơn
             listCTHD.add(cthd);
             loadTableCTHD(listCTHD);
 
             // Update số lượng tồn
-            Thuoc thuoc = THUOC_CON.selectById(txtMaThuoc.getText());
             int updatedSoLuongTon = thuoc.getSoLuongTon() - cthd.getSoLuong();
             THUOC_CON.updateSoLuongTon(thuoc, updatedSoLuongTon);
             loadTable(THUOC_CON.getAllList());
@@ -907,6 +951,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
             txtSoLuong.setText("");
         }
     }
+
 
     private void btnDeleteCartItemActionPerformed(java.awt.event.ActionEvent evt) {
         if (MessageDialog.confirm(this, "Bạn có chắc muốc xóa khỏi giỏ hàng?", "Xóa thuốc khỏi giỏ hàng")) {
@@ -1025,6 +1070,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -1036,6 +1082,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
@@ -1074,6 +1121,7 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private javax.swing.JTextField txtHoTenKH;
     private javax.swing.JTextField txtMaHoaDon;
     private javax.swing.JTextField txtMaThuoc;
+    private javax.swing.JTextField txtLoaiThuoc;
     private javax.swing.JTextField txtSdtKH;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSoLuong;

@@ -43,9 +43,9 @@ public class ThongKeTongQuanPage extends javax.swing.JPanel {
     private void initChart() {
         lblChart.setText("thống kê doanh thu 7 ngày gần nhất".toUpperCase());
 
-        curveChart.addLegend("Doanh thu", new Color(54, 4, 143), new Color(104, 49, 200));
-        curveChart.addLegend("Chi phí", new Color(211, 84, 0), new Color(230, 126, 34));
-        curveChart.addLegend("Lợi nhuận", new Color(22, 163, 74), new Color(34, 197, 94));
+        curveChart.addLegend("Doanh thu", new Color(0, 102, 204), new Color(102, 178, 255)); // Xanh dương đậm -> Xanh nhạt
+        curveChart.addLegend("Chi phí", new Color(204, 0, 0), new Color(255, 102, 102));     // Đỏ đậm -> Đỏ nhạt
+        curveChart.addLegend("Lợi nhuận", new Color(0, 153, 76), new Color(102, 204, 153));  // Xanh lá đậm -> Xanh lá nhạt
 
         loadDataChart();
 

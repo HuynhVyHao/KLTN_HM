@@ -38,8 +38,17 @@ public class CreateNhanVienDialog extends javax.swing.JDialog {
             return false;
         }
 
-        if (txtSdt.getText().trim().equals("") || !Validation.isNumber(txtSdt.getText()) || txtSdt.getText().length() != 10) {
-            MessageDialog.warring(this, "Số điện thoại không được để trống và có 10 ký tự sô!");
+     // Kiểm tra Số điện thoại
+        String phoneNumber = txtSdt.getText().trim();
+        if (phoneNumber.equals("") || !Validation.isNumber(phoneNumber) || phoneNumber.length() != 10) {
+            MessageDialog.warring(this, "Số điện thoại không được rỗng và có 10 ký tự số!");
+            txtSdt.requestFocus();
+            return false;
+        }
+
+        // Kiểm tra nếu số điện thoại đã tồn tại
+        if (NV_CON.isPhoneNumberExists(phoneNumber)) {
+            MessageDialog.warring(this, "Số điện thoại đã tồn tại!");
             txtSdt.requestFocus();
             return false;
         }

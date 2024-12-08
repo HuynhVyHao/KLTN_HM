@@ -3,7 +3,6 @@ package controller;
 import dao.NhaCungCapDAO;
 import entity.DanhMuc;
 import entity.NhaCungCap;
-import gui.page.BaoCaoNhaCungCapPage;
 import gui.page.NhaCungCapPage;
 import gui.page.TimKiemNhaCungCapPage;
 
@@ -27,7 +26,6 @@ public class NhaCungCapController extends InterfaceConTroller<NhaCungCap, String
 
     public NhaCungCapDAO NCC_DAO = new NhaCungCapDAO();
     public NhaCungCapPage NCC_GUI;
-    public BaoCaoNhaCungCapPage NCC_GUIBC;
     public TimKiemNhaCungCapPage NCC_GUITK;
 
     public NhaCungCapController() {
@@ -37,10 +35,6 @@ public class NhaCungCapController extends InterfaceConTroller<NhaCungCap, String
         this.NCC_GUI = KH_GUI;
     }
     
-    public NhaCungCapController(BaoCaoNhaCungCapPage NCC_GUIBC) {
-        this.NCC_GUIBC = NCC_GUIBC;
-    }
-
     public NhaCungCapController(TimKiemNhaCungCapPage NCC_GUITK) {
     	this.NCC_GUITK = NCC_GUITK;
     }

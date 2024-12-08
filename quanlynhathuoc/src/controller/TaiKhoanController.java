@@ -4,7 +4,6 @@ import dao.TaiKhoanDAO;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import entity.VaiTro;
-import gui.page.BaoCaoTaiKhoanPage;
 import gui.page.TaiKhoanPage;
 import gui.page.TimKiemTaiKhoanPage;
 
@@ -28,7 +27,6 @@ public class TaiKhoanController extends InterfaceConTroller<TaiKhoan, String> {
     public TaiKhoanDAO TK_DAO = new TaiKhoanDAO();
     public TaiKhoanPage TK_GUI;
     public TimKiemTaiKhoanPage TK_GUITK;
-    public BaoCaoTaiKhoanPage TK_GUIBC;
 
     public TaiKhoanController() {
     }
@@ -41,10 +39,6 @@ public class TaiKhoanController extends InterfaceConTroller<TaiKhoan, String> {
         this.TK_GUITK = TK_GUITK;
     }
     
-    public TaiKhoanController(BaoCaoTaiKhoanPage TK_GUIBC) {
-        this.TK_GUIBC = TK_GUIBC;
-    }
-
     @Override
     public void create(TaiKhoan e) {
         TK_DAO.create(e);

@@ -17,6 +17,7 @@ import gui.dialog.CreateNhaCungCapDialog;
 import java.awt.Image;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -221,7 +222,24 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
             }
         }
 
+
+        // Lấy thông tin thuốc từ database
         Thuoc selectedThuoc = THUOC_CON.selectById(txtMaThuoc.getText());
+
+        // Kiểm tra thuốc có tồn tại không
+        if (selectedThuoc == null) {
+            MessageDialog.warring(this, "Không tìm thấy thuốc với mã đã nhập!");
+            return false;
+        }
+
+        // Kiểm tra thuốc đã hết hạn chưa
+        Date currentDate = new Date(); // Lấy ngày hiện tại
+        if (selectedThuoc.getHanSuDung().before(currentDate)) {
+            MessageDialog.warring(this, "Thuốc đã hết hạn, không thể nhập!");
+            return false;
+        }
+
+        // Kiểm tra thuốc đã tồn tại trong giỏ hàng chưa
         for (ChiTietPhieuNhap cthd : listCTPN) {
             if (cthd.getThuoc().equals(selectedThuoc)) {
                 MessageDialog.warring(this, "Thuốc đã tồn tại trong giỏ hàng!");
@@ -275,7 +293,9 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         txtThanhPhan = new javax.swing.JTextArea();
         jPanel21 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         txtDonGia = new javax.swing.JTextField();
+        txtLoaiThuoc = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         actionPanel = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
@@ -369,6 +389,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel17.setPreferredSize(new java.awt.Dimension(215, 40));
         jPanel17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
 
+        // Mã thuốc
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 14)); 
         jLabel10.setText("Mã thuốc:");
         jLabel10.setMaximumSize(new java.awt.Dimension(44, 40));
@@ -381,6 +402,19 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         txtMaThuoc.setPreferredSize(new java.awt.Dimension(120, 40));
         jPanel17.add(txtMaThuoc);
 
+        // Loại thuốc
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        jLabel15.setText("Loại thuốc:");
+        jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
+        jLabel15.setPreferredSize(new java.awt.Dimension(90, 40));
+        jPanel17.add(jLabel15);
+
+        txtLoaiThuoc.setEditable(false);
+        txtLoaiThuoc.setText(" ");
+        txtLoaiThuoc.setFocusable(false);
+        txtLoaiThuoc.setPreferredSize(new java.awt.Dimension(120, 40));
+        jPanel17.add(txtLoaiThuoc);
+
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setPreferredSize(new java.awt.Dimension(340, 40));
         jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 0));
@@ -392,6 +426,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         jPanel18.add(jLabel11);
 
         txtTenThuoc.setEditable(false);
+        txtTenThuoc.setText("ASZX21Z1X");
         txtTenThuoc.setFocusable(false);
         txtTenThuoc.setPreferredSize(new java.awt.Dimension(350, 40));
         jPanel18.add(txtTenThuoc);
@@ -857,6 +892,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         txtTenThuoc.setText(e.getTenThuoc());
         txtThanhPhan.setText(e.getThanhPhan());
         txtDonGia.setText(Formatter.FormatVND(e.getDonGia()));
+        txtLoaiThuoc.setText(e.getLoaiThuoc());
     }
 
     private void btnAddCartActionPerformed(java.awt.event.ActionEvent evt) {
@@ -992,6 +1028,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1032,6 +1069,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
     private javax.swing.JLabel txtHinhAnh;
     private javax.swing.JTextField txtMaHoaDon;
     private javax.swing.JTextField txtMaThuoc;
+    private javax.swing.JTextField txtLoaiThuoc;
     private javax.swing.JTextField txtSdtNcc;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSoLuong;

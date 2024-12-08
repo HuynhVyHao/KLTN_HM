@@ -1,8 +1,8 @@
 package controller;
 
 import dao.NhanVienDAO;
+import entity.KhachHang;
 import entity.NhanVien;
-import gui.page.BaoCaoNhanVienPage;
 import gui.page.NhanVienPage;
 import gui.page.TimKiemNhanVienPage;
 
@@ -28,7 +28,6 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
     public NhanVienDAO NV_DAO = new NhanVienDAO();
     public NhanVienPage NV_GUI;
     public TimKiemNhanVienPage NV_GUITK;
-    public BaoCaoNhanVienPage NV_GUIBC;
 
     public NhanVienController() {
     }
@@ -38,9 +37,6 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
     }
     public NhanVienController(TimKiemNhanVienPage NV_GUITK) {
     	this.NV_GUITK = NV_GUITK;
-    }
-    public NhanVienController(BaoCaoNhanVienPage NV_GUIBC) {
-    	this.NV_GUIBC = NV_GUIBC;
     }
 
     @Override
@@ -178,5 +174,8 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
             MessageDialog.error(NV_GUI, "Có " + check + " dòng dữ liệu không được thêm vào!");
         }
     }
-
+    public boolean isPhoneNumberExists(String phoneNumber) {
+        NhanVien nv = NV_DAO.selectBySdt(phoneNumber);
+        return nv != null;  // Nếu tìm thấy nhân viên, trả về true
+    }
 }

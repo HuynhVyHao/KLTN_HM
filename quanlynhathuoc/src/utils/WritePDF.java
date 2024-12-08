@@ -285,7 +285,18 @@ public class WritePDF {
             Paragraph paragraph4 = new Paragraph("Người thực hiện: " + nv, fontNormal10);
             paragraph3.add(new Chunk(createWhiteSpace(5)));
             Paragraph paragraph5 = new Paragraph("Thời gian: " + formatDate.format(hoaDon.getThoiGian()), fontNormal10);
+         // Kiểm tra xem có thuốc kê đơn trong hóa đơn không
+            boolean isKeDon = false;
+            for (ChiTietHoaDon cthd : listCTHD) {
+                if ("Kê đơn".equalsIgnoreCase(cthd.getThuoc().getLoaiThuoc())) {
+                    isKeDon = true;
+                    break;
+                }
+            }
+         // Thêm thông tin vào hóa đơn
+            Paragraph medicationType = new Paragraph("Loại thuốc: " + (isKeDon ? "Thuốc kê đơn" : "Thuốc không kê đơn"), fontNormal10);
             document.add(paragraph1);
+            document.add(medicationType);
             document.add(paragraph2);
             document.add(paragraph3);
             document.add(paragraph4);

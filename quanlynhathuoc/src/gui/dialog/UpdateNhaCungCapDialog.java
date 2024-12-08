@@ -1,6 +1,10 @@
 package gui.dialog;
 
+import java.util.List;
+
+import controller.DanhMucController;
 import controller.NhaCungCapController;
+import entity.DanhMuc;
 import entity.NhaCungCap;
 import gui.page.NhaCungCapPage;
 import utils.MessageDialog;
@@ -13,10 +17,12 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
     private NhaCungCapController NCC_CON = new NhaCungCapController();
     private NhaCungCapPage NCC_GUI;
     private NhaCungCap ncc;
+    private final List<DanhMuc> list = new DanhMucController().getAllList();
 
     public UpdateNhaCungCapDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        loadDanhMuc();
     }
 
     public UpdateNhaCungCapDialog(java.awt.Frame parent, boolean modal, NhaCungCapPage NCC_GUI, NhaCungCap ncc) {
@@ -24,14 +30,42 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
         initComponents();
         this.NCC_GUI = NCC_GUI;
         this.ncc = ncc;
-        fillInput();
+        loadDanhMuc(); // Gọi loadDanhMuc() trước
+        fillInput();   // Sau đó mới điền dữ liệu vào các trường
+    }
+    private void loadDanhMuc() {
+        try {
+            cboDanhMuc.removeAllItems();  // Clear any previous items
+            for (DanhMuc vt : list) {
+                cboDanhMuc.addItem(vt.getTen());  // Add each danh mục name to the combobox
+            }
+        } catch (Exception e) {
+            MessageDialog.error(this, "Lỗi nạp danh mục: " + e.getMessage());
+        }
     }
 
     private void fillInput() {
-        txtTen.setText(ncc.getTen());
-        txtSdt.setText(ncc.getSdt());
-        txtDiaChi.setText(ncc.getDiaChi());
+        if (ncc != null) { 
+            txtTen.setText(ncc.getTen());
+            txtSdt.setText(ncc.getSdt());
+            txtDiaChi.setText(ncc.getDiaChi());
+
+            if (cboDanhMuc.getItemCount() > 0) { // Chỉ thực hiện nếu combobox đã có dữ liệu
+                for (int i = 0; i < cboDanhMuc.getItemCount(); i++) {
+                    if (cboDanhMuc.getItemAt(i).toString().equals(ncc.getDanhMuc().getTen())) {
+                        cboDanhMuc.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            } else {
+                System.out.println("Combobox chưa được nạp danh sách danh mục.");
+            }
+        } else {
+            System.out.println("Không thể điền dữ liệu, nhà cung cấp (ncc) là null.");
+        }
     }
+
+
 
     private boolean isValidateFields() {
         if (txtTen.getText().trim().equals("")) {
@@ -60,8 +94,10 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
         String ten = txtTen.getText().trim();
         String sdt = txtSdt.getText().trim();
         String diaChi = txtDiaChi.getText().trim();
+        String idDM = list.get(cboDanhMuc.getSelectedIndex()).getId();  // Get the selected danh mục ID
+        DanhMuc danhMuc = new DanhMucController().selectById(idDM);  // Get the danh mục object
 
-        return new NhaCungCap(id, ten, sdt, diaChi);
+        return new NhaCungCap(id, ten, sdt, diaChi, danhMuc);
     }
 
     @SuppressWarnings("unchecked")
@@ -82,6 +118,9 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
         jPanel8 = new javax.swing.JPanel();
         btnHuy = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        jPanelDanhMuc = new javax.swing.JPanel();
+        jLabelDanhMuc = new javax.swing.JLabel();
+        cboDanhMuc = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -94,7 +133,7 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CẬP NHẬP NHÂN VIÊN");
+        jLabel8.setText("CẬP NHẬT NHÀ CUNG CẤP");
         jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel15, java.awt.BorderLayout.NORTH);
@@ -150,6 +189,23 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
         jPanel20.add(txtDiaChi);
 
         jPanel1.add(jPanel20);
+        
+        // Trong initComponents
+        jPanelDanhMuc.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelDanhMuc.setPreferredSize(new java.awt.Dimension(500, 40));
+        jPanelDanhMuc.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+
+        jLabelDanhMuc.setFont(new java.awt.Font("Roboto", 0, 14));
+        jLabelDanhMuc.setText("Danh mục");
+        jLabelDanhMuc.setMaximumSize(new java.awt.Dimension(44, 40));
+        jLabelDanhMuc.setPreferredSize(new java.awt.Dimension(150, 40));
+        jPanelDanhMuc.add(jLabelDanhMuc);
+
+//        cboDanhMuc.setFont(new java.awt.Font("Roboto", 0, 14));
+        cboDanhMuc.setPreferredSize(new java.awt.Dimension(300, 40));
+        jPanelDanhMuc.add(cboDanhMuc);
+
+        jPanel1.add(jPanelDanhMuc);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -209,6 +265,9 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
 
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox<String> cboDanhMuc;
+    private javax.swing.JPanel jPanelDanhMuc;
+    private javax.swing.JLabel jLabelDanhMuc;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel8;

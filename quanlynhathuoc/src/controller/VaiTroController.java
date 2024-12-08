@@ -2,7 +2,6 @@ package controller;
 
 import dao.VaiTroDAO;
 import entity.VaiTro;
-import gui.page.BaoCaoVaiTroPage;
 import gui.page.TimKiemVaiTroPage;
 import gui.page.VaiTroPage;
 import java.io.BufferedInputStream;
@@ -25,7 +24,6 @@ public class VaiTroController extends InterfaceConTroller<VaiTro, String> {
     VaiTroDAO VT_DAO = new VaiTroDAO();
     VaiTroPage VT_GUI;
     TimKiemVaiTroPage VT_GUITK;
-    BaoCaoVaiTroPage VT_GUIBC;
 
     public VaiTroController() {
     }
@@ -38,10 +36,6 @@ public class VaiTroController extends InterfaceConTroller<VaiTro, String> {
         this.VT_GUITK = VT_GUITK;
     }
     
-    public VaiTroController(BaoCaoVaiTroPage VT_GUIBC) {
-        this.VT_GUIBC = VT_GUIBC;
-    }
-
     @Override
     public void create(VaiTro e) {
         VT_DAO.create(e);

@@ -5,14 +5,6 @@ import controller.TaiKhoanController;
 import entity.TaiKhoan;
 import gui.dialog.CreateKhachHangDialog;
 import gui.dialog.InfoDialog;
-import gui.page.BaoCaoHoaDonPage;
-import gui.page.BaoCaoKhachHangPage;
-import gui.page.BaoCaoNhaCungCapPage;
-import gui.page.BaoCaoNhanVienPage;
-import gui.page.BaoCaoPhieuNhapPage;
-import gui.page.BaoCaoTaiKhoanPage;
-import gui.page.BaoCaoThuocPage;
-import gui.page.BaoCaoVaiTroPage;
 import gui.page.ChiTietThuocPage;
 import gui.page.CreateDatHangPage;
 import gui.page.DanhMucPage;
@@ -59,32 +51,24 @@ public class MainLayout extends javax.swing.JFrame {
 
 	private ThuocPage thuoc;
 	private TimKiemThuocPage timKiemThuoc;
-	private BaoCaoThuocPage baoCaoThuoc;
 	private ChiTietThuocPage chiTietThuoc;
 	private DanhMucPage danhMuc;
 	private HoaDonPage hoaDon;
 	private TimKiemHoaDonPage timKiemHoaDonPage;
-	private BaoCaoHoaDonPage baoCaoHoaDonPage;
 	private NhaCungCapPage nhaCungCap;
 	private TimKiemNhaCungCapPage timKiemNhaCungCap;
-	private BaoCaoNhaCungCapPage baoCaoNhaCungCap;
 	private KhachHangPage khachHang;
 	private TimKiemKhachHangPage timKiemKhachHang;
-	private BaoCaoKhachHangPage baoCaoKhachHang;
 	private NhanVienPage nhanVien;
 	private TimKiemNhanVienPage timKiemNhanVien;
-	private BaoCaoNhanVienPage baoCaoNhanVien;
 //	private CreateDatHangPage datHangNhanVien;
 	private DatHangPage datHangNhanVien;
 	private TaiKhoanPage taiKhoan;
 	private TimKiemTaiKhoanPage timKiemTaiKhoan;
-	private BaoCaoTaiKhoanPage baoCaoTaiKhoan;
 	private VaiTroPage vaiTro;
 	private TimKiemVaiTroPage timKiemVaiTro;
-	private BaoCaoVaiTroPage baoCaoVaiTro;
 	private PhieuNhapPage phieuNhap;
 	private TimKiemPhieuNhapPage timKiemPhieuNhap;
-	private BaoCaoPhieuNhapPage baoCaoPhieuNhap;
 	private ThongKePage thongke;
 	private boolean isMenuVisible;
 
@@ -364,21 +348,10 @@ public class MainLayout extends javax.swing.JFrame {
 			}
 		});
 
-		JMenuItem baoCaoHDItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoHDItem.setIconTextGap(8);
-		baoCaoHDItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoHDItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-		baoCaoHDItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				baoCaoHoaDonItemActionPerformed(evt);
-			}
-		});
 
 		jpMenuHD.add(capNhatHDItem);
 		jpMenuHD.add(new JSeparator());
 		jpMenuHD.add(timKiemHDItem);
-		jpMenuHD.add(new JSeparator());
-		jpMenuHD.add(baoCaoHDItem);
 
 		hoaDonItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); 
 		hoaDonItem.setIcon(new FlatSVGIcon("./icon/bill.svg"));
@@ -444,21 +417,10 @@ public class MainLayout extends javax.swing.JFrame {
 			}
 		});
 
-		JMenuItem baoCaoItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoItem.setIconTextGap(8);
-		baoCaoItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-		baoCaoItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				baoCaoKhachHangItemActionPerformed(evt);
-			}
-		});
 
 		jpMenuKH.add(capNhatItem);
 		jpMenuKH.add(new JSeparator());
 		jpMenuKH.add(timKiemItem);
-		jpMenuKH.add(new JSeparator());
-		jpMenuKH.add(baoCaoItem);
 
 		khachHangItem.setFont(new java.awt.Font("Roboto Medium", 0, 12));
 		khachHangItem.setIcon(new FlatSVGIcon("./icon/customer.svg"));
@@ -521,16 +483,6 @@ public class MainLayout extends javax.swing.JFrame {
 			}
 		});
 
-		JMenuItem baoCaoThuocItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoThuocItem.setIconTextGap(8);
-		baoCaoThuocItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoThuocItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-		baoCaoThuocItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				baoCaoThuocItemActionPerformed(evt);
-			}
-		});
-
 		JMenuItem chiTietThuocItem = new JMenuItem("Chi Tiết", new FlatSVGIcon("./icon/listCT.svg", 24, 24));
 		chiTietThuocItem.setIconTextGap(8);
 		chiTietThuocItem.setMargin(new Insets(5, 10, 5, 10));
@@ -554,8 +506,6 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuThuoc.add(capNhatThuocItem);
 		jpMenuThuoc.add(new JSeparator());
 		jpMenuThuoc.add(timKiemThuocItem);
-		jpMenuThuoc.add(new JSeparator());
-		jpMenuThuoc.add(baoCaoThuocItem);
 		jpMenuThuoc.add(new JSeparator());
 		jpMenuThuoc.add(chiTietThuocItem);
 		jpMenuThuoc.add(new JSeparator());
@@ -701,21 +651,9 @@ public class MainLayout extends javax.swing.JFrame {
 			}
 		});
 
-		JMenuItem baoCaoPNItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoPNItem.setIconTextGap(8);
-		baoCaoPNItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoPNItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-		baoCaoPNItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				baoCaoPhieuNhapItemActionPerformed(evt);
-			}
-		});
-
 		jpMenuPhieuNhap.add(capNhatPNItem);
 		jpMenuPhieuNhap.add(new JSeparator());
 		jpMenuPhieuNhap.add(timKiemPNItem);
-		jpMenuPhieuNhap.add(new JSeparator());
-		jpMenuPhieuNhap.add(baoCaoPNItem);
 
 		phieuNhapItem.setFont(new java.awt.Font("Roboto Medium", 0, 12));
 		phieuNhapItem.setIcon(new FlatSVGIcon("./icon/bill-import.svg"));
@@ -775,21 +713,9 @@ public class MainLayout extends javax.swing.JFrame {
 			}
 		});
 
-		JMenuItem baoCaoNCCItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoNCCItem.setIconTextGap(8);
-		baoCaoNCCItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoNCCItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-		baoCaoNCCItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				baoCaoNhaCungCapItemActionPerformed(evt);
-			}
-		});
-
 		jpMenuNhaCC.add(capNhatNCCItem);
 		jpMenuNhaCC.add(new JSeparator());
 		jpMenuNhaCC.add(timKiemNCCItem);
-		jpMenuNhaCC.add(new JSeparator());
-		jpMenuNhaCC.add(baoCaoNCCItem);
 
 		nhaCungCapItem.setFont(new java.awt.Font("Roboto Medium", 0, 12)); 
 		nhaCungCapItem.setIcon(new FlatSVGIcon("./icon/trucks.svg"));
@@ -848,16 +774,6 @@ public class MainLayout extends javax.swing.JFrame {
 			}
 		});
 		
-		 baoCaoNVItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoNVItem.setIconTextGap(8);
-		baoCaoNVItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoNVItem.setFont(new java.awt.Font("Roboto Medium", 0, 14));
-		baoCaoNVItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				baoCaoNhanVienItemActionPerformed(evt);
-			}
-		});
-		
 		 thongKeNVItem = new JMenuItem("Thống Kê", new FlatSVGIcon("./icon/statistics.svg", 24, 24));
 		thongKeNVItem.setIconTextGap(8);
 		thongKeNVItem.setMargin(new Insets(5, 10, 5, 10));
@@ -881,8 +797,6 @@ public class MainLayout extends javax.swing.JFrame {
 		jpMenuNhanVien.add(capNhatNVItem);
 		jpMenuNhanVien.add(new JSeparator());
 		jpMenuNhanVien.add(timKiemNVItem);
-		jpMenuNhanVien.add(new JSeparator());
-		jpMenuNhanVien.add(baoCaoNVItem);
 		jpMenuNhanVien.add(new JSeparator());
 		jpMenuNhanVien.add(thongKeNVItem);
 		jpMenuNhanVien.add(new JSeparator());
@@ -1020,16 +934,9 @@ public class MainLayout extends javax.swing.JFrame {
 		timKiemTKItem.setFont(new java.awt.Font("Roboto Medium", java.awt.Font.PLAIN, 14));
 		timKiemTKItem.addActionListener(evt -> timKiemTaiKhoanItemActionPerformed(evt));
 
-		JMenuItem baoCaoTKItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoTKItem.setIconTextGap(8);
-		baoCaoTKItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoTKItem.setFont(new java.awt.Font("Roboto Medium", java.awt.Font.PLAIN, 14));
-		baoCaoTKItem.addActionListener(evt -> baoCaoTaiKhoanItemActionPerformed(evt));
-
 		// Thêm các mục vào menu "Tài khoản"
 		menuTaiKhoan.add(capNhatTKItem);
 		menuTaiKhoan.add(timKiemTKItem);
-		menuTaiKhoan.add(baoCaoTKItem);
 
 		// Menu "Vai trò"
 		JMenu menuVaiTro = new JMenu("Vai trò");
@@ -1049,16 +956,9 @@ public class MainLayout extends javax.swing.JFrame {
 		timKiemVTItem.setFont(new java.awt.Font("Roboto Medium", java.awt.Font.PLAIN, 14));
 		timKiemVTItem.addActionListener(evt -> timKiemVaiTroItemActionPerformed(evt));
 
-		JMenuItem baoCaoVTItem = new JMenuItem("Báo Cáo", new FlatSVGIcon("./icon/report.svg", 24, 24));
-		baoCaoVTItem.setIconTextGap(8);
-		baoCaoVTItem.setMargin(new Insets(5, 10, 5, 10));
-		baoCaoVTItem.setFont(new java.awt.Font("Roboto Medium", java.awt.Font.PLAIN, 14));
-		baoCaoVTItem.addActionListener(evt -> baoCaoVaiTroItemActionPerformed(evt));
-
 		// Thêm các mục vào menu "Vai trò"
 		menuVaiTro.add(capNhatVTItem);
 		menuVaiTro.add(timKiemVTItem);
-		menuVaiTro.add(baoCaoVTItem);
 
 		// Thêm menu "Tài khoản" và "Vai trò" vào menu chính "Người Dùng"
 		jpMenuNguoiDung.add(menuTaiKhoan);
@@ -1204,14 +1104,6 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoTaiKhoanItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoTaiKhoan = new BaoCaoTaiKhoanPage();
-		this.setPanel(baoCaoTaiKhoan);
-		resetActive();
-		taiKhoanItem.setSelected(true);
-		isMenuVisible = false;
-	}
-
 //-------------CHỨC NĂNG NHÂN VIÊN---------------------------	
 
 	private void nhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1239,14 +1131,6 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoNhanVienItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoNhanVien = new BaoCaoNhanVienPage();
-		this.setPanel(baoCaoNhanVien);
-		resetActive();
-		nhanVienItem.setSelected(true);
-		isMenuVisible = false;
-	}
-
 //-------------CHỨC NĂNG KHÁCH HÀNG---------------------------
 
 	private void khachHangItemActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1265,13 +1149,6 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoKhachHangItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoKhachHang = new BaoCaoKhachHangPage();
-		this.setPanel(baoCaoKhachHang);
-		resetActive();
-		khachHangItem.setSelected(true);
-		isMenuVisible = false;
-	}
 
 //-------------CHỨC NĂNG HÓA ĐƠN---------------------------
 
@@ -1291,13 +1168,6 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoHoaDonItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoHoaDonPage = new BaoCaoHoaDonPage(this);
-		this.setPanel(baoCaoHoaDonPage);
-		resetActive();
-		hoaDonItem.setSelected(true);
-		isMenuVisible = false;
-	}
 
 //-------------CHỨC NĂNG NHÀ CUNG CẤP---------------------------	
 	private void nhaCungCapItemActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1316,14 +1186,6 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoNhaCungCapItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoNhaCungCap = new BaoCaoNhaCungCapPage();
-		this.setPanel(baoCaoNhaCungCap);
-		resetActive();
-		nhaCungCapItem.setSelected(true);
-		isMenuVisible = false;
-	}
-
 //-------------CHỨC NĂNG THUỐC---------------------------		
 	private void thuocItemActionPerformed(java.awt.event.ActionEvent evt) {
 		thuoc = new ThuocPage(this);
@@ -1336,14 +1198,6 @@ public class MainLayout extends javax.swing.JFrame {
 	private void timKiemThuocItemActionPerformed(java.awt.event.ActionEvent evt) {
 		timKiemThuoc = new TimKiemThuocPage(this);
 		this.setPanel(timKiemThuoc);
-		resetActive();
-		thuocItem.setSelected(true);
-		isMenuVisible = false;
-	}
-
-	private void baoCaoThuocItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoThuoc = new BaoCaoThuocPage(this);
-		this.setPanel(baoCaoThuoc);
 		resetActive();
 		thuocItem.setSelected(true);
 		isMenuVisible = false;
@@ -1384,14 +1238,6 @@ public class MainLayout extends javax.swing.JFrame {
 		isMenuVisible = false;
 	}
 
-	private void baoCaoVaiTroItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoVaiTro = new BaoCaoVaiTroPage();
-		this.setPanel(baoCaoVaiTro);
-		resetActive();
-		vaiTroItem.setSelected(true);
-		isMenuVisible = false;
-	}
-
 //-------------CHỨC NĂNG PHIẾU NHẬP---------------------------			
 
 	private void phieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {
@@ -1405,14 +1251,6 @@ public class MainLayout extends javax.swing.JFrame {
 	private void timKiemPhieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {
 		timKiemPhieuNhap = new TimKiemPhieuNhapPage(this);
 		this.setPanel(timKiemPhieuNhap);
-		resetActive();
-		phieuNhapItem.setSelected(true);
-		isMenuVisible = false;
-	}
-
-	private void baoCaoPhieuNhapItemActionPerformed(java.awt.event.ActionEvent evt) {
-		baoCaoPhieuNhap = new BaoCaoPhieuNhapPage(this);
-		this.setPanel(baoCaoPhieuNhap);
 		resetActive();
 		phieuNhapItem.setSelected(true);
 		isMenuVisible = false;

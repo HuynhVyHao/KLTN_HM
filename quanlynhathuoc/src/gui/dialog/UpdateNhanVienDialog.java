@@ -132,7 +132,7 @@ public class UpdateNhanVienDialog extends javax.swing.JDialog {
         jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CẬP NHẬP NHÂN VIÊN");
+        jLabel8.setText("CẬP NHẬT NHÂN VIÊN");
         jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jPanel15, java.awt.BorderLayout.NORTH);

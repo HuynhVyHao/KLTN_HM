@@ -65,6 +65,11 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		for (XuatXu vt : listXX) {
 			cboxXuatXu.addItem(vt.getTen());
 		}
+		
+		// Thêm lựa chọn loại thuốc (Kê đơn, Không kê đơn)
+	    cboxLoaiThuoc.addItem("Kê đơn");
+	    cboxLoaiThuoc.addItem("Không kê đơn");
+		
 		txtNgaySanXuat_1.setDate(new Date());
 		txtHanSuDung.setDate(new Date());
 	}
@@ -185,9 +190,11 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		double donGia = Double.parseDouble(txtDonGia.getText().trim());
 		Date ngaySanXuat = txtNgaySanXuat_1.getDate(); // Thêm ngày sản xuất
 		Date hanSuDung = txtHanSuDung.getDate();
+		  // Lấy giá trị từ combobox loại thuốc
+	    String loaiThuoc = cboxLoaiThuoc.getSelectedItem().toString();
 
 		return new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuong, giaNhap, donGia,
-				ngaySanXuat, hanSuDung);
+				ngaySanXuat, hanSuDung,loaiThuoc);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -196,6 +203,8 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		jPanel15 = new javax.swing.JPanel();
 		jLabel8 = new javax.swing.JLabel();
 		jPanel3 = new javax.swing.JPanel();
+		jLabel28 = new javax.swing.JLabel();
+		jPanel28 = new javax.swing.JPanel();
 		jPanel4 = new javax.swing.JPanel();
 		txtHinhAnh = new javax.swing.JLabel();
 		btnChooseImage = new javax.swing.JButton();
@@ -217,6 +226,7 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		jPanel24 = new javax.swing.JPanel();
 		jLabel17 = new javax.swing.JLabel();
 		cboxDonViTinh = new javax.swing.JComboBox<>();
+		cboxLoaiThuoc = new javax.swing.JComboBox<>();
 		jPanel20 = new javax.swing.JPanel();
 		jLabel13 = new javax.swing.JLabel();
 
@@ -235,7 +245,7 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		btnAdd = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setPreferredSize(new java.awt.Dimension(1100, 650));
+		setPreferredSize(new java.awt.Dimension(1200, 750));
 
 		jPanel15.setBackground(new java.awt.Color(0, 153, 153));
 		jPanel15.setMinimumSize(new java.awt.Dimension(100, 60));
@@ -298,13 +308,13 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		getContentPane().add(jPanel3, java.awt.BorderLayout.WEST);
 
 		jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel2.setPreferredSize(new java.awt.Dimension(650, 550));
+		jPanel2.setPreferredSize(new java.awt.Dimension(750, 550));
 		jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 16));
 
 		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel1.setPreferredSize(new java.awt.Dimension(650, 500));
-		jPanel1.setLayout(new java.awt.GridLayout(5, 2, 16, 8));
-
+		jPanel1.setPreferredSize(new java.awt.Dimension(750, 550));
+		jPanel1.setLayout(new java.awt.GridLayout(6, 2, 16, 8));
+		
 		jPanel18.setBackground(new java.awt.Color(255, 255, 255));
 		jPanel18.setPreferredSize(new java.awt.Dimension(150, 40));
 		jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
@@ -359,6 +369,22 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		jPanel21.add(cboxDanhMuc);
 
 		jPanel1.add(jPanel21);
+		
+		jPanel28.setBackground(new java.awt.Color(255, 255, 255));
+		jPanel28.setPreferredSize(new java.awt.Dimension(150, 40));
+		jPanel28.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+
+		jLabel28.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel28.setText("Loại Thuốc");
+		jLabel28.setMaximumSize(new java.awt.Dimension(44, 40));
+		jLabel28.setPreferredSize(new java.awt.Dimension(150, 40));
+		jPanel28.add(jLabel28);
+
+		cboxLoaiThuoc.setPreferredSize(new java.awt.Dimension(300, 40));
+		jPanel28.add(cboxLoaiThuoc);
+
+		jPanel1.add(jPanel28); // Thêm jPanel28 vào cuối jPanel1
+
 
 		jPanel23.setBackground(new java.awt.Color(255, 255, 255));
 		jPanel23.setPreferredSize(new java.awt.Dimension(150, 40));
@@ -374,7 +400,7 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		jPanel23.add(cboxXuatXu);
 
 		jPanel1.add(jPanel23);
-
+		
 		jPanel24.setBackground(new java.awt.Color(255, 255, 255));
 		jPanel24.setPreferredSize(new java.awt.Dimension(150, 40));
 		jPanel24.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
@@ -583,6 +609,7 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 	private javax.swing.JComboBox<String> cboxDanhMuc;
 	private javax.swing.JComboBox<String> cboxDonViTinh;
 	private javax.swing.JComboBox<String> cboxXuatXu;
+	private javax.swing.JComboBox<String> cboxLoaiThuoc;
 	private javax.swing.JLabel jLabel12;
 	private javax.swing.JLabel jLabel13;
 	private javax.swing.JLabel jLabel14;
@@ -591,6 +618,7 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 	private javax.swing.JLabel jLabel18;
 	private javax.swing.JLabel jLabel19;
 	private javax.swing.JLabel jLabel20;
+	private javax.swing.JLabel jLabel28;
 	private javax.swing.JLabel jLabel8;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel15;
@@ -604,6 +632,7 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 	private javax.swing.JPanel jPanel25;
 	private javax.swing.JPanel jPanel26;
 	private javax.swing.JPanel jPanel27;
+	private javax.swing.JPanel jPanel28;
 	private javax.swing.JPanel jPanel3;
 	private javax.swing.JPanel jPanel4;
 	private javax.swing.JPanel jPanel8;

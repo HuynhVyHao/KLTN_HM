@@ -14,6 +14,8 @@ public class NhanVienDAO extends InterfaceDAO<NhanVien, String> {
 
     private final String SELECT_ALL_SQL = "SELECT * FROM NhanVien ORDER BY ngayVaoLam";
     private final String SELECT_BY_ID = "SELECT * FROM NhanVien WHERE idNV = ?";
+    
+    private final String SELECT_BY_SDT = "SELECT * FROM NhanVien WHERE sdt = ?";
 
     @Override
     public void create(NhanVien e) {
@@ -60,6 +62,14 @@ public class NhanVienDAO extends InterfaceDAO<NhanVien, String> {
     @Override
     public NhanVien selectById(String id) {
         List<NhanVien> list = selectBySql(SELECT_BY_ID, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
+    
+    public NhanVien selectBySdt(String sdt) {
+        List<NhanVien> list = selectBySql(SELECT_BY_SDT, sdt);
         if (list.isEmpty()) {
             return null;
         }

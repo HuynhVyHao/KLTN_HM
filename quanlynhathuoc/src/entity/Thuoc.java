@@ -17,11 +17,13 @@ public class Thuoc {
     private double donGia;
     private Date hanSuDung;
     private Date ngaySanXuat; // Thêm thuộc tính ngày sản xuất
+    private String loaiThuoc; // Loại thuốc (Kê đơn, Không kê đơn)
+
 
     public Thuoc() {
     }
 
-    public Thuoc(String id, String ten, byte[] hinhAnh, String thanhPhan, DonViTinh donViTinh, DanhMuc danhMuc, XuatXu xuatXu, int soLuongTon, double giaNhap, double donGia, Date hanSuDung, Date ngaySanXuat) {
+    public Thuoc(String id, String ten, byte[] hinhAnh, String thanhPhan, DonViTinh donViTinh, DanhMuc danhMuc, XuatXu xuatXu, int soLuongTon, double giaNhap, double donGia, Date hanSuDung, Date ngaySanXuat, String loaiThuoc) {
         this.id = id;
         this.ten = ten;
         this.hinhAnh = hinhAnh;
@@ -34,13 +36,9 @@ public class Thuoc {
         this.donGia = donGia;
         this.ngaySanXuat = ngaySanXuat; 
         this.hanSuDung = hanSuDung;
-        // Thêm ngày sản xuất vào constructor
+        this.loaiThuoc = loaiThuoc; // Initialize the new field
     }
 
-    // Getter và Setter cho thuộc tính ngaySanXuat
-   
-
-    // Các Getter và Setter khác
     public String getId() {
         return id;
     }
@@ -134,8 +132,18 @@ public class Thuoc {
     public void setHanSuDung(Date hanSuDung) {
         this.hanSuDung = hanSuDung;
     }
+    
+    
 
-    @Override
+    public String getLoaiThuoc() {
+		return loaiThuoc;
+	}
+
+	public void setLoaiThuoc(String loaiThuoc) {
+		this.loaiThuoc = loaiThuoc;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 7;
         hash = 17 * hash + Objects.hashCode(this.id);
@@ -157,8 +165,5 @@ public class Thuoc {
         return Objects.equals(this.id, other.id);
     }
 
-    @Override
-    public String toString() {
-        return "Thuoc{" + "id=" + id + ", ten=" + ten + ", hinhAnh=" + hinhAnh + ", thanhPhan=" + thanhPhan + ", donViTinh=" + donViTinh + ", danhMuc=" + danhMuc + ", xuatXu=" + xuatXu + ", soLuongTon=" + soLuongTon + ", giaNhap=" + giaNhap + ", donGia=" + donGia + ", ngaySanXuat=" + ngaySanXuat + ", hanSuDung=" + hanSuDung + '}';
-    }
+    
 }
