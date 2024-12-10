@@ -359,7 +359,7 @@ public class DetailDatHangDialog extends javax.swing.JDialog {
 		jPanel8.add(btnDoiThuoc);
 
 		// Định dạng nút Trả thuốc
-		btnTraThuoc.setBackground(new java.awt.Color(255, 204, 204));
+		btnTraThuoc.setBackground(new java.awt.Color(45, 122, 247));
 		btnTraThuoc.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16));
 		btnTraThuoc.setForeground(new java.awt.Color(255, 255, 255));
 		btnTraThuoc.setText("TRẢ THUỐC");
