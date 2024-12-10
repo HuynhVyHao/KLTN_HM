@@ -11,31 +11,22 @@ import entity.DonViTinh;
 import entity.Thuoc;
 import entity.XuatXu;
 import gui.MainLayout;
-import gui.dialog.CreateThuocDialog;
 import gui.dialog.DetailThuocDialog;
 import gui.dialog.ThuocTinhDonViTinhDialog;
 import gui.dialog.ThuocTinhXuatXuDialog;
-import gui.dialog.UpdateThuocDialog;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
-import utils.JTableExporter;
 import utils.MessageDialog;
 import utils.TableSorter;
-import utils.Validation;
 
 public class ChiTietThuocPage extends javax.swing.JPanel {
 	private final ThuocController THUOC_CON = new ThuocController(this);
 	private List<Thuoc> listThuoc = THUOC_CON.getAllList();
-
-	private final List<DonViTinh> listDVT = new DonViTinhController().getAllList();
-	private final List<XuatXu> listXX = new XuatXuController().getAllList();
-	private final List<DanhMuc> listDM = new DanhMucController().getAllList();
 
 	private DefaultTableModel modal;
 
@@ -192,23 +183,6 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 		tablePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 2, true));
 		tablePanel.setLayout(new java.awt.BorderLayout(2, 0));
 
-		table.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { "123", "Anh Tuấn", "123123", null, null, null },
-						{ "13124", "czczxc", "zxc", null, null, null }, { "14123", "zxczc", "zxc", null, null, null },
-						{ "124123", "zxczx", "zxc", null, null, null } },
-				new String[] { "Mã", "Họ tên", "Số điện thoại", "Giới tính", "Năm sinh", "Ngày vào làm" }) {
-			Class[] types = new Class[] { java.lang.String.class, java.lang.String.class, java.lang.String.class,
-					java.lang.String.class, java.lang.Integer.class, java.lang.String.class };
-			boolean[] canEdit = new boolean[] { false, false, false, false, false, false };
-
-			public Class getColumnClass(int columnIndex) {
-				return types[columnIndex];
-			}
-
-			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return canEdit[columnIndex];
-			}
-		});
 		table.setFocusable(false);
 		table.setRowHeight(40);
 		table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -251,10 +225,6 @@ public class ChiTietThuocPage extends javax.swing.JPanel {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
 		}
 	}
-
-
-
-
 
 	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {
 		ThuocTinhDonViTinhDialog dialog = new ThuocTinhDonViTinhDialog(null, true);

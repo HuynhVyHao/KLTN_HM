@@ -110,14 +110,6 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         lblTable = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(230, 245, 245));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 245, 245), 6, true));
@@ -226,32 +218,6 @@ public class PhieuNhapPage extends javax.swing.JPanel {
         tablePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 2, true));
         tablePanel.setLayout(new java.awt.BorderLayout(2, 0));
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"123", "Anh Tuấn", "123123", null, null, null},
-                {"13124", "czczxc", "zxc", null, null, null},
-                {"14123", "zxczc", "zxc", null, null, null},
-                {"124123", "zxczx", "zxc", null, null, null}
-            },
-            new String [] {
-                "Mã", "Họ tên", "Số điện thoại", "Giới tính", "Năm sinh", "Ngày vào làm"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         table.setFocusable(false);
         table.setRowHeight(40);
         table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -331,16 +297,8 @@ public class PhieuNhapPage extends javax.swing.JPanel {
     private javax.swing.JButton btnImport;
 	private javax.swing.JButton btnExport;
     private javax.swing.JPanel headerPanel;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblTable;
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;

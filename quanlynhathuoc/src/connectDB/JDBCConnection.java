@@ -1,25 +1,19 @@
 package connectDB;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class JDBCConnection {
 
-    static String url = "jdbc:sqlserver://localhost:1433;databasename=QLTHUOC;encrypt=true;trustServerCertificate=true;";
-    static String user = "sa";
-    static String password = "sapassword";
+    private static final String url = "jdbc:sqlserver://localhost:1433;databasename=QLTHUOC;encrypt=true;trustServerCertificate=true;";
+    private static final String user = "sa";
+    private static final String password = "sapassword";
 
-    public static PreparedStatement getStmt(String sql, Object... args) throws Exception {
-        Connection con = DriverManager.getConnection(url, user, password);
-        PreparedStatement stmt;
-        if (sql.trim().startsWith("{")) {
-            stmt = con.prepareCall(sql);
-        } else {
-            stmt = con.prepareStatement(sql);
-        }
+    private static Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(url, user, password);
+    }
 
+    private static PreparedStatement prepareStatement(Connection connection, String sql, Object... args) throws SQLException {
+        PreparedStatement stmt = sql.trim().startsWith("{") ? connection.prepareCall(sql) : connection.prepareStatement(sql);
         for (int i = 0; i < args.length; i++) {
             stmt.setObject(i + 1, args[i]);
         }
@@ -27,21 +21,21 @@ public class JDBCConnection {
     }
 
     public static int update(String sql, Object... args) {
-        try {
-            PreparedStatement stmt = JDBCConnection.getStmt(sql, args);
-            try {
-                return stmt.executeUpdate();
-            } finally {
-                stmt.getConnection().close();
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        try (Connection connection = getConnection();
+             PreparedStatement stmt = prepareStatement(connection, sql, args)) {
+            return stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing update", e);
         }
     }
 
-    public static ResultSet query(String sql, Object... args) throws Exception {
-        PreparedStatement stmt = JDBCConnection.getStmt(sql, args);
-        return stmt.executeQuery();
+    public static ResultSet query(String sql, Object... args) {
+        try {
+            Connection connection = getConnection();
+            PreparedStatement stmt = prepareStatement(connection, sql, args);
+            return stmt.executeQuery();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error executing query", e);
+        }
     }
-
 }

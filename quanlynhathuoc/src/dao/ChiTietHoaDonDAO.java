@@ -16,12 +16,18 @@ public class ChiTietHoaDonDAO implements ChiTietInterfaceDAO<ChiTietHoaDon, Stri
     private final String INSERT_SQL = "INSERT INTO ChiTietHoaDon values (?,?,?,?)";
     private final String DELETE_BY_ID = "DELETE from ChiTietHoaDon WHERE idHD = ?";
     private final String SELECT_BY_ID = "SELECT * FROM ChiTietHoaDon WHERE idHD = ?";
+    private final String DELETE_BY_ID_THUOC = "DELETE from ChiTietHoaDon WHERE idThuoc = ?";  // Xóa theo idThuoc
 
     @Override
     public void create(List<ChiTietHoaDon> list) {
         for (ChiTietHoaDon e : list) {
             JDBCConnection.update(INSERT_SQL, e.getHoaDon().getId(), e.getThuoc().getId(), e.getSoLuong(), e.getDonGia());
         }
+    }
+    
+    // Phương thức xóa theo idThuoc
+    public void deleteByIdThuoc(String idThuoc) {
+        JDBCConnection.update(DELETE_BY_ID_THUOC, idThuoc); // Xóa theo idThuoc
     }
 
     @Override

@@ -110,15 +110,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         table.getColumnModel().getColumn(2).setPreferredWidth(200);
         table.getColumnModel().getColumn(3).setPreferredWidth(200);
 
-        // Lọc danh sách thuốc khi bắt đầu và khi nhà cung cấp thay đổi
-        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
-        if (selectedIndex != -1) { // Kiểm tra chỉ số hợp lệ
-            NhaCungCap selectedNCC = listNCC.get(selectedIndex); // Lấy nhà cung cấp đã chọn
-            List<Thuoc> filteredList = filterThuocByNhaCungCap(selectedNCC); // Lọc danh sách thuốc theo danh mục của nhà cung cấp
-            loadTable(filteredList); // Gọi phương thức loadTable với danh sách thuốc đã lọc
-        } else {
-            System.out.println("Vui lòng chọn nhà cung cấp.");
-        }
+        loadThuocByNhaCungCap();
 
         sortTable(); // Gọi phương thức sắp xếp bảng nếu cần
     }
@@ -649,17 +641,6 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(null);
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         table.setFocusable(false);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -687,17 +668,6 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 1, true));
 
-        tableCart.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         tableCart.setFocusable(false);
         jScrollPane2.setViewportView(tableCart);
 
@@ -931,9 +901,10 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
     }
 
     private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
-        txtSearch.setText("");
-        cboxSearch.setSelectedIndex(0);
-        loadTable(THUOC_CON.getAllList());
+        txtSearch.setText(""); 
+        cboxSearch.setSelectedIndex(0); 
+
+        loadThuocByNhaCungCap();
     }
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {
@@ -1011,25 +982,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
   
     // Sự kiện thay đổi nhà cung cấp
     private void cboxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {
-        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
-//        if (!listCTPN.isEmpty()) {
-//            // Nếu giỏ hàng có thuốc, khóa ComboBox
-//            JOptionPane.showMessageDialog(this, "Giỏ hàng đã có thuốc. Không thể thay đổi nhà cung cấp.");
-//            return;  // Không thực hiện thay đổi nhà cung cấp
-//        }
-        // Kiểm tra chỉ số hợp lệ
-        if (selectedIndex != -1) {
-            // Lấy nhà cung cấp đã chọn
-            String idNCC = listNCC.get(selectedIndex).getId();
-            NhaCungCap ncc = new NhaCungCapController().selectById(idNCC);
-            txtSdtNcc.setText(ncc.getSdt());
-
-            // Lọc danh sách thuốc theo nhà cung cấp mới
-            List<Thuoc> filteredList = filterThuocByNhaCungCap(ncc);
-            loadTable(filteredList); // Cập nhật lại bảng thuốc sau khi lọc
-        } else {
-            System.out.println("Vui lòng chọn nhà cung cấp.");
-        }
+    	 loadThuocByNhaCungCap();
     }
 
     private void toggleNhaCungCapComboBox() {
@@ -1041,6 +994,19 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         }
     }
 
+    private void loadThuocByNhaCungCap() {
+        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
+        List<Thuoc> thuocList;
+
+        if (selectedIndex != -1) { // Kiểm tra nếu nhà cung cấp được chọn
+            NhaCungCap selectedNCC = listNCC.get(selectedIndex); // Lấy nhà cung cấp đã chọn
+            thuocList = filterThuocByNhaCungCap(selectedNCC); // Lọc danh sách thuốc theo nhà cung cấp
+        } else {
+            thuocList = THUOC_CON.getAllList(); // Lấy toàn bộ danh sách thuốc
+        }
+
+        loadTable(thuocList); // Gọi phương thức tải dữ liệu vào bảng
+    }
     
  // Phương thức lọc danh sách thuốc theo nhà cung cấp
     private List<Thuoc> filterThuocByNhaCungCap(NhaCungCap nhaCungCap) {
@@ -1057,16 +1023,9 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
             }
         }
 
-        // In ra số lượng thuốc sau khi lọc
-        System.out.println("Số lượng thuốc sau khi lọc: " + filteredList.size());
         return filteredList;
     }
     
-
-
-
-
-
     private javax.swing.JPanel actionPanel;
     private javax.swing.JPanel billInfoPanel;
     private javax.swing.JPanel billPanel;

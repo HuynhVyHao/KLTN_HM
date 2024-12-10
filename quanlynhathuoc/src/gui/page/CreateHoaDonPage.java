@@ -245,8 +245,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         return true;
     }
 
-
-
     private HoaDon getInputHoaDon() {
         String idHD = txtMaHoaDon.getText();
         Timestamp thoiGian = new Timestamp(System.currentTimeMillis());
@@ -336,7 +334,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         txtTong = new javax.swing.JTextField();
         jPanel10 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel27 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         txtTienKhachDua = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
@@ -594,17 +591,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(null);
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         table.setFocusable(false);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -632,17 +618,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 1, true));
 
-        tableCart.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         tableCart.setFocusable(false);
         jScrollPane2.setViewportView(tableCart);
 
@@ -1082,7 +1057,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;

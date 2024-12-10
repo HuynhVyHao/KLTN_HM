@@ -155,7 +155,7 @@ public class WritePDF {
             PdfWriter writer = PdfWriter.getInstance(document, file);
             document.open();
 
-            Paragraph company = new Paragraph("Hiệu thuốc tây Pharma Store", fontBold15);
+            Paragraph company = new Paragraph("Hiệu thuốc tây H&M - GÒ VẤP", fontBold15);
             company.add(new Chunk(createWhiteSpace(20)));
             Date today = new Date(System.currentTimeMillis());
             company.add(new Chunk("Thời gian in phiếu: " + formatDate.format(today), fontNormal10));
@@ -219,32 +219,98 @@ public class WritePDF {
             document.add(paraTongThanhToan);
             document.add(Chunk.NEWLINE);
             document.add(Chunk.NEWLINE);
-            Paragraph paragraph = new Paragraph();
-            paragraph.setIndentationLeft(22);
-            paragraph.add(new Chunk("Người lập phiếu", fontBoldItalic15));
-            paragraph.add(new Chunk(createWhiteSpace(30)));
-            paragraph.add(new Chunk("Người giao", fontBoldItalic15));
-            paragraph.add(new Chunk(createWhiteSpace(30)));
-            paragraph.add(new Chunk("Khách hàng", fontBoldItalic15));
+            // Tạo bảng với 2 cột
+            PdfPTable tableFooter = new PdfPTable(2);
+            tableFooter.setWidthPercentage(100); // Căn chỉnh cho bảng rộng 100%
+            tableFooter.setWidths(new float[] {1, 1}); // Đặt tỷ lệ các cột bằng nhau
 
-            Paragraph sign = new Paragraph();
-            sign.setIndentationLeft(20);
-            sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
-            sign.add(new Chunk(createWhiteSpace(25)));
-            sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
-            sign.add(new Chunk(createWhiteSpace(23)));
-            sign.add(new Chunk("(Ký và ghi rõ họ tên)", fontNormal10));
+            // Dòng 1: "Người lập phiếu" và "Khách hàng"
+            PdfPCell cell1 = new PdfPCell(new Phrase("Người lập phiếu", fontBoldItalic15));
+            cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell1.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell1);
+
+            PdfPCell cell2 = new PdfPCell(new Phrase("Nhà cung cấp", fontBoldItalic15));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell2);
+
+            // Dòng 2: "(Ký và ghi rõ họ tên)"
+            PdfPCell cell3 = new PdfPCell(new Phrase("(Ký và ghi rõ họ tên)", fontNormal10));
+            cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell3.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell3);
+
+            PdfPCell cell4 = new PdfPCell(new Phrase("(Ký và ghi rõ họ tên)", fontNormal10));
+            cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell4.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell4);
+
+            // Dòng 3: Tên nv và kh
+            PdfPCell cell5 = new PdfPCell(new Phrase(nv, fontBold15));
+            cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell5.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell5);
+
+            PdfPCell cell6 = new PdfPCell(new Phrase(kh, fontBold15));
+            cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell6.setBorder(PdfPCell.NO_BORDER);
+            tableFooter.addCell(cell6);
+
+            // Thêm bảng vào tài liệu
+            document.add(tableFooter);   
             
+            document.add(Chunk.NEWLINE);
+            document.add(createHorizontalLine(77));
 
-            document.add(paragraph);
-            document.add(sign);
+            // Cài đặt mã QR theo chuẩn VietQR
+            String bankCode = "BIDV";  // Mã ngân hàng, có thể thay đổi
+            String accountNumber = "1770414937";  // Số tài khoản
+            String amount = String.valueOf((int) phieuNhap.getTongTien());  // Số tiền
+            String addInfo = "ThanhToanHoaDon" + phieuNhap.getId();  // Nội dung thanh toán
+
+            // URL QR code VietQR
+            String vietQRUrl = "https://img.vietqr.io/image/" + bankCode + "-" + accountNumber +
+                               "-qr_only.png?amount=" + amount + "&addInfo=" + addInfo;
+            URL qrURL = new URL(vietQRUrl);
+            BufferedImage qrImage = ImageIO.read(qrURL);  // Đọc hình ảnh từ URL
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(qrImage, "png", baos);
+            Image qrCodeImage = Image.getInstance(baos.toByteArray());
+            qrCodeImage.scaleAbsolute(150, 150);  // Đặt kích thước mã QR
+
+            // Vị trí mã QR trong PDF
+            PdfContentByte canvas = writer.getDirectContent();
+            float qrX = (document.getPageSize().getWidth() - qrCodeImage.getScaledWidth()) / 2;
+            float qrY = document.bottom() + 20;
+
+            qrCodeImage.setAbsolutePosition(qrX, qrY);
+            canvas.addImage(qrCodeImage);
+
+            // Hiển thị thông tin tài khoản dưới mã QR
+            Phrase phrase1 = new Phrase("STK: 113366668888 - BIDV", fontBold15);
+            Phrase phrase2 = new Phrase("HUYNH VY HAO", fontBold15);
+
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase1,
+                                       document.getPageSize().getWidth() / 2, qrY - 25, 0);
+
+            ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase2,
+                                       document.getPageSize().getWidth() / 2, qrY - 45, 0);
+            
             document.close();
             writer.close();
             openFile(url);
 
         } catch (DocumentException | FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Lỗi khi ghi file " + url);
-        }
+        } catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void printHoaDon(HoaDon hoaDon, List<ChiTietHoaDon> listCTHD) throws WriterException{

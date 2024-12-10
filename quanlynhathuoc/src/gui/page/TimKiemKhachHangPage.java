@@ -145,32 +145,6 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	        tablePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 2, true));
 	        tablePanel.setLayout(new java.awt.BorderLayout());
 
-	        table.setModel(new javax.swing.table.DefaultTableModel(
-	            new Object [][] {
-	                {"123", "Anh Tuấn", "123123", null, null, null},
-	                {"13124", "czczxc", "zxc", null, null, null},
-	                {"14123", "zxczc", "zxc", null, null, null},
-	                {"124123", "zxczx", "zxc", null, null, null}
-	            },
-	            new String [] {
-	                "Mã", "Họ tên", "Số điện thoại", "Giới tính", "Năm sinh", "Ngày vào làm"
-	            }
-	        ) {
-	            Class[] types = new Class [] {
-	                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-	            };
-	            boolean[] canEdit = new boolean [] {
-	                false, false, false, false, false, false
-	            };
-
-	            public Class getColumnClass(int columnIndex) {
-	                return types [columnIndex];
-	            }
-
-	            public boolean isCellEditable(int rowIndex, int columnIndex) {
-	                return canEdit [columnIndex];
-	            }
-	        });
 	        table.setFocusable(false);
 	        table.setRowHeight(40);
 	        table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -221,14 +195,7 @@ public class TimKiemKhachHangPage extends javax.swing.JPanel {
 	        loadTable();
 	    }
 
-	    private javax.swing.JPanel actionPanel;
-	    private javax.swing.JButton btnAdd;
-	    private javax.swing.JButton btnDelete;
-	    private javax.swing.JButton btnExport;
-	    private javax.swing.JButton btnImport;
-	    private javax.swing.JButton btnInfo;
 	    private javax.swing.JButton btnReload;
-	    private javax.swing.JButton btnUpdate;
 	    private javax.swing.JComboBox<String> cboxSearch;
 	    private javax.swing.JPanel headerPanel;
 	    private javax.swing.JPanel jPanel1;

@@ -40,6 +40,10 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 	public ThuocController() {
 	}
 	
+	public List<String[]> selectThongKeThuocBanChay() {
+        return THUOC_DAO.selectThongKeThuocBanChay();
+    }
+	
 	 public List<String[]> getThongKeThuoc() {
 	        return THUOC_DAO.selectThongKeThuoc();
 	    }

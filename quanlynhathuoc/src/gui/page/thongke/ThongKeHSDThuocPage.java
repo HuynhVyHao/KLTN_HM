@@ -94,7 +94,6 @@ public class ThongKeHSDThuocPage extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
-        lblChart = new javax.swing.JLabel();
         btnStatistic = new javax.swing.JButton();
         btnReload = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
@@ -111,27 +110,6 @@ public class ThongKeHSDThuocPage extends javax.swing.JPanel {
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(456, 300));
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {},
-            new String [] {
-                "Trạng thái", "Số lượng thuốc", "Tổng số lượng"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         table.setFocusable(false);
         table.setRowHeight(40);
         table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -197,7 +175,6 @@ public class ThongKeHSDThuocPage extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblChart;
     private javax.swing.JTable table;
 }
 

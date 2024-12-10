@@ -41,6 +41,39 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
 
     private final String UPDATE_SO_LUONG = "UPDATE Thuoc SET soLuongTon=? WHERE idThuoc = ?";
 
+    private final String SELECT_THONG_KE_THUOC_BAN_CHAY = """
+    	    SELECT 
+    	        Thuoc.idThuoc,
+    	        Thuoc.tenThuoc,
+    	        SUM(ChiTietHoaDon.soLuong) AS tongSoLuong,
+    	        SUM(ChiTietHoaDon.soLuong * ChiTietHoaDon.donGia) AS tongDoanhThu
+    	    FROM ChiTietHoaDon
+    	    INNER JOIN Thuoc ON ChiTietHoaDon.idThuoc = Thuoc.idThuoc
+    	    GROUP BY Thuoc.idThuoc, Thuoc.tenThuoc
+    	    ORDER BY tongSoLuong DESC;
+    	""";
+
+    	// Phương thức để lấy thống kê thuốc bán chạy
+    	public List<String[]> selectThongKeThuocBanChay() {
+    	    List<String[]> resultList = new ArrayList<>();
+    	    try {
+    	        ResultSet rs = JDBCConnection.query(SELECT_THONG_KE_THUOC_BAN_CHAY);
+    	        while (rs.next()) {
+    	            String idThuoc = rs.getString("idThuoc");
+    	            String tenThuoc = rs.getString("tenThuoc");
+    	            double tongSoLuong = rs.getDouble("tongSoLuong");
+    	            double tongDoanhThu = rs.getDouble("tongDoanhThu");
+
+    	            // Thêm kết quả thống kê vào danh sách
+    	            resultList.add(new String[]{idThuoc, tenThuoc, String.valueOf(tongSoLuong), String.valueOf(tongDoanhThu)});
+    	        }
+    	        rs.getStatement().getConnection().close();
+    	    } catch (Exception e) {
+    	        throw new RuntimeException(e);
+    	    }
+    	    return resultList;
+    	}
+    
  // Truy vấn SQL để lấy thống kê thuốc còn hạn sử dụng và đã hết hạn sử dụng
     private final String SELECT_THONG_KE_THUOC = """
         SELECT 

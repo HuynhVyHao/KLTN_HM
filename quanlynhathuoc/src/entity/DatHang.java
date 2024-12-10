@@ -24,6 +24,9 @@ public class DatHang {
         this.tongTien = tongTien;
         this.trangThai = trangThai;
     }
+    public boolean isThanhToan() {
+        return "Đã thanh toán".equals(this.trangThai); // Nếu trạng thái là "Đã thanh toán", trả về true
+    }
 
     // Getter and Setter methods
     public String getId() {

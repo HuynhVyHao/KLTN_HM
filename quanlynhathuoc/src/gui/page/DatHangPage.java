@@ -122,6 +122,7 @@ public class DatHangPage extends javax.swing.JPanel {
 			stt++;
 		}
 	}
+	
 
 	private void fillCombobox() {
 		List<NhanVien> listNV = new NhanVienController().getAllList();
@@ -290,23 +291,6 @@ public class DatHangPage extends javax.swing.JPanel {
 		tablePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 2, true));
 		tablePanel.setLayout(new java.awt.BorderLayout(2, 0));
 
-		table.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] { { "123", "Anh Tuấn", "123123", null, null, null },
-						{ "13124", "czczxc", "zxc", null, null, null }, { "14123", "zxczc", "zxc", null, null, null },
-						{ "124123", "zxczx", "zxc", null, null, null } },
-				new String[] { "Mã", "Họ tên", "Số điện thoại", "Giới tính", "Năm sinh", "Ngày vào làm" }) {
-			Class[] types = new Class[] { java.lang.String.class, java.lang.String.class, java.lang.String.class,
-					java.lang.String.class, java.lang.Integer.class, java.lang.String.class };
-			boolean[] canEdit = new boolean[] { false, false, false, false, false, false };
-
-			public Class getColumnClass(int columnIndex) {
-				return types[columnIndex];
-			}
-
-			public boolean isCellEditable(int rowIndex, int columnIndex) {
-				return canEdit[columnIndex];
-			}
-		});
 		table.setFocusable(false);
 		table.setRowHeight(40);
 		table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -392,7 +376,7 @@ public class DatHangPage extends javax.swing.JPanel {
 			List<ChiTietDatHang> listCTDH = new ChiTietDatHangController().selectAllById(datHang.getId());
 			System.out.println("Size of listCTHD: " + listCTDH.size());
 
-			DetailDatHangDialog dialog = new DetailDatHangDialog(null, true, listCTDH);
+			DetailDatHangDialog dialog = new DetailDatHangDialog(null, true, listCTDH, this);
 			dialog.setVisible(true);
 		} catch (Exception e) {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
