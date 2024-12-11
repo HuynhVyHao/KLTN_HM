@@ -19,6 +19,8 @@ import gui.dialog.CreateKhachHangDialog;
 import java.awt.Image;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -96,17 +98,46 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         sortTable();
     }
 
-    public void loadTable(List<Thuoc> list) {
-        modal.setRowCount(0);
+	public void loadTable(List<Thuoc> list) {
+	    modal.setRowCount(0);
+	    listThuoc = list;
+	    int stt = 1;
 
-        listThuoc = list;
-        int stt = 1;
-        for (Thuoc e : listThuoc) {
-            modal.addRow(new Object[]{String.valueOf(stt), e.getId(), e.getTenThuoc(), e.getDanhMuc().getTen(),
-                e.getXuatXu().getTen(), e.getDonViTinh().getTen(), e.getSoLuongTon(), Formatter.FormatVND(e.getDonGia())});
-            stt++;
-        }
-    }
+	    // Lấy ngày hiện tại
+	    Date currentDate = new Date();
+	    
+	    for (Thuoc e : listThuoc) {
+	        // Lấy hạn sử dụng của thuốc
+	        Date expiryDate = e.getHanSuDung();
+	        
+	        // Kiểm tra thuốc chưa hết hạn hoặc gần hết hạn trong vòng 1 tháng
+	        if (expiryDate.after(currentDate) || isExpiringSoon(currentDate, expiryDate)) {
+	            modal.addRow(new Object[]{
+	                String.valueOf(stt), 
+	                e.getId(), 
+	                e.getTenThuoc(), 
+	                e.getDanhMuc().getTen(), 
+	                e.getXuatXu().getTen(), 
+	                e.getDonViTinh().getTen(),
+	                e.getSoLuongTon(), 
+	                Formatter.FormatVND(e.getDonGia()), 
+	            });
+	            stt++;
+	        }
+	    }
+	}
+
+	// Kiểm tra hạn sử dụng gần hết trong vòng 1 tháng
+	private boolean isExpiringSoon(Date currentDate, Date expiryDate) {
+	    Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(currentDate);
+	    calendar.add(Calendar.MONTH, 1); // Thêm 1 tháng vào ngày hiện tại
+
+	    Date oneMonthLater = calendar.getTime();
+	    
+	    return expiryDate.before(oneMonthLater) && expiryDate.after(currentDate);
+	}
+
 
     private void sortTable() {
         table.setAutoCreateRowSorter(true);

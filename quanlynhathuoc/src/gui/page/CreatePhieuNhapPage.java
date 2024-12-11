@@ -115,19 +115,44 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         sortTable(); // Gọi phương thức sắp xếp bảng nếu cần
     }
 
- // Phương thức cập nhật bảng thuốc
-    private void loadTable(List<Thuoc> list) {
-        modal.setRowCount(0); // Xóa dữ liệu hiện tại trong bảng
+    public void loadTable(List<Thuoc> list) {
+	    modal.setRowCount(0);
+	    int stt = 1;
 
-        int stt = 1;
-        for (Thuoc thuoc : list) {
-            // Thêm mỗi dòng dữ liệu vào bảng
-            modal.addRow(new Object[]{String.valueOf(stt), thuoc.getId(), thuoc.getTenThuoc(),
-                    thuoc.getDanhMuc().getTen(), thuoc.getXuatXu().getTen(), thuoc.getDonViTinh().getTen(),
-                    thuoc.getSoLuongTon(), Formatter.FormatVND(thuoc.getGiaNhap())});
-            stt++;
-        }
-    }
+	    // Lấy ngày hiện tại
+	    Date currentDate = new Date();
+	    
+	    for (Thuoc e : list) {
+	        // Lấy hạn sử dụng của thuốc
+	        Date expiryDate = e.getHanSuDung();
+	        
+	        // Kiểm tra thuốc chưa hết hạn hoặc gần hết hạn trong vòng 1 tháng
+	        if (expiryDate.after(currentDate) || isExpiringSoon(currentDate, expiryDate)) {
+	            modal.addRow(new Object[]{
+	                String.valueOf(stt), 
+	                e.getId(), 
+	                e.getTenThuoc(), 
+	                e.getDanhMuc().getTen(), 
+	                e.getXuatXu().getTen(), 
+	                e.getDonViTinh().getTen(),
+	                e.getSoLuongTon(), 
+	                Formatter.FormatVND(e.getGiaNhap()), 
+	            });
+	            stt++;
+	        }
+	    }
+	}
+
+	// Kiểm tra hạn sử dụng gần hết trong vòng 1 tháng
+	private boolean isExpiringSoon(Date currentDate, Date expiryDate) {
+	    Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(currentDate);
+	    calendar.add(Calendar.MONTH, 1); // Thêm 1 tháng vào ngày hiện tại
+
+	    Date oneMonthLater = calendar.getTime();
+	    
+	    return expiryDate.before(oneMonthLater) && expiryDate.after(currentDate);
+	}
     
     private void sortTable() {
         table.setAutoCreateRowSorter(true);
