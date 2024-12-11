@@ -3,25 +3,34 @@ package gui.dialog;
 import controller.NhanVienController;
 import entity.NhanVien;
 import gui.page.NhanVienPage;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.*;
+
+import com.toedter.calendar.JDateChooser;
+
 import utils.MessageDialog;
 import utils.Validation;
 
 
-public class UpdateNhanVienDialog extends javax.swing.JDialog {
+public class UpdateNhanVienDialog extends JDialog {
 
     private NhanVienController NV_CON = new NhanVienController();
     private NhanVienPage NV_GUI;
     private NhanVien nv;
 
-    public UpdateNhanVienDialog(java.awt.Frame parent, boolean modal) {
+    public UpdateNhanVienDialog(Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
 
-    public UpdateNhanVienDialog(java.awt.Frame parent, boolean modal, NhanVienPage NV_GUI, NhanVien nv) {
+    public UpdateNhanVienDialog(Frame parent, boolean modal, NhanVienPage NV_GUI, NhanVien nv) {
         super(parent, modal);
         initComponents();
         this.NV_GUI = NV_GUI;
@@ -98,177 +107,177 @@ public class UpdateNhanVienDialog extends javax.swing.JDialog {
 
     private void initComponents() {
 
-        jPanel15 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
-        lblHoTen = new javax.swing.JLabel();
-        txtHoTen = new javax.swing.JTextField();
-        jPanel19 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        txtSdt = new javax.swing.JTextField();
-        jPanel20 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        txtNamSinh = new javax.swing.JTextField();
-        jPanel21 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        cboxGioiTinh = new javax.swing.JComboBox<>();
-        jPanel22 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        txtNgayVaoLam = new com.toedter.calendar.JDateChooser();
-        jPanel8 = new javax.swing.JPanel();
-        btnHuy = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
+        jPanel15 = new JPanel();
+        jLabel8 = new JLabel();
+        jPanel1 = new JPanel();
+        jPanel18 = new JPanel();
+        lblHoTen = new JLabel();
+        txtHoTen = new JTextField();
+        jPanel19 = new JPanel();
+        jLabel12 = new JLabel();
+        txtSdt = new JTextField();
+        jPanel20 = new JPanel();
+        jLabel13 = new JLabel();
+        txtNamSinh = new JTextField();
+        jPanel21 = new JPanel();
+        jLabel14 = new JLabel();
+        cboxGioiTinh = new JComboBox<>();
+        jPanel22 = new JPanel();
+        jLabel15 = new JLabel();
+        txtNgayVaoLam = new JDateChooser();
+        jPanel8 = new JPanel();
+        btnHuy = new JButton();
+        btnUpdate = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new Dimension(600, 600));
 
-        jPanel15.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel15.setMinimumSize(new java.awt.Dimension(100, 60));
-        jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
-        jPanel15.setLayout(new java.awt.BorderLayout());
+        jPanel15.setBackground(new Color(0, 153, 153));
+        jPanel15.setMinimumSize(new Dimension(100, 60));
+        jPanel15.setPreferredSize(new Dimension(500, 50));
+        jPanel15.setLayout(new BorderLayout());
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setFont(new Font("Roboto Medium", 0, 18)); 
+        jLabel8.setForeground(new Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel8.setText("CẬP NHẬT NHÂN VIÊN");
-        jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
+        jPanel15.add(jLabel8, BorderLayout.CENTER);
 
-        getContentPane().add(jPanel15, java.awt.BorderLayout.NORTH);
+        getContentPane().add(jPanel15, BorderLayout.NORTH);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 16));
+        jPanel1.setBackground(new Color(255, 255, 255));
+        jPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 16));
 
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setPreferredSize(new java.awt.Dimension(500, 40));
-        jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+        jPanel18.setBackground(new Color(255, 255, 255));
+        jPanel18.setPreferredSize(new Dimension(500, 40));
+        jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-        lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        lblHoTen.setFont(new Font("Roboto", 0, 14)); 
         lblHoTen.setText("Họ tên");
-        lblHoTen.setMaximumSize(new java.awt.Dimension(44, 40));
-        lblHoTen.setPreferredSize(new java.awt.Dimension(150, 40));
+        lblHoTen.setMaximumSize(new Dimension(44, 40));
+        lblHoTen.setPreferredSize(new Dimension(150, 40));
         jPanel18.add(lblHoTen);
 
-        txtHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        txtHoTen.setFont(new Font("Roboto", 0, 14)); 
         txtHoTen.setToolTipText("");
-        txtHoTen.setPreferredSize(new java.awt.Dimension(330, 40));
+        txtHoTen.setPreferredSize(new Dimension(330, 40));
         jPanel18.add(txtHoTen);
 
         jPanel1.add(jPanel18);
 
-        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel19.setPreferredSize(new java.awt.Dimension(500, 40));
-        jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+        jPanel19.setBackground(new Color(255, 255, 255));
+        jPanel19.setPreferredSize(new Dimension(500, 40));
+        jPanel19.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-        jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        jLabel12.setFont(new Font("Roboto", 0, 14)); 
         jLabel12.setText("Số điện thoại");
-        jLabel12.setMaximumSize(new java.awt.Dimension(44, 40));
-        jLabel12.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel12.setMaximumSize(new Dimension(44, 40));
+        jLabel12.setPreferredSize(new Dimension(150, 40));
         jPanel19.add(jLabel12);
 
-        txtSdt.setFont(new java.awt.Font("Roboto", 0, 14)); 
-        txtSdt.setPreferredSize(new java.awt.Dimension(330, 40));
+        txtSdt.setFont(new Font("Roboto", 0, 14)); 
+        txtSdt.setPreferredSize(new Dimension(330, 40));
         jPanel19.add(txtSdt);
 
         jPanel1.add(jPanel19);
 
-        jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.setPreferredSize(new java.awt.Dimension(500, 40));
-        jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+        jPanel20.setBackground(new Color(255, 255, 255));
+        jPanel20.setPreferredSize(new Dimension(500, 40));
+        jPanel20.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-        jLabel13.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        jLabel13.setFont(new Font("Roboto", 0, 14)); 
         jLabel13.setText("Năm sinh");
-        jLabel13.setMaximumSize(new java.awt.Dimension(44, 40));
-        jLabel13.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel13.setMaximumSize(new Dimension(44, 40));
+        jLabel13.setPreferredSize(new Dimension(150, 40));
         jPanel20.add(jLabel13);
 
-        txtNamSinh.setFont(new java.awt.Font("Roboto", 0, 14)); 
-        txtNamSinh.setPreferredSize(new java.awt.Dimension(330, 40));
+        txtNamSinh.setFont(new Font("Roboto", 0, 14)); 
+        txtNamSinh.setPreferredSize(new Dimension(330, 40));
         jPanel20.add(txtNamSinh);
 
         jPanel1.add(jPanel20);
 
-        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setPreferredSize(new java.awt.Dimension(500, 40));
-        jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+        jPanel21.setBackground(new Color(255, 255, 255));
+        jPanel21.setPreferredSize(new Dimension(500, 40));
+        jPanel21.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-        jLabel14.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        jLabel14.setFont(new Font("Roboto", 0, 14)); 
         jLabel14.setText("Giới tính");
-        jLabel14.setMaximumSize(new java.awt.Dimension(44, 40));
-        jLabel14.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel14.setMaximumSize(new Dimension(44, 40));
+        jLabel14.setPreferredSize(new Dimension(150, 40));
         jPanel21.add(jLabel14);
 
-        cboxGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        cboxGioiTinh.setPreferredSize(new java.awt.Dimension(200, 40));
+        cboxGioiTinh.setModel(new DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        cboxGioiTinh.setPreferredSize(new Dimension(200, 40));
         jPanel21.add(cboxGioiTinh);
 
         jPanel1.add(jPanel21);
 
-        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel22.setPreferredSize(new java.awt.Dimension(500, 40));
-        jPanel22.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+        jPanel22.setBackground(new Color(255, 255, 255));
+        jPanel22.setPreferredSize(new Dimension(500, 40));
+        jPanel22.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-        jLabel15.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        jLabel15.setFont(new Font("Roboto", 0, 14)); 
         jLabel15.setText("Ngày vào làm");
-        jLabel15.setMaximumSize(new java.awt.Dimension(44, 40));
-        jLabel15.setPreferredSize(new java.awt.Dimension(150, 40));
+        jLabel15.setMaximumSize(new Dimension(44, 40));
+        jLabel15.setPreferredSize(new Dimension(150, 40));
         jPanel22.add(jLabel15);
 
-        txtNgayVaoLam.setBackground(new java.awt.Color(255, 255, 255));
+        txtNgayVaoLam.setBackground(new Color(255, 255, 255));
         txtNgayVaoLam.setDateFormatString("dd/MM/yyyy");
-        txtNgayVaoLam.setPreferredSize(new java.awt.Dimension(200, 40));
+        txtNgayVaoLam.setPreferredSize(new Dimension(200, 40));
         jPanel22.add(txtNgayVaoLam);
 
         jPanel1.add(jPanel22);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel1, BorderLayout.CENTER);
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
+        jPanel8.setBackground(new Color(255, 255, 255));
+        jPanel8.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 5));
 
-        btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-        btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-        btnHuy.setForeground(new java.awt.Color(255, 255, 255));
+        btnHuy.setBackground(new Color(255, 102, 102));
+        btnHuy.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+        btnHuy.setForeground(new Color(255, 255, 255));
         btnHuy.setText("HỦY BỎ");
         btnHuy.setBorderPainted(false);
-        btnHuy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnHuy.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnHuy.setFocusPainted(false);
         btnHuy.setFocusable(false);
-        btnHuy.setPreferredSize(new java.awt.Dimension(200, 40));
-        btnHuy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnHuy.setPreferredSize(new Dimension(200, 40));
+        btnHuy.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnHuyActionPerformed(evt);
             }
         });
         jPanel8.add(btnHuy);
 
-        btnUpdate.setBackground(new java.awt.Color(0, 204, 102));
-        btnUpdate.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setBackground(new Color(0, 204, 102));
+        btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+        btnUpdate.setForeground(new Color(255, 255, 255));
         btnUpdate.setText("CẬP NHẬT");
         btnUpdate.setBorderPainted(false);
-        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnUpdate.setFocusPainted(false);
         btnUpdate.setFocusable(false);
-        btnUpdate.setPreferredSize(new java.awt.Dimension(200, 40));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnUpdate.setPreferredSize(new Dimension(200, 40));
+        btnUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
         jPanel8.add(btnUpdate);
 
-        getContentPane().add(jPanel8, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanel8, BorderLayout.PAGE_END);
 
         pack();
         setLocationRelativeTo(null);
     }
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnHuyActionPerformed(ActionEvent evt) {
         this.dispose();
     }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnUpdateActionPerformed(ActionEvent evt) {
         if (isValidateFields()) {
             NhanVien nv = getInputFields();
             NV_CON.update(nv);
@@ -277,25 +286,25 @@ public class UpdateNhanVienDialog extends javax.swing.JDialog {
         }
     }
 
-    private javax.swing.JButton btnHuy;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cboxGioiTinh;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
-    private javax.swing.JPanel jPanel20;
-    private javax.swing.JPanel jPanel21;
-    private javax.swing.JPanel jPanel22;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JLabel lblHoTen;
-    private javax.swing.JTextField txtHoTen;
-    private javax.swing.JTextField txtNamSinh;
-    private com.toedter.calendar.JDateChooser txtNgayVaoLam;
-    private javax.swing.JTextField txtSdt;
+    private JButton btnHuy;
+    private JButton btnUpdate;
+    private JComboBox<String> cboxGioiTinh;
+    private JLabel jLabel12;
+    private JLabel jLabel13;
+    private JLabel jLabel14;
+    private JLabel jLabel15;
+    private JLabel jLabel8;
+    private JPanel jPanel1;
+    private JPanel jPanel15;
+    private JPanel jPanel18;
+    private JPanel jPanel19;
+    private JPanel jPanel20;
+    private JPanel jPanel21;
+    private JPanel jPanel22;
+    private JPanel jPanel8;
+    private JLabel lblHoTen;
+    private JTextField txtHoTen;
+    private JTextField txtNamSinh;
+    private JDateChooser txtNgayVaoLam;
+    private JTextField txtSdt;
 }

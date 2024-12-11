@@ -1,6 +1,10 @@
 package gui.curvechart;
 
-public class LegendItem2 extends javax.swing.JPanel {
+import java.awt.*;
+
+import javax.swing.*;
+
+public class LegendItem2 extends JPanel {
 
     public LegendItem2(ModelLegend2 data) {
         initComponents();
@@ -10,41 +14,40 @@ public class LegendItem2 extends javax.swing.JPanel {
         lbName.setText(data.getName());
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
-        lbColor = new gui.curvechart.LabelColor2();
-        lbName = new javax.swing.JLabel();
+        lbColor = new LabelColor2();
+        lbName = new JLabel();
 
         lbColor.setText("labelColor1");
 
-        lbName.setForeground(new java.awt.Color(180, 180, 180));
+        lbName.setForeground(new Color(180, 180, 180));
         lbName.setText("Name");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lbColor, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbColor, GroupLayout.PREFERRED_SIZE, 16, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbName)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbName)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(lbColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lbColor, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }             
 
-    private gui.curvechart.LabelColor2 lbColor;
-    private javax.swing.JLabel lbName;
+    private LabelColor2 lbColor;
+    private JLabel lbName;
 }

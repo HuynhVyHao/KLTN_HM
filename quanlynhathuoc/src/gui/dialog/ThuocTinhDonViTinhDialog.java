@@ -5,20 +5,22 @@ import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.DonViTinhController;
 import entity.DonViTinh;
 
+import java.awt.*;
+import java.awt.event.*;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+
 import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.TableSorter;
 
-public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
+public class ThuocTinhDonViTinhDialog extends JDialog {
 
     private DonViTinhController DVT_CON = new DonViTinhController(this);
 
-    public ThuocTinhDonViTinhDialog(java.awt.Frame parent, boolean modal) {
+    public ThuocTinhDonViTinhDialog(Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         searchLayout();
@@ -88,83 +90,83 @@ public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
 
     private void initComponents() {
 
-        jPanel15 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel18 = new javax.swing.JPanel();
-        lblTenDVT = new javax.swing.JLabel();
-        txtTenDVT = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        cboxSearch = new javax.swing.JComboBox<>();
-        txtSearch = new javax.swing.JTextField();
-        btnReload = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
-        jPanel8 = new javax.swing.JPanel();
-        btnRemove = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
+        jPanel15 = new JPanel();
+        jLabel8 = new JLabel();
+        jPanel1 = new JPanel();
+        jPanel18 = new JPanel();
+        lblTenDVT = new JLabel();
+        txtTenDVT = new JTextField();
+        jSeparator1 = new JSeparator();
+        jPanel2 = new JPanel();
+        jPanel3 = new JPanel();
+        cboxSearch = new JComboBox<>();
+        txtSearch = new JTextField();
+        btnReload = new JButton();
+        jScrollPane1 = new JScrollPane();
+        table = new JTable();
+        jPanel8 = new JPanel();
+        btnRemove = new JButton();
+        btnUpdate = new JButton();
+        btnAdd = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel15.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel15.setMinimumSize(new java.awt.Dimension(100, 60));
-        jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
-        jPanel15.setLayout(new java.awt.BorderLayout());
+        jPanel15.setBackground(new Color(0, 153, 153));
+        jPanel15.setMinimumSize(new Dimension(100, 60));
+        jPanel15.setPreferredSize(new Dimension(500, 50));
+        jPanel15.setLayout(new BorderLayout());
 
-        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setFont(new Font("Roboto Medium", 0, 18)); 
+        jLabel8.setForeground(new Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel8.setText("ĐƠN VỊ TÍNH");
-        jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
+        jPanel15.add(jLabel8, BorderLayout.CENTER);
 
-        getContentPane().add(jPanel15, java.awt.BorderLayout.NORTH);
+        getContentPane().add(jPanel15, BorderLayout.NORTH);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 600));
-        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 16));
+        jPanel1.setBackground(new Color(255, 255, 255));
+        jPanel1.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        jPanel1.setPreferredSize(new Dimension(600, 600));
+        jPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 16));
 
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setPreferredSize(new java.awt.Dimension(500, 40));
-        jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+        jPanel18.setBackground(new Color(255, 255, 255));
+        jPanel18.setPreferredSize(new Dimension(500, 40));
+        jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-        lblTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        lblTenDVT.setFont(new Font("Roboto", 0, 14)); 
         lblTenDVT.setText("Tên đơn vị tính");
-        lblTenDVT.setMaximumSize(new java.awt.Dimension(44, 40));
-        lblTenDVT.setPreferredSize(new java.awt.Dimension(150, 40));
+        lblTenDVT.setMaximumSize(new Dimension(44, 40));
+        lblTenDVT.setPreferredSize(new Dimension(150, 40));
         jPanel18.add(lblTenDVT);
 
-        txtTenDVT.setFont(new java.awt.Font("Roboto", 0, 14)); 
+        txtTenDVT.setFont(new Font("Roboto", 0, 14)); 
         txtTenDVT.setToolTipText("");
-        txtTenDVT.setPreferredSize(new java.awt.Dimension(330, 40));
+        txtTenDVT.setPreferredSize(new Dimension(330, 40));
         jPanel18.add(txtTenDVT);
 
         jPanel1.add(jPanel18);
 
-        jSeparator1.setPreferredSize(new java.awt.Dimension(460, 3));
+        jSeparator1.setPreferredSize(new Dimension(460, 3));
         jPanel1.add(jSeparator1);
 
-        jPanel2.setPreferredSize(new java.awt.Dimension(500, 400));
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel2.setPreferredSize(new Dimension(500, 400));
+        jPanel2.setLayout(new BorderLayout());
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel3.setPreferredSize(new java.awt.Dimension(100, 48));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanel3.setBackground(new Color(255, 255, 255));
+        jPanel3.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        jPanel3.setPreferredSize(new Dimension(100, 48));
+        jPanel3.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         cboxSearch.setToolTipText("");
-        cboxSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        cboxSearch.setPreferredSize(new java.awt.Dimension(80, 32));
+        cboxSearch.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        cboxSearch.setPreferredSize(new Dimension(80, 32));
         jPanel3.add(cboxSearch);
 
         txtSearch.setToolTipText("Tìm kiếm");
-        txtSearch.setPreferredSize(new java.awt.Dimension(140, 36));
-        txtSearch.setSelectionColor(new java.awt.Color(230, 245, 245));
-        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
+        txtSearch.setPreferredSize(new Dimension(140, 36));
+        txtSearch.setSelectionColor(new Color(230, 245, 245));
+        txtSearch.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent evt) {
                 txtSearchKeyReleased(evt);
             }
         });
@@ -174,122 +176,96 @@ public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
         btnReload.setToolTipText("Làm mới");
         btnReload.setBorder(null);
         btnReload.setBorderPainted(false);
-        btnReload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReload.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnReload.setFocusPainted(false);
         btnReload.setFocusable(false);
-        btnReload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnReload.setPreferredSize(new java.awt.Dimension(40, 40));
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnReload.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnReload.setPreferredSize(new Dimension(40, 40));
+        btnReload.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnReloadActionPerformed(evt);
             }
         });
         jPanel3.add(btnReload);
 
-        jPanel2.add(jPanel3, java.awt.BorderLayout.PAGE_START);
+        jPanel2.add(jPanel3, BorderLayout.PAGE_START);
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"123", "Anh Tuấn", "123123", null, null, null},
-                {"13124", "czczxc", "zxc", null, null, null},
-                {"14123", "zxczc", "zxc", null, null, null},
-                {"124123", "zxczx", "zxc", null, null, null}
-            },
-            new String [] {
-                "Mã", "Họ tên", "Số điện thoại", "Giới tính", "Năm sinh", "Ngày vào làm"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        table.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        table.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         table.setFocusable(false);
         table.setRowHeight(40);
-        table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setShowHorizontalLines(true);
-        table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        table.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
                 tableMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(table);
 
-        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jScrollPane1, BorderLayout.CENTER);
 
         jPanel1.add(jPanel2);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel1, BorderLayout.CENTER);
 
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
+        jPanel8.setBackground(new Color(255, 255, 255));
+        jPanel8.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 5));
 
-        btnRemove.setBackground(new java.awt.Color(255, 102, 102));
-        btnRemove.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-        btnRemove.setForeground(new java.awt.Color(255, 255, 255));
+        btnRemove.setBackground(new Color(255, 102, 102));
+        btnRemove.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+        btnRemove.setForeground(new Color(255, 255, 255));
         btnRemove.setText("XÓA");
         btnRemove.setBorderPainted(false);
-        btnRemove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRemove.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnRemove.setFocusPainted(false);
         btnRemove.setFocusable(false);
-        btnRemove.setPreferredSize(new java.awt.Dimension(120, 40));
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnRemove.setPreferredSize(new Dimension(120, 40));
+        btnRemove.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnRemoveActionPerformed(evt);
             }
         });
         jPanel8.add(btnRemove);
 
-        btnUpdate.setBackground(new java.awt.Color(255, 204, 51));
-        btnUpdate.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-        btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        btnUpdate.setBackground(new Color(255, 204, 51));
+        btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+        btnUpdate.setForeground(new Color(255, 255, 255));
         btnUpdate.setText("SỬA");
         btnUpdate.setBorderPainted(false);
-        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnUpdate.setFocusPainted(false);
         btnUpdate.setFocusable(false);
-        btnUpdate.setPreferredSize(new java.awt.Dimension(120, 40));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnUpdate.setPreferredSize(new Dimension(120, 40));
+        btnUpdate.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
         jPanel8.add(btnUpdate);
 
-        btnAdd.setBackground(new java.awt.Color(0, 204, 102));
-        btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd.setBackground(new Color(0, 204, 102));
+        btnAdd.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+        btnAdd.setForeground(new Color(255, 255, 255));
         btnAdd.setText("THÊM");
         btnAdd.setBorderPainted(false);
-        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnAdd.setFocusPainted(false);
         btnAdd.setFocusable(false);
-        btnAdd.setPreferredSize(new java.awt.Dimension(120, 40));
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnAdd.setPreferredSize(new Dimension(120, 40));
+        btnAdd.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
         jPanel8.add(btnAdd);
 
-        getContentPane().add(jPanel8, java.awt.BorderLayout.PAGE_END);
+        getContentPane().add(jPanel8, BorderLayout.PAGE_END);
 
         pack();
         setLocationRelativeTo(null);
     }
 
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnRemoveActionPerformed(ActionEvent evt) {
         try {
             DefaultTableModel modal = (DefaultTableModel) table.getModel();
             int row = table.getSelectedRow();
@@ -305,7 +281,7 @@ public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
         }
     }
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnAddActionPerformed(ActionEvent evt) {
         if (isValidateFields()) {
             DonViTinh tk = getInputFields();
             DVT_CON.create(tk);
@@ -314,7 +290,7 @@ public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
         }
     }
 
-    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
+    private void txtSearchKeyReleased(KeyEvent evt) {
         DefaultTableModel modal = (DefaultTableModel) table.getModel();
         modal.setRowCount(0);
 
@@ -329,7 +305,7 @@ public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
         }
     }
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnUpdateActionPerformed(ActionEvent evt) {
         if (isValidateFields()) {
             try {
                 int row = table.getSelectedRow();
@@ -346,34 +322,34 @@ public class ThuocTinhDonViTinhDialog extends javax.swing.JDialog {
         }
     }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnReloadActionPerformed(ActionEvent evt) {
         txtTenDVT.setText("");
         txtSearch.setText("");
         cboxSearch.setSelectedIndex(0);
         loadTable();
     }
 
-    private void tableMouseClicked(java.awt.event.MouseEvent evt) {
+    private void tableMouseClicked(MouseEvent evt) {
         int row = table.getSelectedRow();
         txtTenDVT.setText(table.getValueAt(row, 2).toString());
     }
 
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnReload;
-    private javax.swing.JButton btnRemove;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cboxSearch;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel lblTenDVT;
-    private javax.swing.JTable table;
-    private javax.swing.JTextField txtSearch;
-    private javax.swing.JTextField txtTenDVT;
+    private JButton btnAdd;
+    private JButton btnReload;
+    private JButton btnRemove;
+    private JButton btnUpdate;
+    private JComboBox<String> cboxSearch;
+    private JLabel jLabel8;
+    private JPanel jPanel1;
+    private JPanel jPanel15;
+    private JPanel jPanel18;
+    private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JPanel jPanel8;
+    private JScrollPane jScrollPane1;
+    private JSeparator jSeparator1;
+    private JLabel lblTenDVT;
+    private JTable table;
+    private JTextField txtSearch;
+    private JTextField txtTenDVT;
 }

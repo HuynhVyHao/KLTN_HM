@@ -4,22 +4,28 @@ import controller.NhanVienController;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import gui.MainLayout;
+
+import java.awt.event.*;
+import java.awt.*;
 import java.util.Calendar;
 import java.util.Date;
+
+import javax.swing.*;
+
 import utils.MessageDialog;
 import utils.Validation;
 
-public class InfoDialog extends javax.swing.JDialog {
+public class InfoDialog extends JDialog {
 
 	private MainLayout main;
 	private TaiKhoan tk;
 
-	public InfoDialog(java.awt.Frame parent, boolean modal) {
+	public InfoDialog(Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
 	}
 
-	public InfoDialog(java.awt.Frame parent, boolean modal, MainLayout main, TaiKhoan tk) {
+	public InfoDialog(Frame parent, boolean modal, MainLayout main, TaiKhoan tk) {
 		super(parent, modal);
 		initComponents();
 		this.main = main;
@@ -88,136 +94,136 @@ public class InfoDialog extends javax.swing.JDialog {
 
 	private void initComponents() {
 
-		jPanel15 = new javax.swing.JPanel();
-		jLabel8 = new javax.swing.JLabel();
-		jPanel1 = new javax.swing.JPanel();
-		jPanel18 = new javax.swing.JPanel();
-		lblHoTen = new javax.swing.JLabel();
-		txtHoTen = new javax.swing.JTextField();
-		jPanel19 = new javax.swing.JPanel();
-		jLabel12 = new javax.swing.JLabel();
-		txtSdt = new javax.swing.JTextField();
-		jPanel20 = new javax.swing.JPanel();
-		jLabel13 = new javax.swing.JLabel();
-		txtNamSinh = new javax.swing.JTextField();
-		jPanel23 = new javax.swing.JPanel();
-		lblHoTen1 = new javax.swing.JLabel();
-		txtUsername = new javax.swing.JTextField();
-		jPanel24 = new javax.swing.JPanel();
-		lblHoTen2 = new javax.swing.JLabel();
-		btnChangePassword = new javax.swing.JButton();
-		jPanel8 = new javax.swing.JPanel();
-		btnHuy = new javax.swing.JButton();
-		btnUpdate = new javax.swing.JButton();
+		jPanel15 = new JPanel();
+		jLabel8 = new JLabel();
+		jPanel1 = new JPanel();
+		jPanel18 = new JPanel();
+		lblHoTen = new JLabel();
+		txtHoTen = new JTextField();
+		jPanel19 = new JPanel();
+		jLabel12 = new JLabel();
+		txtSdt = new JTextField();
+		jPanel20 = new JPanel();
+		jLabel13 = new JLabel();
+		txtNamSinh = new JTextField();
+		jPanel23 = new JPanel();
+		lblHoTen1 = new JLabel();
+		txtUsername = new JTextField();
+		jPanel24 = new JPanel();
+		lblHoTen2 = new JLabel();
+		btnChangePassword = new JButton();
+		jPanel8 = new JPanel();
+		btnHuy = new JButton();
+		btnUpdate = new JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setPreferredSize(new java.awt.Dimension(600, 600));
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setPreferredSize(new Dimension(600, 600));
 
-		jPanel15.setBackground(new java.awt.Color(0, 153, 153));
-		jPanel15.setMinimumSize(new java.awt.Dimension(100, 60));
-		jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
-		jPanel15.setLayout(new java.awt.BorderLayout());
+		jPanel15.setBackground(new Color(0, 153, 153));
+		jPanel15.setMinimumSize(new Dimension(100, 60));
+		jPanel15.setPreferredSize(new Dimension(500, 50));
+		jPanel15.setLayout(new BorderLayout());
 
-		jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
-		jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-		jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jLabel8.setFont(new Font("Roboto Medium", 0, 18)); 
+		jLabel8.setForeground(new Color(255, 255, 255));
+		jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
 		jLabel8.setText("THÔNG TIN CÁ NHÂN");
-		jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
+		jPanel15.add(jLabel8, BorderLayout.CENTER);
 
-		getContentPane().add(jPanel15, java.awt.BorderLayout.NORTH);
+		getContentPane().add(jPanel15, BorderLayout.NORTH);
 
-		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 16));
+		jPanel1.setBackground(new Color(255, 255, 255));
+		jPanel1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 16));
 
-		jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel18.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+		jPanel18.setBackground(new Color(255, 255, 255));
+		jPanel18.setPreferredSize(new Dimension(500, 40));
+		jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
+		lblHoTen.setFont(new Font("Roboto", 0, 14)); 
 		lblHoTen.setText("Họ tên");
-		lblHoTen.setMaximumSize(new java.awt.Dimension(44, 40));
-		lblHoTen.setPreferredSize(new java.awt.Dimension(150, 40));
+		lblHoTen.setMaximumSize(new Dimension(44, 40));
+		lblHoTen.setPreferredSize(new Dimension(150, 40));
 		jPanel18.add(lblHoTen);
 
-		txtHoTen.setFont(new java.awt.Font("Roboto", 0, 14)); 
+		txtHoTen.setFont(new Font("Roboto", 0, 14)); 
 		txtHoTen.setToolTipText("");
-		txtHoTen.setPreferredSize(new java.awt.Dimension(330, 40));
+		txtHoTen.setPreferredSize(new Dimension(330, 40));
 		jPanel18.add(txtHoTen);
 
 		jPanel1.add(jPanel18);
 
-		jPanel19.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel19.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+		jPanel19.setBackground(new Color(255, 255, 255));
+		jPanel19.setPreferredSize(new Dimension(500, 40));
+		jPanel19.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		jLabel12.setFont(new java.awt.Font("Roboto", 0, 14)); 
+		jLabel12.setFont(new Font("Roboto", 0, 14)); 
 		jLabel12.setText("Số điện thoại");
-		jLabel12.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel12.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel12.setMaximumSize(new Dimension(44, 40));
+		jLabel12.setPreferredSize(new Dimension(150, 40));
 		jPanel19.add(jLabel12);
 
-		txtSdt.setFont(new java.awt.Font("Roboto", 0, 14)); 
-		txtSdt.setPreferredSize(new java.awt.Dimension(330, 40));
+		txtSdt.setFont(new Font("Roboto", 0, 14)); 
+		txtSdt.setPreferredSize(new Dimension(330, 40));
 		jPanel19.add(txtSdt);
 
 		jPanel1.add(jPanel19);
 
-		jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel20.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+		jPanel20.setBackground(new Color(255, 255, 255));
+		jPanel20.setPreferredSize(new Dimension(500, 40));
+		jPanel20.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		jLabel13.setFont(new java.awt.Font("Roboto", 0, 14)); 
+		jLabel13.setFont(new Font("Roboto", 0, 14)); 
 		jLabel13.setText("Năm sinh");
-		jLabel13.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel13.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel13.setMaximumSize(new Dimension(44, 40));
+		jLabel13.setPreferredSize(new Dimension(150, 40));
 		jPanel20.add(jLabel13);
 
-		txtNamSinh.setFont(new java.awt.Font("Roboto", 0, 14)); 
-		txtNamSinh.setPreferredSize(new java.awt.Dimension(330, 40));
+		txtNamSinh.setFont(new Font("Roboto", 0, 14)); 
+		txtNamSinh.setPreferredSize(new Dimension(330, 40));
 		jPanel20.add(txtNamSinh);
 
 		jPanel1.add(jPanel20);
 
-		jPanel23.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel23.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel23.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+		jPanel23.setBackground(new Color(255, 255, 255));
+		jPanel23.setPreferredSize(new Dimension(500, 40));
+		jPanel23.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen1.setFont(new java.awt.Font("Roboto", 0, 14)); 
+		lblHoTen1.setFont(new Font("Roboto", 0, 14)); 
 		lblHoTen1.setText("Username");
-		lblHoTen1.setMaximumSize(new java.awt.Dimension(44, 40));
-		lblHoTen1.setPreferredSize(new java.awt.Dimension(150, 40));
+		lblHoTen1.setMaximumSize(new Dimension(44, 40));
+		lblHoTen1.setPreferredSize(new Dimension(150, 40));
 		jPanel23.add(lblHoTen1);
 
 		txtUsername.setEditable(false);
-		txtUsername.setFont(new java.awt.Font("Roboto", 0, 14)); 
+		txtUsername.setFont(new Font("Roboto", 0, 14)); 
 		txtUsername.setToolTipText("");
 		txtUsername.setFocusable(false);
-		txtUsername.setPreferredSize(new java.awt.Dimension(330, 40));
+		txtUsername.setPreferredSize(new Dimension(330, 40));
 		jPanel23.add(txtUsername);
 
 		jPanel1.add(jPanel23);
 
-		jPanel24.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel24.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel24.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 0));
+		jPanel24.setBackground(new Color(255, 255, 255));
+		jPanel24.setPreferredSize(new Dimension(500, 40));
+		jPanel24.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen2.setFont(new java.awt.Font("Roboto", 0, 14)); 
+		lblHoTen2.setFont(new Font("Roboto", 0, 14)); 
 		lblHoTen2.setText("Password");
-		lblHoTen2.setMaximumSize(new java.awt.Dimension(44, 40));
-		lblHoTen2.setPreferredSize(new java.awt.Dimension(150, 40));
+		lblHoTen2.setMaximumSize(new Dimension(44, 40));
+		lblHoTen2.setPreferredSize(new Dimension(150, 40));
 		jPanel24.add(lblHoTen2);
 
-		btnChangePassword.setBackground(new java.awt.Color(0, 102, 102));
-		btnChangePassword.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-		btnChangePassword.setForeground(new java.awt.Color(255, 255, 255));
+		btnChangePassword.setBackground(new Color(0, 102, 102));
+		btnChangePassword.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnChangePassword.setForeground(new Color(255, 255, 255));
 		btnChangePassword.setText("Đổi mật khẩu");
 		btnChangePassword.setBorderPainted(false);
-		btnChangePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnChangePassword.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnChangePassword.setFocusPainted(false);
 		btnChangePassword.setFocusable(false);
-		btnChangePassword.setPreferredSize(new java.awt.Dimension(200, 40));
-		btnChangePassword.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnChangePassword.setPreferredSize(new Dimension(200, 40));
+		btnChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnChangePasswordActionPerformed(evt);
 			}
 		});
@@ -225,54 +231,54 @@ public class InfoDialog extends javax.swing.JDialog {
 
 		jPanel1.add(jPanel24);
 
-		getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+		getContentPane().add(jPanel1, BorderLayout.CENTER);
 
-		jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
+		jPanel8.setBackground(new Color(255, 255, 255));
+		jPanel8.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 5));
 
-		btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-		btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-		btnHuy.setForeground(new java.awt.Color(255, 255, 255));
+		btnHuy.setBackground(new Color(255, 102, 102));
+		btnHuy.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnHuy.setForeground(new Color(255, 255, 255));
 		btnHuy.setText("HỦY BỎ");
 		btnHuy.setBorderPainted(false);
-		btnHuy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnHuy.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnHuy.setFocusPainted(false);
 		btnHuy.setFocusable(false);
-		btnHuy.setPreferredSize(new java.awt.Dimension(200, 40));
-		btnHuy.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnHuy.setPreferredSize(new Dimension(200, 40));
+		btnHuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnHuyActionPerformed(evt);
 			}
 		});
 		jPanel8.add(btnHuy);
 
-		btnUpdate.setBackground(new java.awt.Color(0, 204, 102));
-		btnUpdate.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16)); 
-		btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
+		btnUpdate.setBackground(new Color(0, 204, 102));
+		btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnUpdate.setForeground(new Color(255, 255, 255));
 		btnUpdate.setText("CẬP NHẬT");
 		btnUpdate.setBorderPainted(false);
-		btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnUpdate.setFocusPainted(false);
 		btnUpdate.setFocusable(false);
-		btnUpdate.setPreferredSize(new java.awt.Dimension(200, 40));
-		btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnUpdate.setPreferredSize(new Dimension(200, 40));
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnUpdateActionPerformed(evt);
 			}
 		});
 		jPanel8.add(btnUpdate);
 
-		getContentPane().add(jPanel8, java.awt.BorderLayout.PAGE_END);
+		getContentPane().add(jPanel8, BorderLayout.PAGE_END);
 
 		pack();
 		setLocationRelativeTo(null);
 	}
 
-	private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
+	private void btnHuyActionPerformed(ActionEvent evt) {
 		this.dispose();
 	}
 
-	private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {
+	private void btnUpdateActionPerformed(ActionEvent evt) {
 		if (isValidateFields()) {
 			NhanVien nv = getInputFields();
 			new NhanVienController().update(nv);
@@ -281,31 +287,31 @@ public class InfoDialog extends javax.swing.JDialog {
 		}
 	}
 
-	private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {
+	private void btnChangePasswordActionPerformed(ActionEvent evt) {
 		InfoChangePasswordDialog dialog = new InfoChangePasswordDialog(null, true, main, tk);
 		this.dispose();
 		dialog.setVisible(true);
 	}
 
-	private javax.swing.JButton btnChangePassword;
-	private javax.swing.JButton btnHuy;
-	private javax.swing.JButton btnUpdate;
-	private javax.swing.JLabel jLabel12;
-	private javax.swing.JLabel jLabel13;
-	private javax.swing.JLabel jLabel8;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JPanel jPanel15;
-	private javax.swing.JPanel jPanel18;
-	private javax.swing.JPanel jPanel19;
-	private javax.swing.JPanel jPanel20;
-	private javax.swing.JPanel jPanel23;
-	private javax.swing.JPanel jPanel24;
-	private javax.swing.JPanel jPanel8;
-	private javax.swing.JLabel lblHoTen;
-	private javax.swing.JLabel lblHoTen1;
-	private javax.swing.JLabel lblHoTen2;
-	private javax.swing.JTextField txtHoTen;
-	private javax.swing.JTextField txtNamSinh;
-	private javax.swing.JTextField txtSdt;
-	private javax.swing.JTextField txtUsername;
+	private JButton btnChangePassword;
+	private JButton btnHuy;
+	private JButton btnUpdate;
+	private JLabel jLabel12;
+	private JLabel jLabel13;
+	private JLabel jLabel8;
+	private JPanel jPanel1;
+	private JPanel jPanel15;
+	private JPanel jPanel18;
+	private JPanel jPanel19;
+	private JPanel jPanel20;
+	private JPanel jPanel23;
+	private JPanel jPanel24;
+	private JPanel jPanel8;
+	private JLabel lblHoTen;
+	private JLabel lblHoTen1;
+	private JLabel lblHoTen2;
+	private JTextField txtHoTen;
+	private JTextField txtNamSinh;
+	private JTextField txtSdt;
+	private JTextField txtUsername;
 }

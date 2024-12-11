@@ -8,13 +8,17 @@ import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import controller.TaiKhoanController;
 import entity.TaiKhoan;
 
-import java.awt.event.KeyEvent;
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+
 import utils.BCrypt;
 import utils.MessageDialog;
 import utils.Validation;
 
 
-public class Login extends javax.swing.JFrame {
+public class Login extends JFrame {
 
     public Login() {
         initComponents();
@@ -73,70 +77,68 @@ public class Login extends javax.swing.JFrame {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        logo = new javax.swing.JLabel();
-        lblLogin = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        lblUsername = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        lblPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
-        btnLogin = new javax.swing.JButton();
+        jPanel1 = new JPanel();
+        jPanel2 = new JPanel();
+        jLabel1 = new JLabel();
+        jPanel7 = new JPanel();
+        jPanel4 = new JPanel();
+        logo = new JLabel();
+        jPanel6 = new JPanel();
+        lblUsername = new JLabel();
+        txtUsername = new JTextField();
+        jPanel3 = new JPanel();
+        lblPassword = new JLabel();
+        txtPassword = new JPasswordField();
+        btnLogin = new JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setTitle("Đăng Nhập");
         setAlwaysOnTop(true);
         setResizable(false);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setPreferredSize(new java.awt.Dimension(600, 600));
-        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel2.setBackground(new Color(255, 255, 255));
+        jPanel2.setPreferredSize(new Dimension(600, 600));
+        jPanel2.setLayout(new BorderLayout());
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setBackground(new Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
         jLabel1.setIcon(new FlatSVGIcon("./img/loginn.svg"));
-        jPanel2.add(jLabel1, java.awt.BorderLayout.CENTER);
+        jPanel2.add(jLabel1, BorderLayout.CENTER);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.WEST);
+        jPanel1.add(jPanel2, BorderLayout.WEST);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setPreferredSize(new java.awt.Dimension(400, 400));
+        jPanel7.setBackground(new Color(255, 255, 255));
+        jPanel7.setPreferredSize(new Dimension(400, 400));
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setPreferredSize(new java.awt.Dimension(360, 600));
-        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 16));
+        jPanel4.setBackground(new Color(255, 255, 255));
+        jPanel4.setPreferredSize(new Dimension(360, 600));
+        jPanel4.setLayout(new java.awt.FlowLayout(FlowLayout.CENTER, 0, 16));
 
-        logo.setFont(new java.awt.Font("Roboto", 1, 38)); 
-        logo.setForeground(new java.awt.Color (61, 245, 116));
-        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png")));
+        logo.setFont(new Font("Roboto", 1, 38)); 
+        logo.setForeground(new Color (61, 245, 116));
+        logo.setHorizontalAlignment(SwingConstants.CENTER);
+        logo.setIcon(new ImageIcon(getClass().getResource("/icon/logo.png")));
         logo.setText("Nhà Thuốc H&M");
-        logo.setPreferredSize(new java.awt.Dimension(360, 120));
+        logo.setPreferredSize(new Dimension(360, 120));
         jPanel4.add(logo);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setPreferredSize(new java.awt.Dimension(360, 80));
-        jPanel6.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel6.setBackground(new Color(255, 255, 255));
+        jPanel6.setPreferredSize(new Dimension(360, 80));
+        jPanel6.setLayout(new GridLayout(2, 0));
 
         jPanel6.add(lblUsername);
 
-        txtUsername.setFont(new java.awt.Font("Roboto Mono", 0, 14)); 
-        txtUsername.setForeground(new java.awt.Color(0, 0, 0));
+        txtUsername.setFont(new Font("Roboto Mono", 0, 14)); 
+        txtUsername.setForeground(new Color(0, 0, 0));
         txtUsername.setText("admin");
-        txtUsername.setPreferredSize(new java.awt.Dimension(350, 27));
-        txtUsername.setSelectionColor(new java.awt.Color(0, 153, 153));
-        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtUsername.setPreferredSize(new Dimension(350, 27));
+        txtUsername.setSelectionColor(new Color(0, 153, 153));
+        txtUsername.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
                 txtUsernameKeyPressed(evt);
             }
         });
@@ -144,18 +146,18 @@ public class Login extends javax.swing.JFrame {
 
         jPanel4.add(jPanel6);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setMinimumSize(new java.awt.Dimension(360, 80));
-        jPanel3.setPreferredSize(new java.awt.Dimension(360, 80));
-        jPanel3.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel3.setBackground(new Color(255, 255, 255));
+        jPanel3.setMinimumSize(new Dimension(360, 80));
+        jPanel3.setPreferredSize(new Dimension(360, 80));
+        jPanel3.setLayout(new GridLayout(2, 0));
 
         jPanel3.add(lblPassword);
 
-        txtPassword.setFont(new java.awt.Font("Roboto Mono", 0, 14)); 
+        txtPassword.setFont(new Font("Roboto Mono", 0, 14)); 
         txtPassword.setText("123123");
-        txtPassword.setPreferredSize(new java.awt.Dimension(90, 40));
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
+        txtPassword.setPreferredSize(new Dimension(90, 40));
+        txtPassword.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent evt) {
                 txtPasswordKeyPressed(evt);
             }
         });
@@ -163,81 +165,80 @@ public class Login extends javax.swing.JFrame {
 
         jPanel4.add(jPanel3);
 
-        btnLogin.setBackground(new java.awt.Color(0,205,102));
-        btnLogin.setFont(new java.awt.Font("Roboto Mono", 1, 18)); 
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setBackground(new Color(0,205,102));
+        btnLogin.setFont(new Font("Roboto Mono", 1, 18)); 
+        btnLogin.setForeground(new Color(255, 255, 255));
         btnLogin.setText("Đăng nhập");
-        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogin.setCursor(new Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.setFocusable(false);
-        btnLogin.setPreferredSize(new java.awt.Dimension(220, 40));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnLogin.setPreferredSize(new Dimension(220, 40));
+        btnLogin.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
         jPanel4.add(btnLogin);
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        GroupLayout jPanel7Layout = new GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel7Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+            jPanel7Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 600, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel7, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jPanel7, BorderLayout.CENTER);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnLoginActionPerformed(ActionEvent evt) {
         authentication();
     }
 
-    private void txtUsernameKeyPressed(java.awt.event.KeyEvent evt) {
+    private void txtUsernameKeyPressed(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             authentication();
         }
     }
 
-    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {
+    private void txtPasswordKeyPressed(KeyEvent evt) {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             authentication();
         }
     }
 
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JLabel lblLogin;
-    private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblUsername;
-    private javax.swing.JLabel logo;
-    private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    private JButton btnLogin;
+    private JLabel jLabel1;
+    private JPanel jPanel1;
+    private JPanel jPanel2;
+    private JPanel jPanel3;
+    private JPanel jPanel4;
+    private JPanel jPanel6;
+    private JPanel jPanel7;
+    private JLabel lblPassword;
+    private JLabel lblUsername;
+    private JLabel logo;
+    private JPasswordField txtPassword;
+    private JTextField txtUsername;
 }

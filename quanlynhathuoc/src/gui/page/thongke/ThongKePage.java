@@ -1,9 +1,13 @@
 package gui.page.thongke;
 
+import java.awt.*;
+
+import javax.swing.*;
+
 import entity.TaiKhoan;
 
 
-public class ThongKePage extends javax.swing.JPanel {
+public class ThongKePage extends JPanel {
 
     private TaiKhoan tk;
     
@@ -39,19 +43,18 @@ public class ThongKePage extends javax.swing.JPanel {
         this.add(tabPane);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
-        tabPane = new javax.swing.JTabbedPane();
+        tabPane = new JTabbedPane();
 
-        setBackground(new java.awt.Color(230, 245, 245));
-        setMinimumSize(new java.awt.Dimension(1130, 800));
-        setPreferredSize(new java.awt.Dimension(1130, 800));
-        setLayout(new java.awt.BorderLayout(0, 6));
+        setBackground(new Color(230, 245, 245));
+        setMinimumSize(new Dimension(1130, 800));
+        setPreferredSize(new Dimension(1130, 800));
+        setLayout(new BorderLayout(0, 6));
 
-        tabPane.setPreferredSize(new java.awt.Dimension(100, 30));
-        add(tabPane, java.awt.BorderLayout.PAGE_START);
+        tabPane.setPreferredSize(new Dimension(100, 30));
+        add(tabPane, BorderLayout.PAGE_START);
     }
 
-    private javax.swing.JTabbedPane tabPane;
+    private JTabbedPane tabPane;
 }

@@ -10,7 +10,9 @@ import entity.DonViTinh;
 import entity.Thuoc;
 import entity.XuatXu;
 import gui.page.ThuocPage;
-import java.awt.Image;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,20 +20,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+
 import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.Validation;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
 import com.toedter.calendar.JDateChooser;
 
-public class CreateThuocDialog extends javax.swing.JDialog {
+public class CreateThuocDialog extends JDialog {
 
 	private final ThuocController THUOC_CON = new ThuocController();
 	private ThuocPage THUOC_GUI;
@@ -41,12 +38,12 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 	private final List<DonViTinh> listDVT = new DonViTinhController().getAllList();
 	private final List<XuatXu> listXX = new XuatXuController().getAllList();
 
-	public CreateThuocDialog(java.awt.Frame parent, boolean modal) {
+	public CreateThuocDialog(Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
 	}
 
-	public CreateThuocDialog(java.awt.Frame parent, boolean modal, ThuocPage THUOC_GUI) {
+	public CreateThuocDialog(Frame parent, boolean modal, ThuocPage THUOC_GUI) {
 		super(parent, modal);
 		initComponents();
 		this.THUOC_GUI = THUOC_GUI;
@@ -199,153 +196,153 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 
 	private void initComponents() {
 
-		jPanel15 = new javax.swing.JPanel();
-		jLabel8 = new javax.swing.JLabel();
-		jPanel3 = new javax.swing.JPanel();
-		jLabel28 = new javax.swing.JLabel();
-		jPanel28 = new javax.swing.JPanel();
-		jPanel4 = new javax.swing.JPanel();
-		txtHinhAnh = new javax.swing.JLabel();
-		btnChooseImage = new javax.swing.JButton();
-		jPanel2 = new javax.swing.JPanel();
-		jPanel1 = new javax.swing.JPanel();
-		jPanel18 = new javax.swing.JPanel();
-		lblHoTen = new javax.swing.JLabel();
-		txtTenThuoc = new javax.swing.JTextField();
-		jPanel19 = new javax.swing.JPanel();
-		jLabel12 = new javax.swing.JLabel();
-		jScrollPane1 = new javax.swing.JScrollPane();
-		txtThanhPhan = new javax.swing.JTextArea();
-		jPanel21 = new javax.swing.JPanel();
-		jLabel14 = new javax.swing.JLabel();
-		cboxDanhMuc = new javax.swing.JComboBox<>();
-		jPanel23 = new javax.swing.JPanel();
-		jLabel16 = new javax.swing.JLabel();
-		cboxXuatXu = new javax.swing.JComboBox<>();
-		jPanel24 = new javax.swing.JPanel();
-		jLabel17 = new javax.swing.JLabel();
-		cboxDonViTinh = new javax.swing.JComboBox<>();
-		cboxLoaiThuoc = new javax.swing.JComboBox<>();
-		jPanel20 = new javax.swing.JPanel();
-		jLabel13 = new javax.swing.JLabel();
+		jPanel15 = new JPanel();
+		jLabel8 = new JLabel();
+		jPanel3 = new JPanel();
+		jLabel28 = new JLabel();
+		jPanel28 = new JPanel();
+		jPanel4 = new JPanel();
+		txtHinhAnh = new JLabel();
+		btnChooseImage = new JButton();
+		jPanel2 = new JPanel();
+		jPanel1 = new JPanel();
+		jPanel18 = new JPanel();
+		lblHoTen = new JLabel();
+		txtTenThuoc = new JTextField();
+		jPanel19 = new JPanel();
+		jLabel12 = new JLabel();
+		jScrollPane1 = new JScrollPane();
+		txtThanhPhan = new JTextArea();
+		jPanel21 = new JPanel();
+		jLabel14 = new JLabel();
+		cboxDanhMuc = new JComboBox<>();
+		jPanel23 = new JPanel();
+		jLabel16 = new JLabel();
+		cboxXuatXu = new JComboBox<>();
+		jPanel24 = new JPanel();
+		jLabel17 = new JLabel();
+		cboxDonViTinh = new JComboBox<>();
+		cboxLoaiThuoc = new JComboBox<>();
+		jPanel20 = new JPanel();
+		jLabel13 = new JLabel();
 
-		txtHanSuDung = new com.toedter.calendar.JDateChooser();
-		jPanel26 = new javax.swing.JPanel();
-		jLabel19 = new javax.swing.JLabel();
-		txtGiaNhap = new javax.swing.JTextField();
-		jPanel25 = new javax.swing.JPanel();
-		jLabel18 = new javax.swing.JLabel();
-		txtDonGia = new javax.swing.JTextField();
-		jPanel27 = new javax.swing.JPanel();
-		jLabel20 = new javax.swing.JLabel();
-		txtSoLuong = new javax.swing.JTextField();
-		jPanel8 = new javax.swing.JPanel();
-		btnHuy = new javax.swing.JButton();
-		btnAdd = new javax.swing.JButton();
+		txtHanSuDung = new JDateChooser();
+		jPanel26 = new JPanel();
+		jLabel19 = new JLabel();
+		txtGiaNhap = new JTextField();
+		jPanel25 = new JPanel();
+		jLabel18 = new JLabel();
+		txtDonGia = new JTextField();
+		jPanel27 = new JPanel();
+		jLabel20 = new JLabel();
+		txtSoLuong = new JTextField();
+		jPanel8 = new JPanel();
+		btnHuy = new JButton();
+		btnAdd = new JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-		setPreferredSize(new java.awt.Dimension(1200, 750));
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		setPreferredSize(new Dimension(1200, 750));
 
-		jPanel15.setBackground(new java.awt.Color(0, 153, 153));
-		jPanel15.setMinimumSize(new java.awt.Dimension(100, 60));
-		jPanel15.setPreferredSize(new java.awt.Dimension(500, 50));
-		jPanel15.setLayout(new java.awt.BorderLayout());
+		jPanel15.setBackground(new Color(0, 153, 153));
+		jPanel15.setMinimumSize(new Dimension(100, 60));
+		jPanel15.setPreferredSize(new Dimension(500, 50));
+		jPanel15.setLayout(new BorderLayout());
 
-		jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18));
-		jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-		jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jLabel8.setFont(new Font("Roboto Medium", 0, 18));
+		jLabel8.setForeground(new Color(255, 255, 255));
+		jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
 		jLabel8.setText("THÊM THUỐC");
-		jLabel8.setPreferredSize(new java.awt.Dimension(149, 40));
-		jPanel15.add(jLabel8, java.awt.BorderLayout.CENTER);
+		jLabel8.setPreferredSize(new Dimension(149, 40));
+		jPanel15.add(jLabel8, BorderLayout.CENTER);
 
-		getContentPane().add(jPanel15, java.awt.BorderLayout.NORTH);
+		getContentPane().add(jPanel15, BorderLayout.NORTH);
 
-		jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel3.setPreferredSize(new java.awt.Dimension(400, 100));
+		jPanel3.setBackground(new Color(255, 255, 255));
+		jPanel3.setPreferredSize(new Dimension(400, 100));
 
-		jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(237, 237, 237), 2, true));
-		jPanel4.setPreferredSize(new java.awt.Dimension(300, 300));
-		jPanel4.setLayout(new java.awt.BorderLayout());
+		jPanel4.setBackground(new Color(255, 255, 255));
+		jPanel4.setBorder(new LineBorder(new Color(237, 237, 237), 2, true));
+		jPanel4.setPreferredSize(new Dimension(300, 300));
+		jPanel4.setLayout(new BorderLayout());
 
-		txtHinhAnh.setBackground(new java.awt.Color(255, 255, 255));
-		txtHinhAnh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		txtHinhAnh.setBackground(new Color(255, 255, 255));
+		txtHinhAnh.setHorizontalAlignment(SwingConstants.CENTER);
 		txtHinhAnh.setIcon(new FlatSVGIcon("./icon/image.svg"));
-		txtHinhAnh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-		txtHinhAnh.setPreferredSize(new java.awt.Dimension(200, 100));
-		jPanel4.add(txtHinhAnh, java.awt.BorderLayout.CENTER);
+		txtHinhAnh.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		txtHinhAnh.setPreferredSize(new Dimension(200, 100));
+		jPanel4.add(txtHinhAnh, BorderLayout.CENTER);
 
 		btnChooseImage.setText("Chọn ảnh");
-		btnChooseImage.setPreferredSize(new java.awt.Dimension(100, 30));
-		btnChooseImage.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnChooseImage.setPreferredSize(new Dimension(100, 30));
+		btnChooseImage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnChooseImageActionPerformed(evt);
 			}
 		});
 
-		javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+		GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
 		jPanel3.setLayout(jPanel3Layout);
-		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 				.addGroup(jPanel3Layout.createSequentialGroup().addContainerGap(34, Short.MAX_VALUE)
-						.addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 350,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 350,
+								GroupLayout.PREFERRED_SIZE)
 						.addGap(16, 16, 16))
 				.addGroup(jPanel3Layout.createSequentialGroup().addGap(150, 150, 150)
-						.addComponent(btnChooseImage, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+						.addComponent(btnChooseImage, GroupLayout.PREFERRED_SIZE,
+								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(GroupLayout.Alignment.TRAILING,
 						jPanel3Layout.createSequentialGroup().addContainerGap(105, Short.MAX_VALUE)
-								.addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 300,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(btnChooseImage, javax.swing.GroupLayout.PREFERRED_SIZE,
-										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 300,
+										GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+								.addComponent(btnChooseImage, GroupLayout.PREFERRED_SIZE,
+										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addGap(103, 103, 103)));
 
-		getContentPane().add(jPanel3, java.awt.BorderLayout.WEST);
+		getContentPane().add(jPanel3, BorderLayout.WEST);
 
-		jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel2.setPreferredSize(new java.awt.Dimension(750, 550));
-		jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 0, 16));
+		jPanel2.setBackground(new Color(255, 255, 255));
+		jPanel2.setPreferredSize(new Dimension(750, 550));
+		jPanel2.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 16));
 
 		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel1.setPreferredSize(new java.awt.Dimension(750, 550));
-		jPanel1.setLayout(new java.awt.GridLayout(6, 2, 16, 8));
+		jPanel1.setPreferredSize(new Dimension(750, 550));
+		jPanel1.setLayout(new GridLayout(6, 2, 16, 8));
 		
-		jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel18.setPreferredSize(new java.awt.Dimension(150, 40));
-		jPanel18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel18.setBackground(new Color(255, 255, 255));
+		jPanel18.setPreferredSize(new Dimension(150, 40));
+		jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
 		lblHoTen.setFont(new java.awt.Font("Roboto", 0, 14));
 		lblHoTen.setText("Tên thuốc");
-		lblHoTen.setMaximumSize(new java.awt.Dimension(44, 40));
-		lblHoTen.setPreferredSize(new java.awt.Dimension(150, 40));
+		lblHoTen.setMaximumSize(new Dimension(44, 40));
+		lblHoTen.setPreferredSize(new Dimension(150, 40));
 		jPanel18.add(lblHoTen);
 
-		txtTenThuoc.setFont(new java.awt.Font("Roboto", 0, 14));
+		txtTenThuoc.setFont(new Font("Roboto", 0, 14));
 		txtTenThuoc.setToolTipText("");
-		txtTenThuoc.setPreferredSize(new java.awt.Dimension(300, 40));
+		txtTenThuoc.setPreferredSize(new Dimension(300, 40));
 		jPanel18.add(txtTenThuoc);
 
 		jPanel1.add(jPanel18);
 
-		jPanel19.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel19.setPreferredSize(new java.awt.Dimension(150, 60));
-		jPanel19.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel19.setBackground(new Color(255, 255, 255));
+		jPanel19.setPreferredSize(new Dimension(150, 60));
+		jPanel19.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel12.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel12.setFont(new Font("Roboto", 0, 14));
 		jLabel12.setText("Thành phần");
-		jLabel12.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel12.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel12.setMaximumSize(new Dimension(44, 40));
+		jLabel12.setPreferredSize(new Dimension(150, 40));
 		jPanel19.add(jLabel12);
 
-		jScrollPane1.setMaximumSize(new java.awt.Dimension(300, 70));
-		jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 50));
+		jScrollPane1.setMaximumSize(new Dimension(300, 70));
+		jScrollPane1.setPreferredSize(new Dimension(300, 50));
 
 		txtThanhPhan.setColumns(20);
-		txtThanhPhan.setFont(new java.awt.Font("Roboto", 0, 14));
+		txtThanhPhan.setFont(new Font("Roboto", 0, 14));
 		txtThanhPhan.setLineWrap(true);
 		txtThanhPhan.setRows(4);
 		jScrollPane1.setViewportView(txtThanhPhan);
@@ -354,128 +351,128 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 
 		jPanel1.add(jPanel19);
 
-		jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel21.setPreferredSize(new java.awt.Dimension(150, 40));
-		jPanel21.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel21.setBackground(new Color(255, 255, 255));
+		jPanel21.setPreferredSize(new Dimension(150, 40));
+		jPanel21.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel14.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel14.setFont(new Font("Roboto", 0, 14));
 		jLabel14.setText("Danh mục");
-		jLabel14.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel14.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel14.setMaximumSize(new Dimension(44, 40));
+		jLabel14.setPreferredSize(new Dimension(150, 40));
 		jPanel21.add(jLabel14);
 
-		cboxDanhMuc.setPreferredSize(new java.awt.Dimension(300, 40));
+		cboxDanhMuc.setPreferredSize(new Dimension(300, 40));
 		jPanel21.add(cboxDanhMuc);
 
 		jPanel1.add(jPanel21);
 		
-		jPanel28.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel28.setPreferredSize(new java.awt.Dimension(150, 40));
-		jPanel28.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel28.setBackground(new Color(255, 255, 255));
+		jPanel28.setPreferredSize(new Dimension(150, 40));
+		jPanel28.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel28.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel28.setFont(new Font("Roboto", 0, 14));
 		jLabel28.setText("Loại Thuốc");
-		jLabel28.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel28.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel28.setMaximumSize(new Dimension(44, 40));
+		jLabel28.setPreferredSize(new Dimension(150, 40));
 		jPanel28.add(jLabel28);
 
-		cboxLoaiThuoc.setPreferredSize(new java.awt.Dimension(300, 40));
+		cboxLoaiThuoc.setPreferredSize(new Dimension(300, 40));
 		jPanel28.add(cboxLoaiThuoc);
 
 		jPanel1.add(jPanel28); // Thêm jPanel28 vào cuối jPanel1
 
 
-		jPanel23.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel23.setPreferredSize(new java.awt.Dimension(150, 40));
-		jPanel23.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel23.setBackground(new Color(255, 255, 255));
+		jPanel23.setPreferredSize(new Dimension(150, 40));
+		jPanel23.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel16.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel16.setFont(new Font("Roboto", 0, 14));
 		jLabel16.setText("Xuất xứ");
-		jLabel16.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel16.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel16.setMaximumSize(new Dimension(44, 40));
+		jLabel16.setPreferredSize(new Dimension(150, 40));
 		jPanel23.add(jLabel16);
 
-		cboxXuatXu.setPreferredSize(new java.awt.Dimension(300, 40));
+		cboxXuatXu.setPreferredSize(new Dimension(300, 40));
 		jPanel23.add(cboxXuatXu);
 
 		jPanel1.add(jPanel23);
 		
-		jPanel24.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel24.setPreferredSize(new java.awt.Dimension(150, 40));
-		jPanel24.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel24.setBackground(new Color(255, 255, 255));
+		jPanel24.setPreferredSize(new Dimension(150, 40));
+		jPanel24.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel17.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel17.setFont(new Font("Roboto", 0, 14));
 		jLabel17.setText("Đơn vị tính");
-		jLabel17.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel17.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel17.setMaximumSize(new Dimension(44, 40));
+		jLabel17.setPreferredSize(new Dimension(150, 40));
 		jPanel24.add(jLabel17);
 
-		cboxDonViTinh.setPreferredSize(new java.awt.Dimension(300, 40));
+		cboxDonViTinh.setPreferredSize(new Dimension(300, 40));
 		jPanel24.add(cboxDonViTinh);
 
 		jPanel1.add(jPanel24);
 
-		jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel20.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel20.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel20.setBackground(new Color(255, 255, 255));
+		jPanel20.setPreferredSize(new Dimension(500, 40));
+		jPanel20.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel13.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel13.setFont(new Font("Roboto", 0, 14));
 		jLabel13.setText("Hạn sử dụng");
-		jLabel13.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel13.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel13.setMaximumSize(new Dimension(44, 40));
+		jLabel13.setPreferredSize(new Dimension(150, 40));
 		jPanel20.add(jLabel13);
 
-		txtHanSuDung.setBackground(new java.awt.Color(255, 255, 255));
+		txtHanSuDung.setBackground(new Color(255, 255, 255));
 		txtHanSuDung.setDateFormatString("dd/MM/yyyy");
-		txtHanSuDung.setPreferredSize(new java.awt.Dimension(300, 40));
+		txtHanSuDung.setPreferredSize(new Dimension(300, 40));
 		jPanel20.add(txtHanSuDung);
 
 		jPanel1.add(jPanel20);
 
-		jPanel26.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel26.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel26.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel26.setBackground(new Color(255, 255, 255));
+		jPanel26.setPreferredSize(new Dimension(500, 40));
+		jPanel26.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel19.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel19.setFont(new Font("Roboto", 0, 14));
 		jLabel19.setText("Giá nhập");
-		jLabel19.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel19.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel19.setMaximumSize(new Dimension(44, 40));
+		jLabel19.setPreferredSize(new Dimension(150, 40));
 		jPanel26.add(jLabel19);
 
-		txtGiaNhap.setFont(new java.awt.Font("Roboto", 0, 14));
-		txtGiaNhap.setPreferredSize(new java.awt.Dimension(300, 40));
+		txtGiaNhap.setFont(new Font("Roboto", 0, 14));
+		txtGiaNhap.setPreferredSize(new Dimension(300, 40));
 		jPanel26.add(txtGiaNhap);
 
 		jPanel1.add(jPanel26);
 
-		jPanel25.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel25.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel25.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel25.setBackground(new Color(255, 255, 255));
+		jPanel25.setPreferredSize(new Dimension(500, 40));
+		jPanel25.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel18.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel18.setFont(new Font("Roboto", 0, 14));
 		jLabel18.setText("Đơn giá");
-		jLabel18.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel18.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel18.setMaximumSize(new Dimension(44, 40));
+		jLabel18.setPreferredSize(new Dimension(150, 40));
 		jPanel25.add(jLabel18);
 
-		txtDonGia.setFont(new java.awt.Font("Roboto", 0, 14));
-		txtDonGia.setPreferredSize(new java.awt.Dimension(300, 40));
+		txtDonGia.setFont(new Font("Roboto", 0, 14));
+		txtDonGia.setPreferredSize(new Dimension(300, 40));
 		jPanel25.add(txtDonGia);
 
 		jPanel1.add(jPanel25);
 
-		jPanel27.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel27.setPreferredSize(new java.awt.Dimension(500, 40));
-		jPanel27.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 0));
+		jPanel27.setBackground(new Color(255, 255, 255));
+		jPanel27.setPreferredSize(new Dimension(500, 40));
+		jPanel27.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
 
-		jLabel20.setFont(new java.awt.Font("Roboto", 0, 14));
+		jLabel20.setFont(new Font("Roboto", 0, 14));
 		jLabel20.setText("Số lượng");
-		jLabel20.setMaximumSize(new java.awt.Dimension(44, 40));
-		jLabel20.setPreferredSize(new java.awt.Dimension(150, 40));
+		jLabel20.setMaximumSize(new Dimension(44, 40));
+		jLabel20.setPreferredSize(new Dimension(150, 40));
 		jPanel27.add(jLabel20);
 
-		txtSoLuong.setFont(new java.awt.Font("Roboto", 0, 14));
-		txtSoLuong.setPreferredSize(new java.awt.Dimension(300, 40));
+		txtSoLuong.setFont(new Font("Roboto", 0, 14));
+		txtSoLuong.setPreferredSize(new Dimension(300, 40));
 		txtSoLuong.setEnabled(false); // Vô hiệu hóa
 		// Hoặc
 		txtSoLuong.setEditable(false); // Chỉ cho phép đọc
@@ -518,54 +515,54 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		txtHanSuDung_1.setBackground(Color.WHITE);
 		jPanel20_1.add(txtHanSuDung_1);
 
-		getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
+		getContentPane().add(jPanel2, BorderLayout.CENTER);
 
-		jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-		jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 5));
+		jPanel8.setBackground(new Color(255, 255, 255));
+		jPanel8.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 5));
 
-		btnHuy.setBackground(new java.awt.Color(255, 102, 102));
-		btnHuy.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16));
-		btnHuy.setForeground(new java.awt.Color(255, 255, 255));
+		btnHuy.setBackground(new Color(255, 102, 102));
+		btnHuy.setFont(new Font("Roboto Mono Medium", 0, 16));
+		btnHuy.setForeground(new Color(255, 255, 255));
 		btnHuy.setText("HỦY BỎ");
 		btnHuy.setBorderPainted(false);
-		btnHuy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnHuy.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnHuy.setFocusPainted(false);
 		btnHuy.setFocusable(false);
-		btnHuy.setPreferredSize(new java.awt.Dimension(200, 40));
-		btnHuy.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnHuy.setPreferredSize(new Dimension(200, 40));
+		btnHuy.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnHuyActionPerformed(evt);
 			}
 		});
 		jPanel8.add(btnHuy);
 
-		btnAdd.setBackground(new java.awt.Color(0, 204, 102));
-		btnAdd.setFont(new java.awt.Font("Roboto Mono Medium", 0, 16));
-		btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+		btnAdd.setBackground(new Color(0, 204, 102));
+		btnAdd.setFont(new Font("Roboto Mono Medium", 0, 16));
+		btnAdd.setForeground(new Color(255, 255, 255));
 		btnAdd.setText("THÊM");
 		btnAdd.setBorderPainted(false);
-		btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+		btnAdd.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		btnAdd.setFocusPainted(false);
 		btnAdd.setFocusable(false);
-		btnAdd.setPreferredSize(new java.awt.Dimension(200, 40));
-		btnAdd.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
+		btnAdd.setPreferredSize(new Dimension(200, 40));
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
 				btnAddActionPerformed(evt);
 			}
 		});
 		jPanel8.add(btnAdd);
 
-		getContentPane().add(jPanel8, java.awt.BorderLayout.PAGE_END);
+		getContentPane().add(jPanel8, BorderLayout.PAGE_END);
 
 		pack();
 		setLocationRelativeTo(null);
 	}
 
-	private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {
+	private void btnHuyActionPerformed(ActionEvent evt) {
 		this.dispose();
 	}
 
-	private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {
+	private void btnAddActionPerformed(ActionEvent evt) {
 	    if (isValidateFields()) {
 	        String tenThuoc = txtTenThuoc.getText().trim();
 	        
@@ -586,7 +583,7 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 	}
 
 
-	private void btnChooseImageActionPerformed(java.awt.event.ActionEvent evt) {
+	private void btnChooseImageActionPerformed(ActionEvent evt) {
 		JFileChooser fileChooser = new JFileChooser();
 		int returnValue = fileChooser.showOpenDialog(null);
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -613,50 +610,48 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 		}
 	}
 
-	private javax.swing.JButton btnAdd;
-	private javax.swing.JButton btnChooseImage;
-	private javax.swing.JButton btnHuy;
-	private javax.swing.JComboBox<String> cboxDanhMuc;
-	private javax.swing.JComboBox<String> cboxDonViTinh;
-	private javax.swing.JComboBox<String> cboxXuatXu;
-	private javax.swing.JComboBox<String> cboxLoaiThuoc;
-	private javax.swing.JLabel jLabel12;
-	private javax.swing.JLabel jLabel13;
-	private javax.swing.JLabel jLabel14;
-	private javax.swing.JLabel jLabel16;
-	private javax.swing.JLabel jLabel17;
-	private javax.swing.JLabel jLabel18;
-	private javax.swing.JLabel jLabel19;
-	private javax.swing.JLabel jLabel20;
-	private javax.swing.JLabel jLabel28;
-	private javax.swing.JLabel jLabel8;
-	private javax.swing.JPanel jPanel1;
-	private javax.swing.JPanel jPanel15;
-	private javax.swing.JPanel jPanel18;
-	private javax.swing.JPanel jPanel19;
-	private javax.swing.JPanel jPanel2;
-	private javax.swing.JPanel jPanel20;
-	private javax.swing.JPanel jPanel21;
-	private javax.swing.JPanel jPanel23;
-	private javax.swing.JPanel jPanel24;
-	private javax.swing.JPanel jPanel25;
-	private javax.swing.JPanel jPanel26;
-	private javax.swing.JPanel jPanel27;
-	private javax.swing.JPanel jPanel28;
-	private javax.swing.JPanel jPanel3;
-	private javax.swing.JPanel jPanel4;
-	private javax.swing.JPanel jPanel8;
-	private javax.swing.JScrollPane jScrollPane1;
-	private javax.swing.JLabel lblHoTen;
-	private javax.swing.JTextField txtDonGia;
-	private javax.swing.JTextField txtGiaNhap;
-	private com.toedter.calendar.JDateChooser txtHanSuDung;
-	private javax.swing.JLabel txtHinhAnh;
-	private javax.swing.JTextField txtSoLuong;
-	private javax.swing.JTextField txtTenThuoc;
-	private javax.swing.JTextArea txtThanhPhan;
-	private com.toedter.calendar.JDateChooser txtNgaySanXuat; // Thêm biến cho trường ngày sản xuất
-	private javax.swing.JLabel jLabel120;
+	private JButton btnAdd;
+	private JButton btnChooseImage;
+	private JButton btnHuy;
+	private JComboBox<String> cboxDanhMuc;
+	private JComboBox<String> cboxDonViTinh;
+	private JComboBox<String> cboxXuatXu;
+	private JComboBox<String> cboxLoaiThuoc;
+	private JLabel jLabel12;
+	private JLabel jLabel13;
+	private JLabel jLabel14;
+	private JLabel jLabel16;
+	private JLabel jLabel17;
+	private JLabel jLabel18;
+	private JLabel jLabel19;
+	private JLabel jLabel20;
+	private JLabel jLabel28;
+	private JLabel jLabel8;
+	private JPanel jPanel1;
+	private JPanel jPanel15;
+	private JPanel jPanel18;
+	private JPanel jPanel19;
+	private JPanel jPanel2;
+	private JPanel jPanel20;
+	private JPanel jPanel21;
+	private JPanel jPanel23;
+	private JPanel jPanel24;
+	private JPanel jPanel25;
+	private JPanel jPanel26;
+	private JPanel jPanel27;
+	private JPanel jPanel28;
+	private JPanel jPanel3;
+	private JPanel jPanel4;
+	private JPanel jPanel8;
+	private JScrollPane jScrollPane1;
+	private JLabel lblHoTen;
+	private JTextField txtDonGia;
+	private JTextField txtGiaNhap;
+	private JDateChooser txtHanSuDung;
+	private JLabel txtHinhAnh;
+	private JTextField txtSoLuong;
+	private JTextField txtTenThuoc;
+	private JTextArea txtThanhPhan;
 	private JPanel jPanel20_1;
 	private JLabel jLabel120_1;
 	private JDateChooser txtNgaySanXuat_1;

@@ -1,25 +1,20 @@
 package gui.page.thongke;
 
-import com.formdev.flatlaf.extras.FlatSVGIcon;
-import controller.KhachHangController;
-import controller.NhanVienController;
-import controller.ThongKeController;
 import controller.ThuocController;
-import entity.ThongKe;
+import gui.barchart.Chart;
 import gui.barchart.ModelChart;
-import gui.curvechart.ModelChart2;
-import java.awt.Color;
-import java.util.Arrays;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JLabel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import utils.Formatter;
 import utils.JTableExporter;
 import utils.TableSorter;
 
 
-public class ThongKeHSDThuocPage extends javax.swing.JPanel {
+public class ThongKeHSDThuocPage extends JPanel {
 
     private DefaultTableModel modal;
     private List<String[]> listThongKeThuoc = new ThuocController().getThongKeThuoc();
@@ -86,95 +81,94 @@ public class ThongKeHSDThuocPage extends javax.swing.JPanel {
         chart.start();
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        chart = new gui.barchart.Chart();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        btnStatistic = new javax.swing.JButton();
-        btnReload = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
+        jPanel1 = new JPanel();
+        chart = new Chart();
+        jScrollPane1 = new JScrollPane();
+        table = new JTable();
+        jPanel5 = new JPanel();
+        btnStatistic = new JButton();
+        btnReload = new JButton();
+        btnExport = new JButton();
 
-        setBackground(new java.awt.Color(230, 245, 245));
-        setMinimumSize(new java.awt.Dimension(1130, 800));
-        setPreferredSize(new java.awt.Dimension(1130, 800));
-        setLayout(new java.awt.BorderLayout(0, 6));
+        setBackground(new Color(230, 245, 245));
+        setMinimumSize(new Dimension(1130, 800));
+        setPreferredSize(new Dimension(1130, 800));
+        setLayout(new BorderLayout(0, 6));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
-        jPanel1.setLayout(new java.awt.BorderLayout(4, 4));
-        jPanel1.add(chart, java.awt.BorderLayout.CENTER);
+        jPanel1.setBackground(new Color(255, 255, 255));
+        jPanel1.setBorder(BorderFactory.createEmptyBorder(6, 6, 6, 6));
+        jPanel1.setLayout(new BorderLayout(4, 4));
+        jPanel1.add(chart, BorderLayout.CENTER);
 
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(456, 300));
+        jScrollPane1.setPreferredSize(new Dimension(456, 300));
 
         table.setFocusable(false);
         table.setRowHeight(40);
-        table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(table);
 
-        jPanel1.add(jScrollPane1, java.awt.BorderLayout.SOUTH);
+        jPanel1.add(jScrollPane1, BorderLayout.SOUTH);
 
-        jPanel5.setBackground(new java.awt.Color(247, 247, 247));
-        jPanel5.setPreferredSize(new java.awt.Dimension(1188, 30));
-        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 0));
+        jPanel5.setBackground(new Color(247, 247, 247));
+        jPanel5.setPreferredSize(new Dimension(1188, 30));
+        jPanel5.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 0));
 
-        btnStatistic.setBackground(new java.awt.Color(51, 153, 255));
-        btnStatistic.setForeground(new java.awt.Color(204, 255, 255));
+        btnStatistic.setBackground(new Color(51, 153, 255));
+        btnStatistic.setForeground(new Color(204, 255, 255));
         btnStatistic.setText("Thống kê");
-        btnStatistic.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnStatistic.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnStatisticActionPerformed(evt);
             }
         });
         jPanel5.add(btnStatistic);
 
         btnReload.setText("Làm mới");
-        btnReload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnReload.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnReloadActionPerformed(evt);
             }
         });
         jPanel5.add(btnReload);
 
-        btnExport.setBackground(new java.awt.Color(0, 153, 102));
-        btnExport.setForeground(new java.awt.Color(204, 255, 204));
+        btnExport.setBackground(new Color(0, 153, 102));
+        btnExport.setForeground(new Color(204, 255, 204));
         btnExport.setText("Xuất excel");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnExport.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
                 btnExportActionPerformed(evt);
             }
         });
         jPanel5.add(btnExport);
 
-        jPanel1.add(jPanel5, java.awt.BorderLayout.PAGE_START);
+        jPanel1.add(jPanel5, BorderLayout.PAGE_START);
 
-        add(jPanel1, java.awt.BorderLayout.CENTER);
+        add(jPanel1, BorderLayout.CENTER);
     }
 
-    private void btnStatisticActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnStatisticActionPerformed(ActionEvent evt) {
         loadDataset();
     }
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnExportActionPerformed(ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
     }
 
-    private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnReloadActionPerformed(ActionEvent evt) {
         listThongKeThuoc = new ThuocController().getThongKeThuoc();
         loadDataset();
     }
 
-    private javax.swing.JButton btnExport;
-    private javax.swing.JButton btnReload;
-    private javax.swing.JButton btnStatistic;
-    private gui.barchart.Chart chart;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable table;
+    private JButton btnExport;
+    private JButton btnReload;
+    private JButton btnStatistic;
+    private Chart chart;
+    private JPanel jPanel1;
+    private JPanel jPanel5;
+    private JScrollPane jScrollPane1;
+    private JTable table;
 }
 

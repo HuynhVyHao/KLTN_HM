@@ -4,12 +4,15 @@ import controller.KhachHangController;
 import entity.KhachHang;
 import gui.page.KhachHangPage;
 import java.util.Date;
+
+import javax.swing.*;
+
 import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.Validation;
 
 
-public class CreateKhachHangDialog extends javax.swing.JDialog {
+public class CreateKhachHangDialog extends JDialog {
 
     private KhachHangController KH_CON = new KhachHangController();
     private KhachHangPage KH_GUI;

@@ -3,22 +3,21 @@ package gui.curvechart;
 import gui.curvechart.blankchart.BlankPlotChart;
 import gui.curvechart.blankchart.BlankPlotChatRender;
 import gui.curvechart.blankchart.SeriesSize;
-import java.awt.AlphaComposite;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.CubicCurve2D;
 import java.awt.geom.Path2D;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.*;
+
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 
-public class CurveChart extends javax.swing.JPanel {
+public class CurveChart extends JPanel {
 
     DecimalFormat df = new DecimalFormat("#,##0.##");
     private List<ModelLegend2> legends = new ArrayList<>();
@@ -137,37 +136,36 @@ public class CurveChart extends javax.swing.JPanel {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
-        blankPlotChart = new gui.curvechart.blankchart.BlankPlotChart();
-        panelLegend = new javax.swing.JPanel();
+        blankPlotChart = new BlankPlotChart();
+        panelLegend = new JPanel();
 
         panelLegend.setOpaque(false);
-        panelLegend.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 0));
+        panelLegend.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(panelLegend, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                                        .addComponent(blankPlotChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(panelLegend, GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+                                        .addComponent(blankPlotChart, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap())
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(blankPlotChart, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                                .addComponent(blankPlotChart, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                                 .addGap(0, 0, 0)
-                                .addComponent(panelLegend, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panelLegend, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())
         );
     }                       
 
-    private gui.curvechart.blankchart.BlankPlotChart blankPlotChart;
-    private javax.swing.JPanel panelLegend;
+    private BlankPlotChart blankPlotChart;
+    private JPanel panelLegend;
 }
