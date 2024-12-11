@@ -72,7 +72,6 @@ public class CreateKhachHangDialog extends javax.swing.JDialog {
         return new KhachHang(id, hoTen, sdt, gioiTinh, ngayThamGia);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

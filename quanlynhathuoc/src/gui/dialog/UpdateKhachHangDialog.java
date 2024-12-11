@@ -68,7 +68,6 @@ public class UpdateKhachHangDialog extends javax.swing.JDialog {
         return new KhachHang(id, hoTen, sdt, gioiTinh, ngayVaoLam);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

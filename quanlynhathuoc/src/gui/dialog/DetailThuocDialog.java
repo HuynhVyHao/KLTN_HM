@@ -65,7 +65,6 @@ public class DetailThuocDialog extends javax.swing.JDialog {
         txtHanSuDung.setDate(thuoc.getHanSuDung());
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

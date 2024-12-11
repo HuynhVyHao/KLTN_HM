@@ -86,7 +86,6 @@ public class InfoDialog extends javax.swing.JDialog {
 		return new NhanVien(id, hoTen, sdt, gioiTinh, namSinh, ngayVaoLam);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		jPanel15 = new javax.swing.JPanel();

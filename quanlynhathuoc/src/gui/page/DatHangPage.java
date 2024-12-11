@@ -79,6 +79,9 @@ public class DatHangPage extends javax.swing.JPanel {
 		for (JButton item : listButton) {
 			item.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
 		}
+	    txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tìm kiếm...");
+        txtSearch.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("./icon/search.svg"));
+
 
 	}
 
@@ -187,7 +190,6 @@ public class DatHangPage extends javax.swing.JPanel {
 		return DH_CON.getFilterTable(tenNV, fromPrice, toPrice);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		headerPanel = new javax.swing.JPanel();
@@ -227,7 +229,44 @@ public class DatHangPage extends javax.swing.JPanel {
 		headerPanel.setBackground(new java.awt.Color(255, 255, 255));
 		headerPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(232, 232, 232), 2, true));
 		headerPanel.setLayout(new java.awt.BorderLayout());
+		 jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+	        jPanel1.setPreferredSize(new java.awt.Dimension(590, 100));
+	        jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 16, 24));
 
+	        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+	        jPanel3.setPreferredSize(new java.awt.Dimension(370, 50));
+	        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.TRAILING));
+
+		txtSearch.setToolTipText("Tìm kiếm");
+        txtSearch.setPreferredSize(new java.awt.Dimension(200, 40));
+        txtSearch.setSelectionColor(new java.awt.Color(230, 245, 245));
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+        jPanel3.add(txtSearch);
+
+        btnReload.setIcon(new FlatSVGIcon("./icon/reload.svg"));
+        btnReload.setToolTipText("Làm mới");
+        btnReload.setBorder(null);
+        btnReload.setBorderPainted(false);
+        btnReload.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReload.setFocusPainted(false);
+        btnReload.setFocusable(false);
+        btnReload.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnReload.setPreferredSize(new java.awt.Dimension(40, 40));
+        btnReload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReloadActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnReload);
+
+        jPanel1.add(jPanel3);
+
+        headerPanel.add(jPanel1, java.awt.BorderLayout.CENTER);
+		
 		actionPanel.setBackground(new java.awt.Color(255, 255, 255));
 		actionPanel.setPreferredSize(new java.awt.Dimension(600, 100));
 		actionPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 6, 5));
@@ -349,18 +388,13 @@ public class DatHangPage extends javax.swing.JPanel {
 		modal.setRowCount(0);
 
 		String search = txtSearch.getText().toLowerCase().trim();
-		String searchType = cboxSearch.getSelectedItem().toString();
-		List<DatHang> listsearch = DH_CON.getSearchTable(search, searchType);
+		List<DatHang> listsearch = DH_CON.getSearchTable(search);
 
 		loadTable(listsearch);
 	}
 
 	private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
 		txtSearch.setText("");
-		txtFromPrice.setText("");
-		txtToPrice.setText("");
-		cboxSearch.setSelectedIndex(0);
-		cboxNhanVien.setSelectedIndex(0);
 		loadTable(listDH);
 	}
 
@@ -381,31 +415,6 @@ public class DatHangPage extends javax.swing.JPanel {
 		} catch (Exception e) {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
 		}
-	}
-
-	private void cboxNhanVienActionPerformed(java.awt.event.ActionEvent evt) {
-		modal.setRowCount(0);
-
-		List<DatHang> listSearch = getListFilter();
-
-		String tenDM = cboxNhanVien.getSelectedItem().toString();
-		if (tenDM.equals("Tất cả")) {
-			listSearch = DH_CON.getAllList();
-		}
-
-		loadTable(listSearch);
-	}
-
-	private void txtToPriceKeyReleased(java.awt.event.KeyEvent evt) {
-		modal.setRowCount(0);
-		List<DatHang> listSearch = getListFilter();
-		loadTable(listSearch);
-	}
-
-	private void txtFromPriceKeyReleased(java.awt.event.KeyEvent evt) {
-		modal.setRowCount(0);
-		List<DatHang> listSearch = getListFilter();
-		loadTable(listSearch);
 	}
 
 	private javax.swing.JPanel actionPanel;

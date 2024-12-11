@@ -197,7 +197,6 @@ public class CreateThuocDialog extends javax.swing.JDialog {
 				ngaySanXuat, hanSuDung,loaiThuoc);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		jPanel15 = new javax.swing.JPanel();

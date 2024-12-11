@@ -264,7 +264,6 @@ public class CreateHoaDonPage extends javax.swing.JPanel {
         return new ChiTietHoaDon(hoaDon, thuoc, soLuong, donGia);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();

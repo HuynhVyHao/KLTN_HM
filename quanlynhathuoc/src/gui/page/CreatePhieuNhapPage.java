@@ -318,7 +318,6 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         return new ChiTietPhieuNhap(hoaDon, thuoc, soLuong, donGia);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();

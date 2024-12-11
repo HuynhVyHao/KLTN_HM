@@ -118,7 +118,6 @@ public class ThuocPage extends javax.swing.JPanel {
 	    }
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
 		headerPanel = new javax.swing.JPanel();
@@ -301,17 +300,6 @@ public class ThuocPage extends javax.swing.JPanel {
 		}
 	}
 
-	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {
-		ThuocTinhDonViTinhDialog dialog = new ThuocTinhDonViTinhDialog(null, true);
-		dialog.setVisible(true);
-	}
-
-	private void btnXuatXuActionPerformed(java.awt.event.ActionEvent evt) {
-		ThuocTinhXuatXuDialog dialog = new ThuocTinhXuatXuDialog(null, true);
-		dialog.setVisible(true);
-	}
-
-	
 	private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
 		THUOC_CON.importExcel();
 	}

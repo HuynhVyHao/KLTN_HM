@@ -99,7 +99,6 @@ public class DanhMucPage extends javax.swing.JPanel {
 		return new DanhMuc(id, ten);
 	}
 
-	@SuppressWarnings("unchecked")
 	private void initComponents() {
 		headerPanel = new javax.swing.JPanel();
 		jPanel15 = new javax.swing.JPanel();

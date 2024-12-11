@@ -99,7 +99,6 @@ public class TimKiemTaiKhoanPage extends javax.swing.JPanel {
         return TK_CON.getFilterTable(tenVT);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();

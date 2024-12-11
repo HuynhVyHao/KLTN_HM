@@ -71,7 +71,6 @@ public class DetailPhieuNhapDialog extends javax.swing.JDialog {
         txtTong.setText(Formatter.FormatVND(sum));
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

@@ -100,7 +100,6 @@ public class UpdateNhaCungCapDialog extends javax.swing.JDialog {
         return new NhaCungCap(id, ten, sdt, diaChi, danhMuc);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

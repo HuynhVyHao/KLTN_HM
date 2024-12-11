@@ -35,7 +35,6 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         listButton.add(btnAdd);
         listButton.add(btnUpdate);
         listButton.add(btnDelete);
-        listButton.add(btnInfo);
         listButton.add(btnImport);
 		listButton.add(btnExport);
 
@@ -97,7 +96,6 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();
@@ -105,7 +103,6 @@ public class NhaCungCapPage extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnInfo = new javax.swing.JButton();
         btnImport = new javax.swing.JButton();
 		btnExport = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
@@ -180,18 +177,6 @@ public class NhaCungCapPage extends javax.swing.JPanel {
             }
         });
         actionPanel.add(btnDelete);
-
-        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
-        btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
-        btnInfo.setText("INFO");
-        btnInfo.setBorder(null);
-        btnInfo.setBorderPainted(false);
-        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnInfo.setFocusPainted(false);
-        btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnInfo.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        actionPanel.add(btnInfo);
 
         btnImport.setFont(new java.awt.Font("Roboto", 1, 14));
 		btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
@@ -328,7 +313,6 @@ public class NhaCungCapPage extends javax.swing.JPanel {
     private javax.swing.JPanel actionPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnInfo;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnExport;
 	private javax.swing.JButton btnImport;

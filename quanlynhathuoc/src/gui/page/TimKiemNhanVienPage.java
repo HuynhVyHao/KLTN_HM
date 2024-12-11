@@ -76,7 +76,6 @@ public class TimKiemNhanVienPage extends javax.swing.JPanel {
         }
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();

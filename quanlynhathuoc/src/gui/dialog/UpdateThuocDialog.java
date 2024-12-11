@@ -251,9 +251,6 @@ public class UpdateThuocDialog extends javax.swing.JDialog {
         return new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuongTon, giaNhap, donGia, ngaySanXuat, hanSuDung,loaiThuoc);
     }
 
-
-
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

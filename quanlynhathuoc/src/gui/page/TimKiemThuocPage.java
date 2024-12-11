@@ -194,9 +194,6 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 	    return THUOC_CON.getFilterTable(tenDM, tenDVT, tenXX, ngaySanXuatLong, hanSuDung);
 	}
 
-
-
-
 	@SuppressWarnings("unchecked")
 	private void initComponents() {
 
@@ -485,31 +482,6 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 
 
 
-	private void txtNgaySanXuatPropertyChange(java.beans.PropertyChangeEvent evt) {
-	    if (txtNgaySanXuat.getDate() != null) {
-	        modal.setRowCount(0);
-
-	        Date selectedDate = txtNgaySanXuat.getDate();
-	        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	        String ngaySanXuat = sdf.format(selectedDate);
-
-	        List<Thuoc> listSearch = getListFilter();
-	        List<Thuoc> filteredList = new ArrayList<>();
-
-	        for (Thuoc thuoc : listSearch) {
-	            if (sdf.format(thuoc.getNgaySanXuat()).equals(ngaySanXuat)) {
-	                filteredList.add(thuoc);
-	            }
-	        }
-
-	        if (filteredList.isEmpty()) {
-	            System.out.println("Không tìm thấy thuốc nào với ngày sản xuất: " + ngaySanXuat);
-	            filteredList = THUOC_CON.getAllList(); // Tải lại nếu không tìm thấy
-	        }
-
-	        loadTable(filteredList);
-	    }
-	}
 
 	private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {
 		modal.setRowCount(0);
@@ -529,19 +501,6 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		cboxDonViTinh.setSelectedIndex(0);
 		cboxXuatXu.setSelectedIndex(0);
 		loadTable(listThuoc);
-	}
-
-	private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
-		try {
-			int row = table.getSelectedRow();
-			String id = table.getValueAt(row, 1).toString();
-			Thuoc thuoc = THUOC_CON.selectById(id);
-
-			DetailThuocDialog dialog = new DetailThuocDialog(null, true, thuoc);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
-		}
 	}
 
 	private void cboxXuatXuActionPerformed(java.awt.event.ActionEvent evt) {
@@ -581,16 +540,6 @@ public class TimKiemThuocPage extends javax.swing.JPanel {
 		}
 
 		loadTable(listSearch);
-	}
-
-	private void btnDonViActionPerformed(java.awt.event.ActionEvent evt) {
-		ThuocTinhDonViTinhDialog dialog = new ThuocTinhDonViTinhDialog(null, true);
-		dialog.setVisible(true);
-	}
-
-	private void btnXuatXuActionPerformed(java.awt.event.ActionEvent evt) {
-		ThuocTinhXuatXuDialog dialog = new ThuocTinhXuatXuDialog(null, true);
-		dialog.setVisible(true);
 	}
 
 	private void btnSubmitHSDActionPerformed(java.awt.event.ActionEvent evt) {

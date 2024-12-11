@@ -249,7 +249,6 @@ public class CreateDatHangPage extends javax.swing.JPanel {
         return new ChiTietDatHang(datHang, thuoc, soLuong, donGia);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();

@@ -163,7 +163,6 @@ public class TimKiemPhieuNhapPage extends javax.swing.JPanel {
         return PN_CON.getFilterTable(tenNV, fromPrice, toPrice);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         headerPanel = new javax.swing.JPanel();

@@ -47,7 +47,6 @@ public class UpdateVaiTroDialog extends javax.swing.JDialog {
         return new VaiTro(id, ten);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

@@ -73,7 +73,6 @@ public class UpdateTaiKhoanDialog extends javax.swing.JDialog {
         return new TaiKhoan(id, username, password, nhanVien, vaiTro);
     }
 
-    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         jPanel15 = new javax.swing.JPanel();

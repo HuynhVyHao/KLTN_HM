@@ -8,6 +8,7 @@ import entity.DatHang;
 
 public class DatHangController extends InterfaceConTroller<DatHang, String>{
 	  public DatHangDAO DH_DAO = new DatHangDAO();
+	  public List<DatHang> listDH= DH_DAO.selectAll();
 
 	    public DatHangController() {
 	    }
@@ -37,40 +38,22 @@ public class DatHangController extends InterfaceConTroller<DatHang, String>{
 	        return DH_DAO.selectById(id);
 	    }
 
-	    public List<DatHang> getSearchTable(String text, String searchType) {
-	        text = text.toLowerCase();
+	    public List<DatHang> getSearchTable(String text) {
 	        List<DatHang> result = new ArrayList<>();
-
-	        switch (searchType) {
-	            case "Tất cả" -> {
-	                for (DatHang e : this.getAllList()) {
-	                    if (e.getId().toLowerCase().contains(text)
-	                            || e.getKhachHang().getHoTen().toLowerCase().contains(text)) {
-	                        result.add(e);
-	                    }
-	                }
-	            }
-	            case "Mã" -> {
-	                for (DatHang e : this.getAllList()) {
-	                    if (e.getId().toLowerCase().contains(text)) {
-	                        result.add(e);
-	                    }
-	                }
-	            }
-	            case "Tên khách hàng" -> {
-	                for (DatHang e : this.getAllList()) {
-	                    if (e.getKhachHang().getHoTen().toLowerCase().contains(text)) {
-	                        result.add(e);
-	                    }
-	                }
-	            }
-	            default -> {
-	                throw new AssertionError();
+	        // Lặp qua danh sách đơn hàng (DatHang) đã có
+	        for (DatHang datHang : listDH) {
+	            // Kiểm tra nếu thông tin trong đơn hàng khớp với chuỗi tìm kiếm
+	            if (datHang.getId().toLowerCase().contains(text.toLowerCase()) ||
+	                (datHang.getKhachHang() != null && datHang.getKhachHang().getHoTen().toLowerCase().contains(text.toLowerCase())) ||
+	                (datHang.getKhachHang() != null && datHang.getKhachHang().getSdt() != null &&
+	                 datHang.getKhachHang().getSdt().toLowerCase().contains(text.toLowerCase())) ||
+	                datHang.getTrangThai().toLowerCase().contains(text.toLowerCase())) {
+	                result.add(datHang);
 	            }
 	        }
-
 	        return result;
 	    }
+
 
 	    public List<DatHang> getFilterTable(String tenNV, double fromPrice, double toPrice) {
 	        List<DatHang> result = new ArrayList<>();
