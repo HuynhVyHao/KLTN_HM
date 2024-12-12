@@ -110,49 +110,32 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         table.getColumnModel().getColumn(2).setPreferredWidth(200);
         table.getColumnModel().getColumn(3).setPreferredWidth(200);
 
-        loadThuocByNhaCungCap();
+        // Lọc danh sách thuốc khi bắt đầu và khi nhà cung cấp thay đổi
+        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
+        if (selectedIndex != -1) { // Kiểm tra chỉ số hợp lệ
+            NhaCungCap selectedNCC = listNCC.get(selectedIndex); // Lấy nhà cung cấp đã chọn
+            List<Thuoc> filteredList = filterThuocByNhaCungCap(selectedNCC); // Lọc danh sách thuốc theo danh mục của nhà cung cấp
+            loadTable(filteredList); // Gọi phương thức loadTable với danh sách thuốc đã lọc
+        } else {
+            System.out.println("Vui lòng chọn nhà cung cấp.");
+        }
 
         sortTable(); // Gọi phương thức sắp xếp bảng nếu cần
     }
 
-    public void loadTable(List<Thuoc> list) {
-	    modal.setRowCount(0);
-	    int stt = 1;
+ // Phương thức cập nhật bảng thuốc
+    private void loadTable(List<Thuoc> list) {
+        modal.setRowCount(0); // Xóa dữ liệu hiện tại trong bảng
 
-	    // Lấy ngày hiện tại
-	    Date currentDate = new Date();
-	    
-	    for (Thuoc e : list) {
-	        // Lấy hạn sử dụng của thuốc
-	        Date expiryDate = e.getHanSuDung();
-	        
-	        // Kiểm tra thuốc chưa hết hạn hoặc gần hết hạn trong vòng 1 tháng
-	        if (expiryDate.after(currentDate) || isExpiringSoon(currentDate, expiryDate)) {
-	            modal.addRow(new Object[]{
-	                String.valueOf(stt), 
-	                e.getId(), 
-	                e.getTenThuoc(), 
-	                e.getDanhMuc().getTen(), 
-	                e.getXuatXu().getTen(), 
-	                e.getDonViTinh().getTen(),
-	                e.getSoLuongTon(), 
-	                Formatter.FormatVND(e.getGiaNhap()), 
-	            });
-	            stt++;
-	        }
-	    }
-	}
-
-	// Kiểm tra hạn sử dụng gần hết trong vòng 1 tháng
-	private boolean isExpiringSoon(Date currentDate, Date expiryDate) {
-	    Calendar calendar = Calendar.getInstance();
-	    calendar.setTime(currentDate);
-	    calendar.add(Calendar.MONTH, 1); // Thêm 1 tháng vào ngày hiện tại
-
-	    Date oneMonthLater = calendar.getTime();
-	    
-	    return expiryDate.before(oneMonthLater) && expiryDate.after(currentDate);
-	}
+        int stt = 1;
+        for (Thuoc thuoc : list) {
+            // Thêm mỗi dòng dữ liệu vào bảng
+            modal.addRow(new Object[]{String.valueOf(stt), thuoc.getId(), thuoc.getTenThuoc(),
+                    thuoc.getDanhMuc().getTen(), thuoc.getXuatXu().getTen(), thuoc.getDonViTinh().getTen(),
+                    thuoc.getSoLuongTon(), Formatter.FormatVND(thuoc.getGiaNhap())});
+            stt++;
+        }
+    }
     
     private void sortTable() {
         table.setAutoCreateRowSorter(true);
@@ -343,6 +326,7 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         return new ChiTietPhieuNhap(hoaDon, thuoc, soLuong, donGia);
     }
 
+    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
@@ -665,6 +649,17 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
 
         jScrollPane1.setBorder(null);
 
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
         table.setFocusable(false);
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -692,6 +687,17 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
 
         jScrollPane2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 1, true));
 
+        tableCart.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
         tableCart.setFocusable(false);
         jScrollPane2.setViewportView(tableCart);
 
@@ -925,10 +931,9 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
     }
 
     private void btnReloadActionPerformed(java.awt.event.ActionEvent evt) {
-        txtSearch.setText(""); 
-        cboxSearch.setSelectedIndex(0); 
-
-        loadThuocByNhaCungCap();
+        txtSearch.setText("");
+        cboxSearch.setSelectedIndex(0);
+        loadTable(THUOC_CON.getAllList());
     }
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {
@@ -1006,7 +1011,25 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
   
     // Sự kiện thay đổi nhà cung cấp
     private void cboxNhaCungCapActionPerformed(java.awt.event.ActionEvent evt) {
-    	 loadThuocByNhaCungCap();
+        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
+//        if (!listCTPN.isEmpty()) {
+//            // Nếu giỏ hàng có thuốc, khóa ComboBox
+//            JOptionPane.showMessageDialog(this, "Giỏ hàng đã có thuốc. Không thể thay đổi nhà cung cấp.");
+//            return;  // Không thực hiện thay đổi nhà cung cấp
+//        }
+        // Kiểm tra chỉ số hợp lệ
+        if (selectedIndex != -1) {
+            // Lấy nhà cung cấp đã chọn
+            String idNCC = listNCC.get(selectedIndex).getId();
+            NhaCungCap ncc = new NhaCungCapController().selectById(idNCC);
+            txtSdtNcc.setText(ncc.getSdt());
+
+            // Lọc danh sách thuốc theo nhà cung cấp mới
+            List<Thuoc> filteredList = filterThuocByNhaCungCap(ncc);
+            loadTable(filteredList); // Cập nhật lại bảng thuốc sau khi lọc
+        } else {
+            System.out.println("Vui lòng chọn nhà cung cấp.");
+        }
     }
 
     private void toggleNhaCungCapComboBox() {
@@ -1018,19 +1041,6 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
         }
     }
 
-    private void loadThuocByNhaCungCap() {
-        int selectedIndex = cboxNhaCungCap.getSelectedIndex();
-        List<Thuoc> thuocList;
-
-        if (selectedIndex != -1) { // Kiểm tra nếu nhà cung cấp được chọn
-            NhaCungCap selectedNCC = listNCC.get(selectedIndex); // Lấy nhà cung cấp đã chọn
-            thuocList = filterThuocByNhaCungCap(selectedNCC); // Lọc danh sách thuốc theo nhà cung cấp
-        } else {
-            thuocList = THUOC_CON.getAllList(); // Lấy toàn bộ danh sách thuốc
-        }
-
-        loadTable(thuocList); // Gọi phương thức tải dữ liệu vào bảng
-    }
     
  // Phương thức lọc danh sách thuốc theo nhà cung cấp
     private List<Thuoc> filterThuocByNhaCungCap(NhaCungCap nhaCungCap) {
@@ -1047,9 +1057,16 @@ public class CreatePhieuNhapPage extends javax.swing.JPanel {
             }
         }
 
+        // In ra số lượng thuốc sau khi lọc
+        System.out.println("Số lượng thuốc sau khi lọc: " + filteredList.size());
         return filteredList;
     }
     
+
+
+
+
+
     private javax.swing.JPanel actionPanel;
     private javax.swing.JPanel billInfoPanel;
     private javax.swing.JPanel billPanel;

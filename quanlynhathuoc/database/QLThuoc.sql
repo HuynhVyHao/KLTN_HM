@@ -405,7 +405,7 @@ drop table ChiPhiThuocHetHan
 SELECT * FROM ChiPhiThuocHetHan;
 
 DELETE FROM ChiPhiThuocHetHan
-WHERE id = 1;
+WHERE id = 3;
 
 
 SELECT 
