@@ -8,9 +8,8 @@ import gui.dialog.CreateKhachHangDialog;
 import gui.dialog.UpdateKhachHangDialog;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
@@ -19,7 +18,7 @@ import utils.MessageDialog;
 import utils.TableSorter;
 
 
-public class KhachHangPage extends javax.swing.JPanel {
+public class KhachHangPage extends JPanel {
 
     private KhachHangController KH_CON = new KhachHangController(this);
 
@@ -80,28 +79,28 @@ public class KhachHangPage extends javax.swing.JPanel {
 
     private void initComponents() {
 
-        headerPanel = new javax.swing.JPanel();
-        actionPanel = new javax.swing.JPanel();
-        btnAdd = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnInfo = new javax.swing.JButton();
-        btnImport = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
-        tablePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
-        lblTable = new javax.swing.JLabel();
+        headerPanel = new JPanel();
+        actionPanel = new JPanel();
+        btnAdd = new JButton();
+        btnUpdate = new JButton();
+        btnDelete = new JButton();
+        btnInfo = new JButton();
+        btnImport = new JButton();
+        btnExport = new JButton();
+        tablePanel = new JPanel();
+        jScrollPane1 = new JScrollPane();
+        table = new JTable();
+        jPanel5 = new JPanel();
+        lblTable = new JLabel();
 
         setBackground(new java.awt.Color(230, 245, 245));
-        setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 245, 245), 6, true));
+        setBorder(new LineBorder(new java.awt.Color(230, 245, 245), 6, true));
         setMinimumSize(new java.awt.Dimension(1130, 800));
         setPreferredSize(new java.awt.Dimension(1130, 800));
         setLayout(new java.awt.BorderLayout(0, 10));
 
         headerPanel.setBackground(new java.awt.Color(255, 255, 255));
-        headerPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(232, 232, 232), 2, true));
+        headerPanel.setBorder(new LineBorder(new java.awt.Color(232, 232, 232), 2, true));
         headerPanel.setLayout(new java.awt.BorderLayout());
 
 
@@ -116,9 +115,9 @@ public class KhachHangPage extends javax.swing.JPanel {
         btnAdd.setBorderPainted(false);
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdd.setFocusPainted(false);
-        btnAdd.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAdd.setHorizontalTextPosition(SwingConstants.CENTER);
         btnAdd.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnAdd.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAdd.setVerticalTextPosition(SwingConstants.BOTTOM);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -133,9 +132,9 @@ public class KhachHangPage extends javax.swing.JPanel {
         btnUpdate.setBorderPainted(false);
         btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnUpdate.setFocusPainted(false);
-        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdate.setHorizontalTextPosition(SwingConstants.CENTER);
         btnUpdate.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnUpdate.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnUpdate.setVerticalTextPosition(SwingConstants.BOTTOM);
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -150,9 +149,9 @@ public class KhachHangPage extends javax.swing.JPanel {
         btnDelete.setBorderPainted(false);
         btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.setFocusPainted(false);
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDelete.setHorizontalTextPosition(SwingConstants.CENTER);
         btnDelete.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDelete.setVerticalTextPosition(SwingConstants.BOTTOM);
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -167,9 +166,9 @@ public class KhachHangPage extends javax.swing.JPanel {
 //        btnInfo.setBorderPainted(false);
 //        btnInfo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 //        btnInfo.setFocusPainted(false);
-//        btnInfo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+//        btnInfo.setHorizontalTextPosition(SwingConstants.CENTER);
 //        btnInfo.setPreferredSize(new java.awt.Dimension(90, 90));
-//        btnInfo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+//        btnInfo.setVerticalTextPosition(SwingConstants.BOTTOM);
 //        actionPanel.add(btnInfo);
 
         btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); 
@@ -179,9 +178,9 @@ public class KhachHangPage extends javax.swing.JPanel {
         btnImport.setBorderPainted(false);
         btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImport.setFocusPainted(false);
-        btnImport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnImport.setHorizontalTextPosition(SwingConstants.CENTER);
         btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnImport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnImport.setVerticalTextPosition(SwingConstants.BOTTOM);
         btnImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImportActionPerformed(evt);
@@ -196,9 +195,9 @@ public class KhachHangPage extends javax.swing.JPanel {
         btnExport.setBorderPainted(false);
         btnExport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExport.setFocusPainted(false);
-        btnExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnExport.setHorizontalTextPosition(SwingConstants.CENTER);
         btnExport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnExport.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnExport.setVerticalTextPosition(SwingConstants.BOTTOM);
         btnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExportActionPerformed(evt);
@@ -210,12 +209,12 @@ public class KhachHangPage extends javax.swing.JPanel {
 
         add(headerPanel, java.awt.BorderLayout.PAGE_START);
 
-        tablePanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(230, 230, 230), 2, true));
+        tablePanel.setBorder(new LineBorder(new java.awt.Color(230, 230, 230), 2, true));
         tablePanel.setLayout(new java.awt.BorderLayout());
 
         table.setFocusable(false);
         table.setRowHeight(40);
-        table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         table.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
@@ -231,7 +230,7 @@ public class KhachHangPage extends javax.swing.JPanel {
 
         lblTable.setFont(new java.awt.Font("Roboto Medium", 0, 18)); 
         lblTable.setForeground(new java.awt.Color(255, 255, 255));
-        lblTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTable.setHorizontalAlignment(SwingConstants.CENTER);
         lblTable.setText("THÔNG TIN NHÂN VIÊN");
         jPanel5.add(lblTable, java.awt.BorderLayout.CENTER);
 
@@ -283,17 +282,17 @@ public class KhachHangPage extends javax.swing.JPanel {
 
 
 
-    private javax.swing.JPanel actionPanel;
-    private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnInfo;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnExport;
-    private javax.swing.JButton btnImport;
-    private javax.swing.JPanel headerPanel;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTable;
-    private javax.swing.JTable table;
-    private javax.swing.JPanel tablePanel;
+    private JPanel actionPanel;
+    private JButton btnAdd;
+    private JButton btnDelete;
+    private JButton btnInfo;
+    private JButton btnUpdate;
+    private JButton btnExport;
+    private JButton btnImport;
+    private JPanel headerPanel;
+    private JPanel jPanel5;
+    private JScrollPane jScrollPane1;
+    private JLabel lblTable;
+    private JTable table;
+    private JPanel tablePanel;
 }

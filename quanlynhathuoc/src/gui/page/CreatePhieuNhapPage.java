@@ -680,17 +680,6 @@ public class CreatePhieuNhapPage extends JPanel {
 
         jScrollPane2.setBorder(new LineBorder(new Color(230, 230, 230), 1, true));
 
-        tableCart.setModel(new DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         tableCart.setFocusable(false);
         jScrollPane2.setViewportView(tableCart);
 
