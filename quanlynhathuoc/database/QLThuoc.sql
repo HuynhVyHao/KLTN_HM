@@ -167,7 +167,7 @@ VALUES
     
     ('745KCI1KX', N'Ninh Tâm Vương Hồng Bàng', 
      (SELECT BulkColumn FROM Openrowset(BULK 'D:\Minh\Hoc\Code\KLTN_HM\quanlynhathuoc\src\product-image\ninh-tam-vuong-hong-bang.png', SINGLE_BLOB) AS image), 
-     N'L-Carnitine, Taurine, Đan sâm, Khổ sâm bắc, Nattokinase, Hoàng đằng, Magie, Tá dược vừa đủ',  'CVB123ERT', 'ZXC311QWE', 'XCVSDF124', 1054, 165000, 180000, '2026-08-15', '2028-08-15', N'Không kê đơn');
+     N'L-Carnitine, Taurine, Đan sâm, Khổ sâm bắc, Nattokinase, Hoàng đằng, Magie, Tá dược vừa đủ', 'CVB123ERT', 'ZXC311QWE', 'XCVSDF124', 1054, 165000, 180000, '2026-08-15', '2028-08-15', N'Không kê đơn');
 
 
 INSERT INTO Thuoc(idThuoc, tenThuoc, hinhAnh, thanhPhan, idDVT, idDM, idXX, soLuongTon, giaNhap, donGia, ngaySanXuat, hanSuDung, loaiThuoc)
@@ -405,11 +405,7 @@ drop table ChiPhiThuocHetHan
 SELECT * FROM ChiPhiThuocHetHan;
 
 DELETE FROM ChiPhiThuocHetHan
-<<<<<<< HEAD
-WHERE id = 2;
-=======
 WHERE id = 3;
->>>>>>> NhapThuoc
 
 
 SELECT 
