@@ -405,7 +405,11 @@ drop table ChiPhiThuocHetHan
 SELECT * FROM ChiPhiThuocHetHan;
 
 DELETE FROM ChiPhiThuocHetHan
+<<<<<<< HEAD
 WHERE id = 2;
+=======
+WHERE id = 3;
+>>>>>>> NhapThuoc
 
 
 SELECT 
