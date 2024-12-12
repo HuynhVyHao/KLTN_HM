@@ -5,12 +5,15 @@ import entity.NhanVien;
 import gui.page.NhanVienPage;
 import java.util.Calendar;
 import java.util.Date;
+
+import javax.swing.JDialog;
+
 import utils.MessageDialog;
 import utils.RandomGenerator;
 import utils.Validation;
 
 
-public class CreateNhanVienDialog extends javax.swing.JDialog {
+public class CreateNhanVienDialog extends JDialog {
 
     private final NhanVienController NV_CON = new NhanVienController();
     private NhanVienPage NV_GUI;
