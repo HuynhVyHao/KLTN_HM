@@ -251,16 +251,13 @@ public class MainLayout extends JFrame {
 								.addComponent(txtRole, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
 								.addComponent(txtFullName, GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
 						.addContainerGap()));
-		jPanel1Layout
-				.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-						.addGroup(GroupLayout.Alignment.TRAILING,
-								jPanel1Layout.createSequentialGroup().addGap(18, 18, 18)
-										.addComponent(txtFullName, GroupLayout.PREFERRED_SIZE, 20,
-												GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(txtRole, GroupLayout.PREFERRED_SIZE, 17,
-												GroupLayout.PREFERRED_SIZE)
-										.addContainerGap(15, Short.MAX_VALUE)));
+		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+				GroupLayout.Alignment.TRAILING,
+				jPanel1Layout.createSequentialGroup().addGap(18, 18, 18)
+						.addComponent(txtFullName, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+						.addComponent(txtRole, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(15, Short.MAX_VALUE)));
 
 		infoPanel.add(jPanel1, BorderLayout.CENTER);
 

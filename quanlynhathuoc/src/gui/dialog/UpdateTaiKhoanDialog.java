@@ -108,7 +108,7 @@ public class UpdateTaiKhoanDialog extends JDialog {
         jLabel8.setFont(new Font("Roboto Medium", 0, 18)); 
         jLabel8.setForeground(new Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
-        jLabel8.setText("CẬP NHẬP TÀI KHOẢN");
+        jLabel8.setText("CẬP NHẬT TÀI KHOẢN");
         jPanel15.add(jLabel8, BorderLayout.CENTER);
 
         getContentPane().add(jPanel15, BorderLayout.NORTH);
@@ -191,7 +191,7 @@ public class UpdateTaiKhoanDialog extends JDialog {
         btnUpdate.setBackground(new Color(0, 204, 102));
         btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16)); 
         btnUpdate.setForeground(new Color(255, 255, 255));
-        btnUpdate.setText("Cập nhập");
+        btnUpdate.setText("Cập nhật");
         btnUpdate.setBorderPainted(false);
         btnUpdate.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnUpdate.setFocusPainted(false);
@@ -218,7 +218,7 @@ public class UpdateTaiKhoanDialog extends JDialog {
         if (isValidateFields()) {
             TaiKhoan e = getInputFields();
             TK_CON.update(e);
-            MessageDialog.info(this, "Cập nhập thành công!");
+            MessageDialog.info(this, "Cập nhật thành công!");
             TK_GUI.loadTable(TK_CON.getAllList());
             this.dispose();
         }

@@ -62,11 +62,11 @@ public class CreateThuocDialog extends JDialog {
 		for (XuatXu vt : listXX) {
 			cboxXuatXu.addItem(vt.getTen());
 		}
-		
+
 		// Thêm lựa chọn loại thuốc (Kê đơn, Không kê đơn)
-	    cboxLoaiThuoc.addItem("Kê đơn");
-	    cboxLoaiThuoc.addItem("Không kê đơn");
-		
+		cboxLoaiThuoc.addItem("Kê đơn");
+		cboxLoaiThuoc.addItem("Không kê đơn");
+
 		txtNgaySanXuat_1.setDate(new Date());
 		txtHanSuDung.setDate(new Date());
 	}
@@ -187,11 +187,11 @@ public class CreateThuocDialog extends JDialog {
 		double donGia = Double.parseDouble(txtDonGia.getText().trim());
 		Date ngaySanXuat = txtNgaySanXuat_1.getDate(); // Thêm ngày sản xuất
 		Date hanSuDung = txtHanSuDung.getDate();
-		  // Lấy giá trị từ combobox loại thuốc
-	    String loaiThuoc = cboxLoaiThuoc.getSelectedItem().toString();
+		// Lấy giá trị từ combobox loại thuốc
+		String loaiThuoc = cboxLoaiThuoc.getSelectedItem().toString();
 
 		return new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuong, giaNhap, donGia,
-				ngaySanXuat, hanSuDung,loaiThuoc);
+				ngaySanXuat, hanSuDung, loaiThuoc);
 	}
 
 	private void initComponents() {
@@ -282,24 +282,24 @@ public class CreateThuocDialog extends JDialog {
 
 		GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
 		jPanel3.setLayout(jPanel3Layout);
-		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(jPanel3Layout.createSequentialGroup().addContainerGap(34, Short.MAX_VALUE)
-						.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 350,
-								GroupLayout.PREFERRED_SIZE)
-						.addGap(16, 16, 16))
-				.addGroup(jPanel3Layout.createSequentialGroup().addGap(150, 150, 150)
-						.addComponent(btnChooseImage, GroupLayout.PREFERRED_SIZE,
-								GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
-		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(GroupLayout.Alignment.TRAILING,
-						jPanel3Layout.createSequentialGroup().addContainerGap(105, Short.MAX_VALUE)
-								.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 300,
-										GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-								.addComponent(btnChooseImage, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addGap(103, 103, 103)));
+		jPanel3Layout
+				.setHorizontalGroup(
+						jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+								.addGroup(jPanel3Layout.createSequentialGroup().addContainerGap(34, Short.MAX_VALUE)
+										.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 350,
+												GroupLayout.PREFERRED_SIZE)
+										.addGap(16, 16, 16))
+								.addGroup(jPanel3Layout.createSequentialGroup().addGap(150, 150, 150)
+										.addComponent(btnChooseImage, GroupLayout.PREFERRED_SIZE,
+												GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+				GroupLayout.Alignment.TRAILING,
+				jPanel3Layout.createSequentialGroup().addContainerGap(105, Short.MAX_VALUE)
+						.addComponent(jPanel4, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED).addComponent(btnChooseImage,
+								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGap(103, 103, 103)));
 
 		getContentPane().add(jPanel3, BorderLayout.WEST);
 
@@ -310,7 +310,7 @@ public class CreateThuocDialog extends JDialog {
 		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 		jPanel1.setPreferredSize(new Dimension(750, 550));
 		jPanel1.setLayout(new GridLayout(6, 2, 16, 8));
-		
+
 		jPanel18.setBackground(new Color(255, 255, 255));
 		jPanel18.setPreferredSize(new Dimension(150, 40));
 		jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
@@ -365,7 +365,7 @@ public class CreateThuocDialog extends JDialog {
 		jPanel21.add(cboxDanhMuc);
 
 		jPanel1.add(jPanel21);
-		
+
 		jPanel28.setBackground(new Color(255, 255, 255));
 		jPanel28.setPreferredSize(new Dimension(150, 40));
 		jPanel28.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
@@ -381,7 +381,6 @@ public class CreateThuocDialog extends JDialog {
 
 		jPanel1.add(jPanel28); // Thêm jPanel28 vào cuối jPanel1
 
-
 		jPanel23.setBackground(new Color(255, 255, 255));
 		jPanel23.setPreferredSize(new Dimension(150, 40));
 		jPanel23.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
@@ -396,7 +395,7 @@ public class CreateThuocDialog extends JDialog {
 		jPanel23.add(cboxXuatXu);
 
 		jPanel1.add(jPanel23);
-		
+
 		jPanel24.setBackground(new Color(255, 255, 255));
 		jPanel24.setPreferredSize(new Dimension(150, 40));
 		jPanel24.setLayout(new FlowLayout(FlowLayout.LEFT, 6, 0));
@@ -563,25 +562,24 @@ public class CreateThuocDialog extends JDialog {
 	}
 
 	private void btnAddActionPerformed(ActionEvent evt) {
-	    if (isValidateFields()) {
-	        String tenThuoc = txtTenThuoc.getText().trim();
-	        
-	        // Kiểm tra trùng lặp tên thuốc
-	        if (THUOC_CON.isDuplicate(tenThuoc)) {
-	            MessageDialog.warring(this, "Tên thuốc '" + tenThuoc + "' đã tồn tại trong cơ sở dữ liệu!");
-	            txtTenThuoc.requestFocus();
-	            return;
-	        }
-	        
-	        // Nếu không trùng lặp, thêm thuốc
-	        Thuoc e = getInputFields();
-	        THUOC_CON.create(e);
-	        MessageDialog.info(this, "Thêm thành công!");
-	        THUOC_GUI.loadTable(THUOC_CON.getAllList());
-	        this.dispose();
-	    }
-	}
+		if (isValidateFields()) {
+			String tenThuoc = txtTenThuoc.getText().trim();
 
+			// Kiểm tra trùng lặp tên thuốc
+			if (THUOC_CON.isDuplicate(tenThuoc)) {
+				MessageDialog.warring(this, "Tên thuốc '" + tenThuoc + "' đã tồn tại trong cơ sở dữ liệu!");
+				txtTenThuoc.requestFocus();
+				return;
+			}
+
+			// Nếu không trùng lặp, thêm thuốc
+			Thuoc e = getInputFields();
+			THUOC_CON.create(e);
+			MessageDialog.info(this, "Thêm thành công!");
+			THUOC_GUI.loadTable(THUOC_CON.getAllList());
+			this.dispose();
+		}
+	}
 
 	private void btnChooseImageActionPerformed(ActionEvent evt) {
 		JFileChooser fileChooser = new JFileChooser();

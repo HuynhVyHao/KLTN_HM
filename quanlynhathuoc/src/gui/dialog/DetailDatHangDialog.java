@@ -31,7 +31,7 @@ import utils.Formatter;
 public class DetailDatHangDialog extends JDialog {
 
 	private final ChiTietDatHangController CTDH_CON = new ChiTietDatHangController();
-	private final DatHangController DH_CON= new DatHangController();
+	private final DatHangController DH_CON = new DatHangController();
 	private DatHangPage DH_GUI;
 	private List<ChiTietDatHang> listCTDH;
 	private final ThuocController THUOC_CON = new ThuocController();
@@ -44,7 +44,7 @@ public class DetailDatHangDialog extends JDialog {
 		initComponents();
 	}
 
-	public DetailDatHangDialog(Frame parent, boolean modal, List<ChiTietDatHang> ctdh,DatHangPage DH_GUI) {
+	public DetailDatHangDialog(Frame parent, boolean modal, List<ChiTietDatHang> ctdh, DatHangPage DH_GUI) {
 		super(parent, modal);
 		initComponents();
 		this.listCTDH = ctdh;
@@ -222,17 +222,16 @@ public class DetailDatHangDialog extends JDialog {
 
 		GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
 		jPanel3.setLayout(jPanel3Layout);
-		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-						.addContainerGap(26, Short.MAX_VALUE).addComponent(imagePanel,
-								GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+		jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+				GroupLayout.Alignment.TRAILING,
+				jPanel3Layout.createSequentialGroup().addContainerGap(26, Short.MAX_VALUE)
+						.addComponent(imagePanel, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
 						.addGap(24, 24, 24)));
 		jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addGroup(GroupLayout.Alignment.TRAILING,
-						jPanel3Layout.createSequentialGroup().addContainerGap(84, Short.MAX_VALUE)
-								.addComponent(imagePanel, GroupLayout.PREFERRED_SIZE,
-										GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addGap(136, 136, 136)));
+				.addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout
+						.createSequentialGroup().addContainerGap(84, Short.MAX_VALUE).addComponent(imagePanel,
+								GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addGap(136, 136, 136)));
 
 		jPanel2.add(jPanel3, BorderLayout.WEST);
 
@@ -375,230 +374,213 @@ public class DetailDatHangDialog extends JDialog {
 	}
 
 	private void btnTraThuocActionPerformed(ActionEvent evt) {
-		  // Lấy thông tin của đơn hàng (idDH)
-	    String idDH = listCTDH.get(0).getDatHang().getId(); // Giả sử tất cả các ChiTietDatHang có cùng id đơn hàng
+		// Lấy thông tin của đơn hàng (idDH)
+		String idDH = listCTDH.get(0).getDatHang().getId(); // Giả sử tất cả các ChiTietDatHang có cùng id đơn hàng
 
-	    // Lấy đối tượng DatHang từ cơ sở dữ liệu
-	    DatHang datHang = DH_CON.selectById(idDH); // Giả sử có phương thức selectById trong DatHangController
+		// Lấy đối tượng DatHang từ cơ sở dữ liệu
+		DatHang datHang = DH_CON.selectById(idDH); // Giả sử có phương thức selectById trong DatHangController
 
-	    if (datHang == null) {
-	        JOptionPane.showMessageDialog(this, "Đơn hàng không tồn tại.");
-	        return;
-	    }
+		if (datHang == null) {
+			JOptionPane.showMessageDialog(this, "Đơn hàng không tồn tại.");
+			return;
+		}
 
-	    // Kiểm tra trạng thái đơn hàng
-	    if ("Đã Thanh Toán".equalsIgnoreCase(datHang.getTrangThai())) { // Kiểm tra trạng thái
-	        JOptionPane.showMessageDialog(this, "Đơn đã thanh toán, không được phép trả thuốc.");
-	        return;
-	    }
-		
+		// Kiểm tra trạng thái đơn hàng
+		if ("Đã Thanh Toán".equalsIgnoreCase(datHang.getTrangThai())) { // Kiểm tra trạng thái
+			JOptionPane.showMessageDialog(this, "Đơn đã thanh toán, không được phép trả thuốc.");
+			return;
+		}
+
 		// Lấy danh sách thuốc trong chi tiết đơn hàng (listCTDH)
-	    String[] options = new String[listCTDH.size()];
-	    for (int i = 0; i < listCTDH.size(); i++) {
-	        options[i] = listCTDH.get(i).getThuoc().getTenThuoc(); // Hiển thị tên thuốc
-	    }
+		String[] options = new String[listCTDH.size()];
+		for (int i = 0; i < listCTDH.size(); i++) {
+			options[i] = listCTDH.get(i).getThuoc().getTenThuoc(); // Hiển thị tên thuốc
+		}
 
-	    // Người dùng chọn thuốc cần trả
-	    String selectedMedicine = (String) JOptionPane.showInputDialog(this, "Chọn thuốc cần trả:", "Trả thuốc",
-	            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+		// Người dùng chọn thuốc cần trả
+		String selectedMedicine = (String) JOptionPane.showInputDialog(this, "Chọn thuốc cần trả:", "Trả thuốc",
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-	    if (selectedMedicine != null) {
-	        // Tìm thuốc đã chọn trong danh sách
-	        ChiTietDatHang selectedItem = null;
-	        int indexToRemove = -1;  // Biến lưu index của thuốc cần xóa
-	        for (int i = 0; i < listCTDH.size(); i++) {
-	            if (listCTDH.get(i).getThuoc().getTenThuoc().equals(selectedMedicine)) {
-	                selectedItem = listCTDH.get(i);
-	                indexToRemove = i;
-	                break;
-	            }
-	        }
+		if (selectedMedicine != null) {
+			// Tìm thuốc đã chọn trong danh sách
+			ChiTietDatHang selectedItem = null;
+			int indexToRemove = -1; // Biến lưu index của thuốc cần xóa
+			for (int i = 0; i < listCTDH.size(); i++) {
+				if (listCTDH.get(i).getThuoc().getTenThuoc().equals(selectedMedicine)) {
+					selectedItem = listCTDH.get(i);
+					indexToRemove = i;
+					break;
+				}
+			}
 
-	        // Nếu tìm thấy thuốc, xóa khỏi danh sách và cập nhật lại bảng
-	        if (selectedItem != null && indexToRemove != -1) {
-	            listCTDH.remove(indexToRemove); // Xóa thuốc từ danh sách
-	            JOptionPane.showMessageDialog(this, "Thuốc " + selectedMedicine + " đã được trả lại.");
+			// Nếu tìm thấy thuốc, xóa khỏi danh sách và cập nhật lại bảng
+			if (selectedItem != null && indexToRemove != -1) {
+				listCTDH.remove(indexToRemove); // Xóa thuốc từ danh sách
+				JOptionPane.showMessageDialog(this, "Thuốc " + selectedMedicine + " đã được trả lại.");
 
-	            // Cập nhật lại bảng và danh sách thuốc chưa thanh toán
-	            loadTableCTHD(listCTDH); // Gọi lại phương thức để cập nhật bảng
-	            updateDanhSachThuocChuaThanhToan(listCTDH); // Cập nhật lại danh sách thuốc chưa thanh toán
+				// Cập nhật lại bảng và danh sách thuốc chưa thanh toán
+				loadTableCTHD(listCTDH); // Gọi lại phương thức để cập nhật bảng
+				updateDanhSachThuocChuaThanhToan(listCTDH); // Cập nhật lại danh sách thuốc chưa thanh toán
 
-	            // Tính lại tổng tiền của đơn hàng
-	            double tongTienMoi = 0;
-	            for (ChiTietDatHang item : listCTDH) {
-	                tongTienMoi += item.getThuoc().getDonGia(); // Tính tổng tiền mới
-	            }
+				// Tính lại tổng tiền của đơn hàng
+				double tongTienMoi = 0;
+				for (ChiTietDatHang item : listCTDH) {
+					tongTienMoi += item.getThuoc().getDonGia(); // Tính tổng tiền mới
+				}
 
-	            // Lấy đối tượng DatHang từ cơ sở dữ liệu để cập nhật lại tổng tiền
-	            if (datHang != null) {
-	                datHang.setTongTien(tongTienMoi); // Cập nhật lại tổng tiền
-	                DH_CON.update(datHang); // Cập nhật đơn hàng trong cơ sở dữ liệu
-	                JOptionPane.showMessageDialog(this, "Tổng tiền của đơn hàng đã được cập nhật.");
-	            }
-	        }
-	    } else {
-	        JOptionPane.showMessageDialog(this, "Chưa chọn thuốc nào để trả.");
-	    }
+				// Lấy đối tượng DatHang từ cơ sở dữ liệu để cập nhật lại tổng tiền
+				if (datHang != null) {
+					datHang.setTongTien(tongTienMoi); // Cập nhật lại tổng tiền
+					DH_CON.update(datHang); // Cập nhật đơn hàng trong cơ sở dữ liệu
+					JOptionPane.showMessageDialog(this, "Tổng tiền của đơn hàng đã được cập nhật.");
+				}
+			}
+		} else {
+			JOptionPane.showMessageDialog(this, "Chưa chọn thuốc nào để trả.");
+		}
 	}
-
-
 
 	// Cập nhật danh sách thuốc chưa thanh toán trong hệ thống
 	private void updateDanhSachThuocChuaThanhToan(List<ChiTietDatHang> updatedList) {
-	    // Cập nhật lại danh sách thuốc chưa thanh toán trong cơ sở dữ liệu
-	    String idDH = updatedList.get(0).getDatHang().getId(); // Giả sử tất cả đều có id đơn hàng giống nhau
-	    CTDH_CON.update(idDH, updatedList); // Cập nhật lại danh sách thuốc chưa thanh toán mới
+		// Cập nhật lại danh sách thuốc chưa thanh toán trong cơ sở dữ liệu
+		String idDH = updatedList.get(0).getDatHang().getId(); // Giả sử tất cả đều có id đơn hàng giống nhau
+		CTDH_CON.update(idDH, updatedList); // Cập nhật lại danh sách thuốc chưa thanh toán mới
 	}
-
 
 	private void btnDoiThuocActionPerformed(ActionEvent evt) {
-		  // Lấy thông tin của đơn hàng (idDH)
-	    String idDH = listCTDH.get(0).getDatHang().getId(); // Giả sử tất cả các ChiTietDatHang có cùng id đơn hàng
+		// Lấy thông tin của đơn hàng (idDH)
+		String idDH = listCTDH.get(0).getDatHang().getId(); // Giả sử tất cả các ChiTietDatHang có cùng id đơn hàng
 
-	    // Lấy đối tượng DatHang từ cơ sở dữ liệu
-	    DatHang datHang = DH_CON.selectById(idDH); // Giả sử có phương thức selectById trong DatHangController
+		// Lấy đối tượng DatHang từ cơ sở dữ liệu
+		DatHang datHang = DH_CON.selectById(idDH); // Giả sử có phương thức selectById trong DatHangController
 
-	    if (datHang == null) {
-	        JOptionPane.showMessageDialog(this, "Đơn hàng không tồn tại.");
-	        return;
-	    }
+		if (datHang == null) {
+			JOptionPane.showMessageDialog(this, "Đơn hàng không tồn tại.");
+			return;
+		}
 
-	    // Kiểm tra trạng thái đơn hàng
-	    if ("Đã Thanh Toán".equalsIgnoreCase(datHang.getTrangThai())) { // Kiểm tra trạng thái
-	        JOptionPane.showMessageDialog(this, "Đơn đã thanh toán, không được phép đổi thuốc.");
-	        return;
-	    }
-		
+		// Kiểm tra trạng thái đơn hàng
+		if ("Đã Thanh Toán".equalsIgnoreCase(datHang.getTrangThai())) { // Kiểm tra trạng thái
+			JOptionPane.showMessageDialog(this, "Đơn đã thanh toán, không được phép đổi thuốc.");
+			return;
+		}
+
 		// Lấy danh sách thuốc trong chi tiết đơn hàng (listCTDH)
-	    String[] options = new String[listCTDH.size()];
-	    for (int i = 0; i < listCTDH.size(); i++) {
-	        options[i] = listCTDH.get(i).getThuoc().getTenThuoc(); // Hiển thị tên thuốc
-	    }
+		String[] options = new String[listCTDH.size()];
+		for (int i = 0; i < listCTDH.size(); i++) {
+			options[i] = listCTDH.get(i).getThuoc().getTenThuoc(); // Hiển thị tên thuốc
+		}
 
-	    // Người dùng chọn thuốc cần đổi
-	    String selectedMedicine = (String) JOptionPane.showInputDialog(this,
-	            "Chọn thuốc cần đổi:",
-	            "Đổi thuốc",
-	            JOptionPane.QUESTION_MESSAGE,
-	            null,
-	            options,
-	            options[0]);
+		// Người dùng chọn thuốc cần đổi
+		String selectedMedicine = (String) JOptionPane.showInputDialog(this, "Chọn thuốc cần đổi:", "Đổi thuốc",
+				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-	    if (selectedMedicine == null) {
-	        JOptionPane.showMessageDialog(this, "Chưa chọn thuốc nào để đổi.");
-	        return;
-	    }
+		if (selectedMedicine == null) {
+			JOptionPane.showMessageDialog(this, "Chưa chọn thuốc nào để đổi.");
+			return;
+		}
 
-	    // Tìm thuốc đã chọn trong danh sách
-	    ChiTietDatHang selectedItem = null;
-	    for (ChiTietDatHang item : listCTDH) {
-	        if (item.getThuoc().getTenThuoc().equals(selectedMedicine)) {
-	            selectedItem = item;
-	            break;
-	        }
-	    }
+		// Tìm thuốc đã chọn trong danh sách
+		ChiTietDatHang selectedItem = null;
+		for (ChiTietDatHang item : listCTDH) {
+			if (item.getThuoc().getTenThuoc().equals(selectedMedicine)) {
+				selectedItem = item;
+				break;
+			}
+		}
 
-	    if (selectedItem == null) {
-	        JOptionPane.showMessageDialog(this, "Thuốc đã chọn không hợp lệ.");
-	        return;
-	    }
+		if (selectedItem == null) {
+			JOptionPane.showMessageDialog(this, "Thuốc đã chọn không hợp lệ.");
+			return;
+		}
 
-	    // Lọc danh sách thuốc còn hạn sử dụng hợp lệ và không phải thuốc cần đổi
-	    List<Thuoc> validMedicines = new ArrayList<>();
-	    for (Thuoc thuoc : listThuoc) {
-	        if (isMedicineValid(thuoc) && !thuoc.getTenThuoc().equals(selectedMedicine)) {
-	            validMedicines.add(thuoc);
-	        }
-	    }
+		// Lọc danh sách thuốc còn hạn sử dụng hợp lệ và không phải thuốc cần đổi
+		List<Thuoc> validMedicines = new ArrayList<>();
+		for (Thuoc thuoc : listThuoc) {
+			if (isMedicineValid(thuoc) && !thuoc.getTenThuoc().equals(selectedMedicine)) {
+				validMedicines.add(thuoc);
+			}
+		}
 
-	    if (validMedicines.isEmpty()) {
-	        JOptionPane.showMessageDialog(this, "Không có thuốc thay thế hợp lệ.");
-	        return;
-	    }
+		if (validMedicines.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Không có thuốc thay thế hợp lệ.");
+			return;
+		}
 
-	    // Hiển thị bảng thuốc thay thế
-	    String[] header = new String[]{"STT", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính", "Đơn giá"};
-	    DefaultTableModel model = new DefaultTableModel();
-	    model.setColumnIdentifiers(header);
+		// Hiển thị bảng thuốc thay thế
+		String[] header = new String[] { "STT", "Tên thuốc", "Danh mục", "Xuất xứ", "Đơn vị tính", "Đơn giá" };
+		DefaultTableModel model = new DefaultTableModel();
+		model.setColumnIdentifiers(header);
 
-	    for (int i = 0; i < validMedicines.size(); i++) {
-	        Thuoc thuoc = validMedicines.get(i);
-	        model.addRow(new Object[]{
-	                i + 1,
-	                thuoc.getTenThuoc(),
-	                thuoc.getDanhMuc().getTen(),
-	                thuoc.getXuatXu().getTen(),
-	                thuoc.getDonViTinh().getTen(),
-	                Formatter.FormatVND(thuoc.getDonGia())
-	        });
-	    }
+		for (int i = 0; i < validMedicines.size(); i++) {
+			Thuoc thuoc = validMedicines.get(i);
+			model.addRow(
+					new Object[] { i + 1, thuoc.getTenThuoc(), thuoc.getDanhMuc().getTen(), thuoc.getXuatXu().getTen(),
+							thuoc.getDonViTinh().getTen(), Formatter.FormatVND(thuoc.getDonGia()) });
+		}
 
-	    JTable table = new JTable(model);
-	    table.setRowHeight(40);
-	    table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		JTable table = new JTable(model);
+		table.setRowHeight(40);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-	    JScrollPane jScrollPane1 = new JScrollPane(table);
-	    jScrollPane1.setPreferredSize(new Dimension(800, 400));
+		JScrollPane jScrollPane1 = new JScrollPane(table);
+		jScrollPane1.setPreferredSize(new Dimension(800, 400));
 
-	    // Hiển thị bảng thuốc thay thế
-	    int result = JOptionPane.showConfirmDialog(this, jScrollPane1,
-	            "Chọn thuốc thay thế",
-	            JOptionPane.OK_CANCEL_OPTION,
-	            JOptionPane.INFORMATION_MESSAGE);
+		// Hiển thị bảng thuốc thay thế
+		int result = JOptionPane.showConfirmDialog(this, jScrollPane1, "Chọn thuốc thay thế",
+				JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE);
 
-	    if (result != JOptionPane.OK_OPTION) {
-	        JOptionPane.showMessageDialog(this, "Đổi thuốc đã bị hủy.");
-	        return;
-	    }
+		if (result != JOptionPane.OK_OPTION) {
+			JOptionPane.showMessageDialog(this, "Đổi thuốc đã bị hủy.");
+			return;
+		}
 
-	    // Lấy thuốc mới từ bảng
-	    int selectedRow = table.getSelectedRow();
-	    if (selectedRow < 0) {
-	        JOptionPane.showMessageDialog(this, "Chưa chọn thuốc mới.");
-	        return;
-	    }
+		// Lấy thuốc mới từ bảng
+		int selectedRow = table.getSelectedRow();
+		if (selectedRow < 0) {
+			JOptionPane.showMessageDialog(this, "Chưa chọn thuốc mới.");
+			return;
+		}
 
-	    Thuoc newSelectedMedicine = validMedicines.get(selectedRow);
+		Thuoc newSelectedMedicine = validMedicines.get(selectedRow);
 
-	    // Nhập số lượng thuốc mới
-	    String quantityInput = JOptionPane.showInputDialog(this, "Nhập số lượng thuốc mới:");
-	    int quantity;
-	    try {
-	        quantity = Integer.parseInt(quantityInput);
-	        if (quantity <= 0) throw new NumberFormatException();
-	    } catch (NumberFormatException e) {
-	        JOptionPane.showMessageDialog(this, "Số lượng thuốc không hợp lệ. Vui lòng nhập số lớn hơn 0.");
-	        return;
-	    }
+		// Nhập số lượng thuốc mới
+		String quantityInput = JOptionPane.showInputDialog(this, "Nhập số lượng thuốc mới:");
+		int quantity;
+		try {
+			quantity = Integer.parseInt(quantityInput);
+			if (quantity <= 0)
+				throw new NumberFormatException();
+		} catch (NumberFormatException e) {
+			JOptionPane.showMessageDialog(this, "Số lượng thuốc không hợp lệ. Vui lòng nhập số lớn hơn 0.");
+			return;
+		}
 
-	    // Cập nhật chi tiết đơn hàng với thuốc mới
-	    selectedItem.setThuoc(newSelectedMedicine);
-	    selectedItem.setSoLuong(quantity);
-	    selectedItem.setDonGia(newSelectedMedicine.getDonGia());
+		// Cập nhật chi tiết đơn hàng với thuốc mới
+		selectedItem.setThuoc(newSelectedMedicine);
+		selectedItem.setSoLuong(quantity);
+		selectedItem.setDonGia(newSelectedMedicine.getDonGia());
 
-	    // Tính lại tổng tiền của đơn hàng
-	    double tongTienMoi = 0;
-	    for (ChiTietDatHang item : listCTDH) {
-	        tongTienMoi += item.getThuoc().getDonGia() * item.getSoLuong(); // Tính tổng tiền mới
-	    }
+		// Tính lại tổng tiền của đơn hàng
+		double tongTienMoi = 0;
+		for (ChiTietDatHang item : listCTDH) {
+			tongTienMoi += item.getThuoc().getDonGia() * item.getSoLuong(); // Tính tổng tiền mới
+		}
 
-	    // Lấy thông tin của đơn hàng (idDH)
+		// Lấy thông tin của đơn hàng (idDH)
 
-	    // Lấy đối tượng DatHang từ cơ sở dữ liệu để cập nhật lại tổng tiền
-	    if (datHang != null) {
-	        datHang.setTongTien(tongTienMoi); // Cập nhật lại tổng tiền
-	        DH_CON.update(datHang); // Cập nhật đơn hàng trong cơ sở dữ liệu
-	        JOptionPane.showMessageDialog(this, "Tổng tiền của đơn hàng đã được cập nhật.");
-	    }
+		// Lấy đối tượng DatHang từ cơ sở dữ liệu để cập nhật lại tổng tiền
+		if (datHang != null) {
+			datHang.setTongTien(tongTienMoi); // Cập nhật lại tổng tiền
+			DH_CON.update(datHang); // Cập nhật đơn hàng trong cơ sở dữ liệu
+			JOptionPane.showMessageDialog(this, "Tổng tiền của đơn hàng đã được cập nhật.");
+		}
 
-	    // Cập nhật lại bảng chi tiết đơn hàng
-	    loadTableCTHD(listCTDH);
-	    updateDanhSachThuocChuaThanhToan(listCTDH);
-	    JOptionPane.showMessageDialog(this, "Thuốc đã được đổi thành công!");
+		// Cập nhật lại bảng chi tiết đơn hàng
+		loadTableCTHD(listCTDH);
+		updateDanhSachThuocChuaThanhToan(listCTDH);
+		JOptionPane.showMessageDialog(this, "Thuốc đã được đổi thành công!");
 	}
-
-
-
 
 	private boolean isMedicineValid(Thuoc thuoc) {
 		// Lấy ngày hiện tại
@@ -627,8 +609,7 @@ public class DetailDatHangDialog extends JDialog {
 		txtHinhAnh.setIcon(imageIcon);
 	}
 
-	private void btnPrintActionPerformed(ActionEvent evt)
-			throws MalformedURLException, WriterException, IOException {
+	private void btnPrintActionPerformed(ActionEvent evt) throws MalformedURLException, WriterException, IOException {
 //        DatHang hoaDon = listCTDH.get(0).getDatHang();
 //        new WritePDF().printHoaDon(hoaDon, listCTDH);
 	}

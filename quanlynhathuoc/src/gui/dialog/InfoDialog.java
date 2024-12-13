@@ -124,7 +124,7 @@ public class InfoDialog extends JDialog {
 		jPanel15.setPreferredSize(new Dimension(500, 50));
 		jPanel15.setLayout(new BorderLayout());
 
-		jLabel8.setFont(new Font("Roboto Medium", 0, 18)); 
+		jLabel8.setFont(new Font("Roboto Medium", 0, 18));
 		jLabel8.setForeground(new Color(255, 255, 255));
 		jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
 		jLabel8.setText("THÔNG TIN CÁ NHÂN");
@@ -139,13 +139,13 @@ public class InfoDialog extends JDialog {
 		jPanel18.setPreferredSize(new Dimension(500, 40));
 		jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen.setFont(new Font("Roboto", 0, 14)); 
+		lblHoTen.setFont(new Font("Roboto", 0, 14));
 		lblHoTen.setText("Họ tên");
 		lblHoTen.setMaximumSize(new Dimension(44, 40));
 		lblHoTen.setPreferredSize(new Dimension(150, 40));
 		jPanel18.add(lblHoTen);
 
-		txtHoTen.setFont(new Font("Roboto", 0, 14)); 
+		txtHoTen.setFont(new Font("Roboto", 0, 14));
 		txtHoTen.setToolTipText("");
 		txtHoTen.setPreferredSize(new Dimension(330, 40));
 		jPanel18.add(txtHoTen);
@@ -156,13 +156,13 @@ public class InfoDialog extends JDialog {
 		jPanel19.setPreferredSize(new Dimension(500, 40));
 		jPanel19.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		jLabel12.setFont(new Font("Roboto", 0, 14)); 
+		jLabel12.setFont(new Font("Roboto", 0, 14));
 		jLabel12.setText("Số điện thoại");
 		jLabel12.setMaximumSize(new Dimension(44, 40));
 		jLabel12.setPreferredSize(new Dimension(150, 40));
 		jPanel19.add(jLabel12);
 
-		txtSdt.setFont(new Font("Roboto", 0, 14)); 
+		txtSdt.setFont(new Font("Roboto", 0, 14));
 		txtSdt.setPreferredSize(new Dimension(330, 40));
 		jPanel19.add(txtSdt);
 
@@ -172,13 +172,13 @@ public class InfoDialog extends JDialog {
 		jPanel20.setPreferredSize(new Dimension(500, 40));
 		jPanel20.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		jLabel13.setFont(new Font("Roboto", 0, 14)); 
+		jLabel13.setFont(new Font("Roboto", 0, 14));
 		jLabel13.setText("Năm sinh");
 		jLabel13.setMaximumSize(new Dimension(44, 40));
 		jLabel13.setPreferredSize(new Dimension(150, 40));
 		jPanel20.add(jLabel13);
 
-		txtNamSinh.setFont(new Font("Roboto", 0, 14)); 
+		txtNamSinh.setFont(new Font("Roboto", 0, 14));
 		txtNamSinh.setPreferredSize(new Dimension(330, 40));
 		jPanel20.add(txtNamSinh);
 
@@ -188,14 +188,14 @@ public class InfoDialog extends JDialog {
 		jPanel23.setPreferredSize(new Dimension(500, 40));
 		jPanel23.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen1.setFont(new Font("Roboto", 0, 14)); 
+		lblHoTen1.setFont(new Font("Roboto", 0, 14));
 		lblHoTen1.setText("Username");
 		lblHoTen1.setMaximumSize(new Dimension(44, 40));
 		lblHoTen1.setPreferredSize(new Dimension(150, 40));
 		jPanel23.add(lblHoTen1);
 
 		txtUsername.setEditable(false);
-		txtUsername.setFont(new Font("Roboto", 0, 14)); 
+		txtUsername.setFont(new Font("Roboto", 0, 14));
 		txtUsername.setToolTipText("");
 		txtUsername.setFocusable(false);
 		txtUsername.setPreferredSize(new Dimension(330, 40));
@@ -207,14 +207,14 @@ public class InfoDialog extends JDialog {
 		jPanel24.setPreferredSize(new Dimension(500, 40));
 		jPanel24.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen2.setFont(new Font("Roboto", 0, 14)); 
+		lblHoTen2.setFont(new Font("Roboto", 0, 14));
 		lblHoTen2.setText("Password");
 		lblHoTen2.setMaximumSize(new Dimension(44, 40));
 		lblHoTen2.setPreferredSize(new Dimension(150, 40));
 		jPanel24.add(lblHoTen2);
 
 		btnChangePassword.setBackground(new Color(0, 102, 102));
-		btnChangePassword.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnChangePassword.setFont(new Font("Roboto Mono Medium", 0, 16));
 		btnChangePassword.setForeground(new Color(255, 255, 255));
 		btnChangePassword.setText("Đổi mật khẩu");
 		btnChangePassword.setBorderPainted(false);
@@ -237,7 +237,7 @@ public class InfoDialog extends JDialog {
 		jPanel8.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 5));
 
 		btnHuy.setBackground(new Color(255, 102, 102));
-		btnHuy.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnHuy.setFont(new Font("Roboto Mono Medium", 0, 16));
 		btnHuy.setForeground(new Color(255, 255, 255));
 		btnHuy.setText("HỦY BỎ");
 		btnHuy.setBorderPainted(false);
@@ -253,7 +253,7 @@ public class InfoDialog extends JDialog {
 		jPanel8.add(btnHuy);
 
 		btnUpdate.setBackground(new Color(0, 204, 102));
-		btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16));
 		btnUpdate.setForeground(new Color(255, 255, 255));
 		btnUpdate.setText("CẬP NHẬT");
 		btnUpdate.setBorderPainted(false);

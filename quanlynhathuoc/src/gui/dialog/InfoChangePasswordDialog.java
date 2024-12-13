@@ -106,7 +106,7 @@ public class InfoChangePasswordDialog extends JDialog {
 		jPanel15.setPreferredSize(new Dimension(500, 50));
 		jPanel15.setLayout(new BorderLayout());
 
-		jLabel8.setFont(new Font("Roboto Medium", 0, 18)); 
+		jLabel8.setFont(new Font("Roboto Medium", 0, 18));
 		jLabel8.setForeground(new Color(255, 255, 255));
 		jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
 		jLabel8.setText("ĐỔI MẬT KHẨU");
@@ -121,7 +121,7 @@ public class InfoChangePasswordDialog extends JDialog {
 		jPanel18.setPreferredSize(new Dimension(500, 40));
 		jPanel18.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen.setFont(new Font("Roboto", 0, 14)); 
+		lblHoTen.setFont(new Font("Roboto", 0, 14));
 		lblHoTen.setText("Mật khẩu hiện tại");
 		lblHoTen.setMaximumSize(new Dimension(44, 40));
 		lblHoTen.setPreferredSize(new Dimension(150, 40));
@@ -136,7 +136,7 @@ public class InfoChangePasswordDialog extends JDialog {
 		jPanel19.setPreferredSize(new Dimension(500, 40));
 		jPanel19.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen1.setFont(new Font("Roboto", 0, 14)); 
+		lblHoTen1.setFont(new Font("Roboto", 0, 14));
 		lblHoTen1.setText("Mật khẩu mới");
 		lblHoTen1.setMaximumSize(new Dimension(44, 40));
 		lblHoTen1.setPreferredSize(new Dimension(150, 40));
@@ -151,7 +151,7 @@ public class InfoChangePasswordDialog extends JDialog {
 		jPanel20.setPreferredSize(new Dimension(500, 40));
 		jPanel20.setLayout(new FlowLayout(FlowLayout.LEFT, 8, 0));
 
-		lblHoTen2.setFont(new Font("Roboto", 0, 14)); 
+		lblHoTen2.setFont(new Font("Roboto", 0, 14));
 		lblHoTen2.setText("Nhập lại mật khẩu mới");
 		lblHoTen2.setMaximumSize(new Dimension(44, 40));
 		lblHoTen2.setPreferredSize(new Dimension(150, 40));
@@ -168,7 +168,7 @@ public class InfoChangePasswordDialog extends JDialog {
 		jPanel8.setLayout(new FlowLayout(FlowLayout.CENTER, 8, 5));
 
 		btnHuy.setBackground(new Color(255, 102, 102));
-		btnHuy.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnHuy.setFont(new Font("Roboto Mono Medium", 0, 16));
 		btnHuy.setForeground(new Color(255, 255, 255));
 		btnHuy.setText("HỦY BỎ");
 		btnHuy.setBorderPainted(false);
@@ -184,7 +184,7 @@ public class InfoChangePasswordDialog extends JDialog {
 		jPanel8.add(btnHuy);
 
 		btnUpdate.setBackground(new Color(0, 204, 102));
-		btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16)); 
+		btnUpdate.setFont(new Font("Roboto Mono Medium", 0, 16));
 		btnUpdate.setForeground(new Color(255, 255, 255));
 		btnUpdate.setText("LƯU");
 		btnUpdate.setBorderPainted(false);
@@ -214,7 +214,7 @@ public class InfoChangePasswordDialog extends JDialog {
 	private void btnUpdateActionPerformed(ActionEvent evt) {
 		if (isValidateFields()) {
 			TaiKhoan e = getInputFields();
-			MessageDialog.info(this, "Cập nhập thành công!");
+			MessageDialog.info(this, "Cập nhật thành công!");
 			TK_CON.update(e);
 			this.dispose();
 		}

@@ -19,153 +19,152 @@ import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class CurveChart extends JPanel {
 
-    DecimalFormat df = new DecimalFormat("#,##0.##");
-    private List<ModelLegend2> legends = new ArrayList<>();
-    private List<ModelChart2> model = new ArrayList<>();
-    private final Animator animator;
-    private float animate;
+	DecimalFormat df = new DecimalFormat("#,##0.##");
+	private List<ModelLegend2> legends = new ArrayList<>();
+	private List<ModelChart2> model = new ArrayList<>();
+	private final Animator animator;
+	private float animate;
 
-    public CurveChart() {
-        initComponents();
-        setBackground(Color.WHITE);
-        TimingTarget target = new TimingTargetAdapter() {
-            @Override
-            public void timingEvent(float fraction) {
-                animate = fraction;
-                repaint();
-            }
-        };
-        animator = new Animator(800, target);
-        animator.setResolution(0);
-        animator.setAcceleration(0.5f);
-        animator.setDeceleration(0.5f);
-        blankPlotChart.getNiceScale().setMaxTicks(5);
-        blankPlotChart.setBlankPlotChatRender(new BlankPlotChatRender() {
-            @Override
-            public int getMaxLegend() {
-                return legends.size();
-            }
+	public CurveChart() {
+		initComponents();
+		setBackground(Color.WHITE);
+		TimingTarget target = new TimingTargetAdapter() {
+			@Override
+			public void timingEvent(float fraction) {
+				animate = fraction;
+				repaint();
+			}
+		};
+		animator = new Animator(800, target);
+		animator.setResolution(0);
+		animator.setAcceleration(0.5f);
+		animator.setDeceleration(0.5f);
+		blankPlotChart.getNiceScale().setMaxTicks(5);
+		blankPlotChart.setBlankPlotChatRender(new BlankPlotChatRender() {
+			@Override
+			public int getMaxLegend() {
+				return legends.size();
+			}
 
-            @Override
-            public String getLabelText(int index) {
-                return model.get(index).getLabel();
-            }
+			@Override
+			public String getLabelText(int index) {
+				return model.get(index).getLabel();
+			}
 
-            @Override
-            public void renderSeries(BlankPlotChart chart, Graphics2D g2, SeriesSize size, int index) {
-            }
+			@Override
+			public void renderSeries(BlankPlotChart chart, Graphics2D g2, SeriesSize size, int index) {
+			}
 
-            @Override
-            public void renderSeries(BlankPlotChart chart, Graphics2D g2, SeriesSize size, int index, List<Path2D.Double> gra) {
-                for (int i = 0; i < legends.size(); i++) {
-                    double ys;
-                    double xs;
-                    double x = size.getX() + size.getWidth() / 2f;
-                    if (index == 0) {
-                        ys = chart.getSeriesValuesOf(0, size.getHeight()) * animate;
-                        ys = size.getY() + size.getHeight() - ys;
-                        xs = x - size.getWidth() / 2;
-                    } else {
-                        ys = chart.getSeriesValuesOf(model.get(index - 1).getValues()[i], size.getHeight()) * animate;
-                        ys = size.getY() + size.getHeight() - ys;
-                        xs = x - size.getWidth();
-                    }
-                    double s = xs + size.getWidth() / 4;
-                    double seriesValues = chart.getSeriesValuesOf(model.get(index).getValues()[i], size.getHeight()) * animate;
-                    double yy = size.getY() + size.getHeight() - seriesValues;
-                    gra.get(i).append(new CubicCurve2D.Double(xs, ys, s, ys, s, yy, x, yy), true);
-                    if (index == chart.getLabelCount() - 1) {
-                        xs = x;
-                        ys = yy;
-                        s = xs + size.getWidth() / 4;
-                        seriesValues = chart.getSeriesValuesOf(0, size.getHeight()) * animate;
-                        yy = size.getY() + size.getHeight() - seriesValues;
-                        gra.get(i).append(new CubicCurve2D.Double(xs, ys, s, ys, s, yy, x + size.getWidth() / 2, yy), true);
-                    }
-                }
-            }
+			@Override
+			public void renderSeries(BlankPlotChart chart, Graphics2D g2, SeriesSize size, int index,
+					List<Path2D.Double> gra) {
+				for (int i = 0; i < legends.size(); i++) {
+					double ys;
+					double xs;
+					double x = size.getX() + size.getWidth() / 2f;
+					if (index == 0) {
+						ys = chart.getSeriesValuesOf(0, size.getHeight()) * animate;
+						ys = size.getY() + size.getHeight() - ys;
+						xs = x - size.getWidth() / 2;
+					} else {
+						ys = chart.getSeriesValuesOf(model.get(index - 1).getValues()[i], size.getHeight()) * animate;
+						ys = size.getY() + size.getHeight() - ys;
+						xs = x - size.getWidth();
+					}
+					double s = xs + size.getWidth() / 4;
+					double seriesValues = chart.getSeriesValuesOf(model.get(index).getValues()[i], size.getHeight())
+							* animate;
+					double yy = size.getY() + size.getHeight() - seriesValues;
+					gra.get(i).append(new CubicCurve2D.Double(xs, ys, s, ys, s, yy, x, yy), true);
+					if (index == chart.getLabelCount() - 1) {
+						xs = x;
+						ys = yy;
+						s = xs + size.getWidth() / 4;
+						seriesValues = chart.getSeriesValuesOf(0, size.getHeight()) * animate;
+						yy = size.getY() + size.getHeight() - seriesValues;
+						gra.get(i).append(new CubicCurve2D.Double(xs, ys, s, ys, s, yy, x + size.getWidth() / 2, yy),
+								true);
+					}
+				}
+			}
 
-            @Override
-            public void renderGraphics(Graphics2D g2, List<Path2D.Double> gra) {
-                g2.setStroke(new BasicStroke(3f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
-                for (int i = 0; i < gra.size(); i++) {
-                    Color c = legends.get(i).getColorLight();
-                    g2.setPaint(new GradientPaint(0, 0, legends.get(i).getColor(), 0, getHeight(), new Color(c.getRed(), c.getGreen(), c.getBlue(), 0)));
-                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f));
-                    g2.fill(gra.get(i));
-                    g2.setPaint(new GradientPaint(0, 0, legends.get(i).getColor(), getWidth(), 0, legends.get(i).getColorLight()));
-                    g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-                    g2.draw(gra.get(i));
-                }
-            }
+			@Override
+			public void renderGraphics(Graphics2D g2, List<Path2D.Double> gra) {
+				g2.setStroke(new BasicStroke(3f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_MITER));
+				for (int i = 0; i < gra.size(); i++) {
+					Color c = legends.get(i).getColorLight();
+					g2.setPaint(new GradientPaint(0, 0, legends.get(i).getColor(), 0, getHeight(),
+							new Color(c.getRed(), c.getGreen(), c.getBlue(), 0)));
+					g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.7f));
+					g2.fill(gra.get(i));
+					g2.setPaint(new GradientPaint(0, 0, legends.get(i).getColor(), getWidth(), 0,
+							legends.get(i).getColorLight()));
+					g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+					g2.draw(gra.get(i));
+				}
+			}
 
-            @Override
-            public boolean mouseMoving(BlankPlotChart chart, MouseEvent evt, Graphics2D g2, SeriesSize size, int index) {
-                return false;
-            }
-        });
-    }
+			@Override
+			public boolean mouseMoving(BlankPlotChart chart, MouseEvent evt, Graphics2D g2, SeriesSize size,
+					int index) {
+				return false;
+			}
+		});
+	}
 
-    public void addLegend(String name, Color color, Color color1) {
-        ModelLegend2 data = new ModelLegend2(name, color, color1);
-        legends.add(data);
-        panelLegend.add(new LegendItem2(data));
-        panelLegend.repaint();
-        panelLegend.revalidate();
-    }
+	public void addLegend(String name, Color color, Color color1) {
+		ModelLegend2 data = new ModelLegend2(name, color, color1);
+		legends.add(data);
+		panelLegend.add(new LegendItem2(data));
+		panelLegend.repaint();
+		panelLegend.revalidate();
+	}
 
-    public void addData(ModelChart2 data) {
-        model.add(data);
-        blankPlotChart.setLabelCount(model.size());
-        double max = data.getMaxValues();
-        if (max > blankPlotChart.getMaxValues()) {
-            blankPlotChart.setMaxValues(max);
-        }
-    }
+	public void addData(ModelChart2 data) {
+		model.add(data);
+		blankPlotChart.setLabelCount(model.size());
+		double max = data.getMaxValues();
+		if (max > blankPlotChart.getMaxValues()) {
+			blankPlotChart.setMaxValues(max);
+		}
+	}
 
-    public void clear() {
-        animate = 0;
-        blankPlotChart.setLabelCount(0);
-        model.clear();
-        repaint();
-    }
+	public void clear() {
+		animate = 0;
+		blankPlotChart.setLabelCount(0);
+		model.clear();
+		repaint();
+	}
 
-    public void start() {
-        if (!animator.isRunning()) {
-            animator.start();
-        }
-    }
+	public void start() {
+		if (!animator.isRunning()) {
+			animator.start();
+		}
+	}
 
-    private void initComponents() {
+	private void initComponents() {
 
-        blankPlotChart = new BlankPlotChart();
-        panelLegend = new JPanel();
+		blankPlotChart = new BlankPlotChart();
+		panelLegend = new JPanel();
 
-        panelLegend.setOpaque(false);
-        panelLegend.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelLegend.setOpaque(false);
+		panelLegend.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 0));
 
-        GroupLayout layout = new GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(panelLegend, GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
-                                        .addComponent(blankPlotChart, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(blankPlotChart, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                                .addGap(0, 0, 0)
-                                .addComponent(panelLegend, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-        );
-    }                       
+		GroupLayout layout = new GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout
+				.createSequentialGroup().addContainerGap()
+				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+						.addComponent(panelLegend, GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE).addComponent(
+								blankPlotChart, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addContainerGap()));
+		layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup().addContainerGap()
+						.addComponent(blankPlotChart, GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE).addGap(0, 0, 0)
+						.addComponent(panelLegend, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE)
+						.addContainerGap()));
+	}
 
-    private BlankPlotChart blankPlotChart;
-    private JPanel panelLegend;
+	private BlankPlotChart blankPlotChart;
+	private JPanel panelLegend;
 }
