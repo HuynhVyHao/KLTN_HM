@@ -298,6 +298,11 @@ public class ThuocPage extends JPanel {
 				MessageDialog.info(this, "Xóa thành công!");
 				modal.removeRow(row);
 			}
+			
+			 // Gọi phương thức updateNotificationBadge để cập nhật badge
+            if (main != null) {
+                main.updateNotificationBadge();  // Cập nhật lại badge thông báo
+            }
 		} catch (Exception e) {
 			MessageDialog.error(this, "Vui lòng chọn dòng cần thực hiện!");
 		}

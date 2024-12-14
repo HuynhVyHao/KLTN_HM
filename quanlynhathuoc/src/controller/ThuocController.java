@@ -240,7 +240,7 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 						check += 1;
 					} else {
 						Thuoc e = new Thuoc(id, tenThuoc, hinhAnh, thanhPhan, donViTinh, danhMuc, xuatXu, soLuong,
-								giaNhap, donGia, ngaySanXuat, hanSuDung,loaiThuoc); // Thêm ngày sản xuất vào constructor
+								giaNhap, donGia, ngaySanXuat, hanSuDung, loaiThuoc); // Thêm ngày sản xuất vào constructor
 						THUOC_DAO.create(e);
 						THUOC_GUI.loadTable(this.getAllList());
 					}
@@ -259,8 +259,11 @@ public class ThuocController extends InterfaceConTroller<Thuoc, String> {
 	}
 	 
 	public boolean isDuplicate(String tenThuoc) {
-	    return THUOC_DAO.isDuplicate(tenThuoc);
+	    return THUOC_DAO.isDuplicate(tenThuoc);	
 	}
+	 public List<Thuoc> selectExpiredMedicines() {
+		 return THUOC_DAO.selectExpiredMedicines();
+	 }
 	
 }
 

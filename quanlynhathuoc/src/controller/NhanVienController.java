@@ -11,11 +11,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -143,25 +148,56 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
 
                     String id = excelRow.getCell(0).getStringCellValue();
                     String hoTen = excelRow.getCell(1).getStringCellValue();
-                    String sdt = excelRow.getCell(2).getStringCellValue();
-                    String gioitinh = excelRow.getCell(3).getStringCellValue();
-                    String ns = excelRow.getCell(4).getStringCellValue();
-                    int namSinh = Integer.parseInt(ns);
-                    String ngay = excelRow.getCell(5).getStringCellValue();
-                    Date ngayVaoLam = new Date(ngay);
+                    
+                    // Xử lý cột số điện thoại
+                    XSSFCell cellSDT = excelRow.getCell(2);
+                    String sdt = "";
+                    if (cellSDT.getCellType() == CellType.STRING) {
+                        sdt = cellSDT.getStringCellValue();
+                    } else if (cellSDT.getCellType() == CellType.NUMERIC) {
+                        sdt = String.valueOf((long) cellSDT.getNumericCellValue()); // Chuyển số sang chuỗi
+                    }
 
+                    String gioitinh = excelRow.getCell(3).getStringCellValue();
+
+                    // Xử lý năm sinh (kiểu chuỗi và số)
+                    XSSFCell cellNS = excelRow.getCell(4);
+                    int namSinh = 0;
+                    if (cellNS.getCellType() == CellType.STRING) {
+                        namSinh = Integer.parseInt(cellNS.getStringCellValue());
+                    } else if (cellNS.getCellType() == CellType.NUMERIC) {
+                        namSinh = (int) cellNS.getNumericCellValue();
+                    }
+
+                    // Xử lý ngày (Date hoặc String)
+                    XSSFCell cellNgay = excelRow.getCell(5);
+                    Date ngayVaoLam = null;
+                    if (cellNgay.getCellType() == CellType.STRING) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");// Định dạng ngày từ chuỗi
+                        try {
+							ngayVaoLam = sdf.parse(cellNgay.getStringCellValue());
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                    } else if (cellNgay.getCellType() == CellType.NUMERIC) {
+                        ngayVaoLam = cellNgay.getDateCellValue(); // Lấy ngày trực tiếp từ cell
+                    }
+
+                    // Kiểm tra giá trị
                     if (Validation.isEmpty(id) || Validation.isEmpty(hoTen)
                             || Validation.isEmpty(sdt) || !isPhoneNumber(sdt)
-                            || Validation.isEmpty(gioitinh) || Validation.isEmpty(ns)
-                            || Validation.isEmpty(ngayVaoLam.toString())) {
+                            || Validation.isEmpty(gioitinh) || namSinh <= 0
+                            || ngayVaoLam == null) {
                         check += 1;
                     } else {
+                        // Thêm nhân viên
                         NhanVien nv = new NhanVien(id, hoTen, sdt, gioitinh, namSinh, ngayVaoLam);
                         NV_DAO.create(nv);
                         NV_GUI.loadTable();
                     }
-
                 }
+
                 MessageDialog.info(NV_GUI, "Nhập dữ liệu thành công!");
 
             } catch (FileNotFoundException ex) {
@@ -174,6 +210,7 @@ public class NhanVienController extends InterfaceConTroller<NhanVien, String> {
             MessageDialog.error(NV_GUI, "Có " + check + " dòng dữ liệu không được thêm vào!");
         }
     }
+    
     public boolean isPhoneNumberExists(String phoneNumber) {
         NhanVien nv = NV_DAO.selectBySdt(phoneNumber);
         return nv != null;  // Nếu tìm thấy nhân viên, trả về true

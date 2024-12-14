@@ -38,6 +38,8 @@ public class Thuoc {
         this.hanSuDung = hanSuDung;
         this.loaiThuoc = loaiThuoc; // Initialize the new field
     }
+    
+    
 
     public String getId() {
         return id;

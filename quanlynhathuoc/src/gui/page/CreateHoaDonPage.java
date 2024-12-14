@@ -195,37 +195,44 @@ public class CreateHoaDonPage extends JPanel {
     }
 
     private boolean isValidHoaDon() {
-        if (Validation.isEmpty(txtTienKhachDua.getText().trim())) {
-            txtTienKhachDua.requestFocus();
-            return false;
-        }
-
+        // Kiểm tra sản phẩm đã được chọn
         if (listCTHD.isEmpty()) {
             MessageDialog.warring(this, "Vui lòng chọn sản phẩm!");
             return false;
         }
 
+        // Kiểm tra khách hàng đã được chọn
         if (Validation.isEmpty(txtSdtKH.getText())) {
             MessageDialog.warring(this, "Vui lòng chọn khách hàng!");
             txtSdtKH.requestFocus();
             return false;
         }
 
-        try {
-            double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
-            if (tienKhachDua < 0) {
-                MessageDialog.warring(this, "Tiền khách đưa phải >= 0");
+        // Kiểm tra tiền khách đưa chỉ khi chọn "Tiền mặt"
+        String selectedMethod = (String) cbPaymentMethod.getSelectedItem();
+        if ("Tiền mặt".equals(selectedMethod)) {
+            if (Validation.isEmpty(txtTienKhachDua.getText().trim())) {
+                txtTienKhachDua.requestFocus();
+                return false;
+            }
+
+            try {
+                double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
+                if (tienKhachDua < 0) {
+                    MessageDialog.warring(this, "Tiền khách đưa phải >= 0");
+                    Validation.resetTextfield(txtTienKhachDua);
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                MessageDialog.warring(this, "Tiền khách đưa phải là số!");
                 Validation.resetTextfield(txtTienKhachDua);
                 return false;
             }
-        } catch (NumberFormatException e) {
-            MessageDialog.warring(this, "Tiền khách đưa phải là số!");
-            Validation.resetTextfield(txtTienKhachDua);
-            return false;
         }
 
         return true;
     }
+
 
     private boolean isValidChiTietHoaDon() {
         if (Validation.isEmpty(txtSoLuong.getText().trim())) {
@@ -801,8 +808,32 @@ public class CreateHoaDonPage extends JPanel {
         jPanel26.setPreferredSize(new Dimension(440, 150));
         jPanel26.setLayout(new FlowLayout(FlowLayout.LEFT));
 
+     // Tạo JComboBox
+        cbPaymentMethod = new JComboBox<>(new String[]{"Tiền mặt", "Chuyển khoản"});
+        cbPaymentMethod.setPreferredSize(new Dimension(100, 40));
+        cbPaymentMethod.setFont(new Font("Roboto", 0, 14));
+
+        // Thêm sự kiện thay đổi lựa chọn
+        cbPaymentMethod.addActionListener(e -> {
+            String selectedMethod = (String) cbPaymentMethod.getSelectedItem();
+            boolean isCash = "Tiền mặt".equals(selectedMethod);
+
+            // Hiển thị hoặc ẩn các thành phần liên quan đến tiền mặt
+            jPanel10.setVisible(isCash); // Tiền khách đưa
+            jPanel9.setVisible(isCash);  // Tiền thừa
+
+            // Cập nhật giao diện
+            jPanel26.revalidate();
+            jPanel26.repaint();
+        });
+
+        // Tạo JPanel chứa ComboBox và tổng tiền, sử dụng FlowLayout.CENTER để căn chỉnh các phần tử vào giữa
+        JPanel jPanelPaymentMethod = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
+        jPanelPaymentMethod.setBackground(new Color(255, 255, 255));
+
+        // Tạo JPanel chứa tổng hóa đơn
+        JPanel jPanel11 = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         jPanel11.setBackground(new Color(255, 255, 255));
-        jPanel11.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
 
         jLabel7.setFont(new Font("Roboto", 1, 14)); 
         jLabel7.setForeground(new Color(255, 51, 0));
@@ -818,7 +849,19 @@ public class CreateHoaDonPage extends JPanel {
         txtTong.setPreferredSize(new Dimension(200, 40));
         jPanel11.add(txtTong);
 
-        jPanel26.add(jPanel11);
+        // Tạo một JPanel để chứa tổng tiền và ComboBox, sử dụng FlowLayout.RIGHT để căn chỉnh ComboBox bên phải
+        JPanel jPanelRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 0));
+        jPanelRow.setBackground(new Color(255, 255, 255));
+
+        // Thêm tổng tiền vào row
+        jPanelRow.add(jPanel11);
+
+        // Thêm ComboBox vào bên phải của tổng tiền
+        jPanelRow.add(cbPaymentMethod);
+
+        // Thêm row vào jPanel26
+        jPanel26.add(jPanelRow);
+
 
         jPanel10.setBackground(new Color(255, 255, 255));
         jPanel10.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
@@ -1032,20 +1075,51 @@ public class CreateHoaDonPage extends JPanel {
         }
     }
 
-    private boolean isValidPayment() {
+    private boolean isValidPayment() { 
+        // Kiểm tra hóa đơn hợp lệ
         if (isValidHoaDon()) {
             double tongTien = Formatter.unformatVND(txtTong.getText());
-            double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
-            if (tienKhachDua < tongTien) {
-                MessageDialog.warring(this, "Không đủ tiền thanh toán!");
-                txtTienKhachDua.requestFocus();
+            double tienKhachDua = 0;
+            
+            // Kiểm tra phương thức thanh toán
+            String selectedMethod = (String) cbPaymentMethod.getSelectedItem();
+            
+            if ("Tiền mặt".equals(selectedMethod)) {
+                // Nếu chọn Tiền mặt, kiểm tra tiền khách đưa
+                try {
+                    tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
+                    if (tienKhachDua < tongTien) {
+                        MessageDialog.warring(this, "Không đủ tiền thanh toán!");
+                        txtTienKhachDua.requestFocus();
+                        return false;
+                    }
+                } catch (NumberFormatException e) {
+                    MessageDialog.warring(this, "Tiền khách đưa phải là số!");
+                    Validation.resetTextfield(txtTienKhachDua);
+                    return false;
+                }
+            } else if ("Chuyển khoản".equals(selectedMethod)) {
+                // Nếu là Chuyển khoản, không cần kiểm tra tiền khách đưa
+                // Bạn có thể thêm kiểm tra nếu cần, ví dụ như việc điền đúng thông tin chuyển khoản
+                // hoặc chỉ kiểm tra xem phương thức thanh toán có được chọn không
+                if (selectedMethod == null || selectedMethod.trim().isEmpty()) {
+                    MessageDialog.warring(this, "Vui lòng chọn phương thức thanh toán!");
+                    return false;
+                }
+            } else {
+                // Nếu không chọn phương thức thanh toán hợp lệ
+                MessageDialog.warring(this, "Vui lòng chọn phương thức thanh toán!");
                 return false;
             }
+
+            return true;
         }
-        return true;
+        return false;
     }
 
+
     private void btnThanhToanActionPerformed(ActionEvent evt) throws WriterException {
+        // Kiểm tra tính hợp lệ của hóa đơn và phương thức thanh toán
         if (isValidHoaDon() && isValidPayment()) {
             if (MessageDialog.confirm(this, "Xác nhận thanh toán?", "Lập hóa đơn")) {
                 HoaDon hd = getInputHoaDon();
@@ -1061,8 +1135,12 @@ public class CreateHoaDonPage extends JPanel {
                 // Trở về trang hóa đơn
                 main.setPanel(new HoaDonPage(main));
             }
+        } else {
+            // Nếu không hợp lệ, có thể thông báo cho người dùng biết lý do
+            MessageDialog.warring(this, "Có lỗi trong quá trình thanh toán, vui lòng kiểm tra lại thông tin.");
         }
     }
+
 
     private JPanel actionPanel;
     private JPanel billInfoPanel;
@@ -1139,4 +1217,5 @@ public class CreateHoaDonPage extends JPanel {
     private JTextField txtTienKhachDua;
     private JTextField txtTienThua;
     private JTextField txtTong;
+    private  JComboBox<String> cbPaymentMethod;
 }

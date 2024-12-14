@@ -374,71 +374,85 @@ public class DetailDatHangDialog extends JDialog {
 	}
 
 	private void btnTraThuocActionPerformed(ActionEvent evt) {
-		// Lấy thông tin của đơn hàng (idDH)
-		String idDH = listCTDH.get(0).getDatHang().getId(); // Giả sử tất cả các ChiTietDatHang có cùng id đơn hàng
+	    // Lấy thông tin của đơn hàng (idDH)
+	    String idDH = listCTDH.get(0).getDatHang().getId(); // Giả sử tất cả các ChiTietDatHang có cùng id đơn hàng
 
-		// Lấy đối tượng DatHang từ cơ sở dữ liệu
-		DatHang datHang = DH_CON.selectById(idDH); // Giả sử có phương thức selectById trong DatHangController
+	    // Lấy đối tượng DatHang từ cơ sở dữ liệu
+	    DatHang datHang = DH_CON.selectById(idDH); // Giả sử có phương thức selectById trong DatHangController
 
-		if (datHang == null) {
-			JOptionPane.showMessageDialog(this, "Đơn hàng không tồn tại.");
-			return;
-		}
+	    if (datHang == null) {
+	        JOptionPane.showMessageDialog(this, "Đơn hàng không tồn tại.");
+	        return;
+	    }
+	    
+	   
+	    
+	    // Kiểm tra trạng thái đơn hàng
+	    if ("Đã Thanh Toán".equalsIgnoreCase(datHang.getTrangThai())) { // Kiểm tra trạng thái
+	        JOptionPane.showMessageDialog(this, "Đơn đã thanh toán, không được phép trả thuốc.");
+	        return;
+	    }
+	    
+	    // Kiểm tra nếu chỉ có một loại thuốc trong đơn hàng
+	    if (listCTDH.size() == 1) {
+	        // Xóa đơn hàng nếu chỉ có một thuốc trong đơn
+	    	new ChiTietDatHangController().deleteById(idDH);
+	        DH_CON.deleteById(idDH); // Xóa đơn hàng khỏi cơ sở dữ liệu
+	        JOptionPane.showMessageDialog(this, "Đơn hàng đã được xóa vì chỉ có một thuốc.");
+	        listCTDH.clear(); // Xóa danh sách chi tiết đơn hàng trong bộ nhớ
+	        loadTableCTHD(listCTDH); // Cập nhật lại bảng chi tiết đơn hàng (bảng sẽ trống)
+	        return; // Kết thúc phương thức vì đơn hàng đã được xóa
+	    }
 
-		// Kiểm tra trạng thái đơn hàng
-		if ("Đã Thanh Toán".equalsIgnoreCase(datHang.getTrangThai())) { // Kiểm tra trạng thái
-			JOptionPane.showMessageDialog(this, "Đơn đã thanh toán, không được phép trả thuốc.");
-			return;
-		}
+	    // Lấy danh sách thuốc trong chi tiết đơn hàng (listCTDH)
+	    String[] options = new String[listCTDH.size()];
+	    for (int i = 0; i < listCTDH.size(); i++) {
+	        options[i] = listCTDH.get(i).getThuoc().getTenThuoc(); // Hiển thị tên thuốc
+	    }
 
-		// Lấy danh sách thuốc trong chi tiết đơn hàng (listCTDH)
-		String[] options = new String[listCTDH.size()];
-		for (int i = 0; i < listCTDH.size(); i++) {
-			options[i] = listCTDH.get(i).getThuoc().getTenThuoc(); // Hiển thị tên thuốc
-		}
+	    // Người dùng chọn thuốc cần trả
+	    String selectedMedicine = (String) JOptionPane.showInputDialog(this, "Chọn thuốc cần trả:", "Trả thuốc",
+	            JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 
-		// Người dùng chọn thuốc cần trả
-		String selectedMedicine = (String) JOptionPane.showInputDialog(this, "Chọn thuốc cần trả:", "Trả thuốc",
-				JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+	    if (selectedMedicine != null) {
+	        // Tìm thuốc đã chọn trong danh sách
+	        ChiTietDatHang selectedItem = null;
+	        int indexToRemove = -1; // Biến lưu index của thuốc cần xóa
+	        for (int i = 0; i < listCTDH.size(); i++) {
+	            if (listCTDH.get(i).getThuoc().getTenThuoc().equals(selectedMedicine)) {
+	                selectedItem = listCTDH.get(i);
+	                indexToRemove = i;
+	                break;
+	            }
+	        }
 
-		if (selectedMedicine != null) {
-			// Tìm thuốc đã chọn trong danh sách
-			ChiTietDatHang selectedItem = null;
-			int indexToRemove = -1; // Biến lưu index của thuốc cần xóa
-			for (int i = 0; i < listCTDH.size(); i++) {
-				if (listCTDH.get(i).getThuoc().getTenThuoc().equals(selectedMedicine)) {
-					selectedItem = listCTDH.get(i);
-					indexToRemove = i;
-					break;
-				}
-			}
+	        // Nếu tìm thấy thuốc, xóa khỏi danh sách và cập nhật lại bảng
+	        if (selectedItem != null && indexToRemove != -1) {
+	            listCTDH.remove(indexToRemove); // Xóa thuốc từ danh sách
+	            JOptionPane.showMessageDialog(this, "Thuốc " + selectedMedicine + " đã được trả lại.");
 
-			// Nếu tìm thấy thuốc, xóa khỏi danh sách và cập nhật lại bảng
-			if (selectedItem != null && indexToRemove != -1) {
-				listCTDH.remove(indexToRemove); // Xóa thuốc từ danh sách
-				JOptionPane.showMessageDialog(this, "Thuốc " + selectedMedicine + " đã được trả lại.");
+	            // Cập nhật lại bảng và danh sách thuốc chưa thanh toán
+	            loadTableCTHD(listCTDH); // Gọi lại phương thức để cập nhật bảng
+	            updateDanhSachThuocChuaThanhToan(listCTDH); // Cập nhật lại danh sách thuốc chưa thanh toán
 
-				// Cập nhật lại bảng và danh sách thuốc chưa thanh toán
-				loadTableCTHD(listCTDH); // Gọi lại phương thức để cập nhật bảng
-				updateDanhSachThuocChuaThanhToan(listCTDH); // Cập nhật lại danh sách thuốc chưa thanh toán
+	            // Tính lại tổng tiền của đơn hàng
+	            double tongTienMoi = 0;
+	            for (ChiTietDatHang item : listCTDH) {
+	                tongTienMoi += item.getThuoc().getDonGia(); // Tính tổng tiền mới
+	            }
 
-				// Tính lại tổng tiền của đơn hàng
-				double tongTienMoi = 0;
-				for (ChiTietDatHang item : listCTDH) {
-					tongTienMoi += item.getThuoc().getDonGia(); // Tính tổng tiền mới
-				}
-
-				// Lấy đối tượng DatHang từ cơ sở dữ liệu để cập nhật lại tổng tiền
-				if (datHang != null) {
-					datHang.setTongTien(tongTienMoi); // Cập nhật lại tổng tiền
-					DH_CON.update(datHang); // Cập nhật đơn hàng trong cơ sở dữ liệu
-					JOptionPane.showMessageDialog(this, "Tổng tiền của đơn hàng đã được cập nhật.");
-				}
-			}
-		} else {
-			JOptionPane.showMessageDialog(this, "Chưa chọn thuốc nào để trả.");
-		}
+	            // Lấy đối tượng DatHang từ cơ sở dữ liệu để cập nhật lại tổng tiền
+	            if (datHang != null) {
+	                datHang.setTongTien(tongTienMoi); // Cập nhật lại tổng tiền
+	                DH_CON.update(datHang); // Cập nhật đơn hàng trong cơ sở dữ liệu
+	                JOptionPane.showMessageDialog(this, "Tổng tiền của đơn hàng đã được cập nhật.");
+	            }
+	        }
+	    } else {
+	        JOptionPane.showMessageDialog(this, "Chưa chọn thuốc nào để trả.");
+	    }
 	}
+
 
 	// Cập nhật danh sách thuốc chưa thanh toán trong hệ thống
 	private void updateDanhSachThuocChuaThanhToan(List<ChiTietDatHang> updatedList) {

@@ -2,7 +2,9 @@ package gui;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import controller.TaiKhoanController;
+import controller.ThuocController;
 import entity.TaiKhoan;
+import entity.Thuoc;
 import gui.dialog.InfoDialog;
 import gui.page.ChiTietThuocPage;
 import gui.page.DanhMucPage;
@@ -31,6 +33,8 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.*;
+
+import utils.Formatter;
 import utils.MessageDialog;
 
 public class MainLayout extends JFrame {
@@ -55,6 +59,7 @@ public class MainLayout extends JFrame {
 	private PhieuNhapPage phieuNhap;
 	private TimKiemPhieuNhapPage timKiemPhieuNhap;
 	private ThongKePage thongke;
+	private ThuocController THUOC_CON= new ThuocController();;
 	private boolean isMenuVisible;
 
 	public TaiKhoan tk;
@@ -62,6 +67,7 @@ public class MainLayout extends JFrame {
 	private List<JButton> listItem;
 
 	Color ACTIVE_BACKGROUND_COLOR = new Color(195, 240, 235);
+	
 
 	public MainLayout() {
 		initComponents();
@@ -150,7 +156,7 @@ public class MainLayout extends JFrame {
 
 			capNhatNVItem.setEnabled(false); // Vô hiệu hóa mục Cập Nhật
 			timKiemNVItem.setEnabled(false); // Vô hiệu hóa mục Tìm Kiếm
-			baoCaoNVItem.setEnabled(false);
+//			baoCaoNVItem.setEnabled(false);
 		}
 
 		if (role.equals("nvsp")) {
@@ -201,6 +207,10 @@ public class MainLayout extends JFrame {
 		jpMenuPhieuNhap = new JPopupMenu();
 		jpMenuNhanVien = new JPopupMenu();
 		jpMenuNhanVien = new JPopupMenu();
+		notificationPanel = new JPanel();
+		bellIconLabel = new JLabel();
+		notificationBadge = new JLabel();
+
 
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setTitle("Hệ Thống Quản Lý Nhà Thuốc H&M - Gò Vấp");
@@ -238,10 +248,10 @@ public class MainLayout extends JFrame {
 		jPanel1.setBackground(new Color(255, 255, 255));
 
 		txtFullName.setFont(new Font("Roboto", 1, 14));
-		txtFullName.setText("Nguyễn Phan Anh Tuấn");
+//		txtFullName.setText("Nguyễn Phan Anh Tuấn");
 
 		txtRole.setFont(new Font("Roboto Light", 2, 13));
-		txtRole.setText("Nhân viên Quản lý sản phẩm");
+//		txtRole.setText("Nhân viên Quản lý sản phẩm");
 
 		GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
 		jPanel1.setLayout(jPanel1Layout);
@@ -289,6 +299,54 @@ public class MainLayout extends JFrame {
 		itemPanel.setBorder(new LineBorder(new Color(255, 255, 255), 8, true));
 		itemPanel.setPreferredSize(new Dimension(1130, 80));
 		itemPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+		
+		notificationPanel.setBackground(new Color(255, 255, 255));
+		notificationPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 30, 10));
+
+		notificationPanel.setPreferredSize(new Dimension(100, 100)); // Đặt kích thước vừa đủ cho chuông và badge
+
+		List<Thuoc> expiredMedicines = THUOC_CON.selectExpiredMedicines(); // Hàm lấy danh sách thuốc hết hạn
+		int expiredCount = expiredMedicines.size(); // Số lượng thuốc hết hạn
+
+		bellIconLabel.setIcon(new FlatSVGIcon("./icon/notification.svg"));
+		bellIconLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		bellIconLabel.setLayout(null); // Sử dụng layout null để đặt các thành phần ở vị trí tùy chỉnh
+		bellIconLabel.setPreferredSize(new Dimension(50, 50)); // Đảm bảo kích thước đủ lớn để chứa chuông và badge
+
+		notificationBadge.setText(expiredCount > 0 ? String.valueOf(expiredCount) : ""); // Hiển thị số nếu > 0
+		notificationBadge.setForeground(Color.WHITE);
+		notificationBadge.setBackground(Color.RED);
+		notificationBadge.setOpaque(true);
+		notificationBadge.setHorizontalAlignment(SwingConstants.CENTER);
+		notificationBadge.setVerticalAlignment(SwingConstants.CENTER);
+		notificationBadge.setPreferredSize(new Dimension(20, 20)); // Kích thước badge
+		notificationBadge.setFont(new Font("Arial", Font.BOLD, 12));
+		notificationBadge.setVisible(expiredCount > 0); // Chỉ hiển thị badge nếu có thuốc hết hạn
+		notificationBadge.setBounds(bellIconLabel.getWidth() + 20, 0, 20, 20); // Đặt vị trí badge ở góc trên bên phải
+
+		bellIconLabel.add(notificationBadge);
+
+		bellIconLabel.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		    	 List<Thuoc> expiredMedicines = THUOC_CON.selectExpiredMedicines(); 
+		        if (expiredMedicines.isEmpty()) {
+		            JOptionPane.showMessageDialog(null, "Không có thuốc hết hạn!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+		        } else {
+		            StringBuilder message = new StringBuilder("Danh sách thuốc hết hạn:\n");
+		            for (Thuoc thuoc : expiredMedicines) {
+		                message.append("- ").append(thuoc.getTenThuoc()).append(" (HSD: ").append( (Formatter.FormatDate(thuoc.getHanSuDung()))).append(")\n");
+		            }
+		            JOptionPane.showMessageDialog(null, message.toString(), "Thuốc hết hạn", JOptionPane.WARNING_MESSAGE);
+		            updateNotificationBadge();
+		        }
+		    }
+		});
+		
+
+		notificationPanel.add(bellIconLabel);
+
+		topMenuPanel.add(notificationPanel, BorderLayout.EAST);
 
 //-----------------HÓA ĐƠN--------------------------------------------
 		// Tạo menu thả xuống JPopupMenu
@@ -822,6 +880,18 @@ public class MainLayout extends JFrame {
 			new Login().setVisible(true);
 		}
 	}
+	
+	// Phương thức trong MainLayout để cập nhật badge thông báo
+	public void updateNotificationBadge() {
+	    // Lấy lại danh sách thuốc hết hạn mới
+	    List<Thuoc> expiredMedicines = THUOC_CON.selectExpiredMedicines(); // Lấy lại danh sách thuốc hết hạn mới
+	    int expiredCount = expiredMedicines.size(); // Số lượng thuốc hết hạn
+
+	    // Cập nhật badge số
+	    notificationBadge.setText(expiredCount > 0 ? String.valueOf(expiredCount) : ""); // Hiển thị số nếu > 0
+	    notificationBadge.setVisible(expiredCount > 0); // Chỉ hiển thị badge nếu có thuốc hết hạn
+	}
+
 
 //-------------CHỨC NĂNG TÀI KHOẢN---------------------------		
 
@@ -1038,4 +1108,7 @@ public class MainLayout extends JFrame {
 	private JMenuItem datHangNVItem;
 	private JMenuItem timKiemNVItem;
 	private JMenuItem baoCaoNVItem;
+	private JLabel notificationBadge;
+	private JLabel bellIconLabel;
+	private JPanel notificationPanel;
 }

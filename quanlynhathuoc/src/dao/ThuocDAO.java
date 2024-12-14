@@ -206,4 +206,23 @@ public class ThuocDAO extends InterfaceDAO<Thuoc, String> {
         }
         return false;
     }
+    
+ // Thêm phương thức kiểm tra thuốc hết hạn
+    public List<Thuoc> selectExpiredMedicines() {
+        // Truy vấn SQL để lấy danh sách thuốc đã hết hạn sử dụng
+        final String SELECT_EXPIRED_SQL = """
+            SELECT Thuoc.*, 
+                   DonViTinh.idDVT, DonViTinh.ten AS tenDVT, 
+                   DanhMuc.idDM, DanhMuc.ten AS tenDM, 
+                   XuatXu.idXX, XuatXu.ten AS tenXX
+            FROM Thuoc
+            INNER JOIN DonViTinh ON Thuoc.idDVT = DonViTinh.idDVT
+            INNER JOIN DanhMuc ON Thuoc.idDM = DanhMuc.idDM
+            INNER JOIN XuatXu ON Thuoc.idXX = XuatXu.idXX
+            WHERE Thuoc.hanSuDung < GETDATE()
+        """;
+
+        // Sử dụng phương thức selectBySql để thực hiện truy vấn và trả về danh sách thuốc
+        return selectBySql(SELECT_EXPIRED_SQL);
+    }
 }

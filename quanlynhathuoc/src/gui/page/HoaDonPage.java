@@ -54,7 +54,7 @@ public class HoaDonPage extends JPanel {
         listButton.add(btnAdd);
         listButton.add(btnDelete);
         listButton.add(btnInfo);
-        listButton.add(btnImport);
+//        listButton.add(btnImport);
         listButton.add(btnExport);
 
         for (JButton item : listButton) {
@@ -104,7 +104,7 @@ public class HoaDonPage extends JPanel {
         btnAdd = new JButton();
         btnDelete = new JButton();
         btnInfo = new JButton();
-        btnImport = new JButton();
+//        btnImport = new JButton();
         btnExport = new JButton();
         tablePanel = new JPanel();
         jScrollPane1 = new JScrollPane();
@@ -179,22 +179,22 @@ public class HoaDonPage extends JPanel {
         });
         actionPanel.add(btnInfo);
 
-        btnImport.setFont(new Font("Roboto", 1, 14)); 
-        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
-        btnImport.setText("IMPORT");
-        btnImport.setBorder(null);
-        btnImport.setBorderPainted(false);
-        btnImport.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        btnImport.setFocusPainted(false);
-        btnImport.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnImport.setPreferredSize(new Dimension(90, 90));
-        btnImport.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnImport.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnImport);
+//        btnImport.setFont(new Font("Roboto", 1, 14)); 
+//        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
+//        btnImport.setText("IMPORT");
+//        btnImport.setBorder(null);
+//        btnImport.setBorderPainted(false);
+//        btnImport.setCursor(new Cursor(Cursor.HAND_CURSOR));
+//        btnImport.setFocusPainted(false);
+//        btnImport.setHorizontalTextPosition(SwingConstants.CENTER);
+//        btnImport.setPreferredSize(new Dimension(90, 90));
+//        btnImport.setVerticalTextPosition(SwingConstants.BOTTOM);
+//        btnImport.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent evt) {
+//                btnImportActionPerformed(evt);
+//            }
+//        });
+//        actionPanel.add(btnImport);
 
         btnExport.setFont(new Font("Roboto", 1, 14)); 
         btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
@@ -276,9 +276,9 @@ public class HoaDonPage extends JPanel {
         JTableExporter.exportJTableToExcel(table);
     }
     
-    private void btnImportActionPerformed(ActionEvent evt) {
-        
-    }
+//    private void btnImportActionPerformed(ActionEvent evt) {
+//        
+//    }
 
 
 
@@ -305,7 +305,7 @@ public class HoaDonPage extends JPanel {
     private JButton btnAdd;
     private JButton btnDelete;
     private JButton btnExport;
-    private JButton btnImport;
+//    private JButton btnImport;
     private JButton btnInfo;
     private JPanel headerPanel;
     private JPanel jPanel5;

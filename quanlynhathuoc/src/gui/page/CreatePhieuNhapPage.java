@@ -257,6 +257,8 @@ public class CreatePhieuNhapPage extends JPanel {
             // Cập nhật số lượng tồn về 0 trong cơ sở dữ liệu khi thuốc hết hạn
             selectedThuoc.setSoLuongTon(0);
             THUOC_CON.update(selectedThuoc); // Cập nhật thuốc với số lượng tồn bằng 0
+            
+            selectedThuoc = THUOC_CON.selectById(selectedThuoc.getId()); 
 
             // Mở form cập nhật thuốc khi hết hạn
             UpdateThuocDialog dialog = new UpdateThuocDialog(null, true,this, selectedThuoc);
@@ -287,6 +289,8 @@ public class CreatePhieuNhapPage extends JPanel {
             // Cập nhật số lượng tồn về 0 trong cơ sở dữ liệu khi thuốc gần hết hạn
             selectedThuoc.setSoLuongTon(0);
             THUOC_CON.update(selectedThuoc); // Cập nhật thuốc với số lượng tồn bằng 0
+            
+            selectedThuoc = THUOC_CON.selectById(selectedThuoc.getId()); 
 
             // Mở form cập nhật khi thuốc gần hết hạn
             UpdateThuocDialog dialog = new UpdateThuocDialog(null, true,this, selectedThuoc);
@@ -957,12 +961,14 @@ public class CreatePhieuNhapPage extends JPanel {
         if (MessageDialog.confirm(this, "Xác nhận thanh toán và in hóa đơn?", "Lập hóa đơn")) {
             if (isValidHoaDonFields()) {
                 // Update số lượng tồn
-                for (ChiTietPhieuNhap cthd : listCTPN) {
-                    Thuoc thuocCTHD = cthd.getThuoc();
-                    Thuoc thuoc = listThuoc.get(listThuoc.indexOf(thuocCTHD));
-                    int updatedSoLuongTon = thuoc.getSoLuongTon() + cthd.getSoLuong();
-                    THUOC_CON.updateSoLuongTon(thuoc, updatedSoLuongTon);
-                }
+            	for (ChiTietPhieuNhap cthd : listCTPN) {
+            	    Thuoc thuocCTHD = cthd.getThuoc();
+            	    // Lấy lại thông tin thuốc từ cơ sở dữ liệu để đảm bảo lấy số lượng tồn mới nhất
+            	    Thuoc thuoc = THUOC_CON.selectById(thuocCTHD.getId());  // Lấy lại thông tin thuốc mới từ DB
+            	    int updatedSoLuongTon = thuoc.getSoLuongTon() + cthd.getSoLuong();  // Cập nhật lại số lượng tồn
+            	    THUOC_CON.updateSoLuongTon(thuoc, updatedSoLuongTon);  // Cập nhật lại số lượng tồn của thuốc trong DB
+            	}
+
                 
                 // Tạo hóa đơn
                 PhieuNhap pn = getInputHoaDon();
@@ -970,7 +976,10 @@ public class CreatePhieuNhapPage extends JPanel {
                 CTPN_CON.create(listCTPN);
                 MessageDialog.info(this, "Lập hóa đơn thành công!");
                 main.setPanel(new PhieuNhapPage(main));
-
+                // Gọi phương thức updateNotificationBadge để cập nhật badge
+                if (main != null) {
+                    main.updateNotificationBadge();  // Cập nhật lại badge thông báo
+                }
                 // In hóa đơn 
                 if (MessageDialog.confirm(this, "Bạn có muốn in hóa đơn không?", "In hóa đơn")) {
                     new WritePDF().printPhieuNhap(pn, listCTPN);

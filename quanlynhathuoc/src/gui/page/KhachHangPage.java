@@ -34,7 +34,7 @@ public class KhachHangPage extends JPanel {
         listButton.add(btnUpdate);
         listButton.add(btnDelete);
         listButton.add(btnInfo);
-        listButton.add(btnImport);
+//        listButton.add(btnImport);
         listButton.add(btnExport);
 
         for (JButton item : listButton) {
@@ -85,7 +85,7 @@ public class KhachHangPage extends JPanel {
         btnUpdate = new JButton();
         btnDelete = new JButton();
         btnInfo = new JButton();
-        btnImport = new JButton();
+//        btnImport = new JButton();
         btnExport = new JButton();
         tablePanel = new JPanel();
         jScrollPane1 = new JScrollPane();
@@ -171,22 +171,22 @@ public class KhachHangPage extends JPanel {
 //        btnInfo.setVerticalTextPosition(SwingConstants.BOTTOM);
 //        actionPanel.add(btnInfo);
 
-        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); 
-        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
-        btnImport.setText("IMPORT");
-        btnImport.setBorder(null);
-        btnImport.setBorderPainted(false);
-        btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImport.setFocusPainted(false);
-        btnImport.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnImport.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnImport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImportActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnImport);
+//        btnImport.setFont(new java.awt.Font("Roboto", 1, 14)); 
+//        btnImport.setIcon(new FlatSVGIcon("./icon/import.svg"));
+//        btnImport.setText("IMPORT");
+//        btnImport.setBorder(null);
+//        btnImport.setBorderPainted(false);
+//        btnImport.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//        btnImport.setFocusPainted(false);
+//        btnImport.setHorizontalTextPosition(SwingConstants.CENTER);
+//        btnImport.setPreferredSize(new java.awt.Dimension(90, 90));
+//        btnImport.setVerticalTextPosition(SwingConstants.BOTTOM);
+//        btnImport.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                btnImportActionPerformed(evt);
+//            }
+//        });
+//        actionPanel.add(btnImport);
 
         btnExport.setFont(new java.awt.Font("Roboto", 1, 14)); 
         btnExport.setIcon(new FlatSVGIcon("./icon/export.svg"));
@@ -272,9 +272,9 @@ public class KhachHangPage extends JPanel {
         }
     }
 
-    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
-        KH_CON.importExcel();
-    }
+//    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {
+//        KH_CON.importExcel();
+//    }
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {
         JTableExporter.exportJTableToExcel(table);
@@ -288,7 +288,7 @@ public class KhachHangPage extends JPanel {
     private JButton btnInfo;
     private JButton btnUpdate;
     private JButton btnExport;
-    private JButton btnImport;
+//    private JButton btnImport;
     private JPanel headerPanel;
     private JPanel jPanel5;
     private JScrollPane jScrollPane1;
