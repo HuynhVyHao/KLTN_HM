@@ -32,7 +32,7 @@ public class KhachHangPage extends JPanel {
         List<JButton> listButton = new ArrayList<>();
         listButton.add(btnAdd);
         listButton.add(btnUpdate);
-        listButton.add(btnDelete);
+//        listButton.add(btnDelete);
         listButton.add(btnInfo);
 //        listButton.add(btnImport);
         listButton.add(btnExport);
@@ -83,7 +83,7 @@ public class KhachHangPage extends JPanel {
         actionPanel = new JPanel();
         btnAdd = new JButton();
         btnUpdate = new JButton();
-        btnDelete = new JButton();
+//        btnDelete = new JButton();
         btnInfo = new JButton();
 //        btnImport = new JButton();
         btnExport = new JButton();
@@ -142,22 +142,22 @@ public class KhachHangPage extends JPanel {
         });
         actionPanel.add(btnUpdate);
 
-        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); 
-        btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
-        btnDelete.setText("XÓA");
-        btnDelete.setBorder(null);
-        btnDelete.setBorderPainted(false);
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDelete.setFocusPainted(false);
-        btnDelete.setHorizontalTextPosition(SwingConstants.CENTER);
-        btnDelete.setPreferredSize(new java.awt.Dimension(90, 90));
-        btnDelete.setVerticalTextPosition(SwingConstants.BOTTOM);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        actionPanel.add(btnDelete);
+//        btnDelete.setFont(new java.awt.Font("Roboto", 1, 14)); 
+//        btnDelete.setIcon(new FlatSVGIcon("./icon/delete.svg"));
+//        btnDelete.setText("XÓA");
+//        btnDelete.setBorder(null);
+//        btnDelete.setBorderPainted(false);
+//        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+//        btnDelete.setFocusPainted(false);
+//        btnDelete.setHorizontalTextPosition(SwingConstants.CENTER);
+//        btnDelete.setPreferredSize(new java.awt.Dimension(90, 90));
+//        btnDelete.setVerticalTextPosition(SwingConstants.BOTTOM);
+//        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                btnDeleteActionPerformed(evt);
+//            }
+//        });
+//        actionPanel.add(btnDelete);
 
 //        btnInfo.setFont(new java.awt.Font("Roboto", 1, 14)); 
 //        btnInfo.setIcon(new FlatSVGIcon("./icon/info.svg"));
@@ -284,7 +284,7 @@ public class KhachHangPage extends JPanel {
 
     private JPanel actionPanel;
     private JButton btnAdd;
-    private JButton btnDelete;
+//    private JButton btnDelete;
     private JButton btnInfo;
     private JButton btnUpdate;
     private JButton btnExport;

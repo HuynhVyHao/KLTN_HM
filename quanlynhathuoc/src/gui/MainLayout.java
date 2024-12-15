@@ -248,7 +248,7 @@ public class MainLayout extends JFrame {
 		jPanel1.setBackground(new Color(255, 255, 255));
 
 		txtFullName.setFont(new Font("Roboto", 1, 14));
-//		txtFullName.setText("Nguyễn Phan Anh Tuấn");
+//		txtFullName.setText("Nguyễn Văn A");
 
 		txtRole.setFont(new Font("Roboto Light", 2, 13));
 //		txtRole.setText("Nhân viên Quản lý sản phẩm");

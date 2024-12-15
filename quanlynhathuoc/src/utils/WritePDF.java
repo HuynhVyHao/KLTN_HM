@@ -290,7 +290,7 @@ public class WritePDF {
 
             // Hiển thị thông tin tài khoản dưới mã QR
             Phrase phrase1 = new Phrase("STK: 113366668888 - BIDV", fontBold15);
-            Phrase phrase2 = new Phrase("HUYNH VY HAO", fontBold15);
+            Phrase phrase2 = new Phrase("HUYNH VAN MINH", fontBold15);
 
             ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase1,
                                        document.getPageSize().getWidth() / 2, qrY - 25, 0);
@@ -431,81 +431,69 @@ public class WritePDF {
                 tongTien += cthd.getDonGia() * cthd.getSoLuong();
             }
 
-         // Tính VAT (nếu VAT là 5%)
             double vat = 0;
             double discountRate = 0;
             double discountAmount = 0;
 
-            // Tính mức giảm giá
             if (tongTien >= 200000 && tongTien < 500000) {
                 discountRate = 0.05; // Giảm giá 5%
             } else if (tongTien >= 500000) {
                 discountRate = 0.10; // Giảm giá 10%
             }
 
-            // Tính số tiền giảm giá
             discountAmount = tongTien * discountRate;
 
-            // Tính tổng tiền sau giảm giá
             double discountedTotal = tongTien - discountAmount;
 
-            // Tính VAT trên tổng tiền đã giảm
             vat = discountedTotal * 0.05; // Tính VAT 5%
             double tongSauThue = discountedTotal + vat; // Tổng sau khi cộng VAT 
 
-            // Hàng Tổng Tiền
             PdfPCell tongTienCell = new PdfPCell(new Phrase("Tổng Thành Tiền", fontNormal15));
-            tongTienCell.setColspan(4); // Gộp 4 cột
+            tongTienCell.setColspan(4); 
             tongTienCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             tongTienCell.setFixedHeight(25f);
-            tongTienCell.setBorder(PdfPCell.TOP | PdfPCell.LEFT | PdfPCell.RIGHT); // Giữ viền trên, trái, và phải
+            tongTienCell.setBorder(PdfPCell.TOP | PdfPCell.LEFT | PdfPCell.RIGHT); 
             table.addCell(tongTienCell);
 
-            // Ô chứa giá tổng tiền
             PdfPCell giaTienCell = new PdfPCell(new Phrase(formatter.format(tongTien) + "đ", fontNormal15));
             giaTienCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             giaTienCell.setFixedHeight(25f);
-            giaTienCell.setBorder(PdfPCell.RIGHT); // Giữ viền phải, bỏ viền trái và dưới
+            giaTienCell.setBorder(PdfPCell.RIGHT); 
             table.addCell(giaTienCell);
 
-            // Hàng Giảm Giá
             PdfPCell discountCell = new PdfPCell(new Phrase("Giảm Giá (" + (discountRate * 100) + "%)", fontNormal15));
-            discountCell.setColspan(4); // Gộp 4 cột
+            discountCell.setColspan(4); 
             discountCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             discountCell.setFixedHeight(25f);
-            discountCell.setBorder(PdfPCell.LEFT | PdfPCell.RIGHT); // Giữ viền trái và phải
+            discountCell.setBorder(PdfPCell.LEFT | PdfPCell.RIGHT); 
             table.addCell(discountCell);
 
-            // Ô chứa giá giảm giá
             PdfPCell giaDiscountCell = new PdfPCell(new Phrase(formatter.format(discountedTotal) + "đ", fontNormal15));
             giaDiscountCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             giaDiscountCell.setFixedHeight(25f);
-            giaDiscountCell.setBorder(PdfPCell.RIGHT); // Giữ viền phải
+            giaDiscountCell.setBorder(PdfPCell.RIGHT); 
             table.addCell(giaDiscountCell);
 
-            // Hàng VAT
             PdfPCell vatCell = new PdfPCell(new Phrase("VAT 5%", fontNormal15));
             vatCell.setColspan(4); // Gộp 4 cột
             vatCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             vatCell.setFixedHeight(25f);
-            vatCell.setBorder(PdfPCell.LEFT | PdfPCell.RIGHT); // Giữ viền trái và phải
+            vatCell.setBorder(PdfPCell.LEFT | PdfPCell.RIGHT); 
             table.addCell(vatCell);
 
-            // Ô chứa giá VAT
             PdfPCell giaVatCell = new PdfPCell(new Phrase(formatter.format(vat) + "đ", fontNormal15));
             giaVatCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             giaVatCell.setFixedHeight(25f);
-            giaVatCell.setBorder(PdfPCell.RIGHT); // Giữ viền phải
+            giaVatCell.setBorder(PdfPCell.RIGHT); 
             table.addCell(giaVatCell);
 
             // Hàng Tổng Tiền Sau Thuế
             PdfPCell tongSauThueCell = new PdfPCell(new Phrase("Tổng Tiền", fontBold15));
-            tongSauThueCell.setColspan(4); // Gộp 4 cột
+            tongSauThueCell.setColspan(4); 
             tongSauThueCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             tongSauThueCell.setFixedHeight(25f);
             table.addCell(tongSauThueCell);
 
-            // Ô chứa giá Tổng Tiền Sau Thuế
             PdfPCell giaTongSauThueCell = new PdfPCell(new Phrase(formatter.format(tongSauThue) + "đ", fontBold15));
             giaTongSauThueCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
             giaTongSauThueCell.setFixedHeight(25f);
@@ -515,12 +503,10 @@ public class WritePDF {
             document.add(table);
             document.add(Chunk.NEWLINE);
 
-         // Tạo bảng với 2 cột
             PdfPTable tableFooter = new PdfPTable(2);
-            tableFooter.setWidthPercentage(100); // Căn chỉnh cho bảng rộng 100%
-            tableFooter.setWidths(new float[] {1, 1}); // Đặt tỷ lệ các cột bằng nhau
+            tableFooter.setWidthPercentage(100); 
+            tableFooter.setWidths(new float[] {1, 1}); 
 
-            // Dòng 1: "Người lập phiếu" và "Khách hàng"
             PdfPCell cell1 = new PdfPCell(new Phrase("Người lập phiếu", fontBoldItalic15));
             cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell1.setBorder(PdfPCell.NO_BORDER);
@@ -531,7 +517,6 @@ public class WritePDF {
             cell2.setBorder(PdfPCell.NO_BORDER);
             tableFooter.addCell(cell2);
 
-            // Dòng 2: "(Ký và ghi rõ họ tên)"
             PdfPCell cell3 = new PdfPCell(new Phrase("(Ký và ghi rõ họ tên)", fontNormal10));
             cell3.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell3.setBorder(PdfPCell.NO_BORDER);
@@ -542,7 +527,6 @@ public class WritePDF {
             cell4.setBorder(PdfPCell.NO_BORDER);
             tableFooter.addCell(cell4);
 
-            // Dòng 3: Tên nv và kh
             PdfPCell cell5 = new PdfPCell(new Phrase(nv, fontBold15));
             cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell5.setBorder(PdfPCell.NO_BORDER);
@@ -553,13 +537,11 @@ public class WritePDF {
             cell6.setBorder(PdfPCell.NO_BORDER);
             tableFooter.addCell(cell6);
 
-            // Thêm bảng vào tài liệu
             document.add(tableFooter);
 
             
             document.add(Chunk.NEWLINE);
             document.add(createHorizontalLine(77));
-         // Tạo đoạn văn bản thông tin
             String[] infoLines = {
                 "Không áp dụng đổi trả với các sản phẩm được khuyến mãi.",
                 "Khách hàng đồng ý nhận thuốc và thanh toán.",
@@ -567,31 +549,27 @@ public class WritePDF {
                 "(Chỉ xuất Hóa đơn tài chính trong ngày)"
             };
 
-            // Thêm từng dòng vào tài liệu
             for (String line : infoLines) {
                 Paragraph infoParagraph = new Paragraph(line, fontNormal15); // fontNormal là kiểu chữ bạn đã định nghĩa
                 infoParagraph.setAlignment(Element.ALIGN_CENTER); // Căn trái
                 document.add(infoParagraph);
             }
         
-         // Cài đặt mã QR theo chuẩn VietQR
-            String bankCode = "BIDV";  // Mã ngân hàng, có thể thay đổi
-            String accountNumber = "1770414937";  // Số tài khoản
-            String amount = String.valueOf((int) tongSauThue);  // Số tiền
-            String addInfo = "ThanhToanHoaDon" + hoaDon.getId();  // Nội dung thanh toán
+            String bankCode = "BIDV";  
+            String accountNumber = "1770414937";  
+            String amount = String.valueOf((int) tongSauThue);  
+            String addInfo = "ThanhToanHoaDon" + hoaDon.getId();  
 
-            // URL QR code VietQR
             String vietQRUrl = "https://img.vietqr.io/image/" + bankCode + "-" + accountNumber +
                                "-qr_only.png?amount=" + amount + "&addInfo=" + addInfo;
             URL qrURL = new URL(vietQRUrl);
-            BufferedImage qrImage = ImageIO.read(qrURL);  // Đọc hình ảnh từ URL
+            BufferedImage qrImage = ImageIO.read(qrURL);  
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(qrImage, "png", baos);
             Image qrCodeImage = Image.getInstance(baos.toByteArray());
-            qrCodeImage.scaleAbsolute(150, 150);  // Đặt kích thước mã QR
+            qrCodeImage.scaleAbsolute(150, 150);  
 
-            // Vị trí mã QR trong PDF
             PdfContentByte canvas = writer.getDirectContent();
             float qrX = (document.getPageSize().getWidth() - qrCodeImage.getScaledWidth()) / 2;
             float qrY = document.bottom() + 20;
@@ -599,9 +577,8 @@ public class WritePDF {
             qrCodeImage.setAbsolutePosition(qrX, qrY);
             canvas.addImage(qrCodeImage);
 
-            // Hiển thị thông tin tài khoản dưới mã QR
             Phrase phrase1 = new Phrase("STK: 113366668888 - BIDV", fontBold15);
-            Phrase phrase2 = new Phrase("HUYNH VY HAO", fontBold15);
+            Phrase phrase2 = new Phrase("HUYNH VAN MINH", fontBold15);
 
             ColumnText.showTextAligned(canvas, Element.ALIGN_CENTER, phrase1,
                                        document.getPageSize().getWidth() / 2, qrY - 25, 0);
@@ -629,7 +606,7 @@ public class WritePDF {
         for (int i = 0; i < length; i++) {
             line.append("=");
         }
-        return new Chunk(line.toString(), fontNormal10); // Sử dụng font phù hợp
+        return new Chunk(line.toString(), fontNormal10);
     }
 
 }

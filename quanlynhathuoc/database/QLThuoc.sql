@@ -172,7 +172,7 @@ VALUES
 
 INSERT INTO Thuoc(idThuoc, tenThuoc, hinhAnh, thanhPhan, idDVT, idDM, idXX, soLuongTon, giaNhap, donGia, ngaySanXuat, hanSuDung, loaiThuoc)
 VALUES
-       ('745KCI1KK', N'Thuốc Hết Hạn', (SELECT BulkColumn FROM Openrowset(BULK 'D:\Minh\Hoc\Code\KLTN_HM\quanlynhathuoc\src\product-image\ninh-tam-vuong-hong-bang.png', SINGLE_BLOB) as image), N'L-Carnitine, Taurine, Đan sâm, Khổ sâm bắc, Nattokinase, Hoàng đằng, Magie, Tá dược vừa đủ', 'CVB123ERT', 'ZXC311QWE', 'XCVSDF124', 1054, 165000, 180000, '2023-08-15', '2024-12-6', N'Không kê đơn');
+       ('745KCI1KK', N'Ninh Tâm', (SELECT BulkColumn FROM Openrowset(BULK 'D:\Minh\Hoc\Code\KLTN_HM\quanlynhathuoc\src\product-image\ninh-tam-vuong-hong-bang.png', SINGLE_BLOB) as image), N'L-Carnitine, Taurine, Đan sâm, Khổ sâm bắc, Nattokinase, Hoàng đằng, Magie, Tá dược vừa đủ', 'CVB123ERT', 'ZXC311QWE', 'XCVSDF124', 1054, 165000, 180000, '2023-08-15', '2024-12-6', N'Không kê đơn');
 go
 
 SELECT hanSuDung FROM Thuoc WHERE hanSuDung IS NULL OR hanSuDung < '2025-01-01';

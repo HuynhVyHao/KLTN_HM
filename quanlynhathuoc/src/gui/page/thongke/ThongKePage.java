@@ -37,7 +37,7 @@ public class ThongKePage extends JPanel {
 
         tabPane.addTab("Tổng quan", new ThongKeTongQuanPage());
         tabPane.addTab("Doanh thu", new ThongKeDoanhThuPage());
-        tabPane.addTab("Hạn Sử Dụng", new ThongKeHSDThuocPage());
+        tabPane.addTab("Tồn Kho", new ThongKeHSDThuocPage());
         tabPane.addTab("Thuốc Bán Chạy", new ThongKeThuocBanChayPage());
         
         this.add(tabPane);
