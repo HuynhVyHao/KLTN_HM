@@ -4,6 +4,7 @@ import connectDB.JDBCConnection;
 import entity.KhachHang;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,10 @@ public class KhachHangDAO extends InterfaceDAO<KhachHang, String> {
     private final String SELECT_ALL_SQL = "SELECT * FROM KhachHang ORDER BY ngayThamGia";
     private final String SELECT_BY_ID = "SELECT * FROM KhachHang WHERE idKH = ?";
     private final String SELECT_BY_SDT = "SELECT * FROM KhachHang WHERE sdt = ?";
+    private final String COUNT_BY_ID_SQL = "SELECT COUNT(*) FROM KhachHang WHERE idKH = ?";
 
+    
+    
     @Override
     public void create(KhachHang e) {
         JDBCConnection.update(INSERT_SQL, e.getId(), e.getHoTen(), e.getSdt(), e.getGioiTinh(), e.getNgayThamGia());
@@ -73,6 +77,18 @@ public class KhachHangDAO extends InterfaceDAO<KhachHang, String> {
             return null;
         }
         return list.get(0);
+    }
+    
+    public boolean isMaKhachHangExist(String idKH) {
+        try {
+            ResultSet rs = JDBCConnection.query(COUNT_BY_ID_SQL, idKH);
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Nếu số lượng lớn hơn 0, mã khách hàng tồn tại.
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu không tồn tại hoặc xảy ra lỗi.
     }
 
 }

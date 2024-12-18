@@ -28,8 +28,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
@@ -162,9 +165,36 @@ public class CreateHoaDonPage extends JPanel {
         tableCart.getColumnModel().getColumn(0).setPreferredWidth(30);
         tableCart.getColumnModel().getColumn(1).setPreferredWidth(200);
 
+        // Cho phép chỉnh sửa cột "Số lượng"
+        tableCart.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(new JTextField()));
+
+        // Lắng nghe sự thay đổi trong bảng khi người dùng sửa số lượng
+        tableCart.getModel().addTableModelListener(e -> {
+            if (e.getType() == TableModelEvent.UPDATE) {
+                int row = e.getFirstRow();
+                int column = e.getColumn();
+                if (column == 2) {  // Cột "Số lượng"
+                    String newQuantityStr = tableCart.getValueAt(row, column).toString();
+                    try {
+                        int newQuantity = Integer.parseInt(newQuantityStr);
+
+                        // Cập nhật lại số lượng thuốc trong listCTHD
+                        ChiTietHoaDon chiTiet = listCTHD.get(row);
+                        chiTiet.setSoLuong(newQuantity);
+
+                        // Cập nhật lại tổng tiền sau khi thay đổi số lượng
+                        loadTableCTHD(listCTHD);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Số lượng không hợp lệ.");
+                    }
+                }
+            }
+        });
+
         loadTableCTHD(listCTHD);
         sortTable();
     }
+
 
     public void loadTableCTHD(List<ChiTietHoaDon> list) {
         modalCart.setRowCount(0);
@@ -179,6 +209,7 @@ public class CreateHoaDonPage extends JPanel {
         }
         txtTong.setText(Formatter.FormatVND(sum));
     }
+
 
     private void billLayout() {
         btnAddCustomer.putClientProperty(FlatClientProperties.STYLE, "arc: 15");
@@ -201,37 +232,23 @@ public class CreateHoaDonPage extends JPanel {
             return false;
         }
 
-        // Kiểm tra khách hàng đã được chọn
-        if (Validation.isEmpty(txtSdtKH.getText())) {
-            MessageDialog.warring(this, "Vui lòng chọn khách hàng!");
+        // Kiểm tra thông tin khách hàng
+        String sdtKH = txtSdtKH.getText().trim();
+        if (Validation.isEmpty(sdtKH)) {
+            // Nếu thông tin khách hàng trống, xử lý như khách vãng lai
+            return true; // Cho phép tiếp tục khi khách hàng là khách vãng lai
+        }
+
+        // Kiểm tra định dạng số điện thoại
+        if (!Validation.isPhoneNumber(sdtKH)) {
+            MessageDialog.warring(this, "Số điện thoại không hợp lệ!");
             txtSdtKH.requestFocus();
             return false;
         }
 
-        // Kiểm tra tiền khách đưa chỉ khi chọn "Tiền mặt"
-        String selectedMethod = (String) cbPaymentMethod.getSelectedItem();
-        if ("Tiền mặt".equals(selectedMethod)) {
-            if (Validation.isEmpty(txtTienKhachDua.getText().trim())) {
-                txtTienKhachDua.requestFocus();
-                return false;
-            }
-
-            try {
-                double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
-                if (tienKhachDua < 0) {
-                    MessageDialog.warring(this, "Tiền khách đưa phải >= 0");
-                    Validation.resetTextfield(txtTienKhachDua);
-                    return false;
-                }
-            } catch (NumberFormatException e) {
-                MessageDialog.warring(this, "Tiền khách đưa phải là số!");
-                Validation.resetTextfield(txtTienKhachDua);
-                return false;
-            }
-        }
-
         return true;
     }
+
 
 
     private boolean isValidChiTietHoaDon() {
@@ -292,11 +309,35 @@ public class CreateHoaDonPage extends JPanel {
         String idHD = txtMaHoaDon.getText();
         Timestamp thoiGian = new Timestamp(System.currentTimeMillis());
         NhanVien nhanVien = tk.getNhanVien();
-        KhachHang khachHang = new KhachHangController().selectBySdt(txtSdtKH.getText());
-        double tongTien = Formatter.unformatVND(txtTong.getText());
+        KhachHang khachHang;
 
+        // Kiểm tra xem số điện thoại có được nhập hay không
+        String sdtKH = txtSdtKH.getText().trim();
+        if (sdtKH.isEmpty()) {
+            // Nếu không nhập, tạo khách hàng vãng lai
+            String maKVL = generateMaKhachVangLai();
+            String defaultSdt = "0000000000"; // Số điện thoại mặc định
+            String defaultGioiTinh = "Nam";  // Giới tính mặc định
+            khachHang = new KhachHang(maKVL, "Khách Vãng Lai", defaultSdt, defaultGioiTinh, thoiGian);
+            
+            // Thêm khách vãng lai vào database nếu cần
+            new KhachHangController().create(khachHang);
+        } else {
+            // Nếu có nhập số điện thoại, tìm khách hàng theo số điện thoại
+            khachHang = new KhachHangController().selectBySdt(sdtKH);
+
+            // Nếu không tìm thấy khách hàng, thông báo lỗi hoặc xử lý
+            if (khachHang == null) {
+                MessageDialog.warring(this, "Không tìm thấy khách hàng có số điện thoại: " + sdtKH);
+                throw new IllegalArgumentException("Khách hàng không tồn tại");
+            }
+        }
+
+        double tongTien = Formatter.unformatVND(txtTong.getText());
         return new HoaDon(idHD, thoiGian, nhanVien, khachHang, tongTien);
     }
+
+
 
     private ChiTietHoaDon getInputChiTietHoaDon() {
         HoaDon hoaDon = getInputHoaDon();
@@ -306,6 +347,7 @@ public class CreateHoaDonPage extends JPanel {
 
         return new ChiTietHoaDon(hoaDon, thuoc, soLuong, donGia);
     }
+
 
     private void initComponents() {
 
@@ -1115,6 +1157,17 @@ public class CreateHoaDonPage extends JPanel {
             return true;
         }
         return false;
+    }
+    private String generateMaKhachVangLai() {
+        Random random = new Random();
+        String maKVL;
+
+        do {
+            int randomNumber = random.nextInt(10000); // Sinh số ngẫu nhiên từ 0 đến 9999
+            maKVL = String.format("KVL%04d", randomNumber);
+        } while (new KhachHangController().isMaKhachHangExist(maKVL)); // Kiểm tra mã đã tồn tại
+
+        return maKVL;
     }
 
 

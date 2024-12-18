@@ -39,6 +39,8 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
         this.KH_GUITK = KH_GUITK;
     }
     
+    
+    
 
     @Override
     public void create(KhachHang e) {
@@ -71,6 +73,10 @@ public class KhachHangController extends InterfaceConTroller<KhachHang, String> 
     
     public KhachHang selectBySdt(String sdt) {
         return KH_DAO.selectBySdt(sdt);
+    }
+    
+    public boolean isMaKhachHangExist(String idKH) {
+    	return KH_DAO.isMaKhachHangExist(idKH);
     }
 
     public List<KhachHang> getSearchTable(String text, String searchType) {

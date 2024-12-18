@@ -418,3 +418,4 @@ FROM ChiTietHoaDon
 INNER JOIN Thuoc ON ChiTietHoaDon.idThuoc = Thuoc.idThuoc
 GROUP BY Thuoc.idThuoc, Thuoc.tenThuoc, Thuoc.loaiThuoc
 ORDER BY tongSoLuong DESC;
+

@@ -21,6 +21,8 @@ import entity.TaiKhoan;
 import entity.Thuoc;
 import gui.MainLayout;
 import gui.dialog.CreateKhachHangDialog;
+import mail.EmailSender;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import utils.Formatter;
@@ -167,6 +170,32 @@ public class CreateDatHangPage extends JPanel {
         tableCart.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
         tableCart.getColumnModel().getColumn(0).setPreferredWidth(30);
         tableCart.getColumnModel().getColumn(1).setPreferredWidth(200);
+
+        // Cho phép chỉnh sửa cột "Số lượng"
+        tableCart.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(new JTextField()));
+
+        // Lắng nghe sự thay đổi trong bảng khi người dùng sửa số lượng
+        tableCart.getModel().addTableModelListener(e -> {
+            if (e.getType() == TableModelEvent.UPDATE) {
+                int row = e.getFirstRow();
+                int column = e.getColumn();
+                if (column == 2) {  // Cột "Số lượng"
+                    String newQuantityStr = tableCart.getValueAt(row, column).toString();
+                    try {
+                        int newQuantity = Integer.parseInt(newQuantityStr);
+
+                        // Cập nhật lại số lượng thuốc trong listCTHD
+                        ChiTietDatHang chiTiet = listCTDH.get(row);
+                        chiTiet.setSoLuong(newQuantity);
+
+                        // Cập nhật lại tổng tiền sau khi thay đổi số lượng
+                        loadTableCTHD(listCTDH);
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Số lượng không hợp lệ.");
+                    }
+                }
+            }
+        });
 
         loadTableCTHD(listCTDH);
         sortTable();
@@ -675,7 +704,7 @@ public class CreateDatHangPage extends JPanel {
         jPanel6.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 8));
 
         jPanel23.setBackground(new Color(255, 255, 255));
-        jPanel23.setPreferredSize(new Dimension(440, 140));
+        jPanel23.setPreferredSize(new Dimension(440, 190));
         jPanel23.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         jPanel7.setBackground(new Color(255, 255, 255));
@@ -752,6 +781,32 @@ public class CreateDatHangPage extends JPanel {
         cboxGioiTinhKH.setPreferredSize(new Dimension(90, 40));
         jPanel23.add(cboxGioiTinhKH);
 
+        jPanel6.add(jPanel23);
+        
+        jPanelEmail = new JPanel();
+        jPanelEmail.setBackground(new Color(255, 255, 255));
+        jPanelEmail.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 0));
+
+        // Tạo JLabel cho Email
+        jLabelEmail = new JLabel("Email:");
+        jLabelEmail.setFont(new Font("Roboto", 0, 14));
+        jLabelEmail.setPreferredSize(new Dimension(120, 40));
+        jPanelEmail.add(jLabelEmail);
+
+        // Tạo JTextField cho Email
+        txtEmailKH = new JTextField();
+        txtEmailKH.setPreferredSize(new Dimension(200, 40));
+        jPanelEmail.add(txtEmailKH);
+
+        // Thêm JPanel Email vào jPanel23
+        jPanel23.add(jPanelEmail);
+
+        // Tiếp tục các thao tác với jPanel23, ví dụ như cboxGioiTinhKH
+        cboxGioiTinhKH.setModel(new DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        cboxGioiTinhKH.setPreferredSize(new Dimension(90, 40));
+        jPanel23.add(cboxGioiTinhKH);
+
+        // Cuối cùng, thêm jPanel23 vào jPanel6
         jPanel6.add(jPanel23);
 
         jSeparator1.setPreferredSize(new Dimension(400, 3));
@@ -957,11 +1012,11 @@ public class CreateDatHangPage extends JPanel {
             if (MessageDialog.confirm(this, "Xác nhận đặt hàng?", "Đặt hàng")) {
                 // Lấy thông tin đơn đặt hàng từ giao diện
                 DatHang dh = getInputDatHang();
-                
+
                 // Lưu đơn đặt hàng vào cơ sở dữ liệu
                 DH_CON.create(dh);  // Lưu đơn đặt hàng
                 CTDH_CON.create(listCTDH);  // Lưu chi tiết đơn đặt hàng
-                
+
                 // Kiểm tra trạng thái thanh toán của đơn đặt hàng
                 if (dh.getTrangThai().equalsIgnoreCase("Đã thanh toán")) {
                     // Tạo đối tượng HoaDon từ đơn đặt hàng
@@ -971,7 +1026,7 @@ public class CreateDatHangPage extends JPanel {
                     hoaDon.setThoiGian(dh.getThoiGian());
                     hoaDon.setKhachHang(dh.getKhachHang());
                     hoaDon.setNhanVien(dh.getNhanVien());
-                    
+
                     // Tạo ChiTietHoaDon từ các chi tiết đơn hàng và liên kết với HoaDon
                     List<ChiTietHoaDon> listCTHD = new ArrayList<>();
                     for (ChiTietDatHang ctDH : listCTDH) {
@@ -982,7 +1037,7 @@ public class CreateDatHangPage extends JPanel {
                         chiTietHoaDon.setHoaDon(hoaDon); // Liên kết với hóa đơn
                         listCTHD.add(chiTietHoaDon); // Thêm vào list chi tiết hóa đơn
                     }
-                    
+
                     // Lưu hóa đơn vào cơ sở dữ liệu
                     try {
                         HD_CON.create(hoaDon); // Lưu hóa đơn vào cơ sở dữ liệu
@@ -993,7 +1048,17 @@ public class CreateDatHangPage extends JPanel {
                         e.printStackTrace(); // In chi tiết lỗi để dễ dàng debug
                         return;
                     }
-                    
+
+                    // Gửi email thông báo đặt hàng thành công
+                    String recipientEmail = txtEmailKH.getText(); // Lấy email từ ô nhập liệu
+                    try {
+                        EmailSender.sendEmail(recipientEmail, dh.getId(), "Đã thanh toán");
+                        System.out.println("Email sent successfully.");
+                    } catch (Exception e) {
+                        MessageDialog.error(this, "Không thể gửi email: " + e.getMessage());
+                        e.printStackTrace(); // In ra lỗi chi tiết để dễ dàng debug
+                    }
+
                     // Hỏi người dùng có muốn in hóa đơn không
                     if (MessageDialog.confirm(this, "Bạn có muốn in hóa đơn không?", "In hóa đơn")) {
                         // Thực hiện in hóa đơn
@@ -1004,16 +1069,29 @@ public class CreateDatHangPage extends JPanel {
                             e.printStackTrace();
                         }
                     }
+                } else if (dh.getTrangThai().equalsIgnoreCase("Chưa thanh toán")) {
+                    // Gửi email thông báo đơn hàng đã được đặt
+                    String recipientEmail = txtEmailKH.getText(); // Lấy email từ ô nhập liệu
+                    try {
+                        EmailSender.sendEmail(recipientEmail, dh.getId(), "Chưa thanh toán");
+                        System.out.println("Email sent successfully.");
+                    } catch (Exception e) {
+                        MessageDialog.error(this, "Không thể gửi email: " + e.getMessage());
+                        e.printStackTrace(); // In ra lỗi chi tiết để dễ dàng debug
+                    }
                 }
-                
+
                 // Hiển thị thông báo thành công
                 MessageDialog.info(this, "Đặt hàng thành công!");
-                
+
                 // Trở về trang hóa đơn
                 main.setPanel(new DatHangPage(main));
             }
         }
     }
+
+
+
 
 
     private JPanel actionPanel;
@@ -1024,6 +1102,7 @@ public class CreateDatHangPage extends JPanel {
     private JButton btnDeleteCartItem;
     private JButton btnHuy;
     private JButton btnReload;
+    private JTextField txtEmailKH;
     private JButton btnSearchKH;
     private JButton btnThanhToan;
     private JPanel cardPanel;
@@ -1069,11 +1148,13 @@ public class CreateDatHangPage extends JPanel {
     private JScrollPane jScrollPane3;
     private JSeparator jSeparator1;
     private JLabel lblThuoc;
+    private JLabel jLabelEmail;
     private JPanel mainPanel;
     private JPanel sanPhamPanel;
     private JTable table;
     private JTable tableCart;
     private JPanel tablePanel;
+    private JPanel jPanelEmail;
     private JTextField txtDonGia;
     private JLabel txtHinhAnh;
     private JTextField txtHoTenKH;
